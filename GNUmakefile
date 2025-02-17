@@ -7,12 +7,14 @@ install: build
 	go install -v ./...
 
 lint:
-	golangci-lint run
+	go tool golangci-lint run
 
-generate:
-	cd tools; go generate ./...
+generate: fmt
+	go tool tfplugindocs generate
 
 fmt:
+	go tool golangci-lint run --fix
+	terraform fmt -recursive ./examples/
 	gofmt -s -w -e .
 
 test:
