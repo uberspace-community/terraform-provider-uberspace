@@ -1,27 +1,33 @@
-# Visit https://golangci-lint.run/ for usage documentation
-# and information on other useful linters
-issues:
-  max-per-linter: 0
-  max-same-issues: 0
-
+run:
+  go: "1.23"
+  timeout: 5m
 linters:
-  disable-all: true
-  enable:
-    - durationcheck
+  enable-all: true
+  disable:
+    - depguard
+    - err113
     - errcheck
-    - copyloopvar
-    - forcetypeassert
-    - godot
-    - gofmt
-    - gosimple
-    - ineffassign
-    - makezero
-    - misspell
-    - nilerr
-    - predeclared
-    - staticcheck
+    - exhaustruct
+    - gochecknoglobals
+    - gochecknoinits
+    - godox
+    - gosmopolitan
+    - ireturn
+    - lll
+    - mnd
+    - nlreturn
+    - nonamedreturns
+    - paralleltest
+    - perfsprint
+    - prealloc
+    - tagliatelle
     - tenv
-    - unconvert
-    - unparam
-    - unused
-    - govet
+    - testpackage
+    - varnamelen
+    - wrapcheck
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/uberspace-community/terraform-provider-uberspace)
