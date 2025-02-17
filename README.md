@@ -1,10 +1,9 @@
 # Terraform Provider for uberspace U7
 
-This repository contains the Terraform provider for managing crontabs.
+This repository contains the Terraform provider for managing resources on [uberspace U7](https://uberspace.de/).
 
 > [!WARNING]  
 > This provider is currently in development and not yet ready for production use.
-> This provider requires Go >= 1.24, which is not yet released.
 
 ## Requirements
 
