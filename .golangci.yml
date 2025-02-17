@@ -8,7 +8,6 @@ linters:
     - err113
     - errcheck
     - exhaustruct
-    - exportloopref
     - gochecknoglobals
     - gochecknoinits
     - godox
@@ -22,6 +21,7 @@ linters:
     - perfsprint
     - prealloc
     - tagliatelle
+    - tenv
     - testpackage
     - varnamelen
     - wrapcheck
@@ -30,4 +30,4 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(github.com/cugu/terraform-provider-uberspace)
+      - prefix(github.com/uberspace-community/terraform-provider-uberspace)

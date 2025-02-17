@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 
-	"github.com/cugu/terraform-provider-uberspace/uberspace"
+	"github.com/uberspace-community/terraform-provider-uberspace/uberspace"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.

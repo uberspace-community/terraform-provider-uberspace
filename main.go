@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 
-	"github.com/cugu/terraform-provider-uberspace/internal/provider"
+	"github.com/uberspace-community/terraform-provider-uberspace/internal/provider"
 )
 
 // these will be set by the goreleaser configuration
@@ -24,7 +24,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/cugu/uberspace",
+		Address: "registry.terraform.io/uberspace-community/uberspace",
 		Debug:   debug,
 	}
 

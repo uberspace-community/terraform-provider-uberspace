@@ -1,7 +1,7 @@
 package uberspace
 
 import (
-	"github.com/cugu/terraform-provider-uberspace/ssh"
+	"github.com/uberspace-community/terraform-provider-uberspace/ssh"
 )
 
 type Client struct {

@@ -9,8 +9,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 
-	"github.com/cugu/terraform-provider-uberspace/ssh"
-	"github.com/cugu/terraform-provider-uberspace/uberspace"
+	"github.com/uberspace-community/terraform-provider-uberspace/ssh"
+	"github.com/uberspace-community/terraform-provider-uberspace/uberspace"
 )
 
 // Ensure UberspaceProvider satisfies various provider interfaces.

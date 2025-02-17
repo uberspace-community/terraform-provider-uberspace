@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"gopkg.in/ini.v1"
 
-	"github.com/cugu/terraform-provider-uberspace/uberspace"
+	"github.com/uberspace-community/terraform-provider-uberspace/uberspace"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
