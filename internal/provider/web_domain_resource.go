@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -14,8 +13,8 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &WebDomainResource{}
-	_ resource.ResourceWithImportState = &WebDomainResource{}
+	_ resource.Resource = &WebDomainResource{}
+	// _ resource.ResourceWithImportState = &WebDomainResource{}.
 )
 
 func NewWebDomainResource() resource.Resource {
@@ -148,6 +147,6 @@ func (r *WebDomainResource) Delete(ctx context.Context, req resource.DeleteReque
 	}
 }
 
-func (r *WebDomainResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("domain"), req, resp)
-}
+// func (r *WebDomainResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// 	resource.ImportStatePassthroughID(ctx, path.Root("domain"), req, resp)
+// }

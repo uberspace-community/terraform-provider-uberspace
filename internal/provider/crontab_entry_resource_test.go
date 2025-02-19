@@ -27,11 +27,11 @@ func TestAccCronTabEntryResource(t *testing.T) {
 				},
 			},
 			// ImportState testing
-			{
-				ResourceName:      "uberspace_crontab_entry.test",
-				ImportState:       true,
-				ImportStateVerify: true,
-			},
+			// {
+			// 	ResourceName:      "uberspace_crontab_entry.test",
+			// 	ImportState:       true,
+			// 	ImportStateVerify: true,
+			// },
 			// Update and Read testing
 			{
 				Config: testAccCronTabEntryResourceConfig("* * * * * ls -l > /dev/null 2>&1"),

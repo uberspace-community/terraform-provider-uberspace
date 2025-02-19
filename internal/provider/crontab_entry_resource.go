@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -14,8 +13,8 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &CronTabEntryResource{}
-	_ resource.ResourceWithImportState = &CronTabEntryResource{}
+	_ resource.Resource = &CronTabEntryResource{}
+	//	_ resource.ResourceWithImportState = &CronTabEntryResource{}
 )
 
 func NewCronTabEntryResource() resource.Resource {
@@ -158,6 +157,6 @@ func (r *CronTabEntryResource) Delete(ctx context.Context, req resource.DeleteRe
 	}
 }
 
-func (r *CronTabEntryResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("entry"), req, resp)
-}
+// func (r *CronTabEntryResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// 	resource.ImportStatePassthroughID(ctx, path.Root("entry"), req, resp)
+// }

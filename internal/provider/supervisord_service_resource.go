@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -14,8 +13,8 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &SupervisorServiceResource{}
-	_ resource.ResourceWithImportState = &SupervisorServiceResource{}
+	_ resource.Resource = &SupervisorServiceResource{}
+	// _ resource.ResourceWithImportState = &SupervisorServiceResource{}.
 )
 
 func NewSupervisorServiceResource() resource.Resource {
@@ -169,9 +168,9 @@ func (r *SupervisorServiceResource) Delete(ctx context.Context, req resource.Del
 	}
 }
 
-func (r *SupervisorServiceResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("name"), req, resp)
-}
+// func (r *SupervisorServiceResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// 	resource.ImportStatePassthroughID(ctx, path.Root("name"), req, resp)
+// }
 
 func stringMap(environment types.Map) map[string]string {
 	env := make(map[string]string)

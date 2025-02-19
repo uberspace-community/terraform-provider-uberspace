@@ -27,11 +27,11 @@ func TestAccSupervisorServiceResource(t *testing.T) {
 				},
 			},
 			// ImportState testing
-			{
-				ResourceName:      "uberspace_supervisor_service.test",
-				ImportState:       true,
-				ImportStateVerify: true,
-			},
+			// {
+			// 	ResourceName:      "uberspace_supervisor_service.test",
+			// 	ImportState:       true,
+			// 	ImportStateVerify: true,
+			// },
 			// Update and Read testing
 			{
 				Config: testAccSupervisorServiceResourceConfig("example", "go run golang.org/x/tools/cmd/godoc@latest"),

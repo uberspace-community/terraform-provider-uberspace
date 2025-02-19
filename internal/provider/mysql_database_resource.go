@@ -15,8 +15,8 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                   = &MySQLDatabaseResource{}
-	_ resource.ResourceWithImportState    = &MySQLDatabaseResource{}
+	_ resource.Resource = &MySQLDatabaseResource{}
+	// _ resource.ResourceWithImportState    = &MySQLDatabaseResource{}.
 	_ resource.ResourceWithValidateConfig = &MySQLDatabaseResource{}
 )
 
@@ -175,6 +175,6 @@ func (r *MySQLDatabaseResource) Delete(ctx context.Context, req resource.DeleteR
 	}
 }
 
-func (r *MySQLDatabaseResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("name"), req, resp)
-}
+// func (r *MySQLDatabaseResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// 	resource.ImportStatePassthroughID(ctx, path.Root("name"), req, resp)
+// }

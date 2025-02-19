@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -14,8 +13,8 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &WebBackendResource{}
-	_ resource.ResourceWithImportState = &WebBackendResource{}
+	_ resource.Resource = &WebBackendResource{}
+	// _ resource.ResourceWithImportState = &WebBackendResource{}.
 )
 
 func NewWebBackendResource() resource.Resource {
@@ -146,6 +145,6 @@ func (r *WebBackendResource) Delete(ctx context.Context, req resource.DeleteRequ
 	}
 }
 
-func (r *WebBackendResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("uri"), req, resp)
-}
+// func (r *WebBackendResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// 	resource.ImportStatePassthroughID(ctx, path.Root("uri"), req, resp)
+// }

@@ -27,11 +27,11 @@ func TestAccRemoteFileResource(t *testing.T) {
 				},
 			},
 			// ImportState testing
-			{
-				ResourceName:      "uberspace_remote_file.test",
-				ImportState:       true,
-				ImportStateVerify: true,
-			},
+			// {
+			// 	ResourceName:      "uberspace_remote_file.test",
+			// 	ImportState:       true,
+			// 	ImportStateVerify: true,
+			// },
 			// Update and Read testing
 			{
 				Config: testAccRemoteFileResourceConfig("example", "/home/terra/example"),

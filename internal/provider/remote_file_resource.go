@@ -15,8 +15,8 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                   = &RemoteFileResource{}
-	_ resource.ResourceWithImportState    = &RemoteFileResource{}
+	_ resource.Resource = &RemoteFileResource{}
+	// _ resource.ResourceWithImportState    = &RemoteFileResource{}.
 	_ resource.ResourceWithValidateConfig = &RemoteFileResource{}
 )
 
@@ -243,6 +243,6 @@ func (r *RemoteFileResource) Delete(ctx context.Context, req resource.DeleteRequ
 	}
 }
 
-func (r *RemoteFileResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("dst"), req, resp)
-}
+// func (r *RemoteFileResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// 	resource.ImportStatePassthroughID(ctx, path.Root("dst"), req, resp)
+// }
