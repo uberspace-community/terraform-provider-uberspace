@@ -4,9 +4,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"net"
-	"os/exec"
-	"strings"
 
 	"github.com/bramvdbogaerde/go-scp"
 	"golang.org/x/crypto/ssh"
@@ -51,20 +50,26 @@ func NewClient(config *Config) (*Client, error) {
 	return &Client{sshClient: client}, nil
 }
 
-func (c *Client) Run(cmd *exec.Cmd) ([]byte, error) {
+func (c *Client) Run(cmd string) ([]byte, error) {
+	return c.RunWithStdin(cmd, nil)
+}
+
+func (c *Client) RunWithStdin(cmd string, stdin io.Reader) ([]byte, error) {
 	session, err := c.sshClient.NewSession()
 	if err != nil {
 		return nil, err
 	}
 	defer session.Close()
 
-	session.Stdin = cmd.Stdin
+	session.Stdin = stdin
 
-	command := strings.Join(cmd.Args, " ")
-
-	out, err := session.CombinedOutput(command)
+	out, err := session.CombinedOutput(cmd)
 	if err != nil {
-		return out, fmt.Errorf("%w: %s", err, string(out))
+		if out != nil {
+			err = fmt.Errorf("%w: %s", err, string(out))
+		}
+
+		return nil, err
 	}
 
 	return out, nil
@@ -76,9 +81,7 @@ func (c *Client) WriteFile(ctx context.Context, path string, content []byte) err
 		return err
 	}
 
-	src := bytes.NewReader(content)
-
-	if err := scpClient.CopyFile(ctx, src, path, "0655"); err != nil {
+	if err := scpClient.CopyFile(ctx, bytes.NewReader(content), path, "0655"); err != nil {
 		return fmt.Errorf("copying file: %w", err)
 	}
 

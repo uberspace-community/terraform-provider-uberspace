@@ -17,12 +17,12 @@ func TestAccRemoteFileResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// Create and Read testing
 			{
-				Config: testAccRemoteFileResourceConfig("example", "echo 'Hello, World!'"),
+				Config: testAccRemoteFileResourceConfig("example", "/home/terra/example"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_remote_file.test",
-						tfjsonpath.New("name"),
-						knownvalue.StringExact("example"),
+						tfjsonpath.New("dst"),
+						knownvalue.StringExact("/home/terra/example"),
 					),
 				},
 			},
@@ -34,12 +34,12 @@ func TestAccRemoteFileResource(t *testing.T) {
 			},*/
 			// Update and Read testing
 			{
-				Config: testAccRemoteFileResourceConfig("example", "echo 'Hello, World!'"),
+				Config: testAccRemoteFileResourceConfig("example", "/home/terra/example"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_remote_file.test",
-						tfjsonpath.New("name"),
-						knownvalue.StringExact("example"),
+						tfjsonpath.New("dst"),
+						knownvalue.StringExact("/home/terra/example"),
 					),
 				},
 			},
@@ -48,11 +48,11 @@ func TestAccRemoteFileResource(t *testing.T) {
 	})
 }
 
-func testAccRemoteFileResourceConfig(name, command string) string {
+func testAccRemoteFileResourceConfig(content, dst string) string {
 	return fmt.Sprintf(`
 resource "uberspace_remote_file" "test" {
-  name = %[1]q
-  command = %[1]q
+  content = %[1]q
+  dst = %[2]q
 }
-`, name, command)
+`, content, dst)
 }

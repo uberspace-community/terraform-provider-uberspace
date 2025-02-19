@@ -22,6 +22,7 @@ generate: fmt
 
 .PHONY: fmt
 fmt:
+	go mod tidy
 	golangci-lint run --fix
 	terraform fmt -recursive ./examples/
 	gofmt -s -w -e .

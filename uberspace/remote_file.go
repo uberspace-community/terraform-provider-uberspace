@@ -5,11 +5,10 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"os/exec"
 	"strings"
 )
 
-func (c *Client) RemoteFileCreate(ctx context.Context, src, dst string, executable bool) error {
+func (c *Client) RemoteFileCopy(ctx context.Context, src, dst string, executable bool) error {
 	var data []byte
 
 	var err error
@@ -26,12 +25,16 @@ func (c *Client) RemoteFileCreate(ctx context.Context, src, dst string, executab
 		}
 	}
 
-	if err := c.Runner.WriteFile(ctx, dst, data); err != nil {
+	return c.RemoteFileCreate(ctx, data, dst, executable)
+}
+
+func (c *Client) RemoteFileCreate(ctx context.Context, data []byte, dst string, executable bool) error {
+	if err := c.SSHClient.WriteFile(ctx, dst, data); err != nil {
 		return err
 	}
 
 	if executable {
-		_, err := c.Runner.Run(exec.CommandContext(ctx, "chmod", "+x", dst))
+		_, err := c.SSHClient.Run("chmod +x " + dst)
 		if err != nil {
 			return err
 		}
@@ -55,14 +58,14 @@ func httpReadFile(ctx context.Context, url string) ([]byte, error) {
 	return io.ReadAll(resp.Body)
 }
 
-func (c *Client) RemoteFileExists(ctx context.Context, dst string) (bool, error) {
-	_, err := c.Runner.Run(exec.CommandContext(ctx, "test", "-e", dst))
+func (c *Client) RemoteFileExists(dst string) (bool, error) {
+	_, err := c.SSHClient.Run("test -e " + dst)
 
 	return err == nil, err
 }
 
-func (c *Client) RemoteFileDelete(ctx context.Context, dst string) (bool, error) {
-	_, err := c.Runner.Run(exec.CommandContext(ctx, "rm", dst))
+func (c *Client) RemoteFileDelete(dst string) error {
+	_, err := c.SSHClient.Run("rm " + dst)
 
-	return err == nil, err
+	return err
 }

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"os/exec"
 	"strings"
 )
 
@@ -32,34 +31,32 @@ func (c *Client) SupervisorServiceCreate(ctx context.Context, user, name, comman
 
 	path := fmt.Sprintf("/home/%s/etc/services.d/%s.ini", user, name)
 
-	if err := c.Runner.WriteFile(ctx, path, []byte(config)); err != nil {
+	if err := c.SSHClient.WriteFile(ctx, path, []byte(config)); err != nil {
 		return err
 	}
 
-	_, err := c.Runner.Run(exec.CommandContext(ctx, "chmod", "+x", path))
+	_, err := c.SSHClient.Run("chmod +x " + path)
 	if err != nil {
 		return err
 	}
 
-	_, err = c.Runner.Run(exec.CommandContext(ctx, "supervisorctl", "reread"))
+	_, err = c.SSHClient.Run("supervisorctl reread")
 	if err != nil {
 		return err
 	}
 
-	_, err = c.Runner.Run(exec.CommandContext(ctx, "supervisorctl", "update"))
+	_, err = c.SSHClient.Run("supervisorctl update")
 	if err != nil {
 		return err
 	}
 
-	_, err = c.Runner.Run(exec.CommandContext(ctx, "supervisorctl", "start", name))
+	_, err = c.SSHClient.Run("supervisorctl start " + name)
 
 	return err
 }
 
-func (c *Client) SupervisorServiceRead(ctx context.Context, name string) (bool, error) {
-	cmd := exec.CommandContext(ctx, "supervisorctl", "status", name)
-
-	out, err := c.Runner.Run(cmd)
+func (c *Client) SupervisorServiceExists(name string) (bool, error) {
+	out, err := c.SSHClient.Run("supervisorctl status " + name)
 	if err != nil {
 		if bytes.Contains(out, []byte("no such process")) {
 			return false, nil
@@ -71,21 +68,18 @@ func (c *Client) SupervisorServiceRead(ctx context.Context, name string) (bool, 
 	return true, nil
 }
 
-func (c *Client) SupervisorServiceDrop(ctx context.Context, user, name string) (bool, error) {
-	_, err := c.Runner.Run(exec.CommandContext(ctx, "supervisorctl", "stop", name))
+func (c *Client) SupervisorServiceRemove(user, name string) error {
+	_, err := c.SSHClient.Run("supervisorctl stop " + name)
 	if err != nil {
-		return false, err
+		return err
 	}
 
-	_, err = c.Runner.Run(exec.CommandContext(ctx, "supervisorctl", "remove", name))
+	_, err = c.SSHClient.Run("supervisorctl remove " + name)
 	if err != nil {
-		return false, err
+		return err
 	}
 
-	_, err = c.Runner.Run(exec.CommandContext(ctx, "rm", fmt.Sprintf("/home/%s/etc/services.d/%s.ini", user, name))) //nolint: gosec
-	if err != nil {
-		return false, err
-	}
+	_, err = c.SSHClient.Run(fmt.Sprintf("rm /home/%s/etc/services.d/%s.ini", user, name))
 
-	return true, nil
+	return err
 }

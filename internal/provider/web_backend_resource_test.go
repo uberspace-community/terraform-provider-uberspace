@@ -17,12 +17,12 @@ func TestAccWebBackendResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// Create and Read testing
 			{
-				Config: testAccWebBackendResourceConfig("example.jonasplum.de/", 9090),
+				Config: testAccWebBackendResourceConfig("example.terra.uber.space", 9090),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_web_backend.test",
 						tfjsonpath.New("uri"),
-						knownvalue.StringExact("example.jonasplum.de/"),
+						knownvalue.StringExact("example.terra.uber.space/"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_web_backend.test",
@@ -39,12 +39,12 @@ func TestAccWebBackendResource(t *testing.T) {
 			},*/
 			// Update and Read testing
 			{
-				Config: testAccWebBackendResourceConfig("example.jonasplum.de/", 9092),
+				Config: testAccWebBackendResourceConfig("example.terra.uber.space", 9092),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_web_backend.test",
 						tfjsonpath.New("uri"),
-						knownvalue.StringExact("example.jonasplum.de/"),
+						knownvalue.StringExact("example.terra.uber.space/"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_web_backend.test",
@@ -58,11 +58,17 @@ func TestAccWebBackendResource(t *testing.T) {
 	})
 }
 
-func testAccWebBackendResourceConfig(uri string, port int) string {
+func testAccWebBackendResourceConfig(domain string, port int) string {
 	return fmt.Sprintf(`
-resource "uberspace_web_backend" "test" {
-  uri = %[1]q
-  port = %[2]q
+resource "uberspace_web_domain" "test" {
+  domain = %[1]q
 }
-`, uri, port)
+
+resource "uberspace_web_backend" "test" {
+  depends_on = [uberspace_web_domain.test]
+
+  uri = %[2]q
+  port = %[3]d
+}
+`, domain, domain+"/", port)
 }

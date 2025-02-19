@@ -111,7 +111,7 @@ func (r *SupervisorServiceResource) Read(ctx context.Context, req resource.ReadR
 		return
 	}
 
-	found, err := r.client.SupervisorServiceRead(ctx, state.Name.ValueString())
+	found, err := r.client.SupervisorServiceExists(state.Name.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read supervisor service, got error: %s", err))
 		return
@@ -135,14 +135,8 @@ func (r *SupervisorServiceResource) Update(ctx context.Context, req resource.Upd
 		return
 	}
 
-	removed, err := r.client.SupervisorServiceDrop(ctx, r.client.User, state.Name.ValueString())
-	if err != nil {
+	if err := r.client.SupervisorServiceRemove(r.client.User, state.Name.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update supervisor service, got error: %s", err))
-		return
-	}
-
-	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Supervisor service for %q not found", state.Name.ValueString()))
 		return
 	}
 
@@ -169,14 +163,8 @@ func (r *SupervisorServiceResource) Delete(ctx context.Context, req resource.Del
 		return
 	}
 
-	removed, err := r.client.SupervisorServiceDrop(ctx, r.client.User, state.Name.ValueString())
-	if err != nil {
+	if err := r.client.SupervisorServiceRemove(r.client.User, state.Name.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete supervisor service, got error: %s", err))
-		return
-	}
-
-	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Supervisor service for %q not found", state.Name.ValueString()))
 		return
 	}
 }

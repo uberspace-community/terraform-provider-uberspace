@@ -76,7 +76,7 @@ func (r *CronTabEntryResource) Create(ctx context.Context, req resource.CreateRe
 		return
 	}
 
-	err := r.client.CrontabEntryAdd(ctx, planning.Entry.ValueString())
+	err := r.client.CrontabEntryAdd(planning.Entry.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create crontab entry, got error: %s", err))
 		return
@@ -94,7 +94,7 @@ func (r *CronTabEntryResource) Read(ctx context.Context, req resource.ReadReques
 		return
 	}
 
-	found, err := r.client.CrontabEntryExists(ctx, state.Entry.ValueString())
+	found, err := r.client.CrontabEntryExists(state.Entry.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read crontab entry, got error: %s", err))
 		return
@@ -118,7 +118,7 @@ func (r *CronTabEntryResource) Update(ctx context.Context, req resource.UpdateRe
 		return
 	}
 
-	removed, err := r.client.CrontabEntryRemove(ctx, state.Entry.ValueString())
+	removed, err := r.client.CrontabEntryRemove(state.Entry.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update crontab entry, got error: %s", err))
 		return
@@ -129,7 +129,7 @@ func (r *CronTabEntryResource) Update(ctx context.Context, req resource.UpdateRe
 		return
 	}
 
-	err = r.client.CrontabEntryAdd(ctx, planning.Entry.ValueString())
+	err = r.client.CrontabEntryAdd(planning.Entry.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update crontab entry, got error: %s", err))
 		return
@@ -147,15 +147,14 @@ func (r *CronTabEntryResource) Delete(ctx context.Context, req resource.DeleteRe
 		return
 	}
 
-	removed, err := r.client.CrontabEntryRemove(ctx, state.Entry.ValueString())
+	removed, err := r.client.CrontabEntryRemove(state.Entry.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete crontab entry, got error: %s", err))
 		return
 	}
 
 	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Unable to delete crontab entry, got error: %s", err))
-		return
+		resp.Diagnostics.AddWarning("Not Found", fmt.Sprintf("Unable to delete crontab entry, got error: %s", err))
 	}
 }
 

@@ -17,7 +17,7 @@ func TestAccSupervisorServiceResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// Create and Read testing
 			{
-				Config: testAccSupervisorServiceResourceConfig("example", "echo 'Hello, World!'"),
+				Config: testAccSupervisorServiceResourceConfig("example", "go run golang.org/x/tools/cmd/godoc@latest"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_supervisor_service.test",
@@ -34,7 +34,7 @@ func TestAccSupervisorServiceResource(t *testing.T) {
 			},*/
 			// Update and Read testing
 			{
-				Config: testAccSupervisorServiceResourceConfig("example", "echo 'Hello, World!'"),
+				Config: testAccSupervisorServiceResourceConfig("example", "go run golang.org/x/tools/cmd/godoc@latest"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_supervisor_service.test",
@@ -52,7 +52,7 @@ func testAccSupervisorServiceResourceConfig(name, command string) string {
 	return fmt.Sprintf(`
 resource "uberspace_supervisor_service" "test" {
   name = %[1]q
-  command = %[1]q
+  command = %[2]q
 }
 `, name, command)
 }

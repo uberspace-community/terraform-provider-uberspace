@@ -21,7 +21,7 @@ func TestAccUserDataSource(t *testing.T) {
 					statecheck.ExpectKnownValue(
 						"data.uberspace_user.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("fx"),
+						knownvalue.StringExact("terra"),
 					),
 				},
 			},

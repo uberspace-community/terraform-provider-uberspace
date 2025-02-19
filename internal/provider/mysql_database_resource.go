@@ -3,6 +3,7 @@ package provider
 import (
 	"context"
 	"fmt"
+	"regexp"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -14,8 +15,9 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &MySQLDatabaseResource{}
-	_ resource.ResourceWithImportState = &MySQLDatabaseResource{}
+	_ resource.Resource                   = &MySQLDatabaseResource{}
+	_ resource.ResourceWithImportState    = &MySQLDatabaseResource{}
+	_ resource.ResourceWithValidateConfig = &MySQLDatabaseResource{}
 )
 
 func NewMySQLDatabaseResource() resource.Resource {
@@ -46,6 +48,22 @@ func (r *MySQLDatabaseResource) Schema(_ context.Context, _ resource.SchemaReque
 				Required:    true,
 			},
 		},
+	}
+}
+
+var suffixRegex = regexp.MustCompile(`^[a-zA-Z0-9_\-]+$`)
+
+func (r *MySQLDatabaseResource) ValidateConfig(ctx context.Context, request resource.ValidateConfigRequest, response *resource.ValidateConfigResponse) {
+	var model MySQLDatabaseResourceModel
+
+	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
+
+	if response.Diagnostics.HasError() {
+		return
+	}
+
+	if !suffixRegex.MatchString(model.Suffix.ValueString()) {
+		response.Diagnostics.AddAttributeError(path.Root("suffix"), "Invalid Suffix", "Suffix must match the regex: "+suffixRegex.String())
 	}
 }
 
@@ -81,7 +99,7 @@ func (r *MySQLDatabaseResource) Create(ctx context.Context, req resource.CreateR
 		return
 	}
 
-	if err := r.client.MySQLDatabaseCreate(ctx, r.databaseName(state.Suffix.ValueString())); err != nil {
+	if err := r.client.MySQLDatabaseCreate(r.databaseName(state.Suffix.ValueString())); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create mysql database, got error: %s", err))
 		return
 	}
@@ -100,7 +118,7 @@ func (r *MySQLDatabaseResource) Read(ctx context.Context, req resource.ReadReque
 
 	stateDatabaseName := r.databaseName(state.Suffix.ValueString())
 
-	found, err := r.client.MySQLDatabaseRead(ctx, stateDatabaseName)
+	found, err := r.client.MySQLDatabaseExists(stateDatabaseName)
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read mysql database, got error: %s", err))
 		return
@@ -127,18 +145,12 @@ func (r *MySQLDatabaseResource) Update(ctx context.Context, req resource.UpdateR
 	stateDatabaseName := r.databaseName(state.Suffix.ValueString())
 	planningDatabaseName := r.databaseName(planning.Suffix.ValueString())
 
-	removed, err := r.client.MySQLDatabaseDrop(ctx, stateDatabaseName)
-	if err != nil {
+	if err := r.client.MySQLDatabaseDrop(stateDatabaseName); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update mysql database, got error: %s", err))
 		return
 	}
 
-	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Mysql database for %q not found", stateDatabaseName))
-		return
-	}
-
-	if err := r.client.MySQLDatabaseCreate(ctx, planningDatabaseName); err != nil {
+	if err := r.client.MySQLDatabaseCreate(planningDatabaseName); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update mysql database, got error: %s", err))
 		return
 	}
@@ -157,14 +169,8 @@ func (r *MySQLDatabaseResource) Delete(ctx context.Context, req resource.DeleteR
 
 	stateDatabaseName := r.databaseName(state.Suffix.ValueString())
 
-	removed, err := r.client.MySQLDatabaseDrop(ctx, stateDatabaseName)
-	if err != nil {
+	if err := r.client.MySQLDatabaseDrop(stateDatabaseName); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete mysql database, got error: %s", err))
-		return
-	}
-
-	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Mysql database for %q not found", stateDatabaseName))
 		return
 	}
 }

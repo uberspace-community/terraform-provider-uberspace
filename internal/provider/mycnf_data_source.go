@@ -3,7 +3,6 @@ package provider
 import (
 	"context"
 	"fmt"
-	"os/exec"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -105,9 +104,7 @@ func (d *MyCnfDataSource) Read(ctx context.Context, req datasource.ReadRequest, 
 		return
 	}
 
-	cmd := exec.CommandContext(ctx, "cat", "~/.my.cnf")
-
-	out, err := d.client.Runner.Run(cmd)
+	out, err := d.client.SSHClient.Run("cat ~/.my.cnf")
 	if err != nil {
 		resp.Diagnostics.AddError("Failed to read MySQL configuration", err.Error())
 		return

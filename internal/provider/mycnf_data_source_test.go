@@ -20,23 +20,23 @@ func TestAccMyCnfDataSource(t *testing.T) {
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.uberspace_mycnf.test",
-						tfjsonpath.New("client.user"),
-						knownvalue.StringExact("fx"),
+						tfjsonpath.New("client"),
+						knownvalue.MapExact(
+							map[string]knownvalue.Check{
+								"user":     knownvalue.StringExact("terra"),
+								"password": knownvalue.NotNull(),
+							},
+						),
 					),
 					statecheck.ExpectKnownValue(
 						"data.uberspace_mycnf.test",
-						tfjsonpath.New("client.password"),
-						knownvalue.NotNull(),
-					),
-					statecheck.ExpectKnownValue(
-						"data.uberspace_mycnf.test",
-						tfjsonpath.New("clientreadonly.user"),
-						knownvalue.StringExact("fx_ro"),
-					),
-					statecheck.ExpectKnownValue(
-						"data.uberspace_mycnf.test",
-						tfjsonpath.New("clientreadonly.password"),
-						knownvalue.NotNull(),
+						tfjsonpath.New("clientreadonly"),
+						knownvalue.MapExact(
+							map[string]knownvalue.Check{
+								"user":     knownvalue.StringExact("terra_ro"),
+								"password": knownvalue.NotNull(),
+							},
+						),
 					),
 				},
 			},

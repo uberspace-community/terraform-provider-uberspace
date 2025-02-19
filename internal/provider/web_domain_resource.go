@@ -69,22 +69,20 @@ func (r *WebDomainResource) Configure(_ context.Context, req resource.ConfigureR
 }
 
 func (r *WebDomainResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state WebDomainResourceModel
+	var planning WebDomainResourceModel
 
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &state)...)
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &planning)...)
 
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if err := r.client.WebDomainAdd(ctx, state.Domain.ValueString()); err != nil {
+	if err := r.client.WebDomainAdd(planning.Domain.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create web domain, got error: %s", err))
 		return
 	}
 
-	// data.Domain = types.StringValue(data.Domain.ValueString()) // TODO: is this necessary?
-
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &planning)...)
 }
 
 func (r *WebDomainResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -96,7 +94,7 @@ func (r *WebDomainResource) Read(ctx context.Context, req resource.ReadRequest, 
 		return
 	}
 
-	found, err := r.client.WebDomainRead(ctx, state.Domain.ValueString())
+	found, err := r.client.WebDomainExists(state.Domain.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read web domain, got error: %s", err))
 		return
@@ -106,8 +104,6 @@ func (r *WebDomainResource) Read(ctx context.Context, req resource.ReadRequest, 
 		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Web domain for %q not found", state.Domain.ValueString()))
 		return
 	}
-
-	// state.Domain = types.StringValue(state.Domain.ValueString()) TODO: is this necessary?
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
@@ -122,18 +118,12 @@ func (r *WebDomainResource) Update(ctx context.Context, req resource.UpdateReque
 		return
 	}
 
-	removed, err := r.client.WebDomainDelete(ctx, state.Domain.ValueString())
-	if err != nil {
+	if err := r.client.WebDomainDelete(state.Domain.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update web domain, got error: %s", err))
 		return
 	}
 
-	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Web domain for %q not found", state.Domain.ValueString()))
-		return
-	}
-
-	if err := r.client.WebDomainAdd(ctx, planning.Domain.ValueString()); err != nil {
+	if err := r.client.WebDomainAdd(planning.Domain.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update web domain, got error: %s", err))
 		return
 	}
@@ -152,14 +142,8 @@ func (r *WebDomainResource) Delete(ctx context.Context, req resource.DeleteReque
 		return
 	}
 
-	removed, err := r.client.WebDomainDelete(ctx, state.Domain.ValueString())
-	if err != nil {
+	if err := r.client.WebDomainDelete(state.Domain.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain, got error: %s", err))
-		return
-	}
-
-	if !removed {
-		resp.Diagnostics.AddWarning("Not Found", fmt.Sprintf("Web domain for %q not found", state.Domain.ValueString()))
 		return
 	}
 }

@@ -5,6 +5,6 @@ import (
 )
 
 type Client struct {
-	User   string
-	Runner *ssh.Client
+	User      string
+	SSHClient *ssh.Client
 }

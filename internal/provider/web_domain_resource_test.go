@@ -17,12 +17,12 @@ func TestAccWebDomainResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// Create and Read testing
 			{
-				Config: testAccWebDomainResourceConfig("test.example.com"),
+				Config: testAccWebDomainResourceConfig("test.terra.uber.space"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_web_domain.test",
 						tfjsonpath.New("domain"),
-						knownvalue.StringExact("test.example.com"),
+						knownvalue.StringExact("test.terra.uber.space"),
 					),
 				},
 			},
@@ -34,12 +34,12 @@ func TestAccWebDomainResource(t *testing.T) {
 			},*/
 			// Update and Read testing
 			{
-				Config: testAccWebDomainResourceConfig("test.example.com"),
+				Config: testAccWebDomainResourceConfig("test.terra.uber.space"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_web_domain.test",
 						tfjsonpath.New("domain"),
-						knownvalue.StringExact("test.example.com"),
+						knownvalue.StringExact("test.terra.uber.space"),
 					),
 				},
 			},

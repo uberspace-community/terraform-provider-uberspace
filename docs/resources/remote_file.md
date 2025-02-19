@@ -18,9 +18,10 @@ Manage remote files.
 ### Required
 
 - `dst` (String) The destination file.
-- `src` (String) The source file to copy, can be a local file path or a http(s) URL.
-- `src_hash` (String) The hash of the source file, used to detect changes.
 
 ### Optional
 
+- `content` (String) The content of the file to create. Either this or src must be set.
 - `executable` (Boolean) Whether the destination file should be executable.
+- `src` (String) The local file path or a http(s) URL to fetch the file from. Either this or content must be set.
+- `src_hash` (String) The hash of the source file, used to detect changes. Required if src is set.

@@ -17,17 +17,12 @@ func TestAccCronTabEntryResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// Create and Read testing
 			{
-				Config: testAccCronTabEntryResourceConfig("* * * * * ls"),
+				Config: testAccCronTabEntryResourceConfig("* * * * * ls > /dev/null 2>&1"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
-						"crontab_entry.test",
-						tfjsonpath.New("id"),
-						knownvalue.NotNull(),
-					),
-					statecheck.ExpectKnownValue(
-						"crontab_entry.test",
+						"uberspace_crontab_entry.test",
 						tfjsonpath.New("entry"),
-						knownvalue.StringExact("* * * * * ls"),
+						knownvalue.StringExact("* * * * * ls > /dev/null 2>&1"),
 					),
 				},
 			},
@@ -39,17 +34,12 @@ func TestAccCronTabEntryResource(t *testing.T) {
 			},*/
 			// Update and Read testing
 			{
-				Config: testAccCronTabEntryResourceConfig("* * * * * ls -l"),
+				Config: testAccCronTabEntryResourceConfig("* * * * * ls -l > /dev/null 2>&1"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
-						"crontab_entry.test",
-						tfjsonpath.New("id"),
-						knownvalue.NotNull(),
-					),
-					statecheck.ExpectKnownValue(
-						"crontab_entry.test",
+						"uberspace_crontab_entry.test",
 						tfjsonpath.New("entry"),
-						knownvalue.StringExact("* * * * * ls -l"),
+						knownvalue.StringExact("* * * * * ls -l > /dev/null 2>&1"),
 					),
 				},
 			},

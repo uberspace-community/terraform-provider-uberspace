@@ -2,22 +2,16 @@ package uberspace
 
 import (
 	"bytes"
-	"context"
-	"os/exec"
 )
 
-func (c *Client) WebDomainAdd(ctx context.Context, domain string) error {
-	cmd := exec.CommandContext(ctx, "uberspace", "web", "domain", "add", domain)
-
-	_, err := c.Runner.Run(cmd)
+func (c *Client) WebDomainAdd(domain string) error {
+	_, err := c.SSHClient.Run("uberspace web domain add " + domain)
 
 	return err
 }
 
-func (c *Client) WebDomainRead(ctx context.Context, domain string) (bool, error) {
-	cmd := exec.CommandContext(ctx, "uberspace", "web", "domain", "list")
-
-	out, err := c.Runner.Run(cmd)
+func (c *Client) WebDomainExists(domain string) (bool, error) {
+	out, err := c.SSHClient.Run("uberspace web domain list")
 	if err != nil {
 		return false, err
 	}
@@ -25,13 +19,8 @@ func (c *Client) WebDomainRead(ctx context.Context, domain string) (bool, error)
 	return bytes.Contains(out, []byte(domain)), nil
 }
 
-func (c *Client) WebDomainDelete(ctx context.Context, domain string) (bool, error) {
-	cmd := exec.CommandContext(ctx, "uberspace", "web", "domain", "del", domain)
+func (c *Client) WebDomainDelete(domain string) error {
+	_, err := c.SSHClient.Run("uberspace web domain del " + domain)
 
-	_, err := c.Runner.Run(cmd)
-	if err != nil {
-		return false, err
-	}
-
-	return true, nil
+	return err
 }

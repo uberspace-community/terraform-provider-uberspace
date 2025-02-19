@@ -26,8 +26,8 @@ type UberspaceProvider struct {
 
 // UberspaceProviderModel describes the provider data model.
 type UberspaceProviderModel struct {
-	Host       string  `tfsdk:"host"`
-	User       string  `tfsdk:"user"`
+	Host       *string `tfsdk:"host"`
+	User       *string `tfsdk:"user"`
 	Password   *string `tfsdk:"password"`
 	PrivateKey *string `tfsdk:"private_key"`
 }
@@ -42,11 +42,11 @@ func (p *UberspaceProvider) Schema(_ context.Context, _ provider.SchemaRequest, 
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
 				Description: "The hostname of the SSH server",
-				Required:    true,
+				Optional:    true,
 			},
 			"user": schema.StringAttribute{
 				Description: "The user to authenticate with",
-				Required:    true,
+				Optional:    true,
 			},
 			"password": schema.StringAttribute{
 				Description: "The password to authenticate with, either this or private_key must be set",
@@ -62,7 +62,7 @@ func (p *UberspaceProvider) Schema(_ context.Context, _ provider.SchemaRequest, 
 	}
 }
 
-func (p *UberspaceProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) { //nolint:cyclop
+func (p *UberspaceProvider) ValidateConfig(ctx context.Context, req provider.ValidateConfigRequest, resp *provider.ValidateConfigResponse) { //nolint:cyclop
 	var data UberspaceProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
@@ -71,56 +71,56 @@ func (p *UberspaceProvider) Configure(ctx context.Context, req provider.Configur
 		return
 	}
 
-	host := os.Getenv("UBERSPACE_HOST")
-	if host != "" {
-		data.Host = host
+	if data.Host == nil && os.Getenv("UBERSPACE_HOST") == "" {
+		resp.Diagnostics.AddError("Invalid configuration", "host or UBERSPACE_HOST must be set")
 	}
 
-	user := os.Getenv("UBERSPACE_USER")
-	if user != "" {
-		data.User = user
+	if data.User == nil && os.Getenv("UBERSPACE_USER") == "" {
+		resp.Diagnostics.AddError("Invalid configuration", "user or UBERSPACE_USER must be set")
 	}
 
-	password := os.Getenv("UBERSPACE_PASSWORD")
-	if password != "" {
-		data.Password = &password
+	if data.Password == nil && data.PrivateKey == nil && os.Getenv("UBERSPACE_PASSWORD") == "" && os.Getenv("UBERSPACE_PRIVATE_KEY") == "" {
+		resp.Diagnostics.AddError("Invalid configuration", "password, private_key, UBERSPACE_PASSWORD or UBERSPACE_PRIVATE_KEY must be set")
 	}
 
-	privateKey := os.Getenv("UBERSPACE_PRIVATE_KEY")
-	if privateKey != "" {
-		data.PrivateKey = &privateKey
+	if data.PrivateKey != nil && data.Password != nil {
+		resp.Diagnostics.AddError("Invalid configuration", "only one of password or private_key must be set")
 	}
+}
 
-	if data.Password == nil && data.PrivateKey == nil {
-		resp.Diagnostics.AddError("Invalid configuration", "either password or private_key must be set")
+func (p *UberspaceProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	var data UberspaceProviderModel
+
+	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+
+	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	config := &ssh.Config{
-		Host: data.Host,
-		User: data.User,
-	}
+	user := configWithFallback(data.User, os.Getenv("UBERSPACE_USER"))
 
-	if data.PrivateKey != nil {
-		config.PrivateKey = *data.PrivateKey
-	}
-
-	if data.Password != nil {
-		config.Password = *data.Password
-	}
-
-	sshClient, err := ssh.NewClient(config)
+	sshClient, err := ssh.NewClient(&ssh.Config{
+		Host:       configWithFallback(data.Host, os.Getenv("UBERSPACE_HOST")),
+		User:       user,
+		Password:   configWithFallback(data.Password, os.Getenv("UBERSPACE_PASSWORD")),
+		PrivateKey: configWithFallback(data.PrivateKey, os.Getenv("UBERSPACE_PRIVATE_KEY")),
+	})
 	if err != nil {
 		resp.Diagnostics.AddError("Failed to create SSH client", err.Error())
 		return
 	}
 
-	client := &uberspace.Client{
-		User:   data.User,
-		Runner: sshClient,
-	}
+	client := &uberspace.Client{User: user, SSHClient: sshClient}
 	resp.DataSourceData = client
 	resp.ResourceData = client
+}
+
+func configWithFallback(a *string, b string) string {
+	if a != nil {
+		return *a
+	}
+
+	return b
 }
 
 func (p *UberspaceProvider) Resources(_ context.Context) []func() resource.Resource {

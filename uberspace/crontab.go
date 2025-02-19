@@ -2,28 +2,11 @@ package uberspace
 
 import (
 	"bytes"
-	"context"
 	"fmt"
-	"os/exec"
 )
 
-func (c *Client) CrontabEntryExists(ctx context.Context, entry string) (bool, error) {
-	out, err := c.crontabL(ctx)
-	if err != nil {
-		return false, fmt.Errorf("failed to read crontab: %w", err)
-	}
-
-	for line := range bytes.Lines(out) {
-		if string(line) == entry {
-			return true, nil
-		}
-	}
-
-	return false, nil
-}
-
-func (c *Client) CrontabEntryAdd(ctx context.Context, entry string) error {
-	out, err := c.crontabL(ctx)
+func (c *Client) CrontabEntryAdd(entry string) error {
+	out, err := c.crontabL()
 	if err != nil {
 		return fmt.Errorf("failed to read crontab: %w", err)
 	}
@@ -32,11 +15,26 @@ func (c *Client) CrontabEntryAdd(ctx context.Context, entry string) error {
 	out = append(out, '\n')
 	out = append(out, []byte(entry)...)
 
-	return c.crontabE(ctx, out)
+	return c.crontabE(out)
 }
 
-func (c *Client) CrontabEntryRemove(ctx context.Context, entry string) (bool, error) {
-	out, err := c.crontabL(ctx)
+func (c *Client) CrontabEntryExists(entry string) (bool, error) {
+	out, err := c.crontabL()
+	if err != nil {
+		return false, fmt.Errorf("failed to read crontab: %w", err)
+	}
+
+	for line := range bytes.Lines(out) {
+		if string(bytes.TrimSpace(line)) == entry {
+			return true, nil
+		}
+	}
+
+	return false, nil
+}
+
+func (c *Client) CrontabEntryRemove(entry string) (bool, error) {
+	out, err := c.crontabL()
 	if err != nil {
 		return false, fmt.Errorf("failed to read crontab: %w", err)
 	}
@@ -46,7 +44,7 @@ func (c *Client) CrontabEntryRemove(ctx context.Context, entry string) (bool, er
 	found := false
 
 	for line := range bytes.Lines(out) {
-		if string(line) == entry {
+		if string(bytes.TrimSpace(line)) == entry {
 			found = true
 			continue
 		}
@@ -60,14 +58,12 @@ func (c *Client) CrontabEntryRemove(ctx context.Context, entry string) (bool, er
 
 	newCrontab := bytes.Join(newLines, []byte("\n"))
 
-	return true, c.crontabE(ctx, newCrontab)
+	return true, c.crontabE(newCrontab)
 }
 
 // if the user does not have a crontab, it returns an empty output and no error.
-func (c *Client) crontabL(ctx context.Context) ([]byte, error) {
-	cmd := exec.CommandContext(ctx, "crontab", "-l")
-
-	out, err := c.Runner.Run(cmd)
+func (c *Client) crontabL() ([]byte, error) {
+	out, err := c.SSHClient.Run("crontab -l")
 
 	switch {
 	case err != nil && bytes.Contains(out, []byte("no crontab for")):
@@ -80,15 +76,11 @@ func (c *Client) crontabL(ctx context.Context) ([]byte, error) {
 }
 
 // crontabE sets the crontab.
-func (c *Client) crontabE(ctx context.Context, crontab []byte) error {
+func (c *Client) crontabE(crontab []byte) error {
 	// ensure crontab ends with a newline
-	crontab = bytes.TrimSpace(crontab)
-	crontab = append(crontab, '\n')
+	crontab = append(bytes.TrimSpace(crontab), '\n')
 
-	cmd := exec.CommandContext(ctx, "crontab", "-")
-	cmd.Stdin = bytes.NewReader(crontab)
-
-	_, err := c.Runner.Run(cmd)
+	_, err := c.SSHClient.RunWithStdin("crontab -", bytes.NewReader(crontab))
 
 	return err
 }

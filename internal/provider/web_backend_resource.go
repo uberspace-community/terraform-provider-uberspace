@@ -81,7 +81,7 @@ func (r *WebBackendResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	if err := r.client.WebBackendSet(ctx, state.URI.ValueString(), state.Port.ValueInt32()); err != nil {
+	if err := r.client.WebBackendSet(state.URI.ValueString(), state.Port.ValueInt32()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create web backend, got error: %s", err))
 		return
 	}
@@ -98,7 +98,7 @@ func (r *WebBackendResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	found, err := r.client.WebBackendRead(ctx, state.URI.ValueString())
+	found, err := r.client.WebBackendExists(state.URI.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read web backend, got error: %s", err))
 		return
@@ -122,7 +122,7 @@ func (r *WebBackendResource) Update(ctx context.Context, req resource.UpdateRequ
 		return
 	}
 
-	err := r.client.WebBackendSet(ctx, state.URI.ValueString(), planning.Port.ValueInt32())
+	err := r.client.WebBackendSet(state.URI.ValueString(), planning.Port.ValueInt32())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update web backend, got error: %s", err))
 		return
@@ -140,14 +140,8 @@ func (r *WebBackendResource) Delete(ctx context.Context, req resource.DeleteRequ
 		return
 	}
 
-	removed, err := r.client.WebBackendDelete(ctx, state.URI.ValueString())
-	if err != nil {
+	if err := r.client.WebBackendDelete(state.URI.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web backend, got error: %s", err))
-		return
-	}
-
-	if !removed {
-		resp.Diagnostics.AddWarning("Not Found", fmt.Sprintf("Web backend for %q not found", state.URI.ValueString()))
 		return
 	}
 }
