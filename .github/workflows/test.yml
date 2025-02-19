@@ -71,6 +71,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    concurrency:
+      group: terraform-acctest
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
