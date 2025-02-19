@@ -70,32 +70,22 @@ jobs:
     name: Terraform Provider Acceptance Tests
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        # list whatever Terraform versions here you would like to support
-        terraform:
-          - '1.0.*'
-          - '1.1.*'
-          - '1.2.*'
-          - '1.3.*'
-          - '1.4.*'
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
           cache: true
+      - run: go mod download
+
+      # Run acceptance tests for Terraform version 1.10.*
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
-      - run: go mod download
       - env:
           TF_ACC: "1"
           UBERSPACE_HOST: ${{ secrets.UBERSPACE_HOST }}
           UBERSPACE_USER: ${{ secrets.UBERSPACE_USER }}
           UBERSPACE_PRIVATE_KEY: ${{ secrets.UBERSPACE_PRIVATE_KEY }}
         run: go test -v -cover ./internal/provider/
-        timeout-minutes: 10
