@@ -27,11 +27,11 @@ func TestAccMySQLDatabaseResource(t *testing.T) {
 				},
 			},
 			// ImportState testing
-			/*{
+			{
 				ResourceName:      "uberspace_mysql_database.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-			},*/
+			},
 			// Update and Read testing
 			{
 				Config: testAccMySQLDatabaseResourceConfig("example"),

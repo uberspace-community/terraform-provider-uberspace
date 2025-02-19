@@ -27,11 +27,11 @@ func TestAccWebDomainResource(t *testing.T) {
 				},
 			},
 			// ImportState testing
-			/*{
+			{
 				ResourceName:      "uberspace_web_domain.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-			},*/
+			},
 			// Update and Read testing
 			{
 				Config: testAccWebDomainResourceConfig("test.terra.uber.space"),

@@ -32,11 +32,11 @@ func TestAccWebBackendResource(t *testing.T) {
 				},
 			},
 			// ImportState testing
-			/*{
+			{
 				ResourceName:      "uberspace_web_backend.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-			},*/
+			},
 			// Update and Read testing
 			{
 				Config: testAccWebBackendResourceConfig("example.terra.uber.space", 9092),

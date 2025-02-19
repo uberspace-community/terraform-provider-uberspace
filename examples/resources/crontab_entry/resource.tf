@@ -1,3 +1,6 @@
-resource "crontab_entry" "example" {
-  entry = "0 0 * * * /usr/bin/php /var/www/virtual/username/htdocs/cron.php"
+data "uberspace_user" "user" {}
+
+// create a crontab entry to run a Python script every 5 minutes
+resource "uberspace_crontab_entry" "example" {
+  entry = "*/5 * * * * python /home/${data.uberspace_user.user.name}/bin/example.py"
 }
