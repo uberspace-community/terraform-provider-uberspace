@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"cmp"
 	"context"
 	"os"
 
@@ -8,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 
 	"github.com/uberspace-community/terraform-provider-uberspace/ssh"
 	"github.com/uberspace-community/terraform-provider-uberspace/uberspace"
@@ -26,10 +28,10 @@ type UberspaceProvider struct {
 
 // UberspaceProviderModel describes the provider data model.
 type UberspaceProviderModel struct {
-	Host       *string `tfsdk:"host"`
-	User       *string `tfsdk:"user"`
-	Password   *string `tfsdk:"password"`
-	PrivateKey *string `tfsdk:"private_key"`
+	Host       types.String `tfsdk:"host"`
+	User       types.String `tfsdk:"user"`
+	Password   types.String `tfsdk:"password"`
+	PrivateKey types.String `tfsdk:"private_key"`
 }
 
 func (p *UberspaceProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
@@ -71,19 +73,19 @@ func (p *UberspaceProvider) ValidateConfig(ctx context.Context, req provider.Val
 		return
 	}
 
-	if data.Host == nil && os.Getenv("UBERSPACE_HOST") == "" {
+	if data.Host.ValueString() == "" && os.Getenv("UBERSPACE_HOST") == "" {
 		resp.Diagnostics.AddError("Invalid configuration", "host or UBERSPACE_HOST must be set")
 	}
 
-	if data.User == nil && os.Getenv("UBERSPACE_USER") == "" {
+	if data.User.ValueString() == "" && os.Getenv("UBERSPACE_USER") == "" {
 		resp.Diagnostics.AddError("Invalid configuration", "user or UBERSPACE_USER must be set")
 	}
 
-	if data.Password == nil && data.PrivateKey == nil && os.Getenv("UBERSPACE_PASSWORD") == "" && os.Getenv("UBERSPACE_PRIVATE_KEY") == "" {
+	if data.Password.ValueString() == "" && data.PrivateKey.ValueString() == "" && os.Getenv("UBERSPACE_PASSWORD") == "" && os.Getenv("UBERSPACE_PRIVATE_KEY") == "" {
 		resp.Diagnostics.AddError("Invalid configuration", "password, private_key, UBERSPACE_PASSWORD or UBERSPACE_PRIVATE_KEY must be set")
 	}
 
-	if data.PrivateKey != nil && data.Password != nil {
+	if data.Password.ValueString() != "" && data.PrivateKey.ValueString() != "" {
 		resp.Diagnostics.AddError("Invalid configuration", "only one of password or private_key must be set")
 	}
 }
@@ -97,13 +99,13 @@ func (p *UberspaceProvider) Configure(ctx context.Context, req provider.Configur
 		return
 	}
 
-	user := configWithFallback(data.User, os.Getenv("UBERSPACE_USER"))
+	user := cmp.Or(data.User.ValueString(), os.Getenv("UBERSPACE_USER"))
 
 	sshClient, err := ssh.NewClient(&ssh.Config{
-		Host:       configWithFallback(data.Host, os.Getenv("UBERSPACE_HOST")),
+		Host:       cmp.Or(data.Host.ValueString(), os.Getenv("UBERSPACE_HOST")),
 		User:       user,
-		Password:   configWithFallback(data.Password, os.Getenv("UBERSPACE_PASSWORD")),
-		PrivateKey: configWithFallback(data.PrivateKey, os.Getenv("UBERSPACE_PRIVATE_KEY")),
+		Password:   cmp.Or(data.Password.ValueString(), os.Getenv("UBERSPACE_PASSWORD")),
+		PrivateKey: cmp.Or(data.PrivateKey.ValueString(), os.Getenv("UBERSPACE_PRIVATE_KEY")),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Failed to create SSH client", err.Error())
@@ -113,14 +115,6 @@ func (p *UberspaceProvider) Configure(ctx context.Context, req provider.Configur
 	client := &uberspace.Client{User: user, SSHClient: sshClient}
 	resp.DataSourceData = client
 	resp.ResourceData = client
-}
-
-func configWithFallback(a *string, b string) string {
-	if a != nil {
-		return *a
-	}
-
-	return b
 }
 
 func (p *UberspaceProvider) Resources(_ context.Context) []func() resource.Resource {
