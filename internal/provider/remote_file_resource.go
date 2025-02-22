@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -71,31 +72,45 @@ func (r *RemoteFileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 	}
 }
 
-func (r *RemoteFileResource) ValidateConfig(ctx context.Context, request resource.ValidateConfigRequest, response *resource.ValidateConfigResponse) {
+func (r *RemoteFileResource) ValidateConfig(ctx context.Context, request resource.ValidateConfigRequest, response *resource.ValidateConfigResponse) { //nolint:cyclop
 	var model RemoteFileResourceModel
 
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 
-	if model.Src.ValueString() == "" && model.Content.ValueString() == "" {
-		response.Diagnostics.AddError("Invalid Configuration", "Either src or content must be set")
-	}
+	if !model.Src.IsUnknown() { //nolint:nestif
+		hasSrc := model.Src.ValueString() != ""
 
-	if model.Src.ValueString() != "" && model.Content.ValueString() != "" {
-		response.Diagnostics.AddError("Invalid Configuration", "src and content cannot be set at the same time")
-	}
+		if hasSrc {
+			src := model.Src.ValueString()
 
-	if model.Src.ValueString() != "" && model.SrcHash.ValueString() == "" {
-		response.Diagnostics.AddAttributeError(path.Root("src_hash"), "Invalid Configuration", "src_hash must be set if src is set")
-	}
+			if strings.HasPrefix(src, "http://") || strings.HasPrefix(src, "https://") {
+				response.Diagnostics.AddError("Not Implemented", "http(s) URLs are not yet supported")
+			} else {
+				info, err := os.Stat(src)
+				if err != nil {
+					response.Diagnostics.AddAttributeError(path.Root("src"), "Invalid Configuration", fmt.Sprintf("Unable to find src file, got error: %s", err))
+				}
 
-	if model.Src.ValueString() != "" {
-		info, err := os.Stat(model.Src.ValueString())
-		if err != nil {
-			response.Diagnostics.AddAttributeError(path.Root("src"), "Invalid Configuration", fmt.Sprintf("Unable to find src file, got error: %s", err))
+				if info.IsDir() {
+					response.Diagnostics.AddAttributeError(path.Root("src"), "Invalid Configuration", "src must be a file, not a directory")
+				}
+			}
 		}
 
-		if info.IsDir() {
-			response.Diagnostics.AddAttributeError(path.Root("src"), "Invalid Configuration", "src must be a file, not a directory")
+		if !model.Content.IsUnknown() {
+			hasContent := model.Content.ValueString() != ""
+
+			if !hasSrc && !hasContent {
+				response.Diagnostics.AddError("Invalid Configuration", "Either src or content must be set")
+			}
+
+			if hasSrc && hasContent {
+				response.Diagnostics.AddError("Invalid Configuration", "src and content cannot be set at the same time")
+			}
+		}
+
+		if !model.SrcHash.IsUnknown() && hasSrc && model.SrcHash.ValueString() != "" {
+			response.Diagnostics.AddAttributeError(path.Root("src_hash"), "Invalid Configuration", "src_hash must be set if src is set")
 		}
 	}
 }

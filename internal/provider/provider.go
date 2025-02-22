@@ -73,20 +73,25 @@ func (p *UberspaceProvider) ValidateConfig(ctx context.Context, req provider.Val
 		return
 	}
 
-	if data.Host.ValueString() == "" && os.Getenv("UBERSPACE_HOST") == "" {
+	if !data.Host.IsUnknown() && data.Host.ValueString() == "" && os.Getenv("UBERSPACE_HOST") == "" {
 		resp.Diagnostics.AddError("Invalid configuration", "host or UBERSPACE_HOST must be set")
 	}
 
-	if data.User.ValueString() == "" && os.Getenv("UBERSPACE_USER") == "" {
+	if !data.User.IsUnknown() && data.User.ValueString() == "" && os.Getenv("UBERSPACE_USER") == "" {
 		resp.Diagnostics.AddError("Invalid configuration", "user or UBERSPACE_USER must be set")
 	}
 
-	if data.Password.ValueString() == "" && data.PrivateKey.ValueString() == "" && os.Getenv("UBERSPACE_PASSWORD") == "" && os.Getenv("UBERSPACE_PRIVATE_KEY") == "" {
-		resp.Diagnostics.AddError("Invalid configuration", "password, private_key, UBERSPACE_PASSWORD or UBERSPACE_PRIVATE_KEY must be set")
-	}
+	if !data.Password.IsUnknown() && !data.PrivateKey.IsUnknown() {
+		hasPassword := data.Password.ValueString() != "" || os.Getenv("UBERSPACE_PASSWORD") != ""
+		hasPrivateKey := data.PrivateKey.ValueString() != "" || os.Getenv("UBERSPACE_PRIVATE_KEY") != ""
 
-	if data.Password.ValueString() != "" && data.PrivateKey.ValueString() != "" {
-		resp.Diagnostics.AddError("Invalid configuration", "only one of password or private_key must be set")
+		if !hasPassword && !hasPrivateKey {
+			resp.Diagnostics.AddError("Invalid configuration", "password, private_key, UBERSPACE_PASSWORD or UBERSPACE_PRIVATE_KEY must be set")
+		}
+
+		if hasPassword && hasPrivateKey {
+			resp.Diagnostics.AddError("Invalid configuration", "only one of password or private_key must be set")
+		}
 	}
 }
 
