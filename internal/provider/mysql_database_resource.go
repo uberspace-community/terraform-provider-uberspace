@@ -62,7 +62,7 @@ func (r *MySQLDatabaseResource) ValidateConfig(ctx context.Context, request reso
 		return
 	}
 
-	if !suffixRegex.MatchString(model.Suffix.ValueString()) {
+	if !model.Suffix.IsUnknown() && !suffixRegex.MatchString(model.Suffix.ValueString()) {
 		response.Diagnostics.AddAttributeError(path.Root("suffix"), "Invalid Suffix", "Suffix must match the regex: "+suffixRegex.String())
 	}
 }
