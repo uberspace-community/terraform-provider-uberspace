@@ -83,9 +83,7 @@ func (r *RemoteFileResource) ValidateConfig(ctx context.Context, request resourc
 		if hasSrc {
 			src := model.Src.ValueString()
 
-			if strings.HasPrefix(src, "http://") || strings.HasPrefix(src, "https://") {
-				response.Diagnostics.AddError("Not Implemented", "http(s) URLs are not yet supported")
-			} else {
+			if !strings.HasPrefix(src, "http://") && !strings.HasPrefix(src, "https://") {
 				info, err := os.Stat(src)
 				if err != nil {
 					response.Diagnostics.AddAttributeError(path.Root("src"), "Invalid Configuration", fmt.Sprintf("Unable to find src file, got error: %s", err))
