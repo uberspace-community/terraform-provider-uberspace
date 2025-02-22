@@ -146,8 +146,7 @@ func (r *MySQLDatabaseResource) Update(ctx context.Context, req resource.UpdateR
 	planningDatabaseName := r.databaseName(planning.Suffix.ValueString())
 
 	if err := r.client.MySQLDatabaseDrop(stateDatabaseName); err != nil {
-		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update mysql database, got error: %s", err))
-		return
+		resp.Diagnostics.AddWarning("Client Error", fmt.Sprintf("Unable to update mysql database, got error: %s", err))
 	}
 
 	if err := r.client.MySQLDatabaseCreate(planningDatabaseName); err != nil {

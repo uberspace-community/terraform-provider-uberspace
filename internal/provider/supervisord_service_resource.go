@@ -135,8 +135,7 @@ func (r *SupervisorServiceResource) Update(ctx context.Context, req resource.Upd
 	}
 
 	if err := r.client.SupervisorServiceRemove(r.client.User, state.Name.ValueString()); err != nil {
-		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update supervisor service, got error: %s", err))
-		return
+		resp.Diagnostics.AddWarning("Client Error", fmt.Sprintf("Unable to update supervisor service, got error: %s", err))
 	}
 
 	if err := r.client.SupervisorServiceCreate(

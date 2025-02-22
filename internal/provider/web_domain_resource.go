@@ -118,8 +118,7 @@ func (r *WebDomainResource) Update(ctx context.Context, req resource.UpdateReque
 	}
 
 	if err := r.client.WebDomainDelete(state.Domain.ValueString()); err != nil {
-		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update web domain, got error: %s", err))
-		return
+		resp.Diagnostics.AddWarning("Client Error", fmt.Sprintf("Unable to update web domain, got error: %s", err))
 	}
 
 	if err := r.client.WebDomainAdd(planning.Domain.ValueString()); err != nil {
