@@ -124,8 +124,7 @@ func (r *CronTabEntryResource) Update(ctx context.Context, req resource.UpdateRe
 	}
 
 	if !removed {
-		resp.Diagnostics.AddError("Not Found", fmt.Sprintf("Unable to update crontab entry, got error: %s", err))
-		return
+		resp.Diagnostics.AddWarning("Not Found", fmt.Sprintf("Unable to update crontab entry, got error: %s", err))
 	}
 
 	err = r.client.CrontabEntryAdd(planning.Entry.ValueString())
