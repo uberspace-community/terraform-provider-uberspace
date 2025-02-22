@@ -109,7 +109,7 @@ func (r *RemoteFileResource) ValidateConfig(ctx context.Context, request resourc
 			}
 		}
 
-		if !model.SrcHash.IsUnknown() && hasSrc && model.SrcHash.ValueString() != "" {
+		if !model.SrcHash.IsUnknown() && hasSrc && model.SrcHash.ValueString() == "" {
 			response.Diagnostics.AddAttributeError(path.Root("src_hash"), "Invalid Configuration", "src_hash must be set if src is set")
 		}
 	}
