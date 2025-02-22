@@ -3,13 +3,13 @@ package provider
 import (
 	"cmp"
 	"context"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 	"os"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 
 	"github.com/uberspace-community/terraform-provider-uberspace/ssh"
 	"github.com/uberspace-community/terraform-provider-uberspace/uberspace"
