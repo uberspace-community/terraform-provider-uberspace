@@ -1,13 +1,14 @@
+version: "2"
 run:
   go: "1.23"
-  timeout: 5m
 linters:
-  enable-all: true
+  default: all
   disable:
     - depguard
     - err113
     - errcheck
     - exhaustruct
+    - funcorder
     - gochecknoglobals
     - gochecknoinits
     - godox
@@ -21,13 +22,35 @@ linters:
     - perfsprint
     - prealloc
     - tagliatelle
-    - tenv
     - testpackage
     - varnamelen
     - wrapcheck
-linters-settings:
-  gci:
-    sections:
-      - standard
-      - default
-      - prefix(github.com/uberspace-community/terraform-provider-uberspace)
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/uberspace-community/terraform-provider-uberspace)
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
