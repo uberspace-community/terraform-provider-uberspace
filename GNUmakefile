@@ -10,7 +10,7 @@ install: build
 
 .PHONY: install_golangci_lint
 install_golangci_lint:
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.64.5
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v2.2.2
 
 .PHONY: lint
 lint:
