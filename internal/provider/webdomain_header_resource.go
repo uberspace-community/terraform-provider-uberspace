@@ -74,8 +74,8 @@ func (r *WebdomainHeaderResource) Create(ctx context.Context, req resource.Creat
 	apiReq := client.CreateAsteroidsWebdomainsHeadersApplicationJSON(reqBody)
 
 	header, err := r.client.CreateAsteroidsWebdomainsHeaders(ctx, &apiReq, client.CreateAsteroidsWebdomainsHeadersParams{
-		AsteroidName:    plan.AsteroidName.ValueString(),
-		WebdomainDomain: plan.WebdomainDomain.ValueString(),
+		AsteroidName:    plan.Asteroid.ValueString(),
+		WebdomainDomain: plan.Domain.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create web domain header, got error: %s", err))
@@ -85,7 +85,9 @@ func (r *WebdomainHeaderResource) Create(ctx context.Context, req resource.Creat
 	plan.CreatedAt = types.StringValue(header.CreatedAt.Format(time.RFC3339))
 	plan.UpdatedAt = types.StringValue(header.UpdatedAt.Format(time.RFC3339))
 	plan.Asteroid = types.StringValue(header.Asteroid)
+	plan.AsteroidName = types.StringValue(header.Asteroid)
 	plan.Domain = types.StringValue(header.Domain.Or(""))
+	plan.WebdomainDomain = types.StringValue(header.Domain.Or(""))
 	plan.Path = types.StringValue(header.Path)
 
 	plan.Name = types.StringValue(header.Name)
@@ -108,8 +110,8 @@ func (r *WebdomainHeaderResource) Read(ctx context.Context, req resource.ReadReq
 	}
 
 	header, err := r.client.GetAsteroidWebdomainHeader(ctx, client.GetAsteroidWebdomainHeaderParams{
-		AsteroidName:    state.AsteroidName.ValueString(),
-		WebdomainDomain: state.WebdomainDomain.ValueString(),
+		AsteroidName:    state.Asteroid.ValueString(),
+		WebdomainDomain: state.Domain.ValueString(),
 		Path:            state.Path.ValueString(),
 	})
 	if err != nil {
@@ -120,7 +122,9 @@ func (r *WebdomainHeaderResource) Read(ctx context.Context, req resource.ReadReq
 	state.CreatedAt = types.StringValue(header.CreatedAt.Format(time.RFC3339))
 	state.UpdatedAt = types.StringValue(header.UpdatedAt.Format(time.RFC3339))
 	state.Asteroid = types.StringValue(header.Asteroid)
+	state.AsteroidName = types.StringValue(header.Asteroid)
 	state.Domain = types.StringValue(header.Domain.Or(""))
+	state.WebdomainDomain = types.StringValue(header.Domain.Or(""))
 	state.Path = types.StringValue(header.Path)
 
 	state.Name = types.StringValue(header.Name)
@@ -144,8 +148,8 @@ func (r *WebdomainHeaderResource) Update(ctx context.Context, req resource.Updat
 	}
 
 	if err := r.client.DeleteAsteroidWebdomainHeader(ctx, client.DeleteAsteroidWebdomainHeaderParams{
-		AsteroidName:    state.AsteroidName.ValueString(),
-		WebdomainDomain: state.WebdomainDomain.ValueString(),
+		AsteroidName:    state.Asteroid.ValueString(),
+		WebdomainDomain: state.Domain.ValueString(),
 		Path:            state.Path.ValueString(),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain header, got error: %s", err))
@@ -168,8 +172,8 @@ func (r *WebdomainHeaderResource) Update(ctx context.Context, req resource.Updat
 	apiReq := client.CreateAsteroidsWebdomainsHeadersApplicationJSON(reqBody)
 
 	header, err := r.client.CreateAsteroidsWebdomainsHeaders(ctx, &apiReq, client.CreateAsteroidsWebdomainsHeadersParams{
-		AsteroidName:    plan.AsteroidName.ValueString(),
-		WebdomainDomain: plan.WebdomainDomain.ValueString(),
+		AsteroidName:    plan.Asteroid.ValueString(),
+		WebdomainDomain: plan.Domain.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create web domain header, got error: %s", err))
@@ -179,7 +183,9 @@ func (r *WebdomainHeaderResource) Update(ctx context.Context, req resource.Updat
 	plan.CreatedAt = types.StringValue(header.CreatedAt.Format(time.RFC3339))
 	plan.UpdatedAt = types.StringValue(header.UpdatedAt.Format(time.RFC3339))
 	plan.Asteroid = types.StringValue(header.Asteroid)
+	plan.AsteroidName = types.StringValue(header.Asteroid)
 	plan.Domain = types.StringValue(header.Domain.Or(""))
+	plan.WebdomainDomain = types.StringValue(header.Domain.Or(""))
 	plan.Path = types.StringValue(header.Path)
 
 	plan.Name = types.StringValue(header.Name)
@@ -202,8 +208,8 @@ func (r *WebdomainHeaderResource) Delete(ctx context.Context, req resource.Delet
 	}
 
 	if err := r.client.DeleteAsteroidWebdomainHeader(ctx, client.DeleteAsteroidWebdomainHeaderParams{
-		AsteroidName:    state.AsteroidName.ValueString(),
-		WebdomainDomain: state.WebdomainDomain.ValueString(),
+		AsteroidName:    state.Asteroid.ValueString(),
+		WebdomainDomain: state.Domain.ValueString(),
 		Path:            state.Path.ValueString(),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain header, got error: %s", err))

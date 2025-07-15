@@ -58,25 +58,20 @@ func (r *WebdomainBackendResource) Create(ctx context.Context, req resource.Crea
 		return
 	}
 
-	var port client.OptNilInt
-	if !plan.Port.IsNull() {
-		port = client.NewOptNilInt(int(plan.Port.ValueInt64()))
-	}
-
 	reqBody := client.WebBackendRequest{
 		Asteroid:     plan.Asteroid.ValueString(),
 		Domain:       client.NewNilString(plan.Domain.ValueString()),
 		Path:         plan.Path.ValueString(),
 		RemovePrefix: client.NewOptBool(plan.RemovePrefix.ValueBool()),
 		Destination:  client.DestinationEnum(plan.Destination.ValueString()),
-		Port:         port,
+		Port:         toOptNilInt(plan.Port),
 	}
 
 	apiReq := client.CreateAsteroidsWebdomainsBackendsApplicationJSON(reqBody)
 
 	backend, err := r.client.CreateAsteroidsWebdomainsBackends(ctx, &apiReq, client.CreateAsteroidsWebdomainsBackendsParams{
-		AsteroidName:    plan.AsteroidName.ValueString(),
-		WebdomainDomain: plan.WebdomainDomain.ValueString(),
+		AsteroidName:    plan.Asteroid.ValueString(),
+		WebdomainDomain: plan.Domain.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create web domain backend, got error: %s", err))
@@ -87,7 +82,9 @@ func (r *WebdomainBackendResource) Create(ctx context.Context, req resource.Crea
 	plan.CreatedAt = types.StringValue(backend.CreatedAt.Format(time.RFC3339))
 	plan.UpdatedAt = types.StringValue(backend.UpdatedAt.Format(time.RFC3339))
 	plan.Asteroid = types.StringValue(backend.Asteroid)
+	plan.AsteroidName = types.StringValue(backend.Asteroid)
 	plan.Domain = types.StringValue(backend.Domain.Or(""))
+	plan.WebdomainDomain = types.StringValue(backend.Domain.Or(""))
 	plan.Path = types.StringValue(backend.Path)
 	plan.RemovePrefix = types.BoolValue(backend.RemovePrefix.Or(false))
 
@@ -111,8 +108,8 @@ func (r *WebdomainBackendResource) Read(ctx context.Context, req resource.ReadRe
 	}
 
 	backend, err := r.client.GetAsteroidWebdomainBackend(ctx, client.GetAsteroidWebdomainBackendParams{
-		AsteroidName:    state.AsteroidName.ValueString(),
-		WebdomainDomain: state.WebdomainDomain.ValueString(),
+		AsteroidName:    state.Asteroid.ValueString(),
+		WebdomainDomain: state.Domain.ValueString(),
 		Path:            state.Path.ValueString(),
 	})
 	if err != nil {
@@ -124,7 +121,9 @@ func (r *WebdomainBackendResource) Read(ctx context.Context, req resource.ReadRe
 	state.CreatedAt = types.StringValue(backend.CreatedAt.Format(time.RFC3339))
 	state.UpdatedAt = types.StringValue(backend.UpdatedAt.Format(time.RFC3339))
 	state.Asteroid = types.StringValue(backend.Asteroid)
+	state.AsteroidName = types.StringValue(backend.Asteroid)
 	state.Domain = types.StringValue(backend.Domain.Or(""))
+	state.WebdomainDomain = types.StringValue(backend.Domain.Or(""))
 	state.Path = types.StringValue(backend.Path)
 	state.RemovePrefix = types.BoolValue(backend.RemovePrefix.Or(false))
 
@@ -149,8 +148,8 @@ func (r *WebdomainBackendResource) Update(ctx context.Context, req resource.Upda
 	}
 
 	if err := r.client.DeleteAsteroidWebdomainBackend(ctx, client.DeleteAsteroidWebdomainBackendParams{
-		AsteroidName:    state.AsteroidName.ValueString(),
-		WebdomainDomain: state.WebdomainDomain.ValueString(),
+		AsteroidName:    state.Asteroid.ValueString(),
+		WebdomainDomain: state.Domain.ValueString(),
 		Path:            state.Path.ValueString(),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain backend, got error: %s", err))
@@ -174,8 +173,8 @@ func (r *WebdomainBackendResource) Update(ctx context.Context, req resource.Upda
 	apiReq := client.CreateAsteroidsWebdomainsBackendsApplicationJSON(reqBody)
 
 	backend, err := r.client.CreateAsteroidsWebdomainsBackends(ctx, &apiReq, client.CreateAsteroidsWebdomainsBackendsParams{
-		AsteroidName:    plan.AsteroidName.ValueString(),
-		WebdomainDomain: plan.WebdomainDomain.ValueString(),
+		AsteroidName:    plan.Asteroid.ValueString(),
+		WebdomainDomain: plan.Domain.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create web domain backend, got error: %s", err))
@@ -186,7 +185,9 @@ func (r *WebdomainBackendResource) Update(ctx context.Context, req resource.Upda
 	plan.CreatedAt = types.StringValue(backend.CreatedAt.Format(time.RFC3339))
 	plan.UpdatedAt = types.StringValue(backend.UpdatedAt.Format(time.RFC3339))
 	plan.Asteroid = types.StringValue(backend.Asteroid)
+	plan.AsteroidName = types.StringValue(backend.Asteroid)
 	plan.Domain = types.StringValue(backend.Domain.Or(""))
+	plan.WebdomainDomain = types.StringValue(backend.Domain.Or(""))
 	plan.Path = types.StringValue(backend.Path)
 	plan.RemovePrefix = types.BoolValue(backend.RemovePrefix.Or(false))
 
@@ -210,11 +211,24 @@ func (r *WebdomainBackendResource) Delete(ctx context.Context, req resource.Dele
 	}
 
 	if err := r.client.DeleteAsteroidWebdomainBackend(ctx, client.DeleteAsteroidWebdomainBackendParams{
-		AsteroidName:    state.AsteroidName.ValueString(),
-		WebdomainDomain: state.WebdomainDomain.ValueString(),
+		AsteroidName:    state.Asteroid.ValueString(),
+		WebdomainDomain: state.Domain.ValueString(),
 		Path:            state.Path.ValueString(),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain backend, got error: %s", err))
 		return
 	}
+}
+
+func toOptNilInt(port types.Int64) (i client.OptNilInt) {
+	if port.IsUnknown() {
+		return i
+	}
+
+	if port.IsNull() {
+		i.SetToNull()
+		return i
+	}
+
+	return client.NewOptNilInt(int(port.ValueInt64()))
 }

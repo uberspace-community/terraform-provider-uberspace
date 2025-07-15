@@ -72,7 +72,7 @@ func (r *SshkeyResource) Create(ctx context.Context, req resource.CreateRequest,
 	apiReq := client.CreateAsteroidsSshkeysApplicationJSON(reqBody)
 
 	sshKey, err := r.client.CreateAsteroidsSshkeys(ctx, &apiReq, client.CreateAsteroidsSshkeysParams{
-		AsteroidName: plan.AsteroidName.ValueString(),
+		AsteroidName: plan.Asteroid.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create ssh key, got error: %s", err))
@@ -93,6 +93,7 @@ func (r *SshkeyResource) Create(ctx context.Context, req resource.CreateRequest,
 
 	plan.KeyType = types.StringValue(string(sshKey.KeyType))
 	plan.Asteroid = types.StringValue(sshKey.Asteroid)
+	plan.AsteroidName = types.StringValue(sshKey.Asteroid)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
@@ -107,7 +108,7 @@ func (r *SshkeyResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 
 	sshKey, err := r.client.GetAsteroidSshkey(ctx, client.GetAsteroidSshkeyParams{
-		AsteroidName: state.AsteroidName.ValueString(),
+		AsteroidName: state.Asteroid.ValueString(),
 		ID:           int(state.Id.ValueInt64()),
 	})
 	if err != nil {
@@ -130,6 +131,7 @@ func (r *SshkeyResource) Read(ctx context.Context, req resource.ReadRequest, res
 
 	state.KeyType = types.StringValue(string(sshKey.KeyType))
 	state.Asteroid = types.StringValue(sshKey.Asteroid)
+	state.AsteroidName = types.StringValue(sshKey.Asteroid)
 	state.Id = types.Int64Value(int64(sshKey.Pk))
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
@@ -146,7 +148,7 @@ func (r *SshkeyResource) Update(ctx context.Context, req resource.UpdateRequest,
 	}
 
 	if err := r.client.DeleteAsteroidSshkey(ctx, client.DeleteAsteroidSshkeyParams{
-		AsteroidName: state.AsteroidName.ValueString(),
+		AsteroidName: state.Asteroid.ValueString(),
 		ID:           int(state.Id.ValueInt64()),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete ssh key, got error: %s", err))
@@ -165,7 +167,7 @@ func (r *SshkeyResource) Update(ctx context.Context, req resource.UpdateRequest,
 	apiReq := client.CreateAsteroidsSshkeysApplicationJSON(reqBody)
 
 	sshKey, err := r.client.CreateAsteroidsSshkeys(ctx, &apiReq, client.CreateAsteroidsSshkeysParams{
-		AsteroidName: plan.AsteroidName.ValueString(),
+		AsteroidName: plan.Asteroid.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to create ssh key, got error: %s", err))
@@ -186,6 +188,7 @@ func (r *SshkeyResource) Update(ctx context.Context, req resource.UpdateRequest,
 
 	plan.KeyType = types.StringValue(string(sshKey.KeyType))
 	plan.Asteroid = types.StringValue(sshKey.Asteroid)
+	plan.AsteroidName = types.StringValue(sshKey.Asteroid)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
@@ -200,7 +203,7 @@ func (r *SshkeyResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	}
 
 	if err := r.client.DeleteAsteroidSshkey(ctx, client.DeleteAsteroidSshkeyParams{
-		AsteroidName: state.AsteroidName.ValueString(),
+		AsteroidName: state.Asteroid.ValueString(),
 		ID:           int(state.Id.ValueInt64()),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete ssh key, got error: %s", err))

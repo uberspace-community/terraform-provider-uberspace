@@ -26,4 +26,4 @@ provider "uberspace" {
 
 ### Optional
 
-- `apikey` (String) The API key for the Uberspace API. If not set, the environment variable UBERSPACE_APIKEY will be used.
+- `apikey` (String, Sensitive) The API key for the Uberspace API. If not set, the environment variable UBERSPACE_APIKEY will be used.

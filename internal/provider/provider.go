@@ -41,6 +41,7 @@ func (p *UberspaceProvider) Schema(_ context.Context, _ provider.SchemaRequest, 
 			"apikey": schema.StringAttribute{
 				Description: "The API key for the Uberspace API. If not set, the environment variable UBERSPACE_APIKEY will be used.",
 				Optional:    true,
+				Sensitive:   true,
 			},
 		},
 	}

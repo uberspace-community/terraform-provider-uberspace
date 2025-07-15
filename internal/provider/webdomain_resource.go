@@ -104,8 +104,8 @@ func (r *WebdomainResource) Read(ctx context.Context, req resource.ReadRequest, 
 		return
 	}
 
-	state.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	state.Asteroid = types.StringValue(Webdomain.Asteroid)
+	state.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	state.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
 	state.Domain = types.StringValue(Webdomain.Domain)
 	state.DomainIdn = types.StringValue(Webdomain.DomainIdn)
@@ -144,8 +144,8 @@ func (r *WebdomainResource) Update(ctx context.Context, req resource.UpdateReque
 		return
 	}
 
-	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.Asteroid = types.StringValue(Webdomain.Asteroid)
+	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
 	plan.Domain = types.StringValue(Webdomain.Domain)
 	plan.DomainIdn = types.StringValue(Webdomain.DomainIdn)

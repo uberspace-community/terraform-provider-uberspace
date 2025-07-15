@@ -8,6 +8,7 @@ linters:
     - err113
     - errcheck
     - exhaustruct
+    - funlen
     - gochecknoglobals
     - gochecknoinits
     - godox
