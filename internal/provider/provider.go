@@ -11,8 +11,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	"github.com/uberspace-community/terraform-provider-uberspace/ssh"
-	"github.com/uberspace-community/terraform-provider-uberspace/uberspace"
+	"github.com/uberspace-community/terraform-provider-uberspace/gen/client"
 )
 
 // Ensure UberspaceProvider satisfies various provider interfaces.
@@ -28,10 +27,7 @@ type UberspaceProvider struct {
 
 // UberspaceProviderModel describes the provider data model.
 type UberspaceProviderModel struct {
-	Host       types.String `tfsdk:"host"`
-	User       types.String `tfsdk:"user"`
-	Password   types.String `tfsdk:"password"`
-	PrivateKey types.String `tfsdk:"private_key"`
+	APIKey types.String `tfsdk:"apikey"`
 }
 
 func (p *UberspaceProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
@@ -42,29 +38,15 @@ func (p *UberspaceProvider) Metadata(_ context.Context, _ provider.MetadataReque
 func (p *UberspaceProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
-			"host": schema.StringAttribute{
-				Description: "The hostname of the SSH server",
+			"apikey": schema.StringAttribute{
+				Description: "The API key for the Uberspace API. If not set, the environment variable UBERSPACE_APIKEY will be used.",
 				Optional:    true,
-			},
-			"user": schema.StringAttribute{
-				Description: "The user to authenticate with",
-				Optional:    true,
-			},
-			"password": schema.StringAttribute{
-				Description: "The password to authenticate with, either this or private_key must be set",
-				Optional:    true,
-				Sensitive:   true,
-			},
-			"private_key": schema.StringAttribute{
-				Description: "The private key to authenticate with, either this or password must be set",
-				Optional:    true,
-				Sensitive:   true,
 			},
 		},
 	}
 }
 
-func (p *UberspaceProvider) ValidateConfig(ctx context.Context, req provider.ValidateConfigRequest, resp *provider.ValidateConfigResponse) { //nolint:cyclop
+func (p *UberspaceProvider) ValidateConfig(ctx context.Context, req provider.ValidateConfigRequest, resp *provider.ValidateConfigResponse) {
 	var data UberspaceProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
@@ -73,25 +55,8 @@ func (p *UberspaceProvider) ValidateConfig(ctx context.Context, req provider.Val
 		return
 	}
 
-	if !data.Host.IsUnknown() && data.Host.ValueString() == "" && os.Getenv("UBERSPACE_HOST") == "" {
-		resp.Diagnostics.AddError("Invalid configuration", "host or UBERSPACE_HOST must be set")
-	}
-
-	if !data.User.IsUnknown() && data.User.ValueString() == "" && os.Getenv("UBERSPACE_USER") == "" {
-		resp.Diagnostics.AddError("Invalid configuration", "user or UBERSPACE_USER must be set")
-	}
-
-	if !data.Password.IsUnknown() && !data.PrivateKey.IsUnknown() {
-		hasPassword := data.Password.ValueString() != "" || os.Getenv("UBERSPACE_PASSWORD") != ""
-		hasPrivateKey := data.PrivateKey.ValueString() != "" || os.Getenv("UBERSPACE_PRIVATE_KEY") != ""
-
-		if !hasPassword && !hasPrivateKey {
-			resp.Diagnostics.AddError("Invalid configuration", "password, private_key, UBERSPACE_PASSWORD or UBERSPACE_PRIVATE_KEY must be set")
-		}
-
-		if hasPassword && hasPrivateKey {
-			resp.Diagnostics.AddError("Invalid configuration", "only one of password or private_key must be set")
-		}
+	if !data.APIKey.IsUnknown() && data.APIKey.ValueString() == "" && os.Getenv("UBERSPACE_APIKEY") == "" {
+		resp.Diagnostics.AddError("Invalid configuration", "apikey or UBERSPACE_APIKEY must be set")
 	}
 }
 
@@ -104,40 +69,42 @@ func (p *UberspaceProvider) Configure(ctx context.Context, req provider.Configur
 		return
 	}
 
-	user := cmp.Or(data.User.ValueString(), os.Getenv("UBERSPACE_USER"))
+	apikey := cmp.Or(data.APIKey.ValueString(), os.Getenv("UBERSPACE_APIKEY"))
 
-	sshClient, err := ssh.NewClient(&ssh.Config{
-		Host:       cmp.Or(data.Host.ValueString(), os.Getenv("UBERSPACE_HOST")),
-		User:       user,
-		Password:   cmp.Or(data.Password.ValueString(), os.Getenv("UBERSPACE_PASSWORD")),
-		PrivateKey: cmp.Or(data.PrivateKey.ValueString(), os.Getenv("UBERSPACE_PRIVATE_KEY")),
-	})
-	if err != nil {
-		resp.Diagnostics.AddError("Failed to create SSH client", err.Error())
+	if apikey == "" {
+		resp.Diagnostics.AddError(
+			"Invalid configuration",
+			"apikey or UBERSPACE_APIKEY must be set",
+		)
+
 		return
 	}
 
-	client := &uberspace.Client{User: user, SSHClient: sshClient}
+	client, err := client.NewClient("https://marvin.uberspace.is", client.WithClient(newAuthClient(apikey)))
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to create Uberspace client",
+			"An error occurred while creating the Uberspace client: "+err.Error(),
+		)
+
+		return
+	}
+
 	resp.DataSourceData = client
 	resp.ResourceData = client
 }
 
 func (p *UberspaceProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
-		NewCronTabEntryResource,
-		NewWebDomainResource,
-		NewWebBackendResource,
-		NewMySQLDatabaseResource,
-		NewSupervisorServiceResource,
-		NewRemoteFileResource,
+		NewWebdomainResource,
+		NewSshkeyResource,
+		NewWebdomainBackendResource,
+		NewWebdomainHeaderResource,
 	}
 }
 
 func (p *UberspaceProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewUserDataSource,
-		NewMyCnfDataSource,
-	}
+	return []func() datasource.DataSource{}
 }
 
 func New(version string) func() provider.Provider {

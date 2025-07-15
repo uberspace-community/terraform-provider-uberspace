@@ -1,12 +1,18 @@
-# Terraform Provider for uberspace
+# Terraform Provider for uberspace (U8)
 
-This repository contains the Terraform provider for managing resources on [uberspace](https://uberspace.de/) U7
-accounts.
+This repository contains the Terraform provider for managing resources on [uberspace](https://uberspace.de/) U8 accounts.
 
 ## Usage
 
-See the 
-[uberspace Provider Documentation](https://registry.terraform.io/providers/uberspace-community/uberspace/latest/docs)
+```terraform
+provider "uberspace" {
+  # Alternatively set UBERSPACE_APIKEY in the environment
+  apikey = "example-api-key"
+}
+```
+
+See the [uberspace Provider Documentation](https://registry.terraform.io/providers/uberspace-community/uberspace/latest/docs)
+for detailed resource and data source information.
 
 ## Developing & Contributing to the Provider
 
