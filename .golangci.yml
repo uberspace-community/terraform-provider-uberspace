@@ -8,7 +8,7 @@ linters:
     - err113
     - errcheck
     - exhaustruct
-    - funcorder
+    - funlen
     - gochecknoglobals
     - gochecknoinits
     - godox
@@ -17,6 +17,7 @@ linters:
     - lll
     - mnd
     - nlreturn
+    - noinlineerr
     - nonamedreturns
     - paralleltest
     - perfsprint
@@ -25,6 +26,12 @@ linters:
     - testpackage
     - varnamelen
     - wrapcheck
+    - wsl
+  settings:
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
   exclusions:
     generated: lax
     presets:

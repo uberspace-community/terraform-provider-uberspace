@@ -18,20 +18,8 @@ var testAccProtoV6ProviderFactories = map[string]func() (tfprotov6.ProviderServe
 func testAccPreCheck(t *testing.T) {
 	t.Helper()
 
-	host := os.Getenv("UBERSPACE_HOST")
-	if host == "" {
-		t.Fatal("UBERSPACE_HOST must be set for acceptance tests")
-	}
-
-	user := os.Getenv("UBERSPACE_USER")
-	if user == "" {
-		t.Fatal("UBERSPACE_USER must be set for acceptance tests")
-	}
-
-	password := os.Getenv("UBERSPACE_PASSWORD")
-	privateKey := os.Getenv("UBERSPACE_PRIVATE_KEY")
-
-	if password == "" && privateKey == "" {
-		t.Fatal("either UBERSPACE_PASSWORD or UBERSPACE_PRIVATE_KEY must be set for acceptance tests")
+	apikey := os.Getenv("UBERSPACE_APIKEY")
+	if apikey == "" {
+		t.Fatal("UBERSPACE_APIKEY must be set for acceptance tests")
 	}
 }
