@@ -6,17 +6,8 @@ setup:
 	go install github.com/hashicorp/terraform-plugin-codegen-framework/cmd/tfplugingen-framework@latest
 
 .PHONY: generate-openapi
-generate-openapi: setup
-	# replace \u00fc\u00e4\u00f6\u00dc\u00c4\u00d6\u00df with üäöÜÄÖß in openapi.json and save as openapi_fixed.json
-	sed 's/\\\\u00fc/ü/g; s/\\\\u00e4/ä/g; s/\\\\u00f6/ö/g; s/\\\\u00dc/Ü/g; s/\\\\u00c4/Ä/g; s/\\\\u00d6/Ö/g; s/\\\\u00df/ß/g' openapi.json > openapi_fixed.json
-	tfplugingen-openapi generate \
-	  	--config generator_config.yml \
-	  	--output provider_code_spec.json \
-	  	openapi_fixed.json
-	tfplugingen-framework generate all \
-        --input provider_code_spec.json \
-		--output gen/provider
-	go tool ogen --package client --target gen/client --clean openapi_fixed.json
+generate-openapi: # setup
+	./generate.sh
 
 .PHONY: build
 build:

@@ -567,25 +567,17 @@ func (s *ExternalAsteroid) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
-	}
-	{
-		e.FieldStart("name")
-		e.Str(s.Name)
-	}
-	{
-		e.FieldStart("host")
-		e.Str(s.Host)
-	}
-	{
 		e.FieldStart("active")
 		e.Bool(s.Active)
 	}
 	{
-		if s.FlagLogErrorPhp.Set {
-			e.FieldStart("flag_log_error_php")
-			s.FlagLogErrorPhp.Encode(e)
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		if s.FlagLogAccessNginx.Set {
+			e.FieldStart("flag_log_access_nginx")
+			s.FlagLogAccessNginx.Encode(e)
 		}
 	}
 	{
@@ -595,9 +587,9 @@ func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.FlagLogAccessNginx.Set {
-			e.FieldStart("flag_log_access_nginx")
-			s.FlagLogAccessNginx.Encode(e)
+		if s.FlagLogErrorPhp.Set {
+			e.FieldStart("flag_log_error_php")
+			s.FlagLogErrorPhp.Encode(e)
 		}
 	}
 	{
@@ -607,14 +599,22 @@ func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
+		e.FieldStart("host")
+		e.Str(s.Host)
+	}
+	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
 		if s.PasswordHash.Set {
 			e.FieldStart("password_hash")
 			s.PasswordHash.Encode(e)
 		}
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("pk")
+		e.Str(s.Pk)
 	}
 	{
 		e.FieldStart("updated_at")
@@ -623,16 +623,16 @@ func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfExternalAsteroid = [11]string{
-	0:  "pk",
-	1:  "name",
-	2:  "host",
-	3:  "active",
+	0:  "active",
+	1:  "created_at",
+	2:  "flag_log_access_nginx",
+	3:  "flag_log_error_apache",
 	4:  "flag_log_error_php",
-	5:  "flag_log_error_apache",
-	6:  "flag_log_access_nginx",
-	7:  "flag_page_replace_500",
+	5:  "flag_page_replace_500",
+	6:  "host",
+	7:  "name",
 	8:  "password_hash",
-	9:  "created_at",
+	9:  "pk",
 	10: "updated_at",
 }
 
@@ -646,44 +646,8 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "pk":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Pk = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
-			}
-		case "name":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := d.Str()
-				s.Name = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"name\"")
-			}
-		case "host":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.Host = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"host\"")
-			}
 		case "active":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Bool()
 				s.Active = bool(v)
@@ -694,25 +658,17 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"active\"")
 			}
-		case "flag_log_error_php":
+		case "created_at":
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				s.FlagLogErrorPhp.Reset()
-				if err := s.FlagLogErrorPhp.Decode(d); err != nil {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
-			}
-		case "flag_log_error_apache":
-			if err := func() error {
-				s.FlagLogErrorApache.Reset()
-				if err := s.FlagLogErrorApache.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_error_apache\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "flag_log_access_nginx":
 			if err := func() error {
@@ -724,6 +680,26 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
 			}
+		case "flag_log_error_apache":
+			if err := func() error {
+				s.FlagLogErrorApache.Reset()
+				if err := s.FlagLogErrorApache.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"flag_log_error_apache\"")
+			}
+		case "flag_log_error_php":
+			if err := func() error {
+				s.FlagLogErrorPhp.Reset()
+				if err := s.FlagLogErrorPhp.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
+			}
 		case "flag_page_replace_500":
 			if err := func() error {
 				s.FlagPageReplace500.Reset()
@@ -733,6 +709,30 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"flag_page_replace_500\"")
+			}
+		case "host":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := d.Str()
+				s.Host = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"host\"")
+			}
+		case "name":
+			requiredBitSet[0] |= 1 << 7
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
 			}
 		case "password_hash":
 			if err := func() error {
@@ -744,17 +744,17 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "created_at":
+		case "pk":
 			requiredBitSet[1] |= 1 << 1
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
+				v, err := d.Str()
+				s.Pk = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "updated_at":
 			requiredBitSet[1] |= 1 << 2
@@ -778,7 +778,7 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b00001111,
+		0b11000011,
 		0b00000110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -885,50 +885,50 @@ func (s *MailDomain) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailDomain) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
-	}
-	{
-		e.FieldStart("dns_state")
-		s.DNSState.Encode(e)
-	}
-	{
-		e.FieldStart("dns_last_check")
-		s.DNSLastCheck.Encode(e, json.EncodeDateTime)
-	}
-	{
-		e.FieldStart("dns_error")
-		s.DNSError.Encode(e)
-	}
-	{
 		if s.Alias != nil {
 			e.FieldStart("alias")
 			s.Alias.Encode(e)
 		}
 	}
 	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
+	}
+	{
 		e.FieldStart("created_at")
 		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		e.FieldStart("dns_error")
+		s.DNSError.Encode(e)
+	}
+	{
+		e.FieldStart("dns_last_check")
+		s.DNSLastCheck.Encode(e, json.EncodeDateTime)
+	}
+	{
+		e.FieldStart("dns_state")
+		s.DNSState.Encode(e)
+	}
+	{
+		e.FieldStart("domain")
+		e.Str(s.Domain)
 	}
 	{
 		e.FieldStart("updated_at")
 		json.EncodeDateTime(e, s.UpdatedAt)
 	}
-	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
-	}
 }
 
 var jsonFieldsNameOfMailDomain = [8]string{
-	0: "domain",
-	1: "dns_state",
-	2: "dns_last_check",
+	0: "alias",
+	1: "asteroid",
+	2: "created_at",
 	3: "dns_error",
-	4: "alias",
-	5: "created_at",
-	6: "updated_at",
-	7: "asteroid",
+	4: "dns_last_check",
+	5: "dns_state",
+	6: "domain",
+	7: "updated_at",
 }
 
 // Decode decodes MailDomain from json.
@@ -940,48 +940,6 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "domain":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
-		case "dns_state":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				if err := s.DNSState.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_state\"")
-			}
-		case "dns_last_check":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_last_check\"")
-			}
-		case "dns_error":
-			requiredBitSet[0] |= 1 << 3
-			if err := func() error {
-				if err := s.DNSError.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_error\"")
-			}
 		case "alias":
 			if err := func() error {
 				s.Alias = nil
@@ -994,8 +952,20 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"alias\"")
 			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
 		case "created_at":
-			requiredBitSet[0] |= 1 << 5
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.CreatedAt = v
@@ -1006,8 +976,50 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"created_at\"")
 			}
-		case "updated_at":
+		case "dns_error":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				if err := s.DNSError.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_error\"")
+			}
+		case "dns_last_check":
+			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_last_check\"")
+			}
+		case "dns_state":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				if err := s.DNSState.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_state\"")
+			}
+		case "domain":
 			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := d.Str()
+				s.Domain = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain\"")
+			}
+		case "updated_at":
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -1017,18 +1029,6 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
-			}
-		case "asteroid":
-			requiredBitSet[0] |= 1 << 7
-			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
 		default:
 			return d.Skip()
@@ -1040,7 +1040,7 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b11101111,
+		0b11111110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1096,10 +1096,6 @@ func (s *MailDomainRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailDomainRequest) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
-	}
-	{
 		if s.Alias.Set {
 			e.FieldStart("alias")
 			s.Alias.Encode(e)
@@ -1109,12 +1105,16 @@ func (s *MailDomainRequest) encodeFields(e *jx.Encoder) {
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
 	}
+	{
+		e.FieldStart("domain")
+		e.Str(s.Domain)
+	}
 }
 
 var jsonFieldsNameOfMailDomainRequest = [3]string{
-	0: "domain",
-	1: "alias",
-	2: "asteroid",
+	0: "alias",
+	1: "asteroid",
+	2: "domain",
 }
 
 // Decode decodes MailDomainRequest from json.
@@ -1126,18 +1126,6 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "domain":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
 		case "alias":
 			if err := func() error {
 				s.Alias.Reset()
@@ -1149,7 +1137,7 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"alias\"")
 			}
 		case "asteroid":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -1159,6 +1147,18 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
+		case "domain":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.Domain = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		default:
 			return d.Skip()
@@ -1170,7 +1170,7 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000101,
+		0b00000110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1226,18 +1226,24 @@ func (s *MailUser) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailUser) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
+		if s.Alias.Set {
+			e.FieldStart("alias")
+			s.Alias.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		if s.Domain != nil {
 			e.FieldStart("domain")
 			s.Domain.Encode(e)
 		}
-	}
-	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
 	}
 	{
 		e.FieldStart("name")
@@ -1250,14 +1256,8 @@ func (s *MailUser) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Alias != nil {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("pk")
+		e.Str(s.Pk)
 	}
 	{
 		e.FieldStart("updated_at")
@@ -1266,13 +1266,13 @@ func (s *MailUser) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfMailUser = [8]string{
-	0: "pk",
-	1: "domain",
-	2: "asteroid",
-	3: "name",
-	4: "password_hash",
-	5: "alias",
-	6: "created_at",
+	0: "alias",
+	1: "asteroid",
+	2: "created_at",
+	3: "domain",
+	4: "name",
+	5: "password_hash",
+	6: "pk",
 	7: "updated_at",
 }
 
@@ -1285,17 +1285,39 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "pk":
-			requiredBitSet[0] |= 1 << 0
+		case "alias":
+			if err := func() error {
+				s.Alias.Reset()
+				if err := s.Alias.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"alias\"")
+			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
-				s.Pk = string(v)
+				s.Asteroid = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "domain":
 			if err := func() error {
@@ -1309,20 +1331,8 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
-		case "asteroid":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -1343,29 +1353,17 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "alias":
-			if err := func() error {
-				s.Alias = nil
-				var elem RelatedMailUserField
-				if err := elem.Decode(d); err != nil {
-					return err
-				}
-				s.Alias = &elem
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
-		case "created_at":
+		case "pk":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
+				v, err := d.Str()
+				s.Pk = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "updated_at":
 			requiredBitSet[0] |= 1 << 7
@@ -1389,7 +1387,7 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b11001101,
+		0b11010110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1445,6 +1443,12 @@ func (s *MailUserRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailUserRequest) encodeFields(e *jx.Encoder) {
 	{
+		if s.Alias.Set {
+			e.FieldStart("alias")
+			s.Alias.Encode(e)
+		}
+	}
+	{
 		if s.Domain.Set {
 			e.FieldStart("domain")
 			s.Domain.Encode(e)
@@ -1460,19 +1464,13 @@ func (s *MailUserRequest) encodeFields(e *jx.Encoder) {
 			s.PasswordHash.Encode(e)
 		}
 	}
-	{
-		if s.Alias.Set {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
 }
 
 var jsonFieldsNameOfMailUserRequest = [4]string{
-	0: "domain",
-	1: "name",
-	2: "password_hash",
-	3: "alias",
+	0: "alias",
+	1: "domain",
+	2: "name",
+	3: "password_hash",
 }
 
 // Decode decodes MailUserRequest from json.
@@ -1484,6 +1482,16 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
+		case "alias":
+			if err := func() error {
+				s.Alias.Reset()
+				if err := s.Alias.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"alias\"")
+			}
 		case "domain":
 			if err := func() error {
 				s.Domain.Reset()
@@ -1495,7 +1503,7 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "name":
-			requiredBitSet[0] |= 1 << 1
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -1516,16 +1524,6 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "alias":
-			if err := func() error {
-				s.Alias.Reset()
-				if err := s.Alias.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
 		default:
 			return d.Skip()
 		}
@@ -1536,7 +1534,7 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000010,
+		0b00000100,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -3133,9 +3131,9 @@ func (s *PatchedExternalAsteroidRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *PatchedExternalAsteroidRequest) encodeFields(e *jx.Encoder) {
 	{
-		if s.FlagLogErrorPhp.Set {
-			e.FieldStart("flag_log_error_php")
-			s.FlagLogErrorPhp.Encode(e)
+		if s.FlagLogAccessNginx.Set {
+			e.FieldStart("flag_log_access_nginx")
+			s.FlagLogAccessNginx.Encode(e)
 		}
 	}
 	{
@@ -3145,9 +3143,9 @@ func (s *PatchedExternalAsteroidRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.FlagLogAccessNginx.Set {
-			e.FieldStart("flag_log_access_nginx")
-			s.FlagLogAccessNginx.Encode(e)
+		if s.FlagLogErrorPhp.Set {
+			e.FieldStart("flag_log_error_php")
+			s.FlagLogErrorPhp.Encode(e)
 		}
 	}
 	{
@@ -3171,9 +3169,9 @@ func (s *PatchedExternalAsteroidRequest) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfPatchedExternalAsteroidRequest = [6]string{
-	0: "flag_log_error_php",
+	0: "flag_log_access_nginx",
 	1: "flag_log_error_apache",
-	2: "flag_log_access_nginx",
+	2: "flag_log_error_php",
 	3: "flag_page_replace_500",
 	4: "password",
 	5: "password_hash",
@@ -3188,15 +3186,15 @@ func (s *PatchedExternalAsteroidRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "flag_log_error_php":
+		case "flag_log_access_nginx":
 			if err := func() error {
-				s.FlagLogErrorPhp.Reset()
-				if err := s.FlagLogErrorPhp.Decode(d); err != nil {
+				s.FlagLogAccessNginx.Reset()
+				if err := s.FlagLogAccessNginx.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
+				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
 			}
 		case "flag_log_error_apache":
 			if err := func() error {
@@ -3208,15 +3206,15 @@ func (s *PatchedExternalAsteroidRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"flag_log_error_apache\"")
 			}
-		case "flag_log_access_nginx":
+		case "flag_log_error_php":
 			if err := func() error {
-				s.FlagLogAccessNginx.Reset()
-				if err := s.FlagLogAccessNginx.Decode(d); err != nil {
+				s.FlagLogErrorPhp.Reset()
+				if err := s.FlagLogErrorPhp.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
+				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
 			}
 		case "flag_page_replace_500":
 			if err := func() error {
@@ -3282,22 +3280,22 @@ func (s *PatchedMailUserRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *PatchedMailUserRequest) encodeFields(e *jx.Encoder) {
 	{
-		if s.PasswordHash.Set {
-			e.FieldStart("password_hash")
-			s.PasswordHash.Encode(e)
-		}
-	}
-	{
 		if s.Alias.Set {
 			e.FieldStart("alias")
 			s.Alias.Encode(e)
 		}
 	}
+	{
+		if s.PasswordHash.Set {
+			e.FieldStart("password_hash")
+			s.PasswordHash.Encode(e)
+		}
+	}
 }
 
 var jsonFieldsNameOfPatchedMailUserRequest = [2]string{
-	0: "password_hash",
-	1: "alias",
+	0: "alias",
+	1: "password_hash",
 }
 
 // Decode decodes PatchedMailUserRequest from json.
@@ -3308,16 +3306,6 @@ func (s *PatchedMailUserRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "password_hash":
-			if err := func() error {
-				s.PasswordHash.Reset()
-				if err := s.PasswordHash.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"password_hash\"")
-			}
 		case "alias":
 			if err := func() error {
 				s.Alias.Reset()
@@ -3327,6 +3315,16 @@ func (s *PatchedMailUserRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"alias\"")
+			}
+		case "password_hash":
+			if err := func() error {
+				s.PasswordHash.Reset()
+				if err := s.PasswordHash.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
 		default:
 			return d.Skip()
@@ -3362,18 +3360,24 @@ func (s *RelatedMailDomainField) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *RelatedMailDomainField) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
+		if s.Alias.Set {
+			e.FieldStart("alias")
+			s.Alias.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		if s.Domain != nil {
 			e.FieldStart("domain")
 			s.Domain.Encode(e)
 		}
-	}
-	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
 	}
 	{
 		e.FieldStart("name")
@@ -3386,14 +3390,8 @@ func (s *RelatedMailDomainField) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Alias != nil {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("pk")
+		e.Str(s.Pk)
 	}
 	{
 		e.FieldStart("updated_at")
@@ -3402,13 +3400,13 @@ func (s *RelatedMailDomainField) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfRelatedMailDomainField = [8]string{
-	0: "pk",
-	1: "domain",
-	2: "asteroid",
-	3: "name",
-	4: "password_hash",
-	5: "alias",
-	6: "created_at",
+	0: "alias",
+	1: "asteroid",
+	2: "created_at",
+	3: "domain",
+	4: "name",
+	5: "password_hash",
+	6: "pk",
 	7: "updated_at",
 }
 
@@ -3421,17 +3419,39 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "pk":
-			requiredBitSet[0] |= 1 << 0
+		case "alias":
+			if err := func() error {
+				s.Alias.Reset()
+				if err := s.Alias.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"alias\"")
+			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
-				s.Pk = string(v)
+				s.Asteroid = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "domain":
 			if err := func() error {
@@ -3445,20 +3465,8 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
-		case "asteroid":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -3479,29 +3487,17 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "alias":
-			if err := func() error {
-				s.Alias = nil
-				var elem RelatedMailUserField
-				if err := elem.Decode(d); err != nil {
-					return err
-				}
-				s.Alias = &elem
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
-		case "created_at":
+		case "pk":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
+				v, err := d.Str()
+				s.Pk = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "updated_at":
 			requiredBitSet[0] |= 1 << 7
@@ -3525,7 +3521,7 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b11001101,
+		0b11010110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -3621,18 +3617,24 @@ func (s *RelatedMailUserField) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *RelatedMailUserField) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
-	}
-	{
-		if s.Domain.Set {
-			e.FieldStart("domain")
-			s.Domain.Encode(e)
+		if s.Alias != nil {
+			e.FieldStart("alias")
+			s.Alias.Encode(e)
 		}
 	}
 	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		if s.Domain != nil {
+			e.FieldStart("domain")
+			s.Domain.Encode(e)
+		}
 	}
 	{
 		e.FieldStart("name")
@@ -3645,14 +3647,8 @@ func (s *RelatedMailUserField) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Alias != nil {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("pk")
+		e.Str(s.Pk)
 	}
 	{
 		e.FieldStart("updated_at")
@@ -3661,13 +3657,13 @@ func (s *RelatedMailUserField) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfRelatedMailUserField = [8]string{
-	0: "pk",
-	1: "domain",
-	2: "asteroid",
-	3: "name",
-	4: "password_hash",
-	5: "alias",
-	6: "created_at",
+	0: "alias",
+	1: "asteroid",
+	2: "created_at",
+	3: "domain",
+	4: "name",
+	5: "password_hash",
+	6: "pk",
 	7: "updated_at",
 }
 
@@ -3680,30 +3676,20 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "pk":
-			requiredBitSet[0] |= 1 << 0
+		case "alias":
 			if err := func() error {
-				v, err := d.Str()
-				s.Pk = string(v)
-				if err != nil {
+				s.Alias = nil
+				var elem RelatedMailUserField
+				if err := elem.Decode(d); err != nil {
 					return err
 				}
+				s.Alias = &elem
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
-			}
-		case "domain":
-			if err := func() error {
-				s.Domain.Reset()
-				if err := s.Domain.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
+				return errors.Wrap(err, "decode field \"alias\"")
 			}
 		case "asteroid":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -3714,8 +3700,32 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
+		case "domain":
+			if err := func() error {
+				s.Domain = nil
+				var elem RelatedMailDomainField
+				if err := elem.Decode(d); err != nil {
+					return err
+				}
+				s.Domain = &elem
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain\"")
+			}
 		case "name":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -3736,29 +3746,17 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "alias":
-			if err := func() error {
-				s.Alias = nil
-				var elem RelatedMailUserField
-				if err := elem.Decode(d); err != nil {
-					return err
-				}
-				s.Alias = &elem
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
-		case "created_at":
+		case "pk":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
+				v, err := d.Str()
+				s.Pk = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "updated_at":
 			requiredBitSet[0] |= 1 << 7
@@ -3782,7 +3780,7 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b11001101,
+		0b11010110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -3878,12 +3876,16 @@ func (s *SshKey) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *SshKey) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("pk")
-		e.Int(s.Pk)
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 	{
-		e.FieldStart("key_type")
-		s.KeyType.Encode(e)
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		e.FieldStart("formatted_key")
+		e.Str(s.FormattedKey)
 	}
 	{
 		e.FieldStart("key")
@@ -3896,37 +3898,33 @@ func (s *SshKey) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("formatted_key")
-		e.Str(s.FormattedKey)
+		e.FieldStart("key_type")
+		s.KeyType.Encode(e)
+	}
+	{
+		e.FieldStart("pk")
+		e.Int(s.Pk)
 	}
 	{
 		e.FieldStart("shortened_key")
 		e.Str(s.ShortenedKey)
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
 		e.FieldStart("updated_at")
 		json.EncodeDateTime(e, s.UpdatedAt)
-	}
-	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
 	}
 }
 
 var jsonFieldsNameOfSshKey = [9]string{
-	0: "pk",
-	1: "key_type",
-	2: "key",
-	3: "key_comment",
-	4: "formatted_key",
-	5: "shortened_key",
-	6: "created_at",
-	7: "updated_at",
-	8: "asteroid",
+	0: "asteroid",
+	1: "created_at",
+	2: "formatted_key",
+	3: "key",
+	4: "key_comment",
+	5: "key_type",
+	6: "pk",
+	7: "shortened_key",
+	8: "updated_at",
 }
 
 // Decode decodes SshKey from json.
@@ -3938,30 +3936,44 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "pk":
+		case "asteroid":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Int()
-				s.Pk = int(v)
+				v, err := d.Str()
+				s.Asteroid = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "key_type":
+		case "created_at":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				if err := s.KeyType.Decode(d); err != nil {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"key_type\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
+		case "formatted_key":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.FormattedKey = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"formatted_key\"")
 			}
 		case "key":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Key = string(v)
@@ -3982,20 +3994,30 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"key_comment\"")
 			}
-		case "formatted_key":
-			requiredBitSet[0] |= 1 << 4
+		case "key_type":
+			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				v, err := d.Str()
-				s.FormattedKey = string(v)
+				if err := s.KeyType.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"key_type\"")
+			}
+		case "pk":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := d.Int()
+				s.Pk = int(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"formatted_key\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "shortened_key":
-			requiredBitSet[0] |= 1 << 5
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
 				v, err := d.Str()
 				s.ShortenedKey = string(v)
@@ -4006,20 +4028,8 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"shortened_key\"")
 			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 6
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
 		case "updated_at":
-			requiredBitSet[0] |= 1 << 7
+			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -4029,18 +4039,6 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
-			}
-		case "asteroid":
-			requiredBitSet[1] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
 		default:
 			return d.Skip()
@@ -4052,7 +4050,7 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b11110111,
+		0b11101111,
 		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -4109,8 +4107,8 @@ func (s *SshKeyRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *SshKeyRequest) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("key_type")
-		s.KeyType.Encode(e)
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 	{
 		e.FieldStart("key")
@@ -4123,16 +4121,16 @@ func (s *SshKeyRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
+		e.FieldStart("key_type")
+		s.KeyType.Encode(e)
 	}
 }
 
 var jsonFieldsNameOfSshKeyRequest = [4]string{
-	0: "key_type",
+	0: "asteroid",
 	1: "key",
 	2: "key_comment",
-	3: "asteroid",
+	3: "key_type",
 }
 
 // Decode decodes SshKeyRequest from json.
@@ -4144,15 +4142,17 @@ func (s *SshKeyRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "key_type":
+		case "asteroid":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				if err := s.KeyType.Decode(d); err != nil {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"key_type\"")
+				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
 		case "key":
 			requiredBitSet[0] |= 1 << 1
@@ -4176,17 +4176,15 @@ func (s *SshKeyRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"key_comment\"")
 			}
-		case "asteroid":
+		case "key_type":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
+				if err := s.KeyType.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
+				return errors.Wrap(err, "decode field \"key_type\"")
 			}
 		default:
 			return d.Skip()
@@ -4254,12 +4252,16 @@ func (s *WebBackend) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebBackend) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("pk")
-		e.Int(s.Pk)
-	}
-	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		e.FieldStart("destination")
+		s.Destination.Encode(e)
 	}
 	{
 		e.FieldStart("domain")
@@ -4270,14 +4272,8 @@ func (s *WebBackend) encodeFields(e *jx.Encoder) {
 		e.Str(s.Path)
 	}
 	{
-		if s.RemovePrefix.Set {
-			e.FieldStart("remove_prefix")
-			s.RemovePrefix.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("destination")
-		s.Destination.Encode(e)
+		e.FieldStart("pk")
+		e.Int(s.Pk)
 	}
 	{
 		if s.Port.Set {
@@ -4286,8 +4282,10 @@ func (s *WebBackend) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		if s.RemovePrefix.Set {
+			e.FieldStart("remove_prefix")
+			s.RemovePrefix.Encode(e)
+		}
 	}
 	{
 		e.FieldStart("updated_at")
@@ -4296,14 +4294,14 @@ func (s *WebBackend) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfWebBackend = [9]string{
-	0: "pk",
-	1: "asteroid",
-	2: "domain",
-	3: "path",
-	4: "remove_prefix",
-	5: "destination",
+	0: "asteroid",
+	1: "created_at",
+	2: "destination",
+	3: "domain",
+	4: "path",
+	5: "pk",
 	6: "port",
-	7: "created_at",
+	7: "remove_prefix",
 	8: "updated_at",
 }
 
@@ -4317,20 +4315,8 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "pk":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Int()
-				s.Pk = int(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
-			}
 		case "asteroid":
-			requiredBitSet[0] |= 1 << 1
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -4341,8 +4327,30 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "domain":
+		case "created_at":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
+		case "destination":
 			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				if err := s.Destination.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
+			}
+		case "domain":
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				if err := s.Domain.Decode(d); err != nil {
 					return err
@@ -4352,7 +4360,7 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "path":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -4363,25 +4371,17 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"path\"")
 			}
-		case "remove_prefix":
-			if err := func() error {
-				s.RemovePrefix.Reset()
-				if err := s.RemovePrefix.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"remove_prefix\"")
-			}
-		case "destination":
+		case "pk":
 			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				if err := s.Destination.Decode(d); err != nil {
+				v, err := d.Int()
+				s.Pk = int(v)
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"destination\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "port":
 			if err := func() error {
@@ -4393,17 +4393,15 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"port\"")
 			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 7
+		case "remove_prefix":
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
+				s.RemovePrefix.Reset()
+				if err := s.RemovePrefix.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"remove_prefix\"")
 			}
 		case "updated_at":
 			requiredBitSet[1] |= 1 << 0
@@ -4427,7 +4425,7 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b10101111,
+		0b00111111,
 		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -4488,6 +4486,10 @@ func (s *WebBackendRequest) encodeFields(e *jx.Encoder) {
 		e.Str(s.Asteroid)
 	}
 	{
+		e.FieldStart("destination")
+		s.Destination.Encode(e)
+	}
+	{
 		e.FieldStart("domain")
 		s.Domain.Encode(e)
 	}
@@ -4496,30 +4498,26 @@ func (s *WebBackendRequest) encodeFields(e *jx.Encoder) {
 		e.Str(s.Path)
 	}
 	{
-		if s.RemovePrefix.Set {
-			e.FieldStart("remove_prefix")
-			s.RemovePrefix.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("destination")
-		s.Destination.Encode(e)
-	}
-	{
 		if s.Port.Set {
 			e.FieldStart("port")
 			s.Port.Encode(e)
+		}
+	}
+	{
+		if s.RemovePrefix.Set {
+			e.FieldStart("remove_prefix")
+			s.RemovePrefix.Encode(e)
 		}
 	}
 }
 
 var jsonFieldsNameOfWebBackendRequest = [6]string{
 	0: "asteroid",
-	1: "domain",
-	2: "path",
-	3: "remove_prefix",
-	4: "destination",
-	5: "port",
+	1: "destination",
+	2: "domain",
+	3: "path",
+	4: "port",
+	5: "remove_prefix",
 }
 
 // Decode decodes WebBackendRequest from json.
@@ -4544,8 +4542,18 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "domain":
+		case "destination":
 			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				if err := s.Destination.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
+			}
+		case "domain":
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				if err := s.Domain.Decode(d); err != nil {
 					return err
@@ -4555,7 +4563,7 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "path":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -4565,26 +4573,6 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"path\"")
-			}
-		case "remove_prefix":
-			if err := func() error {
-				s.RemovePrefix.Reset()
-				if err := s.RemovePrefix.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"remove_prefix\"")
-			}
-		case "destination":
-			requiredBitSet[0] |= 1 << 4
-			if err := func() error {
-				if err := s.Destination.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"destination\"")
 			}
 		case "port":
 			if err := func() error {
@@ -4596,6 +4584,16 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"port\"")
 			}
+		case "remove_prefix":
+			if err := func() error {
+				s.RemovePrefix.Reset()
+				if err := s.RemovePrefix.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"remove_prefix\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -4606,7 +4604,7 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00010111,
+		0b00001111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -4662,33 +4660,33 @@ func (s *WebDomain) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebDomain) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 	{
 		e.FieldStart("created_at")
 		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
-		e.FieldStart("updated_at")
-		json.EncodeDateTime(e, s.UpdatedAt)
+		e.FieldStart("domain")
+		e.Str(s.Domain)
 	}
 	{
 		e.FieldStart("domain_idn")
 		e.Str(s.DomainIdn)
 	}
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
+		e.FieldStart("updated_at")
+		json.EncodeDateTime(e, s.UpdatedAt)
 	}
 }
 
 var jsonFieldsNameOfWebDomain = [5]string{
-	0: "domain",
+	0: "asteroid",
 	1: "created_at",
-	2: "updated_at",
+	2: "domain",
 	3: "domain_idn",
-	4: "asteroid",
+	4: "updated_at",
 }
 
 // Decode decodes WebDomain from json.
@@ -4700,17 +4698,17 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "domain":
+		case "asteroid":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
-				s.Domain = string(v)
+				s.Asteroid = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
+				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
 		case "created_at":
 			requiredBitSet[0] |= 1 << 1
@@ -4724,17 +4722,17 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"created_at\"")
 			}
-		case "updated_at":
+		case "domain":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.UpdatedAt = v
+				v, err := d.Str()
+				s.Domain = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"updated_at\"")
+				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "domain_idn":
 			requiredBitSet[0] |= 1 << 3
@@ -4748,17 +4746,17 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain_idn\"")
 			}
-		case "asteroid":
+		case "updated_at":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
+				v, err := json.DecodeDateTime(d)
+				s.UpdatedAt = v
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
+				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
 		default:
 			return d.Skip()
@@ -4826,18 +4824,18 @@ func (s *WebDomainRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebDomainRequest) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
-	}
-	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
+	}
+	{
+		e.FieldStart("domain")
+		e.Str(s.Domain)
 	}
 }
 
 var jsonFieldsNameOfWebDomainRequest = [2]string{
-	0: "domain",
-	1: "asteroid",
+	0: "asteroid",
+	1: "domain",
 }
 
 // Decode decodes WebDomainRequest from json.
@@ -4849,20 +4847,8 @@ func (s *WebDomainRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "domain":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
 		case "asteroid":
-			requiredBitSet[0] |= 1 << 1
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -4872,6 +4858,18 @@ func (s *WebDomainRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
+		case "domain":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Domain = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		default:
 			return d.Skip()
@@ -4943,12 +4941,24 @@ func (s *WebHeader) encodeFields(e *jx.Encoder) {
 		e.Str(s.Asteroid)
 	}
 	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
 		e.FieldStart("domain")
 		s.Domain.Encode(e)
 	}
 	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
 		e.FieldStart("path")
 		e.Str(s.Path)
+	}
+	{
+		e.FieldStart("updated_at")
+		json.EncodeDateTime(e, s.UpdatedAt)
 	}
 	{
 		if s.Value.Set {
@@ -4956,28 +4966,16 @@ func (s *WebHeader) encodeFields(e *jx.Encoder) {
 			s.Value.Encode(e)
 		}
 	}
-	{
-		e.FieldStart("name")
-		e.Str(s.Name)
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
-		e.FieldStart("updated_at")
-		json.EncodeDateTime(e, s.UpdatedAt)
-	}
 }
 
 var jsonFieldsNameOfWebHeader = [7]string{
 	0: "asteroid",
-	1: "domain",
-	2: "path",
-	3: "value",
-	4: "name",
-	5: "created_at",
-	6: "updated_at",
+	1: "created_at",
+	2: "domain",
+	3: "name",
+	4: "path",
+	5: "updated_at",
+	6: "value",
 }
 
 // Decode decodes WebHeader from json.
@@ -5001,8 +4999,20 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "domain":
+		case "created_at":
 			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
+		case "domain":
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				if err := s.Domain.Decode(d); err != nil {
 					return err
@@ -5011,8 +5021,20 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
+		case "name":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
 		case "path":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -5022,6 +5044,18 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"path\"")
+			}
+		case "updated_at":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.UpdatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
 		case "value":
 			if err := func() error {
@@ -5033,42 +5067,6 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"value\"")
 			}
-		case "name":
-			requiredBitSet[0] |= 1 << 4
-			if err := func() error {
-				v, err := d.Str()
-				s.Name = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"name\"")
-			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 5
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
-		case "updated_at":
-			requiredBitSet[0] |= 1 << 6
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.UpdatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"updated_at\"")
-			}
 		default:
 			return d.Skip()
 		}
@@ -5079,7 +5077,7 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b01110111,
+		0b00111111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -5143,6 +5141,10 @@ func (s *WebHeaderRequest) encodeFields(e *jx.Encoder) {
 		s.Domain.Encode(e)
 	}
 	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
 		e.FieldStart("path")
 		e.Str(s.Path)
 	}
@@ -5152,18 +5154,14 @@ func (s *WebHeaderRequest) encodeFields(e *jx.Encoder) {
 			s.Value.Encode(e)
 		}
 	}
-	{
-		e.FieldStart("name")
-		e.Str(s.Name)
-	}
 }
 
 var jsonFieldsNameOfWebHeaderRequest = [5]string{
 	0: "asteroid",
 	1: "domain",
-	2: "path",
-	3: "value",
-	4: "name",
+	2: "name",
+	3: "path",
+	4: "value",
 }
 
 // Decode decodes WebHeaderRequest from json.
@@ -5197,8 +5195,20 @@ func (s *WebHeaderRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
-		case "path":
+		case "name":
 			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		case "path":
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -5219,18 +5229,6 @@ func (s *WebHeaderRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"value\"")
 			}
-		case "name":
-			requiredBitSet[0] |= 1 << 4
-			if err := func() error {
-				v, err := d.Str()
-				s.Name = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"name\"")
-			}
 		default:
 			return d.Skip()
 		}
@@ -5241,7 +5239,7 @@ func (s *WebHeaderRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00010111,
+		0b00001111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.

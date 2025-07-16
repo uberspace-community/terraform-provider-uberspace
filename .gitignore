@@ -34,5 +34,7 @@ website/vendor
 # Keep windows files with windows line endings
 *.winfile eol=crlf
 
-openapi_fixed.json
 provider_code_spec.json
+openapi_clean.json
+openapi_tmp_out.json
+openapi_tmp_in.json

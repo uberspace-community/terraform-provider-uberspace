@@ -192,35 +192,20 @@ func (s *DnsStateEnum) UnmarshalText(data []byte) error {
 
 // Ref: #/components/schemas/ExternalAsteroid
 type ExternalAsteroid struct {
-	Pk string `json:"pk"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Name string `json:"name"`
-	// Hostname of a server, e.g. 'tuttle'.
-	Host string `json:"host"`
 	// Whether this asteroid can be used or is locked, e.g. because of missing payment.
 	Active             bool      `json:"active"`
-	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
-	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
-	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
-	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
-	PasswordHash       OptString `json:"password_hash"`
 	CreatedAt          time.Time `json:"created_at"`
-	UpdatedAt          time.Time `json:"updated_at"`
-}
-
-// GetPk returns the value of Pk.
-func (s *ExternalAsteroid) GetPk() string {
-	return s.Pk
-}
-
-// GetName returns the value of Name.
-func (s *ExternalAsteroid) GetName() string {
-	return s.Name
-}
-
-// GetHost returns the value of Host.
-func (s *ExternalAsteroid) GetHost() string {
-	return s.Host
+	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
+	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
+	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
+	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
+	// Hostname of a server, e.g. 'tuttle'.
+	Host string `json:"host"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Name         string    `json:"name"`
+	PasswordHash OptString `json:"password_hash"`
+	Pk           string    `json:"pk"`
+	UpdatedAt    time.Time `json:"updated_at"`
 }
 
 // GetActive returns the value of Active.
@@ -228,14 +213,9 @@ func (s *ExternalAsteroid) GetActive() bool {
 	return s.Active
 }
 
-// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
-func (s *ExternalAsteroid) GetFlagLogErrorPhp() OptBool {
-	return s.FlagLogErrorPhp
-}
-
-// GetFlagLogErrorApache returns the value of FlagLogErrorApache.
-func (s *ExternalAsteroid) GetFlagLogErrorApache() OptBool {
-	return s.FlagLogErrorApache
+// GetCreatedAt returns the value of CreatedAt.
+func (s *ExternalAsteroid) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
 // GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
@@ -243,9 +223,29 @@ func (s *ExternalAsteroid) GetFlagLogAccessNginx() OptBool {
 	return s.FlagLogAccessNginx
 }
 
+// GetFlagLogErrorApache returns the value of FlagLogErrorApache.
+func (s *ExternalAsteroid) GetFlagLogErrorApache() OptBool {
+	return s.FlagLogErrorApache
+}
+
+// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
+func (s *ExternalAsteroid) GetFlagLogErrorPhp() OptBool {
+	return s.FlagLogErrorPhp
+}
+
 // GetFlagPageReplace500 returns the value of FlagPageReplace500.
 func (s *ExternalAsteroid) GetFlagPageReplace500() OptBool {
 	return s.FlagPageReplace500
+}
+
+// GetHost returns the value of Host.
+func (s *ExternalAsteroid) GetHost() string {
+	return s.Host
+}
+
+// GetName returns the value of Name.
+func (s *ExternalAsteroid) GetName() string {
+	return s.Name
 }
 
 // GetPasswordHash returns the value of PasswordHash.
@@ -253,9 +253,9 @@ func (s *ExternalAsteroid) GetPasswordHash() OptString {
 	return s.PasswordHash
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *ExternalAsteroid) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetPk returns the value of Pk.
+func (s *ExternalAsteroid) GetPk() string {
+	return s.Pk
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -263,34 +263,14 @@ func (s *ExternalAsteroid) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetPk sets the value of Pk.
-func (s *ExternalAsteroid) SetPk(val string) {
-	s.Pk = val
-}
-
-// SetName sets the value of Name.
-func (s *ExternalAsteroid) SetName(val string) {
-	s.Name = val
-}
-
-// SetHost sets the value of Host.
-func (s *ExternalAsteroid) SetHost(val string) {
-	s.Host = val
-}
-
 // SetActive sets the value of Active.
 func (s *ExternalAsteroid) SetActive(val bool) {
 	s.Active = val
 }
 
-// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
-func (s *ExternalAsteroid) SetFlagLogErrorPhp(val OptBool) {
-	s.FlagLogErrorPhp = val
-}
-
-// SetFlagLogErrorApache sets the value of FlagLogErrorApache.
-func (s *ExternalAsteroid) SetFlagLogErrorApache(val OptBool) {
-	s.FlagLogErrorApache = val
+// SetCreatedAt sets the value of CreatedAt.
+func (s *ExternalAsteroid) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
@@ -298,9 +278,29 @@ func (s *ExternalAsteroid) SetFlagLogAccessNginx(val OptBool) {
 	s.FlagLogAccessNginx = val
 }
 
+// SetFlagLogErrorApache sets the value of FlagLogErrorApache.
+func (s *ExternalAsteroid) SetFlagLogErrorApache(val OptBool) {
+	s.FlagLogErrorApache = val
+}
+
+// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
+func (s *ExternalAsteroid) SetFlagLogErrorPhp(val OptBool) {
+	s.FlagLogErrorPhp = val
+}
+
 // SetFlagPageReplace500 sets the value of FlagPageReplace500.
 func (s *ExternalAsteroid) SetFlagPageReplace500(val OptBool) {
 	s.FlagPageReplace500 = val
+}
+
+// SetHost sets the value of Host.
+func (s *ExternalAsteroid) SetHost(val string) {
+	s.Host = val
+}
+
+// SetName sets the value of Name.
+func (s *ExternalAsteroid) SetName(val string) {
+	s.Name = val
 }
 
 // SetPasswordHash sets the value of PasswordHash.
@@ -308,9 +308,9 @@ func (s *ExternalAsteroid) SetPasswordHash(val OptString) {
 	s.PasswordHash = val
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *ExternalAsteroid) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// SetPk sets the value of Pk.
+func (s *ExternalAsteroid) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -404,43 +404,23 @@ func (s *KeyTypeEnum) UnmarshalText(data []byte) error {
 
 // Ref: #/components/schemas/MailDomain
 type MailDomain struct {
-	Domain string `json:"domain"`
+	// The domain this domain is an alias for, e.g. 'example.com'.
+	Alias *RelatedMailDomainField `json:"alias"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid  string    `json:"asteroid"`
+	CreatedAt time.Time `json:"created_at"`
+	// Error encountered when checking DNS records.
+	DNSError NilString `json:"dns_error"`
+	// When the DNS records were checked last.
+	DNSLastCheck NilDateTime `json:"dns_last_check"`
 	// Whether this domain has valid DNS records and is ready to use.
 	// * `VALID` - valid
 	// * `INVALID` - invalid, could check, but invalid result
 	// * `ERROR` - error, could not check
 	// * `UNCHECKED` - unchecked, did not check yet.
-	DNSState DnsStateEnum `json:"dns_state"`
-	// When the DNS records were checked last.
-	DNSLastCheck NilDateTime `json:"dns_last_check"`
-	// Error encountered when checking DNS records.
-	DNSError NilString `json:"dns_error"`
-	// The domain this domain is an alias for, e.g. 'example.com'.
-	Alias     *RelatedMailDomainField `json:"alias"`
-	CreatedAt time.Time               `json:"created_at"`
-	UpdatedAt time.Time               `json:"updated_at"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailDomain) GetDomain() string {
-	return s.Domain
-}
-
-// GetDNSState returns the value of DNSState.
-func (s *MailDomain) GetDNSState() DnsStateEnum {
-	return s.DNSState
-}
-
-// GetDNSLastCheck returns the value of DNSLastCheck.
-func (s *MailDomain) GetDNSLastCheck() NilDateTime {
-	return s.DNSLastCheck
-}
-
-// GetDNSError returns the value of DNSError.
-func (s *MailDomain) GetDNSError() NilString {
-	return s.DNSError
+	DNSState  DnsStateEnum `json:"dns_state"`
+	Domain    string       `json:"domain"`
+	UpdatedAt time.Time    `json:"updated_at"`
 }
 
 // GetAlias returns the value of Alias.
@@ -448,9 +428,34 @@ func (s *MailDomain) GetAlias() *RelatedMailDomainField {
 	return s.Alias
 }
 
+// GetAsteroid returns the value of Asteroid.
+func (s *MailDomain) GetAsteroid() string {
+	return s.Asteroid
+}
+
 // GetCreatedAt returns the value of CreatedAt.
 func (s *MailDomain) GetCreatedAt() time.Time {
 	return s.CreatedAt
+}
+
+// GetDNSError returns the value of DNSError.
+func (s *MailDomain) GetDNSError() NilString {
+	return s.DNSError
+}
+
+// GetDNSLastCheck returns the value of DNSLastCheck.
+func (s *MailDomain) GetDNSLastCheck() NilDateTime {
+	return s.DNSLastCheck
+}
+
+// GetDNSState returns the value of DNSState.
+func (s *MailDomain) GetDNSState() DnsStateEnum {
+	return s.DNSState
+}
+
+// GetDomain returns the value of Domain.
+func (s *MailDomain) GetDomain() string {
+	return s.Domain
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -458,44 +463,9 @@ func (s *MailDomain) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// GetAsteroid returns the value of Asteroid.
-func (s *MailDomain) GetAsteroid() string {
-	return s.Asteroid
-}
-
-// SetDomain sets the value of Domain.
-func (s *MailDomain) SetDomain(val string) {
-	s.Domain = val
-}
-
-// SetDNSState sets the value of DNSState.
-func (s *MailDomain) SetDNSState(val DnsStateEnum) {
-	s.DNSState = val
-}
-
-// SetDNSLastCheck sets the value of DNSLastCheck.
-func (s *MailDomain) SetDNSLastCheck(val NilDateTime) {
-	s.DNSLastCheck = val
-}
-
-// SetDNSError sets the value of DNSError.
-func (s *MailDomain) SetDNSError(val NilString) {
-	s.DNSError = val
-}
-
 // SetAlias sets the value of Alias.
 func (s *MailDomain) SetAlias(val *RelatedMailDomainField) {
 	s.Alias = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *MailDomain) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
-// SetUpdatedAt sets the value of UpdatedAt.
-func (s *MailDomain) SetUpdatedAt(val time.Time) {
-	s.UpdatedAt = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -503,18 +473,43 @@ func (s *MailDomain) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
+// SetCreatedAt sets the value of CreatedAt.
+func (s *MailDomain) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetDNSError sets the value of DNSError.
+func (s *MailDomain) SetDNSError(val NilString) {
+	s.DNSError = val
+}
+
+// SetDNSLastCheck sets the value of DNSLastCheck.
+func (s *MailDomain) SetDNSLastCheck(val NilDateTime) {
+	s.DNSLastCheck = val
+}
+
+// SetDNSState sets the value of DNSState.
+func (s *MailDomain) SetDNSState(val DnsStateEnum) {
+	s.DNSState = val
+}
+
+// SetDomain sets the value of Domain.
+func (s *MailDomain) SetDomain(val string) {
+	s.Domain = val
+}
+
+// SetUpdatedAt sets the value of UpdatedAt.
+func (s *MailDomain) SetUpdatedAt(val time.Time) {
+	s.UpdatedAt = val
+}
+
 // Ref: #/components/schemas/MailDomainRequest
 type MailDomainRequest struct {
-	Domain string `json:"domain"`
 	// The domain this domain is an alias for, e.g. 'example.com'.
 	Alias OptRelatedMailDomainFieldRequest `json:"alias"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailDomainRequest) GetDomain() string {
-	return s.Domain
+	Domain   string `json:"domain"`
 }
 
 // GetAlias returns the value of Alias.
@@ -527,9 +522,9 @@ func (s *MailDomainRequest) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// SetDomain sets the value of Domain.
-func (s *MailDomainRequest) SetDomain(val string) {
-	s.Domain = val
+// GetDomain returns the value of Domain.
+func (s *MailDomainRequest) GetDomain() string {
+	return s.Domain
 }
 
 // SetAlias sets the value of Alias.
@@ -542,18 +537,18 @@ func (s *MailDomainRequest) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
+// SetDomain sets the value of Domain.
+func (s *MailDomainRequest) SetDomain(val string) {
+	s.Domain = val
+}
+
 // Ref: #/components/schemas/MailDomainRequest
 type MailDomainRequestMultipart struct {
-	Domain string `json:"domain"`
 	// The domain this domain is an alias for, e.g. 'example.com'.
 	Alias OptRelatedMailDomainFieldRequest `json:"alias"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailDomainRequestMultipart) GetDomain() string {
-	return s.Domain
+	Domain   string `json:"domain"`
 }
 
 // GetAlias returns the value of Alias.
@@ -566,9 +561,9 @@ func (s *MailDomainRequestMultipart) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// SetDomain sets the value of Domain.
-func (s *MailDomainRequestMultipart) SetDomain(val string) {
-	s.Domain = val
+// GetDomain returns the value of Domain.
+func (s *MailDomainRequestMultipart) GetDomain() string {
+	return s.Domain
 }
 
 // SetAlias sets the value of Alias.
@@ -581,37 +576,47 @@ func (s *MailDomainRequestMultipart) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
+// SetDomain sets the value of Domain.
+func (s *MailDomainRequestMultipart) SetDomain(val string) {
+	s.Domain = val
+}
+
 func (*MailDomainRequestMultipart) createAsteroidsMaildomainsReq() {}
 
 // Ref: #/components/schemas/MailUser
 type MailUser struct {
-	Pk string `json:"pk"`
+	// Other user this user is an alias of, referred to by local@domain.
+	Alias     OptRelatedMailUserField `json:"alias"`
+	Asteroid  string                  `json:"asteroid"`
+	CreatedAt time.Time               `json:"created_at"`
 	// The domain this user is part of.
-	Domain   *RelatedMailDomainField `json:"domain"`
-	Asteroid string                  `json:"asteroid"`
+	Domain *RelatedMailDomainField `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias     *RelatedMailUserField `json:"alias"`
-	CreatedAt time.Time             `json:"created_at"`
-	UpdatedAt time.Time             `json:"updated_at"`
+	Pk           string       `json:"pk"`
+	UpdatedAt    time.Time    `json:"updated_at"`
 }
 
-// GetPk returns the value of Pk.
-func (s *MailUser) GetPk() string {
-	return s.Pk
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailUser) GetDomain() *RelatedMailDomainField {
-	return s.Domain
+// GetAlias returns the value of Alias.
+func (s *MailUser) GetAlias() OptRelatedMailUserField {
+	return s.Alias
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *MailUser) GetAsteroid() string {
 	return s.Asteroid
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *MailUser) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
+// GetDomain returns the value of Domain.
+func (s *MailUser) GetDomain() *RelatedMailDomainField {
+	return s.Domain
 }
 
 // GetName returns the value of Name.
@@ -624,14 +629,9 @@ func (s *MailUser) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetAlias returns the value of Alias.
-func (s *MailUser) GetAlias() *RelatedMailUserField {
-	return s.Alias
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *MailUser) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetPk returns the value of Pk.
+func (s *MailUser) GetPk() string {
+	return s.Pk
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -639,19 +639,24 @@ func (s *MailUser) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetPk sets the value of Pk.
-func (s *MailUser) SetPk(val string) {
-	s.Pk = val
-}
-
-// SetDomain sets the value of Domain.
-func (s *MailUser) SetDomain(val *RelatedMailDomainField) {
-	s.Domain = val
+// SetAlias sets the value of Alias.
+func (s *MailUser) SetAlias(val OptRelatedMailUserField) {
+	s.Alias = val
 }
 
 // SetAsteroid sets the value of Asteroid.
 func (s *MailUser) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *MailUser) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetDomain sets the value of Domain.
+func (s *MailUser) SetDomain(val *RelatedMailDomainField) {
+	s.Domain = val
 }
 
 // SetName sets the value of Name.
@@ -664,14 +669,9 @@ func (s *MailUser) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetAlias sets the value of Alias.
-func (s *MailUser) SetAlias(val *RelatedMailUserField) {
-	s.Alias = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *MailUser) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// SetPk sets the value of Pk.
+func (s *MailUser) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -681,14 +681,19 @@ func (s *MailUser) SetUpdatedAt(val time.Time) {
 
 // Ref: #/components/schemas/MailUserRequest
 type MailUserRequest struct {
+	// Other user this user is an alias of, referred to by local@domain.
+	Alias OptRelatedMailUserFieldRequest `json:"alias"`
 	// The domain this user is part of.
 	Domain OptRelatedMailDomainFieldRequest `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
+}
+
+// GetAlias returns the value of Alias.
+func (s *MailUserRequest) GetAlias() OptRelatedMailUserFieldRequest {
+	return s.Alias
 }
 
 // GetDomain returns the value of Domain.
@@ -706,9 +711,9 @@ func (s *MailUserRequest) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetAlias returns the value of Alias.
-func (s *MailUserRequest) GetAlias() OptRelatedMailUserFieldRequest {
-	return s.Alias
+// SetAlias sets the value of Alias.
+func (s *MailUserRequest) SetAlias(val OptRelatedMailUserFieldRequest) {
+	s.Alias = val
 }
 
 // SetDomain sets the value of Domain.
@@ -726,21 +731,21 @@ func (s *MailUserRequest) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetAlias sets the value of Alias.
-func (s *MailUserRequest) SetAlias(val OptRelatedMailUserFieldRequest) {
-	s.Alias = val
-}
-
 // Ref: #/components/schemas/MailUserRequest
 type MailUserRequestMultipart struct {
+	// Other user this user is an alias of, referred to by local@domain.
+	Alias OptRelatedMailUserFieldRequest `json:"alias"`
 	// The domain this user is part of.
 	Domain OptRelatedMailDomainFieldRequest `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
+}
+
+// GetAlias returns the value of Alias.
+func (s *MailUserRequestMultipart) GetAlias() OptRelatedMailUserFieldRequest {
+	return s.Alias
 }
 
 // GetDomain returns the value of Domain.
@@ -758,9 +763,9 @@ func (s *MailUserRequestMultipart) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetAlias returns the value of Alias.
-func (s *MailUserRequestMultipart) GetAlias() OptRelatedMailUserFieldRequest {
-	return s.Alias
+// SetAlias sets the value of Alias.
+func (s *MailUserRequestMultipart) SetAlias(val OptRelatedMailUserFieldRequest) {
+	s.Alias = val
 }
 
 // SetDomain sets the value of Domain.
@@ -776,11 +781,6 @@ func (s *MailUserRequestMultipart) SetName(val string) {
 // SetPasswordHash sets the value of PasswordHash.
 func (s *MailUserRequestMultipart) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
-}
-
-// SetAlias sets the value of Alias.
-func (s *MailUserRequestMultipart) SetAlias(val OptRelatedMailUserFieldRequest) {
-	s.Alias = val
 }
 
 func (*MailUserRequestMultipart) createAsteroidsMaildomainsUsersReq() {}
@@ -1700,17 +1700,17 @@ func (*PatchAsteroidReqEmptyBody) patchAsteroidReq() {}
 
 // Ref: #/components/schemas/PatchedExternalAsteroidRequest
 type PatchedExternalAsteroidRequest struct {
-	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
-	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
 	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
+	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
+	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
 	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
 	Password           OptString `json:"password"`
 	PasswordHash       OptString `json:"password_hash"`
 }
 
-// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequest) GetFlagLogErrorPhp() OptBool {
-	return s.FlagLogErrorPhp
+// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequest) GetFlagLogAccessNginx() OptBool {
+	return s.FlagLogAccessNginx
 }
 
 // GetFlagLogErrorApache returns the value of FlagLogErrorApache.
@@ -1718,9 +1718,9 @@ func (s *PatchedExternalAsteroidRequest) GetFlagLogErrorApache() OptBool {
 	return s.FlagLogErrorApache
 }
 
-// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequest) GetFlagLogAccessNginx() OptBool {
-	return s.FlagLogAccessNginx
+// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequest) GetFlagLogErrorPhp() OptBool {
+	return s.FlagLogErrorPhp
 }
 
 // GetFlagPageReplace500 returns the value of FlagPageReplace500.
@@ -1738,9 +1738,9 @@ func (s *PatchedExternalAsteroidRequest) GetPasswordHash() OptString {
 	return s.PasswordHash
 }
 
-// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequest) SetFlagLogErrorPhp(val OptBool) {
-	s.FlagLogErrorPhp = val
+// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequest) SetFlagLogAccessNginx(val OptBool) {
+	s.FlagLogAccessNginx = val
 }
 
 // SetFlagLogErrorApache sets the value of FlagLogErrorApache.
@@ -1748,9 +1748,9 @@ func (s *PatchedExternalAsteroidRequest) SetFlagLogErrorApache(val OptBool) {
 	s.FlagLogErrorApache = val
 }
 
-// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequest) SetFlagLogAccessNginx(val OptBool) {
-	s.FlagLogAccessNginx = val
+// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequest) SetFlagLogErrorPhp(val OptBool) {
+	s.FlagLogErrorPhp = val
 }
 
 // SetFlagPageReplace500 sets the value of FlagPageReplace500.
@@ -1770,17 +1770,17 @@ func (s *PatchedExternalAsteroidRequest) SetPasswordHash(val OptString) {
 
 // Ref: #/components/schemas/PatchedExternalAsteroidRequest
 type PatchedExternalAsteroidRequestMultipart struct {
-	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
-	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
 	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
+	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
+	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
 	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
 	Password           OptString `json:"password"`
 	PasswordHash       OptString `json:"password_hash"`
 }
 
-// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogErrorPhp() OptBool {
-	return s.FlagLogErrorPhp
+// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogAccessNginx() OptBool {
+	return s.FlagLogAccessNginx
 }
 
 // GetFlagLogErrorApache returns the value of FlagLogErrorApache.
@@ -1788,9 +1788,9 @@ func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogErrorApache() OptBoo
 	return s.FlagLogErrorApache
 }
 
-// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogAccessNginx() OptBool {
-	return s.FlagLogAccessNginx
+// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogErrorPhp() OptBool {
+	return s.FlagLogErrorPhp
 }
 
 // GetFlagPageReplace500 returns the value of FlagPageReplace500.
@@ -1808,9 +1808,9 @@ func (s *PatchedExternalAsteroidRequestMultipart) GetPasswordHash() OptString {
 	return s.PasswordHash
 }
 
-// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogErrorPhp(val OptBool) {
-	s.FlagLogErrorPhp = val
+// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogAccessNginx(val OptBool) {
+	s.FlagLogAccessNginx = val
 }
 
 // SetFlagLogErrorApache sets the value of FlagLogErrorApache.
@@ -1818,9 +1818,9 @@ func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogErrorApache(val OptB
 	s.FlagLogErrorApache = val
 }
 
-// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogAccessNginx(val OptBool) {
-	s.FlagLogAccessNginx = val
+// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogErrorPhp(val OptBool) {
+	s.FlagLogErrorPhp = val
 }
 
 // SetFlagPageReplace500 sets the value of FlagPageReplace500.
@@ -1842,15 +1842,10 @@ func (*PatchedExternalAsteroidRequestMultipart) patchAsteroidReq() {}
 
 // Ref: #/components/schemas/PatchedMailUserRequest
 type PatchedMailUserRequest struct {
-	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
 	// Other user this user is an alias of, referred to by local@domain.
 	Alias OptRelatedMailUserFieldRequest `json:"alias"`
-}
-
-// GetPasswordHash returns the value of PasswordHash.
-func (s *PatchedMailUserRequest) GetPasswordHash() OptNilString {
-	return s.PasswordHash
+	// Mutually exclusive with alias. Either must be given.
+	PasswordHash OptNilString `json:"password_hash"`
 }
 
 // GetAlias returns the value of Alias.
@@ -1858,9 +1853,9 @@ func (s *PatchedMailUserRequest) GetAlias() OptRelatedMailUserFieldRequest {
 	return s.Alias
 }
 
-// SetPasswordHash sets the value of PasswordHash.
-func (s *PatchedMailUserRequest) SetPasswordHash(val OptNilString) {
-	s.PasswordHash = val
+// GetPasswordHash returns the value of PasswordHash.
+func (s *PatchedMailUserRequest) GetPasswordHash() OptNilString {
+	return s.PasswordHash
 }
 
 // SetAlias sets the value of Alias.
@@ -1868,17 +1863,17 @@ func (s *PatchedMailUserRequest) SetAlias(val OptRelatedMailUserFieldRequest) {
 	s.Alias = val
 }
 
-// Ref: #/components/schemas/PatchedMailUserRequest
-type PatchedMailUserRequestMultipart struct {
-	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
+// SetPasswordHash sets the value of PasswordHash.
+func (s *PatchedMailUserRequest) SetPasswordHash(val OptNilString) {
+	s.PasswordHash = val
 }
 
-// GetPasswordHash returns the value of PasswordHash.
-func (s *PatchedMailUserRequestMultipart) GetPasswordHash() OptNilString {
-	return s.PasswordHash
+// Ref: #/components/schemas/PatchedMailUserRequest
+type PatchedMailUserRequestMultipart struct {
+	// Other user this user is an alias of, referred to by local@domain.
+	Alias OptRelatedMailUserFieldRequest `json:"alias"`
+	// Mutually exclusive with alias. Either must be given.
+	PasswordHash OptNilString `json:"password_hash"`
 }
 
 // GetAlias returns the value of Alias.
@@ -1886,9 +1881,9 @@ func (s *PatchedMailUserRequestMultipart) GetAlias() OptRelatedMailUserFieldRequ
 	return s.Alias
 }
 
-// SetPasswordHash sets the value of PasswordHash.
-func (s *PatchedMailUserRequestMultipart) SetPasswordHash(val OptNilString) {
-	s.PasswordHash = val
+// GetPasswordHash returns the value of PasswordHash.
+func (s *PatchedMailUserRequestMultipart) GetPasswordHash() OptNilString {
+	return s.PasswordHash
 }
 
 // SetAlias sets the value of Alias.
@@ -1896,37 +1891,47 @@ func (s *PatchedMailUserRequestMultipart) SetAlias(val OptRelatedMailUserFieldRe
 	s.Alias = val
 }
 
+// SetPasswordHash sets the value of PasswordHash.
+func (s *PatchedMailUserRequestMultipart) SetPasswordHash(val OptNilString) {
+	s.PasswordHash = val
+}
+
 func (*PatchedMailUserRequestMultipart) patchAsteroidMaildomainUserReq() {}
 
 // Ref: #/components/schemas/RelatedMailDomainField
 type RelatedMailDomainField struct {
-	Pk string `json:"pk"`
+	// Other user this user is an alias of, referred to by local@domain.
+	Alias     OptRelatedMailUserField `json:"alias"`
+	Asteroid  string                  `json:"asteroid"`
+	CreatedAt time.Time               `json:"created_at"`
 	// The domain this user is part of.
-	Domain   *RelatedMailDomainField `json:"domain"`
-	Asteroid string                  `json:"asteroid"`
+	Domain *RelatedMailDomainField `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias     *RelatedMailUserField `json:"alias"`
-	CreatedAt time.Time             `json:"created_at"`
-	UpdatedAt time.Time             `json:"updated_at"`
+	Pk           string       `json:"pk"`
+	UpdatedAt    time.Time    `json:"updated_at"`
 }
 
-// GetPk returns the value of Pk.
-func (s *RelatedMailDomainField) GetPk() string {
-	return s.Pk
-}
-
-// GetDomain returns the value of Domain.
-func (s *RelatedMailDomainField) GetDomain() *RelatedMailDomainField {
-	return s.Domain
+// GetAlias returns the value of Alias.
+func (s *RelatedMailDomainField) GetAlias() OptRelatedMailUserField {
+	return s.Alias
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *RelatedMailDomainField) GetAsteroid() string {
 	return s.Asteroid
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *RelatedMailDomainField) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
+// GetDomain returns the value of Domain.
+func (s *RelatedMailDomainField) GetDomain() *RelatedMailDomainField {
+	return s.Domain
 }
 
 // GetName returns the value of Name.
@@ -1939,14 +1944,9 @@ func (s *RelatedMailDomainField) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetAlias returns the value of Alias.
-func (s *RelatedMailDomainField) GetAlias() *RelatedMailUserField {
-	return s.Alias
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *RelatedMailDomainField) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetPk returns the value of Pk.
+func (s *RelatedMailDomainField) GetPk() string {
+	return s.Pk
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -1954,19 +1954,24 @@ func (s *RelatedMailDomainField) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetPk sets the value of Pk.
-func (s *RelatedMailDomainField) SetPk(val string) {
-	s.Pk = val
-}
-
-// SetDomain sets the value of Domain.
-func (s *RelatedMailDomainField) SetDomain(val *RelatedMailDomainField) {
-	s.Domain = val
+// SetAlias sets the value of Alias.
+func (s *RelatedMailDomainField) SetAlias(val OptRelatedMailUserField) {
+	s.Alias = val
 }
 
 // SetAsteroid sets the value of Asteroid.
 func (s *RelatedMailDomainField) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *RelatedMailDomainField) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetDomain sets the value of Domain.
+func (s *RelatedMailDomainField) SetDomain(val *RelatedMailDomainField) {
+	s.Domain = val
 }
 
 // SetName sets the value of Name.
@@ -1979,14 +1984,9 @@ func (s *RelatedMailDomainField) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetAlias sets the value of Alias.
-func (s *RelatedMailDomainField) SetAlias(val *RelatedMailUserField) {
-	s.Alias = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *RelatedMailDomainField) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// SetPk sets the value of Pk.
+func (s *RelatedMailDomainField) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -1998,33 +1998,38 @@ type RelatedMailDomainFieldRequest string
 
 // Ref: #/components/schemas/RelatedMailUserField
 type RelatedMailUserField struct {
-	Pk string `json:"pk"`
+	// Other user this user is an alias of, referred to by local@domain.
+	Alias     *RelatedMailUserField `json:"alias"`
+	Asteroid  string                `json:"asteroid"`
+	CreatedAt time.Time             `json:"created_at"`
 	// The domain this user is part of.
-	Domain   OptRelatedMailDomainField `json:"domain"`
-	Asteroid string                    `json:"asteroid"`
+	Domain *RelatedMailDomainField `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias     *RelatedMailUserField `json:"alias"`
-	CreatedAt time.Time             `json:"created_at"`
-	UpdatedAt time.Time             `json:"updated_at"`
+	Pk           string       `json:"pk"`
+	UpdatedAt    time.Time    `json:"updated_at"`
 }
 
-// GetPk returns the value of Pk.
-func (s *RelatedMailUserField) GetPk() string {
-	return s.Pk
-}
-
-// GetDomain returns the value of Domain.
-func (s *RelatedMailUserField) GetDomain() OptRelatedMailDomainField {
-	return s.Domain
+// GetAlias returns the value of Alias.
+func (s *RelatedMailUserField) GetAlias() *RelatedMailUserField {
+	return s.Alias
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *RelatedMailUserField) GetAsteroid() string {
 	return s.Asteroid
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *RelatedMailUserField) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
+// GetDomain returns the value of Domain.
+func (s *RelatedMailUserField) GetDomain() *RelatedMailDomainField {
+	return s.Domain
 }
 
 // GetName returns the value of Name.
@@ -2037,14 +2042,9 @@ func (s *RelatedMailUserField) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetAlias returns the value of Alias.
-func (s *RelatedMailUserField) GetAlias() *RelatedMailUserField {
-	return s.Alias
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *RelatedMailUserField) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetPk returns the value of Pk.
+func (s *RelatedMailUserField) GetPk() string {
+	return s.Pk
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -2052,19 +2052,24 @@ func (s *RelatedMailUserField) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetPk sets the value of Pk.
-func (s *RelatedMailUserField) SetPk(val string) {
-	s.Pk = val
-}
-
-// SetDomain sets the value of Domain.
-func (s *RelatedMailUserField) SetDomain(val OptRelatedMailDomainField) {
-	s.Domain = val
+// SetAlias sets the value of Alias.
+func (s *RelatedMailUserField) SetAlias(val *RelatedMailUserField) {
+	s.Alias = val
 }
 
 // SetAsteroid sets the value of Asteroid.
 func (s *RelatedMailUserField) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *RelatedMailUserField) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetDomain sets the value of Domain.
+func (s *RelatedMailUserField) SetDomain(val *RelatedMailDomainField) {
+	s.Domain = val
 }
 
 // SetName sets the value of Name.
@@ -2077,14 +2082,9 @@ func (s *RelatedMailUserField) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetAlias sets the value of Alias.
-func (s *RelatedMailUserField) SetAlias(val *RelatedMailUserField) {
-	s.Alias = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *RelatedMailUserField) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// SetPk sets the value of Pk.
+func (s *RelatedMailUserField) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -2096,26 +2096,31 @@ type RelatedMailUserFieldRequest string
 
 // Ref: #/components/schemas/SshKey
 type SshKey struct {
-	Pk           int         `json:"pk"`
-	KeyType      KeyTypeEnum `json:"key_type"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid     string      `json:"asteroid"`
+	CreatedAt    time.Time   `json:"created_at"`
+	FormattedKey string      `json:"formatted_key"`
 	Key          string      `json:"key"`
 	KeyComment   OptString   `json:"key_comment"`
-	FormattedKey string      `json:"formatted_key"`
+	KeyType      KeyTypeEnum `json:"key_type"`
+	Pk           int         `json:"pk"`
 	ShortenedKey string      `json:"shortened_key"`
-	CreatedAt    time.Time   `json:"created_at"`
 	UpdatedAt    time.Time   `json:"updated_at"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
 }
 
-// GetPk returns the value of Pk.
-func (s *SshKey) GetPk() int {
-	return s.Pk
+// GetAsteroid returns the value of Asteroid.
+func (s *SshKey) GetAsteroid() string {
+	return s.Asteroid
 }
 
-// GetKeyType returns the value of KeyType.
-func (s *SshKey) GetKeyType() KeyTypeEnum {
-	return s.KeyType
+// GetCreatedAt returns the value of CreatedAt.
+func (s *SshKey) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
+// GetFormattedKey returns the value of FormattedKey.
+func (s *SshKey) GetFormattedKey() string {
+	return s.FormattedKey
 }
 
 // GetKey returns the value of Key.
@@ -2128,9 +2133,14 @@ func (s *SshKey) GetKeyComment() OptString {
 	return s.KeyComment
 }
 
-// GetFormattedKey returns the value of FormattedKey.
-func (s *SshKey) GetFormattedKey() string {
-	return s.FormattedKey
+// GetKeyType returns the value of KeyType.
+func (s *SshKey) GetKeyType() KeyTypeEnum {
+	return s.KeyType
+}
+
+// GetPk returns the value of Pk.
+func (s *SshKey) GetPk() int {
+	return s.Pk
 }
 
 // GetShortenedKey returns the value of ShortenedKey.
@@ -2138,29 +2148,24 @@ func (s *SshKey) GetShortenedKey() string {
 	return s.ShortenedKey
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *SshKey) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
 // GetUpdatedAt returns the value of UpdatedAt.
 func (s *SshKey) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// GetAsteroid returns the value of Asteroid.
-func (s *SshKey) GetAsteroid() string {
-	return s.Asteroid
+// SetAsteroid sets the value of Asteroid.
+func (s *SshKey) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
-// SetPk sets the value of Pk.
-func (s *SshKey) SetPk(val int) {
-	s.Pk = val
+// SetCreatedAt sets the value of CreatedAt.
+func (s *SshKey) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
-// SetKeyType sets the value of KeyType.
-func (s *SshKey) SetKeyType(val KeyTypeEnum) {
-	s.KeyType = val
+// SetFormattedKey sets the value of FormattedKey.
+func (s *SshKey) SetFormattedKey(val string) {
+	s.FormattedKey = val
 }
 
 // SetKey sets the value of Key.
@@ -2173,9 +2178,14 @@ func (s *SshKey) SetKeyComment(val OptString) {
 	s.KeyComment = val
 }
 
-// SetFormattedKey sets the value of FormattedKey.
-func (s *SshKey) SetFormattedKey(val string) {
-	s.FormattedKey = val
+// SetKeyType sets the value of KeyType.
+func (s *SshKey) SetKeyType(val KeyTypeEnum) {
+	s.KeyType = val
+}
+
+// SetPk sets the value of Pk.
+func (s *SshKey) SetPk(val int) {
+	s.Pk = val
 }
 
 // SetShortenedKey sets the value of ShortenedKey.
@@ -2183,33 +2193,23 @@ func (s *SshKey) SetShortenedKey(val string) {
 	s.ShortenedKey = val
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *SshKey) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
 // SetUpdatedAt sets the value of UpdatedAt.
 func (s *SshKey) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *SshKey) SetAsteroid(val string) {
-	s.Asteroid = val
-}
-
 // Ref: #/components/schemas/SshKeyRequest
 type SshKeyRequest struct {
-	KeyType    KeyTypeEnum `json:"key_type"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid   string      `json:"asteroid"`
 	Key        string      `json:"key"`
 	KeyComment OptString   `json:"key_comment"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
+	KeyType    KeyTypeEnum `json:"key_type"`
 }
 
-// GetKeyType returns the value of KeyType.
-func (s *SshKeyRequest) GetKeyType() KeyTypeEnum {
-	return s.KeyType
+// GetAsteroid returns the value of Asteroid.
+func (s *SshKeyRequest) GetAsteroid() string {
+	return s.Asteroid
 }
 
 // GetKey returns the value of Key.
@@ -2222,14 +2222,14 @@ func (s *SshKeyRequest) GetKeyComment() OptString {
 	return s.KeyComment
 }
 
-// GetAsteroid returns the value of Asteroid.
-func (s *SshKeyRequest) GetAsteroid() string {
-	return s.Asteroid
+// GetKeyType returns the value of KeyType.
+func (s *SshKeyRequest) GetKeyType() KeyTypeEnum {
+	return s.KeyType
 }
 
-// SetKeyType sets the value of KeyType.
-func (s *SshKeyRequest) SetKeyType(val KeyTypeEnum) {
-	s.KeyType = val
+// SetAsteroid sets the value of Asteroid.
+func (s *SshKeyRequest) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
 // SetKey sets the value of Key.
@@ -2242,23 +2242,23 @@ func (s *SshKeyRequest) SetKeyComment(val OptString) {
 	s.KeyComment = val
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *SshKeyRequest) SetAsteroid(val string) {
-	s.Asteroid = val
+// SetKeyType sets the value of KeyType.
+func (s *SshKeyRequest) SetKeyType(val KeyTypeEnum) {
+	s.KeyType = val
 }
 
 // Ref: #/components/schemas/SshKeyRequest
 type SshKeyRequestMultipart struct {
-	KeyType    KeyTypeEnum `json:"key_type"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid   string      `json:"asteroid"`
 	Key        string      `json:"key"`
 	KeyComment OptString   `json:"key_comment"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
+	KeyType    KeyTypeEnum `json:"key_type"`
 }
 
-// GetKeyType returns the value of KeyType.
-func (s *SshKeyRequestMultipart) GetKeyType() KeyTypeEnum {
-	return s.KeyType
+// GetAsteroid returns the value of Asteroid.
+func (s *SshKeyRequestMultipart) GetAsteroid() string {
+	return s.Asteroid
 }
 
 // GetKey returns the value of Key.
@@ -2271,14 +2271,14 @@ func (s *SshKeyRequestMultipart) GetKeyComment() OptString {
 	return s.KeyComment
 }
 
-// GetAsteroid returns the value of Asteroid.
-func (s *SshKeyRequestMultipart) GetAsteroid() string {
-	return s.Asteroid
+// GetKeyType returns the value of KeyType.
+func (s *SshKeyRequestMultipart) GetKeyType() KeyTypeEnum {
+	return s.KeyType
 }
 
-// SetKeyType sets the value of KeyType.
-func (s *SshKeyRequestMultipart) SetKeyType(val KeyTypeEnum) {
-	s.KeyType = val
+// SetAsteroid sets the value of Asteroid.
+func (s *SshKeyRequestMultipart) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
 // SetKey sets the value of Key.
@@ -2291,37 +2291,42 @@ func (s *SshKeyRequestMultipart) SetKeyComment(val OptString) {
 	s.KeyComment = val
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *SshKeyRequestMultipart) SetAsteroid(val string) {
-	s.Asteroid = val
+// SetKeyType sets the value of KeyType.
+func (s *SshKeyRequestMultipart) SetKeyType(val KeyTypeEnum) {
+	s.KeyType = val
 }
 
 func (*SshKeyRequestMultipart) createAsteroidsSshkeysReq() {}
 
 // Ref: #/components/schemas/WebBackend
 type WebBackend struct {
-	Pk int `json:"pk"`
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string    `json:"asteroid"`
-	Domain   NilString `json:"domain"`
-	Path     string    `json:"path"`
-	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
-	RemovePrefix OptBool         `json:"remove_prefix"`
-	Destination  DestinationEnum `json:"destination"`
+	Asteroid    string          `json:"asteroid"`
+	CreatedAt   time.Time       `json:"created_at"`
+	Destination DestinationEnum `json:"destination"`
+	Domain      NilString       `json:"domain"`
+	Path        string          `json:"path"`
+	Pk          int             `json:"pk"`
 	// TCP port of the upstream HTTP server.
-	Port      OptNilInt `json:"port"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// GetPk returns the value of Pk.
-func (s *WebBackend) GetPk() int {
-	return s.Pk
+	Port OptNilInt `json:"port"`
+	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
+	RemovePrefix OptBool   `json:"remove_prefix"`
+	UpdatedAt    time.Time `json:"updated_at"`
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *WebBackend) GetAsteroid() string {
 	return s.Asteroid
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *WebBackend) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
+// GetDestination returns the value of Destination.
+func (s *WebBackend) GetDestination() DestinationEnum {
+	return s.Destination
 }
 
 // GetDomain returns the value of Domain.
@@ -2334,14 +2339,9 @@ func (s *WebBackend) GetPath() string {
 	return s.Path
 }
 
-// GetRemovePrefix returns the value of RemovePrefix.
-func (s *WebBackend) GetRemovePrefix() OptBool {
-	return s.RemovePrefix
-}
-
-// GetDestination returns the value of Destination.
-func (s *WebBackend) GetDestination() DestinationEnum {
-	return s.Destination
+// GetPk returns the value of Pk.
+func (s *WebBackend) GetPk() int {
+	return s.Pk
 }
 
 // GetPort returns the value of Port.
@@ -2349,9 +2349,9 @@ func (s *WebBackend) GetPort() OptNilInt {
 	return s.Port
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *WebBackend) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetRemovePrefix returns the value of RemovePrefix.
+func (s *WebBackend) GetRemovePrefix() OptBool {
+	return s.RemovePrefix
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -2359,14 +2359,19 @@ func (s *WebBackend) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetPk sets the value of Pk.
-func (s *WebBackend) SetPk(val int) {
-	s.Pk = val
-}
-
 // SetAsteroid sets the value of Asteroid.
 func (s *WebBackend) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *WebBackend) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *WebBackend) SetDestination(val DestinationEnum) {
+	s.Destination = val
 }
 
 // SetDomain sets the value of Domain.
@@ -2379,14 +2384,9 @@ func (s *WebBackend) SetPath(val string) {
 	s.Path = val
 }
 
-// SetRemovePrefix sets the value of RemovePrefix.
-func (s *WebBackend) SetRemovePrefix(val OptBool) {
-	s.RemovePrefix = val
-}
-
-// SetDestination sets the value of Destination.
-func (s *WebBackend) SetDestination(val DestinationEnum) {
-	s.Destination = val
+// SetPk sets the value of Pk.
+func (s *WebBackend) SetPk(val int) {
+	s.Pk = val
 }
 
 // SetPort sets the value of Port.
@@ -2394,9 +2394,9 @@ func (s *WebBackend) SetPort(val OptNilInt) {
 	s.Port = val
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *WebBackend) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// SetRemovePrefix sets the value of RemovePrefix.
+func (s *WebBackend) SetRemovePrefix(val OptBool) {
+	s.RemovePrefix = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -2407,19 +2407,24 @@ func (s *WebBackend) SetUpdatedAt(val time.Time) {
 // Ref: #/components/schemas/WebBackendRequest
 type WebBackendRequest struct {
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string    `json:"asteroid"`
-	Domain   NilString `json:"domain"`
-	Path     string    `json:"path"`
-	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
-	RemovePrefix OptBool         `json:"remove_prefix"`
-	Destination  DestinationEnum `json:"destination"`
+	Asteroid    string          `json:"asteroid"`
+	Destination DestinationEnum `json:"destination"`
+	Domain      NilString       `json:"domain"`
+	Path        string          `json:"path"`
 	// TCP port of the upstream HTTP server.
 	Port OptNilInt `json:"port"`
+	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
+	RemovePrefix OptBool `json:"remove_prefix"`
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *WebBackendRequest) GetAsteroid() string {
 	return s.Asteroid
+}
+
+// GetDestination returns the value of Destination.
+func (s *WebBackendRequest) GetDestination() DestinationEnum {
+	return s.Destination
 }
 
 // GetDomain returns the value of Domain.
@@ -2432,24 +2437,24 @@ func (s *WebBackendRequest) GetPath() string {
 	return s.Path
 }
 
-// GetRemovePrefix returns the value of RemovePrefix.
-func (s *WebBackendRequest) GetRemovePrefix() OptBool {
-	return s.RemovePrefix
-}
-
-// GetDestination returns the value of Destination.
-func (s *WebBackendRequest) GetDestination() DestinationEnum {
-	return s.Destination
-}
-
 // GetPort returns the value of Port.
 func (s *WebBackendRequest) GetPort() OptNilInt {
 	return s.Port
 }
 
+// GetRemovePrefix returns the value of RemovePrefix.
+func (s *WebBackendRequest) GetRemovePrefix() OptBool {
+	return s.RemovePrefix
+}
+
 // SetAsteroid sets the value of Asteroid.
 func (s *WebBackendRequest) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *WebBackendRequest) SetDestination(val DestinationEnum) {
+	s.Destination = val
 }
 
 // SetDomain sets the value of Domain.
@@ -2462,37 +2467,37 @@ func (s *WebBackendRequest) SetPath(val string) {
 	s.Path = val
 }
 
-// SetRemovePrefix sets the value of RemovePrefix.
-func (s *WebBackendRequest) SetRemovePrefix(val OptBool) {
-	s.RemovePrefix = val
-}
-
-// SetDestination sets the value of Destination.
-func (s *WebBackendRequest) SetDestination(val DestinationEnum) {
-	s.Destination = val
-}
-
 // SetPort sets the value of Port.
 func (s *WebBackendRequest) SetPort(val OptNilInt) {
 	s.Port = val
 }
 
+// SetRemovePrefix sets the value of RemovePrefix.
+func (s *WebBackendRequest) SetRemovePrefix(val OptBool) {
+	s.RemovePrefix = val
+}
+
 // Ref: #/components/schemas/WebBackendRequest
 type WebBackendRequestMultipart struct {
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string    `json:"asteroid"`
-	Domain   NilString `json:"domain"`
-	Path     string    `json:"path"`
-	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
-	RemovePrefix OptBool         `json:"remove_prefix"`
-	Destination  DestinationEnum `json:"destination"`
+	Asteroid    string          `json:"asteroid"`
+	Destination DestinationEnum `json:"destination"`
+	Domain      NilString       `json:"domain"`
+	Path        string          `json:"path"`
 	// TCP port of the upstream HTTP server.
 	Port OptNilInt `json:"port"`
+	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
+	RemovePrefix OptBool `json:"remove_prefix"`
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *WebBackendRequestMultipart) GetAsteroid() string {
 	return s.Asteroid
+}
+
+// GetDestination returns the value of Destination.
+func (s *WebBackendRequestMultipart) GetDestination() DestinationEnum {
+	return s.Destination
 }
 
 // GetDomain returns the value of Domain.
@@ -2505,24 +2510,24 @@ func (s *WebBackendRequestMultipart) GetPath() string {
 	return s.Path
 }
 
-// GetRemovePrefix returns the value of RemovePrefix.
-func (s *WebBackendRequestMultipart) GetRemovePrefix() OptBool {
-	return s.RemovePrefix
-}
-
-// GetDestination returns the value of Destination.
-func (s *WebBackendRequestMultipart) GetDestination() DestinationEnum {
-	return s.Destination
-}
-
 // GetPort returns the value of Port.
 func (s *WebBackendRequestMultipart) GetPort() OptNilInt {
 	return s.Port
 }
 
+// GetRemovePrefix returns the value of RemovePrefix.
+func (s *WebBackendRequestMultipart) GetRemovePrefix() OptBool {
+	return s.RemovePrefix
+}
+
 // SetAsteroid sets the value of Asteroid.
 func (s *WebBackendRequestMultipart) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *WebBackendRequestMultipart) SetDestination(val DestinationEnum) {
+	s.Destination = val
 }
 
 // SetDomain sets the value of Domain.
@@ -2535,51 +2540,26 @@ func (s *WebBackendRequestMultipart) SetPath(val string) {
 	s.Path = val
 }
 
-// SetRemovePrefix sets the value of RemovePrefix.
-func (s *WebBackendRequestMultipart) SetRemovePrefix(val OptBool) {
-	s.RemovePrefix = val
-}
-
-// SetDestination sets the value of Destination.
-func (s *WebBackendRequestMultipart) SetDestination(val DestinationEnum) {
-	s.Destination = val
-}
-
 // SetPort sets the value of Port.
 func (s *WebBackendRequestMultipart) SetPort(val OptNilInt) {
 	s.Port = val
+}
+
+// SetRemovePrefix sets the value of RemovePrefix.
+func (s *WebBackendRequestMultipart) SetRemovePrefix(val OptBool) {
+	s.RemovePrefix = val
 }
 
 func (*WebBackendRequestMultipart) createAsteroidsWebdomainsBackendsReq() {}
 
 // Ref: #/components/schemas/WebDomain
 type WebDomain struct {
-	Domain    string    `json:"domain"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DomainIdn string    `json:"domain_idn"`
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
-}
-
-// GetDomain returns the value of Domain.
-func (s *WebDomain) GetDomain() string {
-	return s.Domain
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *WebDomain) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetUpdatedAt returns the value of UpdatedAt.
-func (s *WebDomain) GetUpdatedAt() time.Time {
-	return s.UpdatedAt
-}
-
-// GetDomainIdn returns the value of DomainIdn.
-func (s *WebDomain) GetDomainIdn() string {
-	return s.DomainIdn
+	Asteroid  string    `json:"asteroid"`
+	CreatedAt time.Time `json:"created_at"`
+	Domain    string    `json:"domain"`
+	DomainIdn string    `json:"domain_idn"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2587,24 +2567,24 @@ func (s *WebDomain) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// SetDomain sets the value of Domain.
-func (s *WebDomain) SetDomain(val string) {
-	s.Domain = val
+// GetCreatedAt returns the value of CreatedAt.
+func (s *WebDomain) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *WebDomain) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// GetDomain returns the value of Domain.
+func (s *WebDomain) GetDomain() string {
+	return s.Domain
 }
 
-// SetUpdatedAt sets the value of UpdatedAt.
-func (s *WebDomain) SetUpdatedAt(val time.Time) {
-	s.UpdatedAt = val
+// GetDomainIdn returns the value of DomainIdn.
+func (s *WebDomain) GetDomainIdn() string {
+	return s.DomainIdn
 }
 
-// SetDomainIdn sets the value of DomainIdn.
-func (s *WebDomain) SetDomainIdn(val string) {
-	s.DomainIdn = val
+// GetUpdatedAt returns the value of UpdatedAt.
+func (s *WebDomain) GetUpdatedAt() time.Time {
+	return s.UpdatedAt
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2612,16 +2592,31 @@ func (s *WebDomain) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// Ref: #/components/schemas/WebDomainRequest
-type WebDomainRequest struct {
-	Domain string `json:"domain"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
+// SetCreatedAt sets the value of CreatedAt.
+func (s *WebDomain) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
-// GetDomain returns the value of Domain.
-func (s *WebDomainRequest) GetDomain() string {
-	return s.Domain
+// SetDomain sets the value of Domain.
+func (s *WebDomain) SetDomain(val string) {
+	s.Domain = val
+}
+
+// SetDomainIdn sets the value of DomainIdn.
+func (s *WebDomain) SetDomainIdn(val string) {
+	s.DomainIdn = val
+}
+
+// SetUpdatedAt sets the value of UpdatedAt.
+func (s *WebDomain) SetUpdatedAt(val time.Time) {
+	s.UpdatedAt = val
+}
+
+// Ref: #/components/schemas/WebDomainRequest
+type WebDomainRequest struct {
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
+	Domain   string `json:"domain"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2629,9 +2624,9 @@ func (s *WebDomainRequest) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// SetDomain sets the value of Domain.
-func (s *WebDomainRequest) SetDomain(val string) {
-	s.Domain = val
+// GetDomain returns the value of Domain.
+func (s *WebDomainRequest) GetDomain() string {
+	return s.Domain
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2639,16 +2634,16 @@ func (s *WebDomainRequest) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// Ref: #/components/schemas/WebDomainRequest
-type WebDomainRequestMultipart struct {
-	Domain string `json:"domain"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
+// SetDomain sets the value of Domain.
+func (s *WebDomainRequest) SetDomain(val string) {
+	s.Domain = val
 }
 
-// GetDomain returns the value of Domain.
-func (s *WebDomainRequestMultipart) GetDomain() string {
-	return s.Domain
+// Ref: #/components/schemas/WebDomainRequest
+type WebDomainRequestMultipart struct {
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
+	Domain   string `json:"domain"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2656,14 +2651,19 @@ func (s *WebDomainRequestMultipart) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// SetDomain sets the value of Domain.
-func (s *WebDomainRequestMultipart) SetDomain(val string) {
-	s.Domain = val
+// GetDomain returns the value of Domain.
+func (s *WebDomainRequestMultipart) GetDomain() string {
+	return s.Domain
 }
 
 // SetAsteroid sets the value of Asteroid.
 func (s *WebDomainRequestMultipart) SetAsteroid(val string) {
 	s.Asteroid = val
+}
+
+// SetDomain sets the value of Domain.
+func (s *WebDomainRequestMultipart) SetDomain(val string) {
+	s.Domain = val
 }
 
 func (*WebDomainRequestMultipart) createAsteroidsWebdomainsReq() {}
@@ -2672,12 +2672,12 @@ func (*WebDomainRequestMultipart) createAsteroidsWebdomainsReq() {}
 type WebHeader struct {
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid  string       `json:"asteroid"`
-	Domain    NilString    `json:"domain"`
-	Path      string       `json:"path"`
-	Value     OptNilString `json:"value"`
-	Name      string       `json:"name"`
 	CreatedAt time.Time    `json:"created_at"`
+	Domain    NilString    `json:"domain"`
+	Name      string       `json:"name"`
+	Path      string       `json:"path"`
 	UpdatedAt time.Time    `json:"updated_at"`
+	Value     OptNilString `json:"value"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2685,19 +2685,14 @@ func (s *WebHeader) GetAsteroid() string {
 	return s.Asteroid
 }
 
+// GetCreatedAt returns the value of CreatedAt.
+func (s *WebHeader) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
 // GetDomain returns the value of Domain.
 func (s *WebHeader) GetDomain() NilString {
 	return s.Domain
-}
-
-// GetPath returns the value of Path.
-func (s *WebHeader) GetPath() string {
-	return s.Path
-}
-
-// GetValue returns the value of Value.
-func (s *WebHeader) GetValue() OptNilString {
-	return s.Value
 }
 
 // GetName returns the value of Name.
@@ -2705,9 +2700,9 @@ func (s *WebHeader) GetName() string {
 	return s.Name
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *WebHeader) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetPath returns the value of Path.
+func (s *WebHeader) GetPath() string {
+	return s.Path
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -2715,29 +2710,14 @@ func (s *WebHeader) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
+// GetValue returns the value of Value.
+func (s *WebHeader) GetValue() OptNilString {
+	return s.Value
+}
+
 // SetAsteroid sets the value of Asteroid.
 func (s *WebHeader) SetAsteroid(val string) {
 	s.Asteroid = val
-}
-
-// SetDomain sets the value of Domain.
-func (s *WebHeader) SetDomain(val NilString) {
-	s.Domain = val
-}
-
-// SetPath sets the value of Path.
-func (s *WebHeader) SetPath(val string) {
-	s.Path = val
-}
-
-// SetValue sets the value of Value.
-func (s *WebHeader) SetValue(val OptNilString) {
-	s.Value = val
-}
-
-// SetName sets the value of Name.
-func (s *WebHeader) SetName(val string) {
-	s.Name = val
 }
 
 // SetCreatedAt sets the value of CreatedAt.
@@ -2745,9 +2725,29 @@ func (s *WebHeader) SetCreatedAt(val time.Time) {
 	s.CreatedAt = val
 }
 
+// SetDomain sets the value of Domain.
+func (s *WebHeader) SetDomain(val NilString) {
+	s.Domain = val
+}
+
+// SetName sets the value of Name.
+func (s *WebHeader) SetName(val string) {
+	s.Name = val
+}
+
+// SetPath sets the value of Path.
+func (s *WebHeader) SetPath(val string) {
+	s.Path = val
+}
+
 // SetUpdatedAt sets the value of UpdatedAt.
 func (s *WebHeader) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
+}
+
+// SetValue sets the value of Value.
+func (s *WebHeader) SetValue(val OptNilString) {
+	s.Value = val
 }
 
 // Ref: #/components/schemas/WebHeaderRequest
@@ -2755,9 +2755,9 @@ type WebHeaderRequest struct {
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string       `json:"asteroid"`
 	Domain   NilString    `json:"domain"`
+	Name     string       `json:"name"`
 	Path     string       `json:"path"`
 	Value    OptNilString `json:"value"`
-	Name     string       `json:"name"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2770,6 +2770,11 @@ func (s *WebHeaderRequest) GetDomain() NilString {
 	return s.Domain
 }
 
+// GetName returns the value of Name.
+func (s *WebHeaderRequest) GetName() string {
+	return s.Name
+}
+
 // GetPath returns the value of Path.
 func (s *WebHeaderRequest) GetPath() string {
 	return s.Path
@@ -2778,11 +2783,6 @@ func (s *WebHeaderRequest) GetPath() string {
 // GetValue returns the value of Value.
 func (s *WebHeaderRequest) GetValue() OptNilString {
 	return s.Value
-}
-
-// GetName returns the value of Name.
-func (s *WebHeaderRequest) GetName() string {
-	return s.Name
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2795,6 +2795,11 @@ func (s *WebHeaderRequest) SetDomain(val NilString) {
 	s.Domain = val
 }
 
+// SetName sets the value of Name.
+func (s *WebHeaderRequest) SetName(val string) {
+	s.Name = val
+}
+
 // SetPath sets the value of Path.
 func (s *WebHeaderRequest) SetPath(val string) {
 	s.Path = val
@@ -2805,19 +2810,14 @@ func (s *WebHeaderRequest) SetValue(val OptNilString) {
 	s.Value = val
 }
 
-// SetName sets the value of Name.
-func (s *WebHeaderRequest) SetName(val string) {
-	s.Name = val
-}
-
 // Ref: #/components/schemas/WebHeaderRequest
 type WebHeaderRequestMultipart struct {
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string       `json:"asteroid"`
 	Domain   NilString    `json:"domain"`
+	Name     string       `json:"name"`
 	Path     string       `json:"path"`
 	Value    OptNilString `json:"value"`
-	Name     string       `json:"name"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2830,6 +2830,11 @@ func (s *WebHeaderRequestMultipart) GetDomain() NilString {
 	return s.Domain
 }
 
+// GetName returns the value of Name.
+func (s *WebHeaderRequestMultipart) GetName() string {
+	return s.Name
+}
+
 // GetPath returns the value of Path.
 func (s *WebHeaderRequestMultipart) GetPath() string {
 	return s.Path
@@ -2838,11 +2843,6 @@ func (s *WebHeaderRequestMultipart) GetPath() string {
 // GetValue returns the value of Value.
 func (s *WebHeaderRequestMultipart) GetValue() OptNilString {
 	return s.Value
-}
-
-// GetName returns the value of Name.
-func (s *WebHeaderRequestMultipart) GetName() string {
-	return s.Name
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2855,6 +2855,11 @@ func (s *WebHeaderRequestMultipart) SetDomain(val NilString) {
 	s.Domain = val
 }
 
+// SetName sets the value of Name.
+func (s *WebHeaderRequestMultipart) SetName(val string) {
+	s.Name = val
+}
+
 // SetPath sets the value of Path.
 func (s *WebHeaderRequestMultipart) SetPath(val string) {
 	s.Path = val
@@ -2863,11 +2868,6 @@ func (s *WebHeaderRequestMultipart) SetPath(val string) {
 // SetValue sets the value of Value.
 func (s *WebHeaderRequestMultipart) SetValue(val OptNilString) {
 	s.Value = val
-}
-
-// SetName sets the value of Name.
-func (s *WebHeaderRequestMultipart) SetName(val string) {
-	s.Name = val
 }
 
 func (*WebHeaderRequestMultipart) createAsteroidsWebdomainsHeadersReq() {}

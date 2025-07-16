@@ -6,7 +6,7 @@ package client
 func (s *ExternalAsteroid) setDefaults() {
 	{
 		val := bool(true)
-		s.FlagLogErrorPhp.SetTo(val)
+		s.FlagLogAccessNginx.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -14,7 +14,7 @@ func (s *ExternalAsteroid) setDefaults() {
 	}
 	{
 		val := bool(true)
-		s.FlagLogAccessNginx.SetTo(val)
+		s.FlagLogErrorPhp.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -26,7 +26,7 @@ func (s *ExternalAsteroid) setDefaults() {
 func (s *PatchedExternalAsteroidRequest) setDefaults() {
 	{
 		val := bool(true)
-		s.FlagLogErrorPhp.SetTo(val)
+		s.FlagLogAccessNginx.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -34,7 +34,7 @@ func (s *PatchedExternalAsteroidRequest) setDefaults() {
 	}
 	{
 		val := bool(true)
-		s.FlagLogAccessNginx.SetTo(val)
+		s.FlagLogErrorPhp.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -46,7 +46,7 @@ func (s *PatchedExternalAsteroidRequest) setDefaults() {
 func (s *PatchedExternalAsteroidRequestMultipart) setDefaults() {
 	{
 		val := bool(true)
-		s.FlagLogErrorPhp.SetTo(val)
+		s.FlagLogAccessNginx.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -54,7 +54,7 @@ func (s *PatchedExternalAsteroidRequestMultipart) setDefaults() {
 	}
 	{
 		val := bool(true)
-		s.FlagLogAccessNginx.SetTo(val)
+		s.FlagLogErrorPhp.SetTo(val)
 	}
 	{
 		val := bool(true)

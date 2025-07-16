@@ -1,29 +1,29 @@
 provider:
   name: uberspace
 resources:
-  # maildomain:
-  #   create:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/
-  #     method: POST
-  #   read:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
-  #     method: GET
-  #   delete:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
-  #     method: DELETE
-  # mailuser:
-  #   create:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
-  #     method: POST
-  #   read:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-  #     method: GET
-  #   update:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-  #     method: PATCH
-  #   delete:
-  #     path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-  #     method: DELETE
+  maildomain:
+    create:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/
+      method: POST
+    read:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
+      method: GET
+    delete:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
+      method: DELETE
+  mailuser:
+    create:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
+      method: POST
+    read:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
+      method: GET
+    update:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
+      method: PATCH
+    delete:
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
+      method: DELETE
   sshkey:
     create:
       path: /api/v1/external/asteroids/{asteroid_name}/sshkeys/
@@ -34,10 +34,6 @@ resources:
     delete:
       path: /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
       method: DELETE
-  #webbackend:
-  #  read:
-  #    path: /api/v1/external/asteroids/{asteroid_name}/webbackends/{id}/
-  #    method: GET
   webdomain:
     create:
       path: /api/v1/external/asteroids/{asteroid_name}/webdomains/

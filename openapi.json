@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "summary": "API for Marvin. Marvin is the uberspace.de component managing anything technical related to uberspace 8.",
     "description": "# Authentication\nMarvin uses API keys for authentication. Ask a marvin admin for an API key, to get one.\n\nProvide the API key in a header like so: `Authorization: Api-Key MYAPIKEY`.",
+    "contact": "hallo@uberspace.de"
   },
   "paths": {
     "/api/v1/common/events/": {
