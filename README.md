@@ -52,6 +52,21 @@ resource "uberspace_webdomain_header" "cors" {
   name       = "X-Custom-Header"
   value      = "custom"
 }
+
+resource "uberspace_maildomain" "mail" {
+  asteroid   = "isabell"
+  name       = "mail.isabell.uber.space"
+}
+
+resource "uberspace_mailuser" "isabell" {
+  // a mail user usually depends on a mail domain
+  depends_on = [uberspace_maildomain.mail]
+
+  name            = "isabell"
+  password_hash   = "xxx"
+  asteroid_name   = "tf"
+  maildomain_name = uberspace_maildomain.mail.name
+}
 ```
 
 See the [uberspace Provider Documentation](https://registry.terraform.io/providers/uberspace-community/uberspace/latest/docs)
