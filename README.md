@@ -64,7 +64,7 @@ resource "uberspace_mailuser" "isabell" {
 
   name            = "isabell"
   password_hash   = "xxx"
-  asteroid_name   = "tf"
+  asteroid_name   = "isabell"
   maildomain_name = uberspace_maildomain.mail.name
 }
 ```
