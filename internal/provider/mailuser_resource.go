@@ -70,7 +70,7 @@ func convertForwards(ctx context.Context, forwards []client.NestedMailForward) (
 			"keep":        types.BoolValue(f.Keep),
 		}
 
-		fv, d := resource_mailuser.NewForwardsValue(attrTypes, attrs)
+		fv, d := resource_mailuser.NewForwardsValue(attrTypes, attrs) //nolint:contextcheck
 		if d.HasError() {
 			diags = append(diags, d...)
 			return types.ListNull(resource_mailuser.ForwardsValue{}.Type(ctx)), diags
@@ -121,12 +121,15 @@ func (r *MailuserResource) Create(ctx context.Context, req resource.CreateReques
 	plan.AsteroidName = types.StringValue(Mailuser.Asteroid)
 	plan.CreatedAt = types.StringValue(Mailuser.CreatedAt.Format(time.RFC3339))
 	plan.Format = types.StringValue("json")
-	if lv, d := convertForwards(ctx, Mailuser.Forwards); d.HasError() {
+
+	lv, d := convertForwards(ctx, Mailuser.Forwards)
+	if d.HasError() {
 		resp.Diagnostics.Append(d...)
 		return
-	} else {
-		plan.Forwards = lv
 	}
+
+	plan.Forwards = lv
+
 	plan.IsCatchall = types.BoolValue(Mailuser.IsCatchall.Or(false))
 	plan.IsSysmail = types.BoolValue(Mailuser.IsSysmail.Or(false))
 	plan.KeepForwards = types.BoolValue(Mailuser.KeepForwards.Or(false))
@@ -163,12 +166,14 @@ func (r *MailuserResource) Read(ctx context.Context, req resource.ReadRequest, r
 	state.AsteroidName = types.StringValue(Mailuser.Asteroid)
 	state.CreatedAt = types.StringValue(Mailuser.CreatedAt.Format(time.RFC3339))
 	state.Format = types.StringValue("json")
-	if lv, d := convertForwards(ctx, Mailuser.Forwards); d.HasError() {
+
+	lv, d := convertForwards(ctx, Mailuser.Forwards)
+	if d.HasError() {
 		resp.Diagnostics.Append(d...)
 		return
-	} else {
-		state.Forwards = lv
 	}
+
+	state.Forwards = lv
 	state.IsCatchall = types.BoolValue(Mailuser.IsCatchall.Or(false))
 	state.IsSysmail = types.BoolValue(Mailuser.IsSysmail.Or(false))
 	state.KeepForwards = types.BoolValue(Mailuser.KeepForwards.Or(false))
@@ -216,12 +221,15 @@ func (r *MailuserResource) Update(ctx context.Context, req resource.UpdateReques
 	plan.AsteroidName = types.StringValue(Mailuser.Asteroid)
 	plan.CreatedAt = types.StringValue(Mailuser.CreatedAt.Format(time.RFC3339))
 	plan.Format = types.StringValue("json")
-	if lv, d := convertForwards(ctx, Mailuser.Forwards); d.HasError() {
+
+	lv, d := convertForwards(ctx, Mailuser.Forwards)
+	if d.HasError() {
 		resp.Diagnostics.Append(d...)
 		return
-	} else {
-		plan.Forwards = lv
 	}
+
+	plan.Forwards = lv
+
 	plan.IsCatchall = types.BoolValue(Mailuser.IsCatchall.Or(false))
 	plan.IsSysmail = types.BoolValue(Mailuser.IsSysmail.Or(false))
 	plan.KeepForwards = types.BoolValue(Mailuser.KeepForwards.Or(false))
