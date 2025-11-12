@@ -6,7 +6,7 @@ package client
 func (s *ExternalAsteroid) setDefaults() {
 	{
 		val := bool(true)
-		s.FlagLogAccessNginx.SetTo(val)
+		s.FlagLogErrorPhp.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -14,7 +14,7 @@ func (s *ExternalAsteroid) setDefaults() {
 	}
 	{
 		val := bool(true)
-		s.FlagLogErrorPhp.SetTo(val)
+		s.FlagLogAccessNginx.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -23,10 +23,58 @@ func (s *ExternalAsteroid) setDefaults() {
 }
 
 // setDefaults set default value of fields.
+func (s *MailUser) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *MailUserRequest) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *MailUserRequestMultipart) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
 func (s *PatchedExternalAsteroidRequest) setDefaults() {
 	{
 		val := bool(true)
-		s.FlagLogAccessNginx.SetTo(val)
+		s.FlagLogErrorPhp.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -34,7 +82,7 @@ func (s *PatchedExternalAsteroidRequest) setDefaults() {
 	}
 	{
 		val := bool(true)
-		s.FlagLogErrorPhp.SetTo(val)
+		s.FlagLogAccessNginx.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -46,7 +94,7 @@ func (s *PatchedExternalAsteroidRequest) setDefaults() {
 func (s *PatchedExternalAsteroidRequestMultipart) setDefaults() {
 	{
 		val := bool(true)
-		s.FlagLogAccessNginx.SetTo(val)
+		s.FlagLogErrorPhp.SetTo(val)
 	}
 	{
 		val := bool(true)
@@ -54,11 +102,83 @@ func (s *PatchedExternalAsteroidRequestMultipart) setDefaults() {
 	}
 	{
 		val := bool(true)
-		s.FlagLogErrorPhp.SetTo(val)
+		s.FlagLogAccessNginx.SetTo(val)
 	}
 	{
 		val := bool(true)
 		s.FlagPageReplace500.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *PatchedMailUserRequest) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *PatchedMailUserRequestMultipart) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *RelatedMailDomainField) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *RelatedMailUserField) setDefaults() {
+	{
+		val := bool(false)
+		s.KeepForwards.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsSysmail.SetTo(val)
+	}
+	{
+		val := bool(false)
+		s.IsCatchall.SetTo(val)
+	}
+}
+
+// setDefaults set default value of fields.
+func (s *ToolVersion) setDefaults() {
+	{
+		val := bool(false)
+		s.IsDefault.SetTo(val)
 	}
 }
 

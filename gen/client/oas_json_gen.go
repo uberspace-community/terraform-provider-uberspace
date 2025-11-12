@@ -15,17 +15,17 @@ import (
 	"github.com/ogen-go/ogen/validate"
 )
 
-// Encode encodes CreateAsteroidsMaildomainsApplicationJSON as json.
-func (s *CreateAsteroidsMaildomainsApplicationJSON) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsMaildomainsCreateApplicationJSON as json.
+func (s *AsteroidsMaildomainsCreateApplicationJSON) Encode(e *jx.Encoder) {
 	unwrapped := (*MailDomainRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsMaildomainsApplicationJSON from json.
-func (s *CreateAsteroidsMaildomainsApplicationJSON) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsMaildomainsCreateApplicationJSON from json.
+func (s *AsteroidsMaildomainsCreateApplicationJSON) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsMaildomainsApplicationJSON to nil")
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsCreateApplicationJSON to nil")
 	}
 	var unwrapped MailDomainRequest
 	if err := func() error {
@@ -36,34 +36,34 @@ func (s *CreateAsteroidsMaildomainsApplicationJSON) Decode(d *jx.Decoder) error 
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsMaildomainsApplicationJSON(unwrapped)
+	*s = AsteroidsMaildomainsCreateApplicationJSON(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsMaildomainsApplicationJSON) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsMaildomainsCreateApplicationJSON) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsMaildomainsApplicationJSON) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsMaildomainsCreateApplicationJSON) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded as json.
-func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
 	unwrapped := (*MailDomainRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded from json.
-func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded to nil")
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded to nil")
 	}
 	var unwrapped MailDomainRequest
 	if err := func() error {
@@ -74,34 +74,34 @@ func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) Decode(d *jx.D
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded(unwrapped)
+	*s = AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsMaildomainsUsersApplicationJSON as json.
-func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsMaildomainsUsersCreateApplicationJSON as json.
+func (s *AsteroidsMaildomainsUsersCreateApplicationJSON) Encode(e *jx.Encoder) {
 	unwrapped := (*MailUserRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsMaildomainsUsersApplicationJSON from json.
-func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsMaildomainsUsersCreateApplicationJSON from json.
+func (s *AsteroidsMaildomainsUsersCreateApplicationJSON) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsMaildomainsUsersApplicationJSON to nil")
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsUsersCreateApplicationJSON to nil")
 	}
 	var unwrapped MailUserRequest
 	if err := func() error {
@@ -112,34 +112,34 @@ func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) Decode(d *jx.Decoder) e
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsMaildomainsUsersApplicationJSON(unwrapped)
+	*s = AsteroidsMaildomainsUsersCreateApplicationJSON(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsMaildomainsUsersCreateApplicationJSON) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsMaildomainsUsersCreateApplicationJSON) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded as json.
-func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
 	unwrapped := (*MailUserRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded from json.
-func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded to nil")
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded to nil")
 	}
 	var unwrapped MailUserRequest
 	if err := func() error {
@@ -150,34 +150,262 @@ func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) Decode(d 
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded(unwrapped)
+	*s = AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsSshkeysApplicationJSON as json.
-func (s *CreateAsteroidsSshkeysApplicationJSON) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsMaildomainsUsersForwardsCreateApplicationJSON as json.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON) Encode(e *jx.Encoder) {
+	unwrapped := (*MailForwardRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsMaildomainsUsersForwardsCreateApplicationJSON from json.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsUsersForwardsCreateApplicationJSON to nil")
+	}
+	var unwrapped MailForwardRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsMaildomainsUsersForwardsCreateApplicationJSON(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+	unwrapped := (*MailForwardRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded to nil")
+	}
+	var unwrapped MailForwardRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsMaildomainsUsersPatchApplicationJSON as json.
+func (s *AsteroidsMaildomainsUsersPatchApplicationJSON) Encode(e *jx.Encoder) {
+	unwrapped := (*PatchedMailUserRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsMaildomainsUsersPatchApplicationJSON from json.
+func (s *AsteroidsMaildomainsUsersPatchApplicationJSON) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsUsersPatchApplicationJSON to nil")
+	}
+	var unwrapped PatchedMailUserRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsMaildomainsUsersPatchApplicationJSON(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsMaildomainsUsersPatchApplicationJSON) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsMaildomainsUsersPatchApplicationJSON) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+	unwrapped := (*PatchedMailUserRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded to nil")
+	}
+	var unwrapped PatchedMailUserRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsPatchApplicationJSON as json.
+func (s *AsteroidsPatchApplicationJSON) Encode(e *jx.Encoder) {
+	unwrapped := (*PatchedExternalAsteroidRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsPatchApplicationJSON from json.
+func (s *AsteroidsPatchApplicationJSON) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsPatchApplicationJSON to nil")
+	}
+	var unwrapped PatchedExternalAsteroidRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsPatchApplicationJSON(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsPatchApplicationJSON) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsPatchApplicationJSON) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsPatchApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsPatchApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+	unwrapped := (*PatchedExternalAsteroidRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsPatchApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsPatchApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsPatchApplicationXWwwFormUrlencoded to nil")
+	}
+	var unwrapped PatchedExternalAsteroidRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsPatchApplicationXWwwFormUrlencoded(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsPatchApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsPatchApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsSshkeysCreateApplicationJSON as json.
+func (s *AsteroidsSshkeysCreateApplicationJSON) Encode(e *jx.Encoder) {
 	unwrapped := (*SshKeyRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsSshkeysApplicationJSON from json.
-func (s *CreateAsteroidsSshkeysApplicationJSON) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsSshkeysCreateApplicationJSON from json.
+func (s *AsteroidsSshkeysCreateApplicationJSON) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsSshkeysApplicationJSON to nil")
+		return errors.New("invalid: unable to decode AsteroidsSshkeysCreateApplicationJSON to nil")
 	}
 	var unwrapped SshKeyRequest
 	if err := func() error {
@@ -188,34 +416,34 @@ func (s *CreateAsteroidsSshkeysApplicationJSON) Decode(d *jx.Decoder) error {
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsSshkeysApplicationJSON(unwrapped)
+	*s = AsteroidsSshkeysCreateApplicationJSON(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsSshkeysApplicationJSON) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsSshkeysCreateApplicationJSON) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsSshkeysApplicationJSON) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsSshkeysCreateApplicationJSON) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded as json.
-func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
 	unwrapped := (*SshKeyRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded from json.
-func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded to nil")
+		return errors.New("invalid: unable to decode AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded to nil")
 	}
 	var unwrapped SshKeyRequest
 	if err := func() error {
@@ -226,36 +454,36 @@ func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) Decode(d *jx.Decod
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded(unwrapped)
+	*s = AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsWebdomainsApplicationJSON as json.
-func (s *CreateAsteroidsWebdomainsApplicationJSON) Encode(e *jx.Encoder) {
-	unwrapped := (*WebDomainRequest)(s)
+// Encode encodes AsteroidsToolversionsPatchApplicationJSON as json.
+func (s *AsteroidsToolversionsPatchApplicationJSON) Encode(e *jx.Encoder) {
+	unwrapped := (*PatchedSelectedToolVersionRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsWebdomainsApplicationJSON from json.
-func (s *CreateAsteroidsWebdomainsApplicationJSON) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsToolversionsPatchApplicationJSON from json.
+func (s *AsteroidsToolversionsPatchApplicationJSON) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsWebdomainsApplicationJSON to nil")
+		return errors.New("invalid: unable to decode AsteroidsToolversionsPatchApplicationJSON to nil")
 	}
-	var unwrapped WebDomainRequest
+	var unwrapped PatchedSelectedToolVersionRequest
 	if err := func() error {
 		if err := unwrapped.Decode(d); err != nil {
 			return err
@@ -264,36 +492,36 @@ func (s *CreateAsteroidsWebdomainsApplicationJSON) Decode(d *jx.Decoder) error {
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsWebdomainsApplicationJSON(unwrapped)
+	*s = AsteroidsToolversionsPatchApplicationJSON(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsWebdomainsApplicationJSON) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsToolversionsPatchApplicationJSON) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsWebdomainsApplicationJSON) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsToolversionsPatchApplicationJSON) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded as json.
-func (s *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
-	unwrapped := (*WebDomainRequest)(s)
+// Encode encodes AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+	unwrapped := (*PatchedSelectedToolVersionRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded from json.
-func (s *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded to nil")
+		return errors.New("invalid: unable to decode AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded to nil")
 	}
-	var unwrapped WebDomainRequest
+	var unwrapped PatchedSelectedToolVersionRequest
 	if err := func() error {
 		if err := unwrapped.Decode(d); err != nil {
 			return err
@@ -302,34 +530,34 @@ func (s *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) Decode(d *jx.De
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded(unwrapped)
+	*s = AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsWebdomainsBackendsApplicationJSON as json.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsWebdomainsBackendsCreateApplicationJSON as json.
+func (s *AsteroidsWebdomainsBackendsCreateApplicationJSON) Encode(e *jx.Encoder) {
 	unwrapped := (*WebBackendRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsWebdomainsBackendsApplicationJSON from json.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsWebdomainsBackendsCreateApplicationJSON from json.
+func (s *AsteroidsWebdomainsBackendsCreateApplicationJSON) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsWebdomainsBackendsApplicationJSON to nil")
+		return errors.New("invalid: unable to decode AsteroidsWebdomainsBackendsCreateApplicationJSON to nil")
 	}
 	var unwrapped WebBackendRequest
 	if err := func() error {
@@ -340,34 +568,34 @@ func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) Decode(d *jx.Decoder)
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsWebdomainsBackendsApplicationJSON(unwrapped)
+	*s = AsteroidsWebdomainsBackendsCreateApplicationJSON(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsWebdomainsBackendsCreateApplicationJSON) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsWebdomainsBackendsCreateApplicationJSON) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded as json.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
 	unwrapped := (*WebBackendRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded from json.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded to nil")
+		return errors.New("invalid: unable to decode AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded to nil")
 	}
 	var unwrapped WebBackendRequest
 	if err := func() error {
@@ -378,34 +606,110 @@ func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) Decode(
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded(unwrapped)
+	*s = AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsWebdomainsHeadersApplicationJSON as json.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsWebdomainsCreateApplicationJSON as json.
+func (s *AsteroidsWebdomainsCreateApplicationJSON) Encode(e *jx.Encoder) {
+	unwrapped := (*WebDomainRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsWebdomainsCreateApplicationJSON from json.
+func (s *AsteroidsWebdomainsCreateApplicationJSON) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsWebdomainsCreateApplicationJSON to nil")
+	}
+	var unwrapped WebDomainRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsWebdomainsCreateApplicationJSON(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsWebdomainsCreateApplicationJSON) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsWebdomainsCreateApplicationJSON) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+	unwrapped := (*WebDomainRequest)(s)
+
+	unwrapped.Encode(e)
+}
+
+// Decode decodes AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded to nil")
+	}
+	var unwrapped WebDomainRequest
+	if err := func() error {
+		if err := unwrapped.Decode(d); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
+	}
+	*s = AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded(unwrapped)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes AsteroidsWebdomainsHeadersCreateApplicationJSON as json.
+func (s *AsteroidsWebdomainsHeadersCreateApplicationJSON) Encode(e *jx.Encoder) {
 	unwrapped := (*WebHeaderRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsWebdomainsHeadersApplicationJSON from json.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsWebdomainsHeadersCreateApplicationJSON from json.
+func (s *AsteroidsWebdomainsHeadersCreateApplicationJSON) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsWebdomainsHeadersApplicationJSON to nil")
+		return errors.New("invalid: unable to decode AsteroidsWebdomainsHeadersCreateApplicationJSON to nil")
 	}
 	var unwrapped WebHeaderRequest
 	if err := func() error {
@@ -416,34 +720,34 @@ func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) Decode(d *jx.Decoder) 
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsWebdomainsHeadersApplicationJSON(unwrapped)
+	*s = AsteroidsWebdomainsHeadersCreateApplicationJSON(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsWebdomainsHeadersCreateApplicationJSON) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsWebdomainsHeadersCreateApplicationJSON) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
-// Encode encodes CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded as json.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
+// Encode encodes AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded as json.
+func (s *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
 	unwrapped := (*WebHeaderRequest)(s)
 
 	unwrapped.Encode(e)
 }
 
-// Decode decodes CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded from json.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
+// Decode decodes AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded from json.
+func (s *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded to nil")
+		return errors.New("invalid: unable to decode AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded to nil")
 	}
 	var unwrapped WebHeaderRequest
 	if err := func() error {
@@ -454,19 +758,19 @@ func (s *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) Decode(d
 	}(); err != nil {
 		return errors.Wrap(err, "alias")
 	}
-	*s = CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded(unwrapped)
+	*s = AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded(unwrapped)
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
+func (s *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
+func (s *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -567,17 +871,25 @@ func (s *ExternalAsteroid) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 	{
+		e.FieldStart("pk")
+		e.Str(s.Pk)
+	}
+	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
+		e.FieldStart("host")
+		e.Str(s.Host)
+	}
+	{
 		e.FieldStart("active")
 		e.Bool(s.Active)
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
-		if s.FlagLogAccessNginx.Set {
-			e.FieldStart("flag_log_access_nginx")
-			s.FlagLogAccessNginx.Encode(e)
+		if s.FlagLogErrorPhp.Set {
+			e.FieldStart("flag_log_error_php")
+			s.FlagLogErrorPhp.Encode(e)
 		}
 	}
 	{
@@ -587,9 +899,9 @@ func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.FlagLogErrorPhp.Set {
-			e.FieldStart("flag_log_error_php")
-			s.FlagLogErrorPhp.Encode(e)
+		if s.FlagLogAccessNginx.Set {
+			e.FieldStart("flag_log_access_nginx")
+			s.FlagLogAccessNginx.Encode(e)
 		}
 	}
 	{
@@ -599,22 +911,14 @@ func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("host")
-		e.Str(s.Host)
-	}
-	{
-		e.FieldStart("name")
-		e.Str(s.Name)
-	}
-	{
 		if s.PasswordHash.Set {
 			e.FieldStart("password_hash")
 			s.PasswordHash.Encode(e)
 		}
 	}
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		e.FieldStart("updated_at")
@@ -623,16 +927,16 @@ func (s *ExternalAsteroid) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfExternalAsteroid = [11]string{
-	0:  "active",
-	1:  "created_at",
-	2:  "flag_log_access_nginx",
-	3:  "flag_log_error_apache",
+	0:  "pk",
+	1:  "name",
+	2:  "host",
+	3:  "active",
 	4:  "flag_log_error_php",
-	5:  "flag_page_replace_500",
-	6:  "host",
-	7:  "name",
+	5:  "flag_log_error_apache",
+	6:  "flag_log_access_nginx",
+	7:  "flag_page_replace_500",
 	8:  "password_hash",
-	9:  "pk",
+	9:  "created_at",
 	10: "updated_at",
 }
 
@@ -646,8 +950,44 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "active":
+		case "pk":
 			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Pk = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"pk\"")
+			}
+		case "name":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		case "host":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.Host = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"host\"")
+			}
+		case "active":
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Bool()
 				s.Active = bool(v)
@@ -657,38 +997,6 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"active\"")
-			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
-		case "flag_log_access_nginx":
-			if err := func() error {
-				s.FlagLogAccessNginx.Reset()
-				if err := s.FlagLogAccessNginx.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
-			}
-		case "flag_log_error_apache":
-			if err := func() error {
-				s.FlagLogErrorApache.Reset()
-				if err := s.FlagLogErrorApache.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_error_apache\"")
 			}
 		case "flag_log_error_php":
 			if err := func() error {
@@ -700,6 +1008,26 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
 			}
+		case "flag_log_error_apache":
+			if err := func() error {
+				s.FlagLogErrorApache.Reset()
+				if err := s.FlagLogErrorApache.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"flag_log_error_apache\"")
+			}
+		case "flag_log_access_nginx":
+			if err := func() error {
+				s.FlagLogAccessNginx.Reset()
+				if err := s.FlagLogAccessNginx.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
+			}
 		case "flag_page_replace_500":
 			if err := func() error {
 				s.FlagPageReplace500.Reset()
@@ -709,30 +1037,6 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"flag_page_replace_500\"")
-			}
-		case "host":
-			requiredBitSet[0] |= 1 << 6
-			if err := func() error {
-				v, err := d.Str()
-				s.Host = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"host\"")
-			}
-		case "name":
-			requiredBitSet[0] |= 1 << 7
-			if err := func() error {
-				v, err := d.Str()
-				s.Name = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"name\"")
 			}
 		case "password_hash":
 			if err := func() error {
@@ -744,17 +1048,17 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "pk":
+		case "created_at":
 			requiredBitSet[1] |= 1 << 1
 			if err := func() error {
-				v, err := d.Str()
-				s.Pk = string(v)
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
 			requiredBitSet[1] |= 1 << 2
@@ -778,7 +1082,7 @@ func (s *ExternalAsteroid) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b11000011,
+		0b00001111,
 		0b00000110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -885,50 +1189,68 @@ func (s *MailDomain) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailDomain) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias != nil {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
+		e.FieldStart("domain")
+		e.Str(s.Domain)
 	}
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
+		e.FieldStart("domain_display")
+		e.Str(s.DomainDisplay)
+	}
+	{
+		e.FieldStart("domain_idn")
+		e.Str(s.DomainIdn)
+	}
+	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
+		e.FieldStart("name_display")
+		e.Str(s.NameDisplay)
+	}
+	{
+		e.FieldStart("name_idn")
+		e.Str(s.NameIdn)
 	}
 	{
 		e.FieldStart("created_at")
 		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
-		e.FieldStart("dns_error")
-		s.DNSError.Encode(e)
-	}
-	{
-		e.FieldStart("dns_last_check")
-		s.DNSLastCheck.Encode(e, json.EncodeDateTime)
+		e.FieldStart("updated_at")
+		json.EncodeDateTime(e, s.UpdatedAt)
 	}
 	{
 		e.FieldStart("dns_state")
 		s.DNSState.Encode(e)
 	}
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
+		e.FieldStart("dns_last_check")
+		s.DNSLastCheck.Encode(e, json.EncodeDateTime)
 	}
 	{
-		e.FieldStart("updated_at")
-		json.EncodeDateTime(e, s.UpdatedAt)
+		e.FieldStart("dns_error")
+		s.DNSError.Encode(e)
+	}
+	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 }
 
-var jsonFieldsNameOfMailDomain = [8]string{
-	0: "alias",
-	1: "asteroid",
-	2: "created_at",
-	3: "dns_error",
-	4: "dns_last_check",
-	5: "dns_state",
-	6: "domain",
-	7: "updated_at",
+var jsonFieldsNameOfMailDomain = [12]string{
+	0:  "domain",
+	1:  "domain_display",
+	2:  "domain_idn",
+	3:  "name",
+	4:  "name_display",
+	5:  "name_idn",
+	6:  "created_at",
+	7:  "updated_at",
+	8:  "dns_state",
+	9:  "dns_last_check",
+	10: "dns_error",
+	11: "asteroid",
 }
 
 // Decode decodes MailDomain from json.
@@ -936,78 +1258,12 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode MailDomain to nil")
 	}
-	var requiredBitSet [1]uint8
+	var requiredBitSet [2]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
-			if err := func() error {
-				s.Alias = nil
-				var elem RelatedMailDomainField
-				if err := elem.Decode(d); err != nil {
-					return err
-				}
-				s.Alias = &elem
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
-		case "asteroid":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
-		case "dns_error":
-			requiredBitSet[0] |= 1 << 3
-			if err := func() error {
-				if err := s.DNSError.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_error\"")
-			}
-		case "dns_last_check":
-			requiredBitSet[0] |= 1 << 4
-			if err := func() error {
-				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_last_check\"")
-			}
-		case "dns_state":
-			requiredBitSet[0] |= 1 << 5
-			if err := func() error {
-				if err := s.DNSState.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_state\"")
-			}
 		case "domain":
-			requiredBitSet[0] |= 1 << 6
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Domain = string(v)
@@ -1017,6 +1273,78 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
+			}
+		case "domain_display":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.DomainDisplay = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain_display\"")
+			}
+		case "domain_idn":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.DomainIdn = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain_idn\"")
+			}
+		case "name":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		case "name_display":
+			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				v, err := d.Str()
+				s.NameDisplay = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name_display\"")
+			}
+		case "name_idn":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				v, err := d.Str()
+				s.NameIdn = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name_idn\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
 			requiredBitSet[0] |= 1 << 7
@@ -1030,6 +1358,48 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
+		case "dns_state":
+			requiredBitSet[1] |= 1 << 0
+			if err := func() error {
+				if err := s.DNSState.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_state\"")
+			}
+		case "dns_last_check":
+			requiredBitSet[1] |= 1 << 1
+			if err := func() error {
+				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_last_check\"")
+			}
+		case "dns_error":
+			requiredBitSet[1] |= 1 << 2
+			if err := func() error {
+				if err := s.DNSError.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_error\"")
+			}
+		case "asteroid":
+			requiredBitSet[1] |= 1 << 3
+			if err := func() error {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -1039,8 +1409,9 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 	}
 	// Validate required fields.
 	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b11111110,
+	for i, mask := range [2]uint8{
+		0b11111111,
+		0b00001111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1096,25 +1467,18 @@ func (s *MailDomainRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailDomainRequest) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias.Set {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
+		e.FieldStart("name")
+		e.Str(s.Name)
 	}
 	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
 	}
-	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
-	}
 }
 
-var jsonFieldsNameOfMailDomainRequest = [3]string{
-	0: "alias",
+var jsonFieldsNameOfMailDomainRequest = [2]string{
+	0: "name",
 	1: "asteroid",
-	2: "domain",
 }
 
 // Decode decodes MailDomainRequest from json.
@@ -1126,15 +1490,17 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
+		case "name":
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				s.Alias.Reset()
-				if err := s.Alias.Decode(d); err != nil {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
+				return errors.Wrap(err, "decode field \"name\"")
 			}
 		case "asteroid":
 			requiredBitSet[0] |= 1 << 1
@@ -1148,18 +1514,6 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "domain":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
 		default:
 			return d.Skip()
 		}
@@ -1170,7 +1524,7 @@ func (s *MailDomainRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000110,
+		0b00000011,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1217,6 +1571,251 @@ func (s *MailDomainRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *MailForward) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *MailForward) encodeFields(e *jx.Encoder) {
+	{
+		if s.User != nil {
+			e.FieldStart("user")
+			s.User.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("destination")
+		e.Str(s.Destination)
+	}
+	{
+		e.FieldStart("keep")
+		e.Bool(s.Keep)
+	}
+}
+
+var jsonFieldsNameOfMailForward = [3]string{
+	0: "user",
+	1: "destination",
+	2: "keep",
+}
+
+// Decode decodes MailForward from json.
+func (s *MailForward) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode MailForward to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "user":
+			if err := func() error {
+				s.User = nil
+				var elem RelatedMailUserField
+				if err := elem.Decode(d); err != nil {
+					return err
+				}
+				s.User = &elem
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"user\"")
+			}
+		case "destination":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Destination = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
+			}
+		case "keep":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Bool()
+				s.Keep = bool(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode MailForward")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000110,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfMailForward) {
+					name = jsonFieldsNameOfMailForward[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *MailForward) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *MailForward) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *MailForwardRequest) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *MailForwardRequest) encodeFields(e *jx.Encoder) {
+	{
+		if s.User.Set {
+			e.FieldStart("user")
+			s.User.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("destination")
+		e.Str(s.Destination)
+	}
+}
+
+var jsonFieldsNameOfMailForwardRequest = [2]string{
+	0: "user",
+	1: "destination",
+}
+
+// Decode decodes MailForwardRequest from json.
+func (s *MailForwardRequest) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode MailForwardRequest to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "user":
+			if err := func() error {
+				s.User.Reset()
+				if err := s.User.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"user\"")
+			}
+		case "destination":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Destination = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode MailForwardRequest")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000010,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfMailForwardRequest) {
+					name = jsonFieldsNameOfMailForwardRequest[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *MailForwardRequest) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *MailForwardRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *MailUser) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -1226,24 +1825,12 @@ func (s *MailUser) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailUser) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias.Set {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
+		e.FieldStart("pk")
+		e.Str(s.Pk)
 	}
 	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
-		if s.Domain != nil {
-			e.FieldStart("domain")
-			s.Domain.Encode(e)
-		}
 	}
 	{
 		e.FieldStart("name")
@@ -1256,24 +1843,57 @@ func (s *MailUser) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		e.FieldStart("updated_at")
 		json.EncodeDateTime(e, s.UpdatedAt)
 	}
+	{
+		e.FieldStart("mailaddr")
+		e.Str(s.Mailaddr)
+	}
+	{
+		e.FieldStart("forwards")
+		e.ArrStart()
+		for _, elem := range s.Forwards {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+	{
+		if s.KeepForwards.Set {
+			e.FieldStart("keep_forwards")
+			s.KeepForwards.Encode(e)
+		}
+	}
+	{
+		if s.IsSysmail.Set {
+			e.FieldStart("is_sysmail")
+			s.IsSysmail.Encode(e)
+		}
+	}
+	{
+		if s.IsCatchall.Set {
+			e.FieldStart("is_catchall")
+			s.IsCatchall.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfMailUser = [8]string{
-	0: "alias",
-	1: "asteroid",
-	2: "created_at",
-	3: "domain",
-	4: "name",
-	5: "password_hash",
-	6: "pk",
-	7: "updated_at",
+var jsonFieldsNameOfMailUser = [11]string{
+	0:  "pk",
+	1:  "asteroid",
+	2:  "name",
+	3:  "password_hash",
+	4:  "created_at",
+	5:  "updated_at",
+	6:  "mailaddr",
+	7:  "forwards",
+	8:  "keep_forwards",
+	9:  "is_sysmail",
+	10: "is_catchall",
 }
 
 // Decode decodes MailUser from json.
@@ -1281,19 +1901,22 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode MailUser to nil")
 	}
-	var requiredBitSet [1]uint8
+	var requiredBitSet [2]uint8
+	s.setDefaults()
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
+		case "pk":
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				s.Alias.Reset()
-				if err := s.Alias.Decode(d); err != nil {
+				v, err := d.Str()
+				s.Pk = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "asteroid":
 			requiredBitSet[0] |= 1 << 1
@@ -1307,32 +1930,8 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
-		case "domain":
-			if err := func() error {
-				s.Domain = nil
-				var elem RelatedMailDomainField
-				if err := elem.Decode(d); err != nil {
-					return err
-				}
-				s.Domain = &elem
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -1353,20 +1952,20 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "pk":
-			requiredBitSet[0] |= 1 << 6
+		case "created_at":
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Str()
-				s.Pk = string(v)
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
-			requiredBitSet[0] |= 1 << 7
+			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -1377,6 +1976,66 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
+		case "mailaddr":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := d.Str()
+				s.Mailaddr = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"mailaddr\"")
+			}
+		case "forwards":
+			requiredBitSet[0] |= 1 << 7
+			if err := func() error {
+				s.Forwards = make([]NestedMailForward, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem NestedMailForward
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Forwards = append(s.Forwards, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"forwards\"")
+			}
+		case "keep_forwards":
+			if err := func() error {
+				s.KeepForwards.Reset()
+				if err := s.KeepForwards.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep_forwards\"")
+			}
+		case "is_sysmail":
+			if err := func() error {
+				s.IsSysmail.Reset()
+				if err := s.IsSysmail.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_sysmail\"")
+			}
+		case "is_catchall":
+			if err := func() error {
+				s.IsCatchall.Reset()
+				if err := s.IsCatchall.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_catchall\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -1386,8 +2045,9 @@ func (s *MailUser) Decode(d *jx.Decoder) error {
 	}
 	// Validate required fields.
 	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b11010110,
+	for i, mask := range [2]uint8{
+		0b11110111,
+		0b00000000,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1443,18 +2103,6 @@ func (s *MailUserRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailUserRequest) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias.Set {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
-	{
-		if s.Domain.Set {
-			e.FieldStart("domain")
-			s.Domain.Encode(e)
-		}
-	}
-	{
 		e.FieldStart("name")
 		e.Str(s.Name)
 	}
@@ -1464,13 +2112,32 @@ func (s *MailUserRequest) encodeFields(e *jx.Encoder) {
 			s.PasswordHash.Encode(e)
 		}
 	}
+	{
+		if s.KeepForwards.Set {
+			e.FieldStart("keep_forwards")
+			s.KeepForwards.Encode(e)
+		}
+	}
+	{
+		if s.IsSysmail.Set {
+			e.FieldStart("is_sysmail")
+			s.IsSysmail.Encode(e)
+		}
+	}
+	{
+		if s.IsCatchall.Set {
+			e.FieldStart("is_catchall")
+			s.IsCatchall.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfMailUserRequest = [4]string{
-	0: "alias",
-	1: "domain",
-	2: "name",
-	3: "password_hash",
+var jsonFieldsNameOfMailUserRequest = [5]string{
+	0: "name",
+	1: "password_hash",
+	2: "keep_forwards",
+	3: "is_sysmail",
+	4: "is_catchall",
 }
 
 // Decode decodes MailUserRequest from json.
@@ -1479,31 +2146,12 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 		return errors.New("invalid: unable to decode MailUserRequest to nil")
 	}
 	var requiredBitSet [1]uint8
+	s.setDefaults()
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
-			if err := func() error {
-				s.Alias.Reset()
-				if err := s.Alias.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
-		case "domain":
-			if err := func() error {
-				s.Domain.Reset()
-				if err := s.Domain.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -1524,6 +2172,36 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
+		case "keep_forwards":
+			if err := func() error {
+				s.KeepForwards.Reset()
+				if err := s.KeepForwards.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep_forwards\"")
+			}
+		case "is_sysmail":
+			if err := func() error {
+				s.IsSysmail.Reset()
+				if err := s.IsSysmail.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_sysmail\"")
+			}
+		case "is_catchall":
+			if err := func() error {
+				s.IsCatchall.Reset()
+				if err := s.IsCatchall.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_catchall\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -1534,7 +2212,7 @@ func (s *MailUserRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000100,
+		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -1576,6 +2254,119 @@ func (s *MailUserRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *MailUserRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *NestedMailForward) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *NestedMailForward) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("destination")
+		e.Str(s.Destination)
+	}
+	{
+		e.FieldStart("keep")
+		e.Bool(s.Keep)
+	}
+}
+
+var jsonFieldsNameOfNestedMailForward = [2]string{
+	0: "destination",
+	1: "keep",
+}
+
+// Decode decodes NestedMailForward from json.
+func (s *NestedMailForward) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode NestedMailForward to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "destination":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Destination = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
+			}
+		case "keep":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Bool()
+				s.Keep = bool(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode NestedMailForward")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000011,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfNestedMailForward) {
+					name = jsonFieldsNameOfNestedMailForward[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *NestedMailForward) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *NestedMailForward) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -1893,39 +2684,6 @@ func (s *OptRelatedMailDomainField) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes RelatedMailDomainFieldRequest as json.
-func (o OptRelatedMailDomainFieldRequest) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes RelatedMailDomainFieldRequest from json.
-func (o *OptRelatedMailDomainFieldRequest) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptRelatedMailDomainFieldRequest to nil")
-	}
-	o.Set = true
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptRelatedMailDomainFieldRequest) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptRelatedMailDomainFieldRequest) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes RelatedMailUserField as json.
 func (o OptRelatedMailUserField) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -2185,6 +2943,163 @@ func (s *PaginatedMailDomainList) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *PaginatedMailForwardList) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *PaginatedMailForwardList) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("count")
+		e.Int(s.Count)
+	}
+	{
+		if s.Next.Set {
+			e.FieldStart("next")
+			s.Next.Encode(e)
+		}
+	}
+	{
+		if s.Previous.Set {
+			e.FieldStart("previous")
+			s.Previous.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("results")
+		e.ArrStart()
+		for _, elem := range s.Results {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+}
+
+var jsonFieldsNameOfPaginatedMailForwardList = [4]string{
+	0: "count",
+	1: "next",
+	2: "previous",
+	3: "results",
+}
+
+// Decode decodes PaginatedMailForwardList from json.
+func (s *PaginatedMailForwardList) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode PaginatedMailForwardList to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "count":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Count = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"count\"")
+			}
+		case "next":
+			if err := func() error {
+				s.Next.Reset()
+				if err := s.Next.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"next\"")
+			}
+		case "previous":
+			if err := func() error {
+				s.Previous.Reset()
+				if err := s.Previous.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"previous\"")
+			}
+		case "results":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				s.Results = make([]MailForward, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem MailForward
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Results = append(s.Results, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"results\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode PaginatedMailForwardList")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00001001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfPaginatedMailForwardList) {
+					name = jsonFieldsNameOfPaginatedMailForwardList[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *PaginatedMailForwardList) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *PaginatedMailForwardList) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *PaginatedMailUserList) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -2342,6 +3257,163 @@ func (s *PaginatedMailUserList) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *PaginatedSelectedToolVersionList) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *PaginatedSelectedToolVersionList) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("count")
+		e.Int(s.Count)
+	}
+	{
+		if s.Next.Set {
+			e.FieldStart("next")
+			s.Next.Encode(e)
+		}
+	}
+	{
+		if s.Previous.Set {
+			e.FieldStart("previous")
+			s.Previous.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("results")
+		e.ArrStart()
+		for _, elem := range s.Results {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+}
+
+var jsonFieldsNameOfPaginatedSelectedToolVersionList = [4]string{
+	0: "count",
+	1: "next",
+	2: "previous",
+	3: "results",
+}
+
+// Decode decodes PaginatedSelectedToolVersionList from json.
+func (s *PaginatedSelectedToolVersionList) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode PaginatedSelectedToolVersionList to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "count":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Count = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"count\"")
+			}
+		case "next":
+			if err := func() error {
+				s.Next.Reset()
+				if err := s.Next.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"next\"")
+			}
+		case "previous":
+			if err := func() error {
+				s.Previous.Reset()
+				if err := s.Previous.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"previous\"")
+			}
+		case "results":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				s.Results = make([]SelectedToolVersion, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem SelectedToolVersion
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Results = append(s.Results, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"results\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode PaginatedSelectedToolVersionList")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00001001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfPaginatedSelectedToolVersionList) {
+					name = jsonFieldsNameOfPaginatedSelectedToolVersionList[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *PaginatedSelectedToolVersionList) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *PaginatedSelectedToolVersionList) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *PaginatedSshKeyList) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -2494,6 +3566,320 @@ func (s *PaginatedSshKeyList) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *PaginatedSshKeyList) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *PaginatedToolList) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *PaginatedToolList) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("count")
+		e.Int(s.Count)
+	}
+	{
+		if s.Next.Set {
+			e.FieldStart("next")
+			s.Next.Encode(e)
+		}
+	}
+	{
+		if s.Previous.Set {
+			e.FieldStart("previous")
+			s.Previous.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("results")
+		e.ArrStart()
+		for _, elem := range s.Results {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+}
+
+var jsonFieldsNameOfPaginatedToolList = [4]string{
+	0: "count",
+	1: "next",
+	2: "previous",
+	3: "results",
+}
+
+// Decode decodes PaginatedToolList from json.
+func (s *PaginatedToolList) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode PaginatedToolList to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "count":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Count = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"count\"")
+			}
+		case "next":
+			if err := func() error {
+				s.Next.Reset()
+				if err := s.Next.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"next\"")
+			}
+		case "previous":
+			if err := func() error {
+				s.Previous.Reset()
+				if err := s.Previous.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"previous\"")
+			}
+		case "results":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				s.Results = make([]Tool, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem Tool
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Results = append(s.Results, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"results\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode PaginatedToolList")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00001001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfPaginatedToolList) {
+					name = jsonFieldsNameOfPaginatedToolList[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *PaginatedToolList) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *PaginatedToolList) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *PaginatedToolVersionList) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *PaginatedToolVersionList) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("count")
+		e.Int(s.Count)
+	}
+	{
+		if s.Next.Set {
+			e.FieldStart("next")
+			s.Next.Encode(e)
+		}
+	}
+	{
+		if s.Previous.Set {
+			e.FieldStart("previous")
+			s.Previous.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("results")
+		e.ArrStart()
+		for _, elem := range s.Results {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+}
+
+var jsonFieldsNameOfPaginatedToolVersionList = [4]string{
+	0: "count",
+	1: "next",
+	2: "previous",
+	3: "results",
+}
+
+// Decode decodes PaginatedToolVersionList from json.
+func (s *PaginatedToolVersionList) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode PaginatedToolVersionList to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "count":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Count = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"count\"")
+			}
+		case "next":
+			if err := func() error {
+				s.Next.Reset()
+				if err := s.Next.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"next\"")
+			}
+		case "previous":
+			if err := func() error {
+				s.Previous.Reset()
+				if err := s.Previous.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"previous\"")
+			}
+		case "results":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				s.Results = make([]ToolVersion, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem ToolVersion
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Results = append(s.Results, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"results\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode PaginatedToolVersionList")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00001001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfPaginatedToolVersionList) {
+					name = jsonFieldsNameOfPaginatedToolVersionList[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *PaginatedToolVersionList) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *PaginatedToolVersionList) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -2969,158 +4355,6 @@ func (s *PaginatedWebHeaderList) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes PatchAsteroidApplicationJSON as json.
-func (s *PatchAsteroidApplicationJSON) Encode(e *jx.Encoder) {
-	unwrapped := (*PatchedExternalAsteroidRequest)(s)
-
-	unwrapped.Encode(e)
-}
-
-// Decode decodes PatchAsteroidApplicationJSON from json.
-func (s *PatchAsteroidApplicationJSON) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode PatchAsteroidApplicationJSON to nil")
-	}
-	var unwrapped PatchedExternalAsteroidRequest
-	if err := func() error {
-		if err := unwrapped.Decode(d); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return errors.Wrap(err, "alias")
-	}
-	*s = PatchAsteroidApplicationJSON(unwrapped)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *PatchAsteroidApplicationJSON) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *PatchAsteroidApplicationJSON) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes PatchAsteroidApplicationXWwwFormUrlencoded as json.
-func (s *PatchAsteroidApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
-	unwrapped := (*PatchedExternalAsteroidRequest)(s)
-
-	unwrapped.Encode(e)
-}
-
-// Decode decodes PatchAsteroidApplicationXWwwFormUrlencoded from json.
-func (s *PatchAsteroidApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode PatchAsteroidApplicationXWwwFormUrlencoded to nil")
-	}
-	var unwrapped PatchedExternalAsteroidRequest
-	if err := func() error {
-		if err := unwrapped.Decode(d); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return errors.Wrap(err, "alias")
-	}
-	*s = PatchAsteroidApplicationXWwwFormUrlencoded(unwrapped)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *PatchAsteroidApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *PatchAsteroidApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes PatchAsteroidMaildomainUserApplicationJSON as json.
-func (s *PatchAsteroidMaildomainUserApplicationJSON) Encode(e *jx.Encoder) {
-	unwrapped := (*PatchedMailUserRequest)(s)
-
-	unwrapped.Encode(e)
-}
-
-// Decode decodes PatchAsteroidMaildomainUserApplicationJSON from json.
-func (s *PatchAsteroidMaildomainUserApplicationJSON) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode PatchAsteroidMaildomainUserApplicationJSON to nil")
-	}
-	var unwrapped PatchedMailUserRequest
-	if err := func() error {
-		if err := unwrapped.Decode(d); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return errors.Wrap(err, "alias")
-	}
-	*s = PatchAsteroidMaildomainUserApplicationJSON(unwrapped)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *PatchAsteroidMaildomainUserApplicationJSON) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *PatchAsteroidMaildomainUserApplicationJSON) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded as json.
-func (s *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded) Encode(e *jx.Encoder) {
-	unwrapped := (*PatchedMailUserRequest)(s)
-
-	unwrapped.Encode(e)
-}
-
-// Decode decodes PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded from json.
-func (s *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded to nil")
-	}
-	var unwrapped PatchedMailUserRequest
-	if err := func() error {
-		if err := unwrapped.Decode(d); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return errors.Wrap(err, "alias")
-	}
-	*s = PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded(unwrapped)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode implements json.Marshaler.
 func (s *PatchedExternalAsteroidRequest) Encode(e *jx.Encoder) {
 	e.ObjStart()
@@ -3131,9 +4365,9 @@ func (s *PatchedExternalAsteroidRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *PatchedExternalAsteroidRequest) encodeFields(e *jx.Encoder) {
 	{
-		if s.FlagLogAccessNginx.Set {
-			e.FieldStart("flag_log_access_nginx")
-			s.FlagLogAccessNginx.Encode(e)
+		if s.FlagLogErrorPhp.Set {
+			e.FieldStart("flag_log_error_php")
+			s.FlagLogErrorPhp.Encode(e)
 		}
 	}
 	{
@@ -3143,9 +4377,9 @@ func (s *PatchedExternalAsteroidRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.FlagLogErrorPhp.Set {
-			e.FieldStart("flag_log_error_php")
-			s.FlagLogErrorPhp.Encode(e)
+		if s.FlagLogAccessNginx.Set {
+			e.FieldStart("flag_log_access_nginx")
+			s.FlagLogAccessNginx.Encode(e)
 		}
 	}
 	{
@@ -3169,9 +4403,9 @@ func (s *PatchedExternalAsteroidRequest) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfPatchedExternalAsteroidRequest = [6]string{
-	0: "flag_log_access_nginx",
+	0: "flag_log_error_php",
 	1: "flag_log_error_apache",
-	2: "flag_log_error_php",
+	2: "flag_log_access_nginx",
 	3: "flag_page_replace_500",
 	4: "password",
 	5: "password_hash",
@@ -3186,15 +4420,15 @@ func (s *PatchedExternalAsteroidRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "flag_log_access_nginx":
+		case "flag_log_error_php":
 			if err := func() error {
-				s.FlagLogAccessNginx.Reset()
-				if err := s.FlagLogAccessNginx.Decode(d); err != nil {
+				s.FlagLogErrorPhp.Reset()
+				if err := s.FlagLogErrorPhp.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
+				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
 			}
 		case "flag_log_error_apache":
 			if err := func() error {
@@ -3206,15 +4440,15 @@ func (s *PatchedExternalAsteroidRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"flag_log_error_apache\"")
 			}
-		case "flag_log_error_php":
+		case "flag_log_access_nginx":
 			if err := func() error {
-				s.FlagLogErrorPhp.Reset()
-				if err := s.FlagLogErrorPhp.Decode(d); err != nil {
+				s.FlagLogAccessNginx.Reset()
+				if err := s.FlagLogAccessNginx.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"flag_log_error_php\"")
+				return errors.Wrap(err, "decode field \"flag_log_access_nginx\"")
 			}
 		case "flag_page_replace_500":
 			if err := func() error {
@@ -3280,22 +4514,43 @@ func (s *PatchedMailUserRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *PatchedMailUserRequest) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias.Set {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
-	{
 		if s.PasswordHash.Set {
 			e.FieldStart("password_hash")
 			s.PasswordHash.Encode(e)
 		}
 	}
+	{
+		if s.AliasOf.Set {
+			e.FieldStart("alias_of")
+			s.AliasOf.Encode(e)
+		}
+	}
+	{
+		if s.KeepForwards.Set {
+			e.FieldStart("keep_forwards")
+			s.KeepForwards.Encode(e)
+		}
+	}
+	{
+		if s.IsSysmail.Set {
+			e.FieldStart("is_sysmail")
+			s.IsSysmail.Encode(e)
+		}
+	}
+	{
+		if s.IsCatchall.Set {
+			e.FieldStart("is_catchall")
+			s.IsCatchall.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfPatchedMailUserRequest = [2]string{
-	0: "alias",
-	1: "password_hash",
+var jsonFieldsNameOfPatchedMailUserRequest = [5]string{
+	0: "password_hash",
+	1: "alias_of",
+	2: "keep_forwards",
+	3: "is_sysmail",
+	4: "is_catchall",
 }
 
 // Decode decodes PatchedMailUserRequest from json.
@@ -3303,19 +4558,10 @@ func (s *PatchedMailUserRequest) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode PatchedMailUserRequest to nil")
 	}
+	s.setDefaults()
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
-			if err := func() error {
-				s.Alias.Reset()
-				if err := s.Alias.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
 		case "password_hash":
 			if err := func() error {
 				s.PasswordHash.Reset()
@@ -3325,6 +4571,46 @@ func (s *PatchedMailUserRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
+			}
+		case "alias_of":
+			if err := func() error {
+				s.AliasOf.Reset()
+				if err := s.AliasOf.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"alias_of\"")
+			}
+		case "keep_forwards":
+			if err := func() error {
+				s.KeepForwards.Reset()
+				if err := s.KeepForwards.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep_forwards\"")
+			}
+		case "is_sysmail":
+			if err := func() error {
+				s.IsSysmail.Reset()
+				if err := s.IsSysmail.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_sysmail\"")
+			}
+		case "is_catchall":
+			if err := func() error {
+				s.IsCatchall.Reset()
+				if err := s.IsCatchall.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_catchall\"")
 			}
 		default:
 			return d.Skip()
@@ -3351,6 +4637,69 @@ func (s *PatchedMailUserRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *PatchedSelectedToolVersionRequest) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *PatchedSelectedToolVersionRequest) encodeFields(e *jx.Encoder) {
+	{
+		if s.Version.Set {
+			e.FieldStart("version")
+			s.Version.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfPatchedSelectedToolVersionRequest = [1]string{
+	0: "version",
+}
+
+// Decode decodes PatchedSelectedToolVersionRequest from json.
+func (s *PatchedSelectedToolVersionRequest) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode PatchedSelectedToolVersionRequest to nil")
+	}
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "version":
+			if err := func() error {
+				s.Version.Reset()
+				if err := s.Version.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"version\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode PatchedSelectedToolVersionRequest")
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *PatchedSelectedToolVersionRequest) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *PatchedSelectedToolVersionRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *RelatedMailDomainField) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -3360,24 +4709,18 @@ func (s *RelatedMailDomainField) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *RelatedMailDomainField) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias.Set {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("pk")
+		e.Str(s.Pk)
 	}
 	{
 		if s.Domain != nil {
 			e.FieldStart("domain")
 			s.Domain.Encode(e)
 		}
+	}
+	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 	{
 		e.FieldStart("name")
@@ -3390,24 +4733,65 @@ func (s *RelatedMailDomainField) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
+		if s.AliasOf != nil {
+			e.FieldStart("alias_of")
+			s.AliasOf.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		e.FieldStart("updated_at")
 		json.EncodeDateTime(e, s.UpdatedAt)
 	}
+	{
+		e.FieldStart("mailaddr")
+		e.Str(s.Mailaddr)
+	}
+	{
+		e.FieldStart("forwards")
+		e.ArrStart()
+		for _, elem := range s.Forwards {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+	{
+		if s.KeepForwards.Set {
+			e.FieldStart("keep_forwards")
+			s.KeepForwards.Encode(e)
+		}
+	}
+	{
+		if s.IsSysmail.Set {
+			e.FieldStart("is_sysmail")
+			s.IsSysmail.Encode(e)
+		}
+	}
+	{
+		if s.IsCatchall.Set {
+			e.FieldStart("is_catchall")
+			s.IsCatchall.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfRelatedMailDomainField = [8]string{
-	0: "alias",
-	1: "asteroid",
-	2: "created_at",
-	3: "domain",
-	4: "name",
-	5: "password_hash",
-	6: "pk",
-	7: "updated_at",
+var jsonFieldsNameOfRelatedMailDomainField = [13]string{
+	0:  "pk",
+	1:  "domain",
+	2:  "asteroid",
+	3:  "name",
+	4:  "password_hash",
+	5:  "alias_of",
+	6:  "created_at",
+	7:  "updated_at",
+	8:  "mailaddr",
+	9:  "forwards",
+	10: "keep_forwards",
+	11: "is_sysmail",
+	12: "is_catchall",
 }
 
 // Decode decodes RelatedMailDomainField from json.
@@ -3415,43 +4799,22 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode RelatedMailDomainField to nil")
 	}
-	var requiredBitSet [1]uint8
+	var requiredBitSet [2]uint8
+	s.setDefaults()
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
-			if err := func() error {
-				s.Alias.Reset()
-				if err := s.Alias.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
-			}
-		case "asteroid":
-			requiredBitSet[0] |= 1 << 1
+		case "pk":
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
-				s.Asteroid = string(v)
+				s.Pk = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"pk\"")
 			}
 		case "domain":
 			if err := func() error {
@@ -3465,8 +4828,20 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
 		case "name":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -3487,17 +4862,29 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "pk":
+		case "alias_of":
+			if err := func() error {
+				s.AliasOf = nil
+				var elem RelatedMailUserField
+				if err := elem.Decode(d); err != nil {
+					return err
+				}
+				s.AliasOf = &elem
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"alias_of\"")
+			}
+		case "created_at":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Str()
-				s.Pk = string(v)
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
 			requiredBitSet[0] |= 1 << 7
@@ -3511,6 +4898,66 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
+		case "mailaddr":
+			requiredBitSet[1] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Mailaddr = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"mailaddr\"")
+			}
+		case "forwards":
+			requiredBitSet[1] |= 1 << 1
+			if err := func() error {
+				s.Forwards = make([]NestedMailForward, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem NestedMailForward
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Forwards = append(s.Forwards, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"forwards\"")
+			}
+		case "keep_forwards":
+			if err := func() error {
+				s.KeepForwards.Reset()
+				if err := s.KeepForwards.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep_forwards\"")
+			}
+		case "is_sysmail":
+			if err := func() error {
+				s.IsSysmail.Reset()
+				if err := s.IsSysmail.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_sysmail\"")
+			}
+		case "is_catchall":
+			if err := func() error {
+				s.IsCatchall.Reset()
+				if err := s.IsCatchall.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_catchall\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -3520,8 +4967,9 @@ func (s *RelatedMailDomainField) Decode(d *jx.Decoder) error {
 	}
 	// Validate required fields.
 	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b11010110,
+	for i, mask := range [2]uint8{
+		0b11001101,
+		0b00000011,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -3567,46 +5015,6 @@ func (s *RelatedMailDomainField) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes RelatedMailDomainFieldRequest as json.
-func (s RelatedMailDomainFieldRequest) Encode(e *jx.Encoder) {
-	unwrapped := string(s)
-
-	e.Str(unwrapped)
-}
-
-// Decode decodes RelatedMailDomainFieldRequest from json.
-func (s *RelatedMailDomainFieldRequest) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode RelatedMailDomainFieldRequest to nil")
-	}
-	var unwrapped string
-	if err := func() error {
-		v, err := d.Str()
-		unwrapped = string(v)
-		if err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return errors.Wrap(err, "alias")
-	}
-	*s = RelatedMailDomainFieldRequest(unwrapped)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s RelatedMailDomainFieldRequest) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *RelatedMailDomainFieldRequest) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode implements json.Marshaler.
 func (s *RelatedMailUserField) Encode(e *jx.Encoder) {
 	e.ObjStart()
@@ -3617,24 +5025,18 @@ func (s *RelatedMailUserField) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *RelatedMailUserField) encodeFields(e *jx.Encoder) {
 	{
-		if s.Alias != nil {
-			e.FieldStart("alias")
-			s.Alias.Encode(e)
+		e.FieldStart("pk")
+		e.Str(s.Pk)
+	}
+	{
+		if s.Domain.Set {
+			e.FieldStart("domain")
+			s.Domain.Encode(e)
 		}
 	}
 	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
-		if s.Domain != nil {
-			e.FieldStart("domain")
-			s.Domain.Encode(e)
-		}
 	}
 	{
 		e.FieldStart("name")
@@ -3647,24 +5049,65 @@ func (s *RelatedMailUserField) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("pk")
-		e.Str(s.Pk)
+		if s.AliasOf != nil {
+			e.FieldStart("alias_of")
+			s.AliasOf.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		e.FieldStart("updated_at")
 		json.EncodeDateTime(e, s.UpdatedAt)
 	}
+	{
+		e.FieldStart("mailaddr")
+		e.Str(s.Mailaddr)
+	}
+	{
+		e.FieldStart("forwards")
+		e.ArrStart()
+		for _, elem := range s.Forwards {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+	{
+		if s.KeepForwards.Set {
+			e.FieldStart("keep_forwards")
+			s.KeepForwards.Encode(e)
+		}
+	}
+	{
+		if s.IsSysmail.Set {
+			e.FieldStart("is_sysmail")
+			s.IsSysmail.Encode(e)
+		}
+	}
+	{
+		if s.IsCatchall.Set {
+			e.FieldStart("is_catchall")
+			s.IsCatchall.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfRelatedMailUserField = [8]string{
-	0: "alias",
-	1: "asteroid",
-	2: "created_at",
-	3: "domain",
-	4: "name",
-	5: "password_hash",
-	6: "pk",
-	7: "updated_at",
+var jsonFieldsNameOfRelatedMailUserField = [13]string{
+	0:  "pk",
+	1:  "domain",
+	2:  "asteroid",
+	3:  "name",
+	4:  "password_hash",
+	5:  "alias_of",
+	6:  "created_at",
+	7:  "updated_at",
+	8:  "mailaddr",
+	9:  "forwards",
+	10: "keep_forwards",
+	11: "is_sysmail",
+	12: "is_catchall",
 }
 
 // Decode decodes RelatedMailUserField from json.
@@ -3672,24 +5115,35 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode RelatedMailUserField to nil")
 	}
-	var requiredBitSet [1]uint8
+	var requiredBitSet [2]uint8
+	s.setDefaults()
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "alias":
+		case "pk":
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				s.Alias = nil
-				var elem RelatedMailUserField
-				if err := elem.Decode(d); err != nil {
+				v, err := d.Str()
+				s.Pk = string(v)
+				if err != nil {
 					return err
 				}
-				s.Alias = &elem
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"alias\"")
+				return errors.Wrap(err, "decode field \"pk\"")
+			}
+		case "domain":
+			if err := func() error {
+				s.Domain.Reset()
+				if err := s.Domain.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "asteroid":
-			requiredBitSet[0] |= 1 << 1
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -3700,32 +5154,8 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
-		case "domain":
-			if err := func() error {
-				s.Domain = nil
-				var elem RelatedMailDomainField
-				if err := elem.Decode(d); err != nil {
-					return err
-				}
-				s.Domain = &elem
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -3746,17 +5176,29 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"password_hash\"")
 			}
-		case "pk":
+		case "alias_of":
+			if err := func() error {
+				s.AliasOf = nil
+				var elem RelatedMailUserField
+				if err := elem.Decode(d); err != nil {
+					return err
+				}
+				s.AliasOf = &elem
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"alias_of\"")
+			}
+		case "created_at":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Str()
-				s.Pk = string(v)
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
 			requiredBitSet[0] |= 1 << 7
@@ -3770,6 +5212,66 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
+		case "mailaddr":
+			requiredBitSet[1] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Mailaddr = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"mailaddr\"")
+			}
+		case "forwards":
+			requiredBitSet[1] |= 1 << 1
+			if err := func() error {
+				s.Forwards = make([]NestedMailForward, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem NestedMailForward
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Forwards = append(s.Forwards, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"forwards\"")
+			}
+		case "keep_forwards":
+			if err := func() error {
+				s.KeepForwards.Reset()
+				if err := s.KeepForwards.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"keep_forwards\"")
+			}
+		case "is_sysmail":
+			if err := func() error {
+				s.IsSysmail.Reset()
+				if err := s.IsSysmail.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_sysmail\"")
+			}
+		case "is_catchall":
+			if err := func() error {
+				s.IsCatchall.Reset()
+				if err := s.IsCatchall.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_catchall\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -3779,8 +5281,9 @@ func (s *RelatedMailUserField) Decode(d *jx.Decoder) error {
 	}
 	// Validate required fields.
 	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b11010110,
+	for i, mask := range [2]uint8{
+		0b11001101,
+		0b00000011,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -3867,72 +5370,45 @@ func (s *RelatedMailUserFieldRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *SshKey) Encode(e *jx.Encoder) {
+func (s *SelectedToolVersion) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *SshKey) encodeFields(e *jx.Encoder) {
+func (s *SelectedToolVersion) encodeFields(e *jx.Encoder) {
 	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("tool")
+		e.Str(s.Tool)
 	}
 	{
-		e.FieldStart("formatted_key")
-		e.Str(s.FormattedKey)
+		e.FieldStart("version")
+		e.Str(s.Version)
 	}
 	{
-		e.FieldStart("key")
-		e.Str(s.Key)
-	}
-	{
-		if s.KeyComment.Set {
-			e.FieldStart("key_comment")
-			s.KeyComment.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("key_type")
-		s.KeyType.Encode(e)
-	}
-	{
-		e.FieldStart("pk")
-		e.Int(s.Pk)
-	}
-	{
-		e.FieldStart("shortened_key")
-		e.Str(s.ShortenedKey)
-	}
-	{
-		e.FieldStart("updated_at")
-		json.EncodeDateTime(e, s.UpdatedAt)
+		e.FieldStart("is_set_by_user")
+		e.Bool(s.IsSetByUser)
 	}
 }
 
-var jsonFieldsNameOfSshKey = [9]string{
+var jsonFieldsNameOfSelectedToolVersion = [4]string{
 	0: "asteroid",
-	1: "created_at",
-	2: "formatted_key",
-	3: "key",
-	4: "key_comment",
-	5: "key_type",
-	6: "pk",
-	7: "shortened_key",
-	8: "updated_at",
+	1: "tool",
+	2: "version",
+	3: "is_set_by_user",
 }
 
-// Decode decodes SshKey from json.
-func (s *SshKey) Decode(d *jx.Decoder) error {
+// Decode decodes SelectedToolVersion from json.
+func (s *SelectedToolVersion) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode SshKey to nil")
+		return errors.New("invalid: unable to decode SelectedToolVersion to nil")
 	}
-	var requiredBitSet [2]uint8
+	var requiredBitSet [1]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
@@ -3948,32 +5424,192 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "created_at":
+		case "tool":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
+				v, err := d.Str()
+				s.Tool = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
+				return errors.Wrap(err, "decode field \"tool\"")
 			}
-		case "formatted_key":
+		case "version":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
-				s.FormattedKey = string(v)
+				s.Version = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"formatted_key\"")
+				return errors.Wrap(err, "decode field \"version\"")
+			}
+		case "is_set_by_user":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				v, err := d.Bool()
+				s.IsSetByUser = bool(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_set_by_user\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode SelectedToolVersion")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00001111,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfSelectedToolVersion) {
+					name = jsonFieldsNameOfSelectedToolVersion[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *SelectedToolVersion) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *SelectedToolVersion) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *SshKey) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *SshKey) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("pk")
+		e.Int(s.Pk)
+	}
+	{
+		e.FieldStart("key_type")
+		s.KeyType.Encode(e)
+	}
+	{
+		e.FieldStart("key")
+		e.Str(s.Key)
+	}
+	{
+		if s.KeyComment.Set {
+			e.FieldStart("key_comment")
+			s.KeyComment.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("formatted_key")
+		e.Str(s.FormattedKey)
+	}
+	{
+		e.FieldStart("shortened_key")
+		e.Str(s.ShortenedKey)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		e.FieldStart("updated_at")
+		json.EncodeDateTime(e, s.UpdatedAt)
+	}
+	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
+	}
+}
+
+var jsonFieldsNameOfSshKey = [9]string{
+	0: "pk",
+	1: "key_type",
+	2: "key",
+	3: "key_comment",
+	4: "formatted_key",
+	5: "shortened_key",
+	6: "created_at",
+	7: "updated_at",
+	8: "asteroid",
+}
+
+// Decode decodes SshKey from json.
+func (s *SshKey) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode SshKey to nil")
+	}
+	var requiredBitSet [2]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "pk":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Pk = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"pk\"")
+			}
+		case "key_type":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				if err := s.KeyType.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"key_type\"")
 			}
 		case "key":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.Key = string(v)
@@ -3994,30 +5630,20 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"key_comment\"")
 			}
-		case "key_type":
-			requiredBitSet[0] |= 1 << 5
+		case "formatted_key":
+			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				if err := s.KeyType.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"key_type\"")
-			}
-		case "pk":
-			requiredBitSet[0] |= 1 << 6
-			if err := func() error {
-				v, err := d.Int()
-				s.Pk = int(v)
+				v, err := d.Str()
+				s.FormattedKey = string(v)
 				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"formatted_key\"")
 			}
 		case "shortened_key":
-			requiredBitSet[0] |= 1 << 7
+			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
 				v, err := d.Str()
 				s.ShortenedKey = string(v)
@@ -4028,8 +5654,20 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"shortened_key\"")
 			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
 		case "updated_at":
-			requiredBitSet[1] |= 1 << 0
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -4039,6 +5677,18 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
+			}
+		case "asteroid":
+			requiredBitSet[1] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
 		default:
 			return d.Skip()
@@ -4050,7 +5700,7 @@ func (s *SshKey) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b11101111,
+		0b11110111,
 		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -4107,8 +5757,8 @@ func (s *SshKeyRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *SshKeyRequest) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
+		e.FieldStart("key_type")
+		s.KeyType.Encode(e)
 	}
 	{
 		e.FieldStart("key")
@@ -4121,16 +5771,16 @@ func (s *SshKeyRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("key_type")
-		s.KeyType.Encode(e)
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 }
 
 var jsonFieldsNameOfSshKeyRequest = [4]string{
-	0: "asteroid",
+	0: "key_type",
 	1: "key",
 	2: "key_comment",
-	3: "key_type",
+	3: "asteroid",
 }
 
 // Decode decodes SshKeyRequest from json.
@@ -4142,17 +5792,15 @@ func (s *SshKeyRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "asteroid":
+		case "key_type":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
+				if err := s.KeyType.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
+				return errors.Wrap(err, "decode field \"key_type\"")
 			}
 		case "key":
 			requiredBitSet[0] |= 1 << 1
@@ -4176,15 +5824,17 @@ func (s *SshKeyRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"key_comment\"")
 			}
-		case "key_type":
+		case "asteroid":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				if err := s.KeyType.Decode(d); err != nil {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"key_type\"")
+				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
 		default:
 			return d.Skip()
@@ -4243,6 +5893,250 @@ func (s *SshKeyRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *Tool) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *Tool) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("slug")
+		e.Str(s.Slug)
+	}
+	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+}
+
+var jsonFieldsNameOfTool = [2]string{
+	0: "slug",
+	1: "name",
+}
+
+// Decode decodes Tool from json.
+func (s *Tool) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode Tool to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "slug":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Slug = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"slug\"")
+			}
+		case "name":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode Tool")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000011,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfTool) {
+					name = jsonFieldsNameOfTool[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *Tool) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *Tool) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *ToolVersion) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ToolVersion) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("tool")
+		e.Str(s.Tool)
+	}
+	{
+		e.FieldStart("version")
+		e.Str(s.Version)
+	}
+	{
+		if s.IsDefault.Set {
+			e.FieldStart("is_default")
+			s.IsDefault.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfToolVersion = [3]string{
+	0: "tool",
+	1: "version",
+	2: "is_default",
+}
+
+// Decode decodes ToolVersion from json.
+func (s *ToolVersion) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ToolVersion to nil")
+	}
+	var requiredBitSet [1]uint8
+	s.setDefaults()
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "tool":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Tool = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"tool\"")
+			}
+		case "version":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.Version = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"version\"")
+			}
+		case "is_default":
+			if err := func() error {
+				s.IsDefault.Reset()
+				if err := s.IsDefault.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"is_default\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ToolVersion")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000011,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfToolVersion) {
+					name = jsonFieldsNameOfToolVersion[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ToolVersion) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ToolVersion) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *WebBackend) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -4252,16 +6146,12 @@ func (s *WebBackend) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebBackend) encodeFields(e *jx.Encoder) {
 	{
+		e.FieldStart("pk")
+		e.Int(s.Pk)
+	}
+	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
-		e.FieldStart("destination")
-		s.Destination.Encode(e)
 	}
 	{
 		e.FieldStart("domain")
@@ -4272,8 +6162,14 @@ func (s *WebBackend) encodeFields(e *jx.Encoder) {
 		e.Str(s.Path)
 	}
 	{
-		e.FieldStart("pk")
-		e.Int(s.Pk)
+		if s.RemovePrefix.Set {
+			e.FieldStart("remove_prefix")
+			s.RemovePrefix.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("destination")
+		s.Destination.Encode(e)
 	}
 	{
 		if s.Port.Set {
@@ -4282,10 +6178,8 @@ func (s *WebBackend) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.RemovePrefix.Set {
-			e.FieldStart("remove_prefix")
-			s.RemovePrefix.Encode(e)
-		}
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
 	}
 	{
 		e.FieldStart("updated_at")
@@ -4294,14 +6188,14 @@ func (s *WebBackend) encodeFields(e *jx.Encoder) {
 }
 
 var jsonFieldsNameOfWebBackend = [9]string{
-	0: "asteroid",
-	1: "created_at",
-	2: "destination",
-	3: "domain",
-	4: "path",
-	5: "pk",
+	0: "pk",
+	1: "asteroid",
+	2: "domain",
+	3: "path",
+	4: "remove_prefix",
+	5: "destination",
 	6: "port",
-	7: "remove_prefix",
+	7: "created_at",
 	8: "updated_at",
 }
 
@@ -4315,8 +6209,20 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "asteroid":
+		case "pk":
 			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Pk = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"pk\"")
+			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -4327,30 +6233,8 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
-		case "destination":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				if err := s.Destination.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"destination\"")
-			}
 		case "domain":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				if err := s.Domain.Decode(d); err != nil {
 					return err
@@ -4360,7 +6244,7 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "path":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -4371,17 +6255,25 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"path\"")
 			}
-		case "pk":
-			requiredBitSet[0] |= 1 << 5
+		case "remove_prefix":
 			if err := func() error {
-				v, err := d.Int()
-				s.Pk = int(v)
-				if err != nil {
+				s.RemovePrefix.Reset()
+				if err := s.RemovePrefix.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"pk\"")
+				return errors.Wrap(err, "decode field \"remove_prefix\"")
+			}
+		case "destination":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				if err := s.Destination.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
 			}
 		case "port":
 			if err := func() error {
@@ -4393,15 +6285,17 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"port\"")
 			}
-		case "remove_prefix":
+		case "created_at":
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
-				s.RemovePrefix.Reset()
-				if err := s.RemovePrefix.Decode(d); err != nil {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"remove_prefix\"")
+				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
 			requiredBitSet[1] |= 1 << 0
@@ -4425,7 +6319,7 @@ func (s *WebBackend) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b00111111,
+		0b10101111,
 		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -4486,10 +6380,6 @@ func (s *WebBackendRequest) encodeFields(e *jx.Encoder) {
 		e.Str(s.Asteroid)
 	}
 	{
-		e.FieldStart("destination")
-		s.Destination.Encode(e)
-	}
-	{
 		e.FieldStart("domain")
 		s.Domain.Encode(e)
 	}
@@ -4498,26 +6388,30 @@ func (s *WebBackendRequest) encodeFields(e *jx.Encoder) {
 		e.Str(s.Path)
 	}
 	{
-		if s.Port.Set {
-			e.FieldStart("port")
-			s.Port.Encode(e)
-		}
-	}
-	{
 		if s.RemovePrefix.Set {
 			e.FieldStart("remove_prefix")
 			s.RemovePrefix.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("destination")
+		s.Destination.Encode(e)
+	}
+	{
+		if s.Port.Set {
+			e.FieldStart("port")
+			s.Port.Encode(e)
 		}
 	}
 }
 
 var jsonFieldsNameOfWebBackendRequest = [6]string{
 	0: "asteroid",
-	1: "destination",
-	2: "domain",
-	3: "path",
-	4: "port",
-	5: "remove_prefix",
+	1: "domain",
+	2: "path",
+	3: "remove_prefix",
+	4: "destination",
+	5: "port",
 }
 
 // Decode decodes WebBackendRequest from json.
@@ -4542,18 +6436,8 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
 			}
-		case "destination":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				if err := s.Destination.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"destination\"")
-			}
 		case "domain":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				if err := s.Domain.Decode(d); err != nil {
 					return err
@@ -4563,7 +6447,7 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		case "path":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -4573,16 +6457,6 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"path\"")
-			}
-		case "port":
-			if err := func() error {
-				s.Port.Reset()
-				if err := s.Port.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"port\"")
 			}
 		case "remove_prefix":
 			if err := func() error {
@@ -4594,6 +6468,26 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"remove_prefix\"")
 			}
+		case "destination":
+			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				if err := s.Destination.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"destination\"")
+			}
+		case "port":
+			if err := func() error {
+				s.Port.Reset()
+				if err := s.Port.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"port\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -4604,7 +6498,7 @@ func (s *WebBackendRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00001111,
+		0b00010111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -4660,33 +6554,53 @@ func (s *WebDomain) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebDomain) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
-	}
-	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
 		e.FieldStart("domain")
 		e.Str(s.Domain)
+	}
+	{
+		e.FieldStart("domain_display")
+		e.Str(s.DomainDisplay)
 	}
 	{
 		e.FieldStart("domain_idn")
 		e.Str(s.DomainIdn)
 	}
 	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
+		e.FieldStart("name_display")
+		e.Str(s.NameDisplay)
+	}
+	{
+		e.FieldStart("name_idn")
+		e.Str(s.NameIdn)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
 		e.FieldStart("updated_at")
 		json.EncodeDateTime(e, s.UpdatedAt)
 	}
+	{
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
+	}
 }
 
-var jsonFieldsNameOfWebDomain = [5]string{
-	0: "asteroid",
-	1: "created_at",
-	2: "domain",
-	3: "domain_idn",
-	4: "updated_at",
+var jsonFieldsNameOfWebDomain = [9]string{
+	0: "domain",
+	1: "domain_display",
+	2: "domain_idn",
+	3: "name",
+	4: "name_display",
+	5: "name_idn",
+	6: "created_at",
+	7: "updated_at",
+	8: "asteroid",
 }
 
 // Decode decodes WebDomain from json.
@@ -4694,36 +6608,12 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode WebDomain to nil")
 	}
-	var requiredBitSet [1]uint8
+	var requiredBitSet [2]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "asteroid":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Asteroid = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
-			}
 		case "domain":
-			requiredBitSet[0] |= 1 << 2
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Domain = string(v)
@@ -4734,8 +6624,20 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
+		case "domain_display":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := d.Str()
+				s.DomainDisplay = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"domain_display\"")
+			}
 		case "domain_idn":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.DomainIdn = string(v)
@@ -4746,8 +6648,56 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain_idn\"")
 			}
-		case "updated_at":
+		case "name":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		case "name_display":
 			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				v, err := d.Str()
+				s.NameDisplay = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name_display\"")
+			}
+		case "name_idn":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				v, err := d.Str()
+				s.NameIdn = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name_idn\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
+		case "updated_at":
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -4758,6 +6708,18 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
+		case "asteroid":
+			requiredBitSet[1] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Asteroid = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"asteroid\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -4767,8 +6729,9 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 	}
 	// Validate required fields.
 	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00011111,
+	for i, mask := range [2]uint8{
+		0b11111111,
+		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -4824,18 +6787,18 @@ func (s *WebDomainRequest) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebDomainRequest) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
+		e.FieldStart("name")
+		e.Str(s.Name)
 	}
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 }
 
 var jsonFieldsNameOfWebDomainRequest = [2]string{
-	0: "asteroid",
-	1: "domain",
+	0: "name",
+	1: "asteroid",
 }
 
 // Decode decodes WebDomainRequest from json.
@@ -4847,8 +6810,20 @@ func (s *WebDomainRequest) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "asteroid":
+		case "name":
 			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -4858,18 +6833,6 @@ func (s *WebDomainRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
-		case "domain":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
 			}
 		default:
 			return d.Skip()
@@ -4937,28 +6900,20 @@ func (s *WebHeader) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebHeader) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("asteroid")
-		e.Str(s.Asteroid)
+		e.FieldStart("pk")
+		e.Int(s.Pk)
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
+		e.FieldStart("asteroid")
+		e.Str(s.Asteroid)
 	}
 	{
 		e.FieldStart("domain")
 		s.Domain.Encode(e)
 	}
 	{
-		e.FieldStart("name")
-		e.Str(s.Name)
-	}
-	{
 		e.FieldStart("path")
 		e.Str(s.Path)
-	}
-	{
-		e.FieldStart("updated_at")
-		json.EncodeDateTime(e, s.UpdatedAt)
 	}
 	{
 		if s.Value.Set {
@@ -4966,16 +6921,29 @@ func (s *WebHeader) encodeFields(e *jx.Encoder) {
 			s.Value.Encode(e)
 		}
 	}
+	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
+	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		e.FieldStart("updated_at")
+		json.EncodeDateTime(e, s.UpdatedAt)
+	}
 }
 
-var jsonFieldsNameOfWebHeader = [7]string{
-	0: "asteroid",
-	1: "created_at",
+var jsonFieldsNameOfWebHeader = [8]string{
+	0: "pk",
+	1: "asteroid",
 	2: "domain",
-	3: "name",
-	4: "path",
-	5: "updated_at",
-	6: "value",
+	3: "path",
+	4: "value",
+	5: "name",
+	6: "created_at",
+	7: "updated_at",
 }
 
 // Decode decodes WebHeader from json.
@@ -4987,8 +6955,20 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "asteroid":
+		case "pk":
 			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := d.Int()
+				s.Pk = int(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"pk\"")
+			}
+		case "asteroid":
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -4998,18 +6978,6 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"asteroid\"")
-			}
-		case "created_at":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.CreatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "domain":
 			requiredBitSet[0] |= 1 << 2
@@ -5021,20 +6989,8 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
-		case "name":
-			requiredBitSet[0] |= 1 << 3
-			if err := func() error {
-				v, err := d.Str()
-				s.Name = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"name\"")
-			}
 		case "path":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -5044,18 +7000,6 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"path\"")
-			}
-		case "updated_at":
-			requiredBitSet[0] |= 1 << 5
-			if err := func() error {
-				v, err := json.DecodeDateTime(d)
-				s.UpdatedAt = v
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
 		case "value":
 			if err := func() error {
@@ -5067,6 +7011,42 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"value\"")
 			}
+		case "name":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.CreatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"created_at\"")
+			}
+		case "updated_at":
+			requiredBitSet[0] |= 1 << 7
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.UpdatedAt = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"updated_at\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -5077,7 +7057,7 @@ func (s *WebHeader) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00111111,
+		0b11101111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -5141,10 +7121,6 @@ func (s *WebHeaderRequest) encodeFields(e *jx.Encoder) {
 		s.Domain.Encode(e)
 	}
 	{
-		e.FieldStart("name")
-		e.Str(s.Name)
-	}
-	{
 		e.FieldStart("path")
 		e.Str(s.Path)
 	}
@@ -5154,14 +7130,18 @@ func (s *WebHeaderRequest) encodeFields(e *jx.Encoder) {
 			s.Value.Encode(e)
 		}
 	}
+	{
+		e.FieldStart("name")
+		e.Str(s.Name)
+	}
 }
 
 var jsonFieldsNameOfWebHeaderRequest = [5]string{
 	0: "asteroid",
 	1: "domain",
-	2: "name",
-	3: "path",
-	4: "value",
+	2: "path",
+	3: "value",
+	4: "name",
 }
 
 // Decode decodes WebHeaderRequest from json.
@@ -5195,20 +7175,8 @@ func (s *WebHeaderRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"domain\"")
 			}
-		case "name":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.Name = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"name\"")
-			}
 		case "path":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.Path = string(v)
@@ -5229,6 +7197,18 @@ func (s *WebHeaderRequest) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"value\"")
 			}
+		case "name":
+			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				v, err := d.Str()
+				s.Name = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"name\"")
+			}
 		default:
 			return d.Skip()
 		}
@@ -5239,7 +7219,7 @@ func (s *WebHeaderRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00001111,
+		0b00010111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.

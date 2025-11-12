@@ -38,6 +38,7 @@ resource "uberspace_sshkey" "example" {
 ### Optional
 
 - `asteroid_name` (String)
+- `format` (String)
 - `id` (Number) A unique integer value identifying this ssh key.
 - `key_comment` (String)
 

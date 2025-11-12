@@ -4,10 +4,17 @@ package resource_mailuser
 
 import (
 	"context"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+	"github.com/hashicorp/terraform-plugin-go/tftypes"
 	"regexp"
+	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 )
@@ -25,14 +32,68 @@ func MailuserResourceSchema(ctx context.Context) schema.Schema {
 			"created_at": schema.StringAttribute{
 				Computed: true,
 			},
+			"format": schema.StringAttribute{
+				Optional: true,
+				Computed: true,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"json",
+						"text/event-stream",
+					),
+				},
+			},
+			"forwards": schema.ListNestedAttribute{
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"destination": schema.StringAttribute{
+							Computed:            true,
+							Description:         "Mail address to forward to, e.g. 'isabell@example.org'.",
+							MarkdownDescription: "Mail address to forward to, e.g. 'isabell@example.org'.",
+						},
+						"keep": schema.BoolAttribute{
+							Computed: true,
+						},
+					},
+					CustomType: ForwardsType{
+						ObjectType: types.ObjectType{
+							AttrTypes: ForwardsValue{}.AttributeTypes(ctx),
+						},
+					},
+				},
+				Computed: true,
+			},
+			"is_catchall": schema.BoolAttribute{
+				Optional:            true,
+				Computed:            true,
+				Description:         "whether this mail user should receive all mails to the domain.",
+				MarkdownDescription: "whether this mail user should receive all mails to the domain.",
+				Default:             booldefault.StaticBool(false),
+			},
+			"is_sysmail": schema.BoolAttribute{
+				Optional:            true,
+				Computed:            true,
+				Description:         "whether this mail user should receive mails to name@uber.space.",
+				MarkdownDescription: "whether this mail user should receive mails to name@uber.space.",
+				Default:             booldefault.StaticBool(false),
+			},
+			"keep_forwards": schema.BoolAttribute{
+				Optional:            true,
+				Computed:            true,
+				Description:         "If the mails should stay in the mailbox after forwarding (true), or be deleted (false).",
+				MarkdownDescription: "If the mails should stay in the mailbox after forwarding (true), or be deleted (false).",
+				Default:             booldefault.StaticBool(false),
+			},
 			"local": schema.StringAttribute{
 				Optional: true,
 				Computed: true,
 				Validators: []validator.String{
-					stringvalidator.RegexMatches(regexp.MustCompile("^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"), ""),
+					stringvalidator.RegexMatches(regexp.MustCompile("^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"), ""),
 				},
 			},
-			"maildomain_domain": schema.StringAttribute{
+			"mailaddr": schema.StringAttribute{
+				Computed: true,
+			},
+			"maildomain_name": schema.StringAttribute{
 				Optional: true,
 				Computed: true,
 				Validators: []validator.String{
@@ -45,7 +106,7 @@ func MailuserResourceSchema(ctx context.Context) schema.Schema {
 				MarkdownDescription: "Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.",
 				Validators: []validator.String{
 					stringvalidator.LengthBetween(1, 64),
-					stringvalidator.RegexMatches(regexp.MustCompile("^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"), ""),
+					stringvalidator.RegexMatches(regexp.MustCompile("^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"), ""),
 				},
 			},
 			"password_hash": schema.StringAttribute{
@@ -68,13 +129,398 @@ func MailuserResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type MailuserModel struct {
-	Asteroid         types.String `tfsdk:"asteroid"`
-	AsteroidName     types.String `tfsdk:"asteroid_name"`
-	CreatedAt        types.String `tfsdk:"created_at"`
-	Local            types.String `tfsdk:"local"`
-	MaildomainDomain types.String `tfsdk:"maildomain_domain"`
-	Name             types.String `tfsdk:"name"`
-	PasswordHash     types.String `tfsdk:"password_hash"`
-	Pk               types.String `tfsdk:"pk"`
-	UpdatedAt        types.String `tfsdk:"updated_at"`
+	Asteroid       types.String `tfsdk:"asteroid"`
+	AsteroidName   types.String `tfsdk:"asteroid_name"`
+	CreatedAt      types.String `tfsdk:"created_at"`
+	Format         types.String `tfsdk:"format"`
+	Forwards       types.List   `tfsdk:"forwards"`
+	IsCatchall     types.Bool   `tfsdk:"is_catchall"`
+	IsSysmail      types.Bool   `tfsdk:"is_sysmail"`
+	KeepForwards   types.Bool   `tfsdk:"keep_forwards"`
+	Local          types.String `tfsdk:"local"`
+	Mailaddr       types.String `tfsdk:"mailaddr"`
+	MaildomainName types.String `tfsdk:"maildomain_name"`
+	Name           types.String `tfsdk:"name"`
+	PasswordHash   types.String `tfsdk:"password_hash"`
+	Pk             types.String `tfsdk:"pk"`
+	UpdatedAt      types.String `tfsdk:"updated_at"`
+}
+
+var _ basetypes.ObjectTypable = ForwardsType{}
+
+type ForwardsType struct {
+	basetypes.ObjectType
+}
+
+func (t ForwardsType) Equal(o attr.Type) bool {
+	other, ok := o.(ForwardsType)
+
+	if !ok {
+		return false
+	}
+
+	return t.ObjectType.Equal(other.ObjectType)
+}
+
+func (t ForwardsType) String() string {
+	return "ForwardsType"
+}
+
+func (t ForwardsType) ValueFromObject(ctx context.Context, in basetypes.ObjectValue) (basetypes.ObjectValuable, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	attributes := in.Attributes()
+
+	destinationAttribute, ok := attributes["destination"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`destination is missing from object`)
+
+		return nil, diags
+	}
+
+	destinationVal, ok := destinationAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`destination expected to be basetypes.StringValue, was: %T`, destinationAttribute))
+	}
+
+	keepAttribute, ok := attributes["keep"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`keep is missing from object`)
+
+		return nil, diags
+	}
+
+	keepVal, ok := keepAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`keep expected to be basetypes.BoolValue, was: %T`, keepAttribute))
+	}
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	return ForwardsValue{
+		Destination: destinationVal,
+		Keep:        keepVal,
+		state:       attr.ValueStateKnown,
+	}, diags
+}
+
+func NewForwardsValueNull() ForwardsValue {
+	return ForwardsValue{
+		state: attr.ValueStateNull,
+	}
+}
+
+func NewForwardsValueUnknown() ForwardsValue {
+	return ForwardsValue{
+		state: attr.ValueStateUnknown,
+	}
+}
+
+func NewForwardsValue(attributeTypes map[string]attr.Type, attributes map[string]attr.Value) (ForwardsValue, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	// Reference: https://github.com/hashicorp/terraform-plugin-framework/issues/521
+	ctx := context.Background()
+
+	for name, attributeType := range attributeTypes {
+		attribute, ok := attributes[name]
+
+		if !ok {
+			diags.AddError(
+				"Missing ForwardsValue Attribute Value",
+				"While creating a ForwardsValue value, a missing attribute value was detected. "+
+					"A ForwardsValue must contain values for all attributes, even if null or unknown. "+
+					"This is always an issue with the provider and should be reported to the provider developers.\n\n"+
+					fmt.Sprintf("ForwardsValue Attribute Name (%s) Expected Type: %s", name, attributeType.String()),
+			)
+
+			continue
+		}
+
+		if !attributeType.Equal(attribute.Type(ctx)) {
+			diags.AddError(
+				"Invalid ForwardsValue Attribute Type",
+				"While creating a ForwardsValue value, an invalid attribute value was detected. "+
+					"A ForwardsValue must use a matching attribute type for the value. "+
+					"This is always an issue with the provider and should be reported to the provider developers.\n\n"+
+					fmt.Sprintf("ForwardsValue Attribute Name (%s) Expected Type: %s\n", name, attributeType.String())+
+					fmt.Sprintf("ForwardsValue Attribute Name (%s) Given Type: %s", name, attribute.Type(ctx)),
+			)
+		}
+	}
+
+	for name := range attributes {
+		_, ok := attributeTypes[name]
+
+		if !ok {
+			diags.AddError(
+				"Extra ForwardsValue Attribute Value",
+				"While creating a ForwardsValue value, an extra attribute value was detected. "+
+					"A ForwardsValue must not contain values beyond the expected attribute types. "+
+					"This is always an issue with the provider and should be reported to the provider developers.\n\n"+
+					fmt.Sprintf("Extra ForwardsValue Attribute Name: %s", name),
+			)
+		}
+	}
+
+	if diags.HasError() {
+		return NewForwardsValueUnknown(), diags
+	}
+
+	destinationAttribute, ok := attributes["destination"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`destination is missing from object`)
+
+		return NewForwardsValueUnknown(), diags
+	}
+
+	destinationVal, ok := destinationAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`destination expected to be basetypes.StringValue, was: %T`, destinationAttribute))
+	}
+
+	keepAttribute, ok := attributes["keep"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`keep is missing from object`)
+
+		return NewForwardsValueUnknown(), diags
+	}
+
+	keepVal, ok := keepAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`keep expected to be basetypes.BoolValue, was: %T`, keepAttribute))
+	}
+
+	if diags.HasError() {
+		return NewForwardsValueUnknown(), diags
+	}
+
+	return ForwardsValue{
+		Destination: destinationVal,
+		Keep:        keepVal,
+		state:       attr.ValueStateKnown,
+	}, diags
+}
+
+func NewForwardsValueMust(attributeTypes map[string]attr.Type, attributes map[string]attr.Value) ForwardsValue {
+	object, diags := NewForwardsValue(attributeTypes, attributes)
+
+	if diags.HasError() {
+		// This could potentially be added to the diag package.
+		diagsStrings := make([]string, 0, len(diags))
+
+		for _, diagnostic := range diags {
+			diagsStrings = append(diagsStrings, fmt.Sprintf(
+				"%s | %s | %s",
+				diagnostic.Severity(),
+				diagnostic.Summary(),
+				diagnostic.Detail()))
+		}
+
+		panic("NewForwardsValueMust received error(s): " + strings.Join(diagsStrings, "\n"))
+	}
+
+	return object
+}
+
+func (t ForwardsType) ValueFromTerraform(ctx context.Context, in tftypes.Value) (attr.Value, error) {
+	if in.Type() == nil {
+		return NewForwardsValueNull(), nil
+	}
+
+	if !in.Type().Equal(t.TerraformType(ctx)) {
+		return nil, fmt.Errorf("expected %s, got %s", t.TerraformType(ctx), in.Type())
+	}
+
+	if !in.IsKnown() {
+		return NewForwardsValueUnknown(), nil
+	}
+
+	if in.IsNull() {
+		return NewForwardsValueNull(), nil
+	}
+
+	attributes := map[string]attr.Value{}
+
+	val := map[string]tftypes.Value{}
+
+	err := in.As(&val)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for k, v := range val {
+		a, err := t.AttrTypes[k].ValueFromTerraform(ctx, v)
+
+		if err != nil {
+			return nil, err
+		}
+
+		attributes[k] = a
+	}
+
+	return NewForwardsValueMust(ForwardsValue{}.AttributeTypes(ctx), attributes), nil
+}
+
+func (t ForwardsType) ValueType(ctx context.Context) attr.Value {
+	return ForwardsValue{}
+}
+
+var _ basetypes.ObjectValuable = ForwardsValue{}
+
+type ForwardsValue struct {
+	Destination basetypes.StringValue `tfsdk:"destination"`
+	Keep        basetypes.BoolValue   `tfsdk:"keep"`
+	state       attr.ValueState
+}
+
+func (v ForwardsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
+	attrTypes := make(map[string]tftypes.Type, 2)
+
+	var val tftypes.Value
+	var err error
+
+	attrTypes["destination"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["keep"] = basetypes.BoolType{}.TerraformType(ctx)
+
+	objectType := tftypes.Object{AttributeTypes: attrTypes}
+
+	switch v.state {
+	case attr.ValueStateKnown:
+		vals := make(map[string]tftypes.Value, 2)
+
+		val, err = v.Destination.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["destination"] = val
+
+		val, err = v.Keep.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["keep"] = val
+
+		if err := tftypes.ValidateValue(objectType, vals); err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		return tftypes.NewValue(objectType, vals), nil
+	case attr.ValueStateNull:
+		return tftypes.NewValue(objectType, nil), nil
+	case attr.ValueStateUnknown:
+		return tftypes.NewValue(objectType, tftypes.UnknownValue), nil
+	default:
+		panic(fmt.Sprintf("unhandled Object state in ToTerraformValue: %s", v.state))
+	}
+}
+
+func (v ForwardsValue) IsNull() bool {
+	return v.state == attr.ValueStateNull
+}
+
+func (v ForwardsValue) IsUnknown() bool {
+	return v.state == attr.ValueStateUnknown
+}
+
+func (v ForwardsValue) String() string {
+	return "ForwardsValue"
+}
+
+func (v ForwardsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	attributeTypes := map[string]attr.Type{
+		"destination": basetypes.StringType{},
+		"keep":        basetypes.BoolType{},
+	}
+
+	if v.IsNull() {
+		return types.ObjectNull(attributeTypes), diags
+	}
+
+	if v.IsUnknown() {
+		return types.ObjectUnknown(attributeTypes), diags
+	}
+
+	objVal, diags := types.ObjectValue(
+		attributeTypes,
+		map[string]attr.Value{
+			"destination": v.Destination,
+			"keep":        v.Keep,
+		})
+
+	return objVal, diags
+}
+
+func (v ForwardsValue) Equal(o attr.Value) bool {
+	other, ok := o.(ForwardsValue)
+
+	if !ok {
+		return false
+	}
+
+	if v.state != other.state {
+		return false
+	}
+
+	if v.state != attr.ValueStateKnown {
+		return true
+	}
+
+	if !v.Destination.Equal(other.Destination) {
+		return false
+	}
+
+	if !v.Keep.Equal(other.Keep) {
+		return false
+	}
+
+	return true
+}
+
+func (v ForwardsValue) Type(ctx context.Context) attr.Type {
+	return ForwardsType{
+		basetypes.ObjectType{
+			AttrTypes: v.AttributeTypes(ctx),
+		},
+	}
+}
+
+func (v ForwardsValue) AttributeTypes(ctx context.Context) map[string]attr.Type {
+	return map[string]attr.Type{
+		"destination": basetypes.StringType{},
+		"keep":        basetypes.BoolType{},
+	}
 }

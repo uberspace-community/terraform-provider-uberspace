@@ -50,6 +50,16 @@ func WebdomainBackendResourceSchema(ctx context.Context) schema.Schema {
 					stringvalidator.LengthAtLeast(1),
 				},
 			},
+			"format": schema.StringAttribute{
+				Optional: true,
+				Computed: true,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"json",
+						"text/event-stream",
+					),
+				},
+			},
 			"path": schema.StringAttribute{
 				Required: true,
 				Validators: []validator.String{
@@ -79,7 +89,7 @@ func WebdomainBackendResourceSchema(ctx context.Context) schema.Schema {
 			"updated_at": schema.StringAttribute{
 				Computed: true,
 			},
-			"webdomain_domain": schema.StringAttribute{
+			"webdomain_name": schema.StringAttribute{
 				Optional: true,
 				Computed: true,
 				Validators: []validator.String{
@@ -91,15 +101,16 @@ func WebdomainBackendResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type WebdomainBackendModel struct {
-	Asteroid        types.String `tfsdk:"asteroid"`
-	AsteroidName    types.String `tfsdk:"asteroid_name"`
-	CreatedAt       types.String `tfsdk:"created_at"`
-	Destination     types.String `tfsdk:"destination"`
-	Domain          types.String `tfsdk:"domain"`
-	Path            types.String `tfsdk:"path"`
-	Pk              types.Int64  `tfsdk:"pk"`
-	Port            types.Int64  `tfsdk:"port"`
-	RemovePrefix    types.Bool   `tfsdk:"remove_prefix"`
-	UpdatedAt       types.String `tfsdk:"updated_at"`
-	WebdomainDomain types.String `tfsdk:"webdomain_domain"`
+	Asteroid      types.String `tfsdk:"asteroid"`
+	AsteroidName  types.String `tfsdk:"asteroid_name"`
+	CreatedAt     types.String `tfsdk:"created_at"`
+	Destination   types.String `tfsdk:"destination"`
+	Domain        types.String `tfsdk:"domain"`
+	Format        types.String `tfsdk:"format"`
+	Path          types.String `tfsdk:"path"`
+	Pk            types.Int64  `tfsdk:"pk"`
+	Port          types.Int64  `tfsdk:"port"`
+	RemovePrefix  types.Bool   `tfsdk:"remove_prefix"`
+	UpdatedAt     types.String `tfsdk:"updated_at"`
+	WebdomainName types.String `tfsdk:"webdomain_name"`
 }

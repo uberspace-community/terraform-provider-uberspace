@@ -2,221 +2,355 @@
 
 package client
 
-// CreateAsteroidsMaildomainsParams is parameters of create_asteroids_maildomains operation.
-type CreateAsteroidsMaildomainsParams struct {
+// AsteroidsGetParams is parameters of asteroids_get operation.
+type AsteroidsGetParams struct {
+	Format OptAsteroidsGetFormat
+	Name   string
+}
+
+// AsteroidsMaildomainsCreateParams is parameters of asteroids_maildomains_create operation.
+type AsteroidsMaildomainsCreateParams struct {
 	AsteroidName string
+	Format       OptAsteroidsMaildomainsCreateFormat
 }
 
-// CreateAsteroidsMaildomainsUsersParams is parameters of create_asteroids_maildomains_users operation.
-type CreateAsteroidsMaildomainsUsersParams struct {
-	AsteroidName     string
-	MaildomainDomain string
-}
-
-// CreateAsteroidsSshkeysParams is parameters of create_asteroids_sshkeys operation.
-type CreateAsteroidsSshkeysParams struct {
+// AsteroidsMaildomainsDeleteParams is parameters of asteroids_maildomains_delete operation.
+type AsteroidsMaildomainsDeleteParams struct {
 	AsteroidName string
+	Format       OptAsteroidsMaildomainsDeleteFormat
+	Name         string
 }
 
-// CreateAsteroidsWebdomainsParams is parameters of create_asteroids_webdomains operation.
-type CreateAsteroidsWebdomainsParams struct {
+// AsteroidsMaildomainsGetParams is parameters of asteroids_maildomains_get operation.
+type AsteroidsMaildomainsGetParams struct {
 	AsteroidName string
+	Format       OptAsteroidsMaildomainsGetFormat
+	Name         string
 }
 
-// CreateAsteroidsWebdomainsBackendsParams is parameters of create_asteroids_webdomains_backends operation.
-type CreateAsteroidsWebdomainsBackendsParams struct {
-	AsteroidName    string
-	WebdomainDomain string
-}
-
-// CreateAsteroidsWebdomainsHeadersParams is parameters of create_asteroids_webdomains_headers operation.
-type CreateAsteroidsWebdomainsHeadersParams struct {
-	AsteroidName    string
-	WebdomainDomain string
-}
-
-// DeleteAsteroidMaildomainParams is parameters of delete_asteroid_maildomain operation.
-type DeleteAsteroidMaildomainParams struct {
+// AsteroidsMaildomainsListParams is parameters of asteroids_maildomains_list operation.
+type AsteroidsMaildomainsListParams struct {
 	AsteroidName string
-	Domain       string
+	Format       OptAsteroidsMaildomainsListFormat
+	// Number of results to return per page.
+	Limit OptInt
+	// The initial index from which to return the results.
+	Offset OptInt
 }
 
-// DeleteAsteroidMaildomainUserParams is parameters of delete_asteroid_maildomain_user operation.
-type DeleteAsteroidMaildomainUserParams struct {
-	AsteroidName     string
-	Local            string
-	MaildomainDomain string
+// AsteroidsMaildomainsUsersCreateParams is parameters of asteroids_maildomains_users_create operation.
+type AsteroidsMaildomainsUsersCreateParams struct {
+	AsteroidName   string
+	Format         OptAsteroidsMaildomainsUsersCreateFormat
+	MaildomainName string
 }
 
-// DeleteAsteroidSshkeyParams is parameters of delete_asteroid_sshkey operation.
-type DeleteAsteroidSshkeyParams struct {
+// AsteroidsMaildomainsUsersDeleteParams is parameters of asteroids_maildomains_users_delete operation.
+type AsteroidsMaildomainsUsersDeleteParams struct {
+	AsteroidName   string
+	Format         OptAsteroidsMaildomainsUsersDeleteFormat
+	Local          string
+	MaildomainName string
+}
+
+// AsteroidsMaildomainsUsersForwardsCreateParams is parameters of asteroids_maildomains_users_forwards_create operation.
+type AsteroidsMaildomainsUsersForwardsCreateParams struct {
+	AsteroidName   string
+	Format         OptAsteroidsMaildomainsUsersForwardsCreateFormat
+	MaildomainName string
+	MailuserLocal  string
+}
+
+// AsteroidsMaildomainsUsersForwardsDeleteParams is parameters of asteroids_maildomains_users_forwards_delete operation.
+type AsteroidsMaildomainsUsersForwardsDeleteParams struct {
+	AsteroidName   string
+	Destination    string
+	Format         OptAsteroidsMaildomainsUsersForwardsDeleteFormat
+	MaildomainName string
+	MailuserLocal  string
+}
+
+// AsteroidsMaildomainsUsersForwardsGetParams is parameters of asteroids_maildomains_users_forwards_get operation.
+type AsteroidsMaildomainsUsersForwardsGetParams struct {
+	AsteroidName   string
+	Destination    string
+	Format         OptAsteroidsMaildomainsUsersForwardsGetFormat
+	MaildomainName string
+	MailuserLocal  string
+}
+
+// AsteroidsMaildomainsUsersForwardsListParams is parameters of asteroids_maildomains_users_forwards_list operation.
+type AsteroidsMaildomainsUsersForwardsListParams struct {
 	AsteroidName string
+	Format       OptAsteroidsMaildomainsUsersForwardsListFormat
+	// Number of results to return per page.
+	Limit          OptInt
+	MaildomainName string
+	MailuserLocal  string
+	// The initial index from which to return the results.
+	Offset OptInt
+}
+
+// AsteroidsMaildomainsUsersGetParams is parameters of asteroids_maildomains_users_get operation.
+type AsteroidsMaildomainsUsersGetParams struct {
+	AsteroidName   string
+	Format         OptAsteroidsMaildomainsUsersGetFormat
+	Local          string
+	MaildomainName string
+}
+
+// AsteroidsMaildomainsUsersListParams is parameters of asteroids_maildomains_users_list operation.
+type AsteroidsMaildomainsUsersListParams struct {
+	AsteroidName string
+	Format       OptAsteroidsMaildomainsUsersListFormat
+	// Number of results to return per page.
+	Limit          OptInt
+	MaildomainName string
+	// The initial index from which to return the results.
+	Offset OptInt
+}
+
+// AsteroidsMaildomainsUsersPatchParams is parameters of asteroids_maildomains_users_patch operation.
+type AsteroidsMaildomainsUsersPatchParams struct {
+	AsteroidName   string
+	Format         OptAsteroidsMaildomainsUsersPatchFormat
+	Local          string
+	MaildomainName string
+}
+
+// AsteroidsMailusersListParams is parameters of asteroids_mailusers_list operation.
+type AsteroidsMailusersListParams struct {
+	AsteroidName string
+	Format       OptAsteroidsMailusersListFormat
+	// Number of results to return per page.
+	Limit OptInt
+	// The initial index from which to return the results.
+	Offset OptInt
+}
+
+// AsteroidsPatchParams is parameters of asteroids_patch operation.
+type AsteroidsPatchParams struct {
+	Format OptAsteroidsPatchFormat
+	Name   string
+}
+
+// AsteroidsSshkeysCreateParams is parameters of asteroids_sshkeys_create operation.
+type AsteroidsSshkeysCreateParams struct {
+	AsteroidName string
+	Format       OptAsteroidsSshkeysCreateFormat
+}
+
+// AsteroidsSshkeysDeleteParams is parameters of asteroids_sshkeys_delete operation.
+type AsteroidsSshkeysDeleteParams struct {
+	AsteroidName string
+	Format       OptAsteroidsSshkeysDeleteFormat
 	// A unique integer value identifying this ssh key.
 	ID int
 }
 
-// DeleteAsteroidWebdomainParams is parameters of delete_asteroid_webdomain operation.
-type DeleteAsteroidWebdomainParams struct {
+// AsteroidsSshkeysGetParams is parameters of asteroids_sshkeys_get operation.
+type AsteroidsSshkeysGetParams struct {
 	AsteroidName string
-	Domain       string
-}
-
-// DeleteAsteroidWebdomainBackendParams is parameters of delete_asteroid_webdomain_backend operation.
-type DeleteAsteroidWebdomainBackendParams struct {
-	AsteroidName    string
-	Path            string
-	WebdomainDomain string
-}
-
-// DeleteAsteroidWebdomainHeaderParams is parameters of delete_asteroid_webdomain_header operation.
-type DeleteAsteroidWebdomainHeaderParams struct {
-	AsteroidName    string
-	Path            string
-	WebdomainDomain string
-}
-
-// GetAsteroidParams is parameters of get_asteroid operation.
-type GetAsteroidParams struct {
-	Name string
-}
-
-// GetAsteroidMaildomainParams is parameters of get_asteroid_maildomain operation.
-type GetAsteroidMaildomainParams struct {
-	AsteroidName string
-	Domain       string
-}
-
-// GetAsteroidMaildomainUserParams is parameters of get_asteroid_maildomain_user operation.
-type GetAsteroidMaildomainUserParams struct {
-	AsteroidName     string
-	Local            string
-	MaildomainDomain string
-}
-
-// GetAsteroidMaildomainsParams is parameters of get_asteroid_maildomains operation.
-type GetAsteroidMaildomainsParams struct {
-	AsteroidName string
-	// Number of results to return per page.
-	Limit OptInt
-	// The initial index from which to return the results.
-	Offset OptInt
-}
-
-// GetAsteroidMaildomainsUsersParams is parameters of get_asteroid_maildomains_users operation.
-type GetAsteroidMaildomainsUsersParams struct {
-	AsteroidName string
-	// Number of results to return per page.
-	Limit            OptInt
-	MaildomainDomain string
-	// The initial index from which to return the results.
-	Offset OptInt
-}
-
-// GetAsteroidSshkeyParams is parameters of get_asteroid_sshkey operation.
-type GetAsteroidSshkeyParams struct {
-	AsteroidName string
+	Format       OptAsteroidsSshkeysGetFormat
 	// A unique integer value identifying this ssh key.
 	ID int
 }
 
-// GetAsteroidSshkeysParams is parameters of get_asteroid_sshkeys operation.
-type GetAsteroidSshkeysParams struct {
+// AsteroidsSshkeysListParams is parameters of asteroids_sshkeys_list operation.
+type AsteroidsSshkeysListParams struct {
 	AsteroidName string
+	Format       OptAsteroidsSshkeysListFormat
 	// Number of results to return per page.
 	Limit OptInt
 	// The initial index from which to return the results.
 	Offset OptInt
 }
 
-// GetAsteroidWebbackendParams is parameters of get_asteroid_webbackend operation.
-type GetAsteroidWebbackendParams struct {
+// AsteroidsToolversionsGetParams is parameters of asteroids_toolversions_get operation.
+type AsteroidsToolversionsGetParams struct {
 	AsteroidName string
-	// A unique integer value identifying this web backend.
-	ID int
+	Format       OptAsteroidsToolversionsGetFormat
+	ToolSlug     string
 }
 
-// GetAsteroidWebbackendsParams is parameters of get_asteroid_webbackends operation.
-type GetAsteroidWebbackendsParams struct {
+// AsteroidsToolversionsListParams is parameters of asteroids_toolversions_list operation.
+type AsteroidsToolversionsListParams struct {
 	AsteroidName string
+	Format       OptAsteroidsToolversionsListFormat
 	// Number of results to return per page.
 	Limit OptInt
 	// The initial index from which to return the results.
 	Offset OptInt
 }
 
-// GetAsteroidWebdomainParams is parameters of get_asteroid_webdomain operation.
-type GetAsteroidWebdomainParams struct {
+// AsteroidsToolversionsPatchParams is parameters of asteroids_toolversions_patch operation.
+type AsteroidsToolversionsPatchParams struct {
 	AsteroidName string
-	Domain       string
+	Format       OptAsteroidsToolversionsPatchFormat
+	ToolSlug     string
 }
 
-// GetAsteroidWebdomainBackendParams is parameters of get_asteroid_webdomain_backend operation.
-type GetAsteroidWebdomainBackendParams struct {
-	AsteroidName    string
-	Path            string
-	WebdomainDomain string
-}
-
-// GetAsteroidWebdomainHeaderParams is parameters of get_asteroid_webdomain_header operation.
-type GetAsteroidWebdomainHeaderParams struct {
-	AsteroidName    string
-	Path            string
-	WebdomainDomain string
-}
-
-// GetAsteroidWebdomainsParams is parameters of get_asteroid_webdomains operation.
-type GetAsteroidWebdomainsParams struct {
+// AsteroidsWebbackendsGetParams is parameters of asteroids_webbackends_get operation.
+type AsteroidsWebbackendsGetParams struct {
 	AsteroidName string
+	Format       OptAsteroidsWebbackendsGetFormat
+	ID           string
+}
+
+// AsteroidsWebbackendsListParams is parameters of asteroids_webbackends_list operation.
+type AsteroidsWebbackendsListParams struct {
+	AsteroidName string
+	Format       OptAsteroidsWebbackendsListFormat
 	// Number of results to return per page.
 	Limit OptInt
 	// The initial index from which to return the results.
 	Offset OptInt
 }
 
-// GetAsteroidWebdomainsBackendsParams is parameters of get_asteroid_webdomains_backends operation.
-type GetAsteroidWebdomainsBackendsParams struct {
+// AsteroidsWebdomainsBackendsCreateParams is parameters of asteroids_webdomains_backends_create operation.
+type AsteroidsWebdomainsBackendsCreateParams struct {
+	AsteroidName  string
+	Format        OptAsteroidsWebdomainsBackendsCreateFormat
+	WebdomainName string
+}
+
+// AsteroidsWebdomainsBackendsDeleteParams is parameters of asteroids_webdomains_backends_delete operation.
+type AsteroidsWebdomainsBackendsDeleteParams struct {
+	AsteroidName  string
+	Format        OptAsteroidsWebdomainsBackendsDeleteFormat
+	Path          string
+	WebdomainName string
+}
+
+// AsteroidsWebdomainsBackendsGetParams is parameters of asteroids_webdomains_backends_get operation.
+type AsteroidsWebdomainsBackendsGetParams struct {
+	AsteroidName  string
+	Format        OptAsteroidsWebdomainsBackendsGetFormat
+	Path          string
+	WebdomainName string
+}
+
+// AsteroidsWebdomainsBackendsListParams is parameters of asteroids_webdomains_backends_list operation.
+type AsteroidsWebdomainsBackendsListParams struct {
 	AsteroidName string
+	Format       OptAsteroidsWebdomainsBackendsListFormat
 	// Number of results to return per page.
 	Limit OptInt
 	// The initial index from which to return the results.
-	Offset          OptInt
-	WebdomainDomain string
+	Offset        OptInt
+	WebdomainName string
 }
 
-// GetAsteroidWebdomainsHeadersParams is parameters of get_asteroid_webdomains_headers operation.
-type GetAsteroidWebdomainsHeadersParams struct {
+// AsteroidsWebdomainsCreateParams is parameters of asteroids_webdomains_create operation.
+type AsteroidsWebdomainsCreateParams struct {
 	AsteroidName string
+	Format       OptAsteroidsWebdomainsCreateFormat
+}
+
+// AsteroidsWebdomainsDeleteParams is parameters of asteroids_webdomains_delete operation.
+type AsteroidsWebdomainsDeleteParams struct {
+	AsteroidName string
+	Format       OptAsteroidsWebdomainsDeleteFormat
+	Name         string
+}
+
+// AsteroidsWebdomainsGetParams is parameters of asteroids_webdomains_get operation.
+type AsteroidsWebdomainsGetParams struct {
+	AsteroidName string
+	Format       OptAsteroidsWebdomainsGetFormat
+	Name         string
+}
+
+// AsteroidsWebdomainsHeadersCreateParams is parameters of asteroids_webdomains_headers_create operation.
+type AsteroidsWebdomainsHeadersCreateParams struct {
+	AsteroidName  string
+	Format        OptAsteroidsWebdomainsHeadersCreateFormat
+	WebdomainName string
+}
+
+// AsteroidsWebdomainsHeadersDeleteParams is parameters of asteroids_webdomains_headers_delete operation.
+type AsteroidsWebdomainsHeadersDeleteParams struct {
+	AsteroidName  string
+	Format        OptAsteroidsWebdomainsHeadersDeleteFormat
+	ID            string
+	WebdomainName string
+}
+
+// AsteroidsWebdomainsHeadersGetParams is parameters of asteroids_webdomains_headers_get operation.
+type AsteroidsWebdomainsHeadersGetParams struct {
+	AsteroidName  string
+	Format        OptAsteroidsWebdomainsHeadersGetFormat
+	ID            string
+	WebdomainName string
+}
+
+// AsteroidsWebdomainsHeadersListParams is parameters of asteroids_webdomains_headers_list operation.
+type AsteroidsWebdomainsHeadersListParams struct {
+	AsteroidName string
+	Format       OptAsteroidsWebdomainsHeadersListFormat
 	// Number of results to return per page.
 	Limit OptInt
 	// The initial index from which to return the results.
-	Offset          OptInt
-	WebdomainDomain string
+	Offset        OptInt
+	WebdomainName string
 }
 
-// GetAsteroidWebheaderParams is parameters of get_asteroid_webheader operation.
-type GetAsteroidWebheaderParams struct {
+// AsteroidsWebdomainsListParams is parameters of asteroids_webdomains_list operation.
+type AsteroidsWebdomainsListParams struct {
 	AsteroidName string
+	Format       OptAsteroidsWebdomainsListFormat
+	// Number of results to return per page.
+	Limit OptInt
+	// The initial index from which to return the results.
+	Offset OptInt
+}
+
+// AsteroidsWebheadersGetParams is parameters of asteroids_webheaders_get operation.
+type AsteroidsWebheadersGetParams struct {
+	AsteroidName string
+	Format       OptAsteroidsWebheadersGetFormat
 	// A unique integer value identifying this web header.
 	ID int
 }
 
-// GetAsteroidWebheadersParams is parameters of get_asteroid_webheaders operation.
-type GetAsteroidWebheadersParams struct {
+// AsteroidsWebheadersListParams is parameters of asteroids_webheaders_list operation.
+type AsteroidsWebheadersListParams struct {
 	AsteroidName string
+	Format       OptAsteroidsWebheadersListFormat
 	// Number of results to return per page.
 	Limit OptInt
 	// The initial index from which to return the results.
 	Offset OptInt
 }
 
-// PatchAsteroidParams is parameters of patch_asteroid operation.
-type PatchAsteroidParams struct {
-	Name string
+// ToolsGetParams is parameters of tools_get operation.
+type ToolsGetParams struct {
+	Format OptToolsGetFormat
+	Slug   string
 }
 
-// PatchAsteroidMaildomainUserParams is parameters of patch_asteroid_maildomain_user operation.
-type PatchAsteroidMaildomainUserParams struct {
-	AsteroidName     string
-	Local            string
-	MaildomainDomain string
+// ToolsListParams is parameters of tools_list operation.
+type ToolsListParams struct {
+	Format OptToolsListFormat
+	// Number of results to return per page.
+	Limit OptInt
+	// The initial index from which to return the results.
+	Offset OptInt
+}
+
+// ToolsVersionsGetParams is parameters of tools_versions_get operation.
+type ToolsVersionsGetParams struct {
+	Format   OptToolsVersionsGetFormat
+	ToolSlug string
+	Version  string
+}
+
+// ToolsVersionsListParams is parameters of tools_versions_list operation.
+type ToolsVersionsListParams struct {
+	Format OptToolsVersionsListFormat
+	// Number of results to return per page.
+	Limit OptInt
+	// The initial index from which to return the results.
+	Offset   OptInt
+	ToolSlug string
 }

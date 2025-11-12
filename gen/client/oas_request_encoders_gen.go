@@ -17,12 +17,12 @@ import (
 	"github.com/ogen-go/ogen/uri"
 )
 
-func encodeCreateAsteroidsMaildomainsRequest(
-	req CreateAsteroidsMaildomainsReq,
+func encodeAsteroidsMaildomainsCreateRequest(
+	req AsteroidsMaildomainsCreateReq,
 	r *http.Request,
 ) error {
 	switch req := req.(type) {
-	case *CreateAsteroidsMaildomainsApplicationJSON:
+	case *AsteroidsMaildomainsCreateApplicationJSON:
 		const contentType = "application/json"
 		e := new(jx.Encoder)
 		{
@@ -31,26 +31,20 @@ func encodeCreateAsteroidsMaildomainsRequest(
 		encoded := e.Bytes()
 		ht.SetBody(r, bytes.NewReader(encoded), contentType)
 		return nil
-	case *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded:
+	case *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded:
 		const contentType = "application/x-www-form-urlencoded"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "alias" form field.
+			// Encode "name" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "alias",
+				Name:    "name",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Alias.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
-				}
-				return nil
+				return e.EncodeValue(conv.StringToString(request.Name))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}
@@ -64,19 +58,6 @@ func encodeCreateAsteroidsMaildomainsRequest(
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Domain))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}
@@ -90,20 +71,14 @@ func encodeCreateAsteroidsMaildomainsRequest(
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "alias" form field.
+			// Encode "name" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "alias",
+				Name:    "name",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Alias.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
-				}
-				return nil
+				return e.EncodeValue(conv.StringToString(request.Name))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}
@@ -117,19 +92,6 @@ func encodeCreateAsteroidsMaildomainsRequest(
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Domain))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}
@@ -147,12 +109,12 @@ func encodeCreateAsteroidsMaildomainsRequest(
 	}
 }
 
-func encodeCreateAsteroidsMaildomainsUsersRequest(
-	req CreateAsteroidsMaildomainsUsersReq,
+func encodeAsteroidsMaildomainsUsersCreateRequest(
+	req AsteroidsMaildomainsUsersCreateReq,
 	r *http.Request,
 ) error {
 	switch req := req.(type) {
-	case *CreateAsteroidsMaildomainsUsersApplicationJSON:
+	case *AsteroidsMaildomainsUsersCreateApplicationJSON:
 		const contentType = "application/json"
 		e := new(jx.Encoder)
 		{
@@ -161,49 +123,11 @@ func encodeCreateAsteroidsMaildomainsUsersRequest(
 		encoded := e.Bytes()
 		ht.SetBody(r, bytes.NewReader(encoded), contentType)
 		return nil
-	case *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded:
+	case *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded:
 		const contentType = "application/x-www-form-urlencoded"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
-		{
-			// Encode "alias" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "alias",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Alias.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Domain.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
 		{
 			// Encode "name" form field.
 			cfg := uri.QueryParameterEncodingConfig{
@@ -227,6 +151,54 @@ func encodeCreateAsteroidsMaildomainsUsersRequest(
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 				if val, ok := request.PasswordHash.Get(); ok {
 					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "keep_forwards" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "keep_forwards",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.KeepForwards.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "is_sysmail" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "is_sysmail",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.IsSysmail.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "is_catchall" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "is_catchall",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.IsCatchall.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
 			}); err != nil {
@@ -242,44 +214,6 @@ func encodeCreateAsteroidsMaildomainsUsersRequest(
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "alias" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "alias",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Alias.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Domain.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
 			// Encode "name" form field.
 			cfg := uri.QueryParameterEncodingConfig{
 				Name:    "name",
@@ -308,360 +242,15 @@ func encodeCreateAsteroidsMaildomainsUsersRequest(
 				return errors.Wrap(err, "encode query")
 			}
 		}
-		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
-			if err := q.WriteMultipart(w); err != nil {
-				return errors.Wrap(err, "write multipart")
-			}
-			return nil
-		})
-		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
-		return nil
-	default:
-		return errors.Errorf("unexpected request type: %T", req)
-	}
-}
-
-func encodeCreateAsteroidsSshkeysRequest(
-	req CreateAsteroidsSshkeysReq,
-	r *http.Request,
-) error {
-	switch req := req.(type) {
-	case *CreateAsteroidsSshkeysApplicationJSON:
-		const contentType = "application/json"
-		e := new(jx.Encoder)
 		{
-			req.Encode(e)
-		}
-		encoded := e.Bytes()
-		ht.SetBody(r, bytes.NewReader(encoded), contentType)
-		return nil
-	case *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded:
-		const contentType = "application/x-www-form-urlencoded"
-		request := req
-
-		q := uri.NewFormEncoder(map[string]string{})
-		{
-			// Encode "asteroid" form field.
+			// Encode "keep_forwards" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
+				Name:    "keep_forwards",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "key" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "key",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Key))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "key_comment" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "key_comment",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.KeyComment.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "key_type" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "key_type",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(string(request.KeyType)))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		encoded := q.Values().Encode()
-		ht.SetBody(r, strings.NewReader(encoded), contentType)
-		return nil
-	case *SshKeyRequestMultipart:
-		const contentType = "multipart/form-data"
-		request := req
-
-		q := uri.NewFormEncoder(map[string]string{})
-		{
-			// Encode "asteroid" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "key" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "key",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Key))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "key_comment" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "key_comment",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.KeyComment.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "key_type" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "key_type",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(string(request.KeyType)))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
-			if err := q.WriteMultipart(w); err != nil {
-				return errors.Wrap(err, "write multipart")
-			}
-			return nil
-		})
-		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
-		return nil
-	default:
-		return errors.Errorf("unexpected request type: %T", req)
-	}
-}
-
-func encodeCreateAsteroidsWebdomainsRequest(
-	req CreateAsteroidsWebdomainsReq,
-	r *http.Request,
-) error {
-	switch req := req.(type) {
-	case *CreateAsteroidsWebdomainsApplicationJSON:
-		const contentType = "application/json"
-		e := new(jx.Encoder)
-		{
-			req.Encode(e)
-		}
-		encoded := e.Bytes()
-		ht.SetBody(r, bytes.NewReader(encoded), contentType)
-		return nil
-	case *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded:
-		const contentType = "application/x-www-form-urlencoded"
-		request := req
-
-		q := uri.NewFormEncoder(map[string]string{})
-		{
-			// Encode "asteroid" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Domain))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		encoded := q.Values().Encode()
-		ht.SetBody(r, strings.NewReader(encoded), contentType)
-		return nil
-	case *WebDomainRequestMultipart:
-		const contentType = "multipart/form-data"
-		request := req
-
-		q := uri.NewFormEncoder(map[string]string{})
-		{
-			// Encode "asteroid" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Domain))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
-			if err := q.WriteMultipart(w); err != nil {
-				return errors.Wrap(err, "write multipart")
-			}
-			return nil
-		})
-		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
-		return nil
-	default:
-		return errors.Errorf("unexpected request type: %T", req)
-	}
-}
-
-func encodeCreateAsteroidsWebdomainsBackendsRequest(
-	req CreateAsteroidsWebdomainsBackendsReq,
-	r *http.Request,
-) error {
-	switch req := req.(type) {
-	case *CreateAsteroidsWebdomainsBackendsApplicationJSON:
-		const contentType = "application/json"
-		e := new(jx.Encoder)
-		{
-			req.Encode(e)
-		}
-		encoded := e.Bytes()
-		ht.SetBody(r, bytes.NewReader(encoded), contentType)
-		return nil
-	case *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded:
-		const contentType = "application/x-www-form-urlencoded"
-		request := req
-
-		q := uri.NewFormEncoder(map[string]string{})
-		{
-			// Encode "asteroid" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "destination" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "destination",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(string(request.Destination)))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Domain.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "path" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "path",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Path))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "port" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "port",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Port.Get(); ok {
-					return e.EncodeValue(conv.IntToString(val))
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "remove_prefix" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "remove_prefix",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.RemovePrefix.Get(); ok {
+				if val, ok := request.KeepForwards.Get(); ok {
 					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
@@ -669,50 +258,16 @@ func encodeCreateAsteroidsWebdomainsBackendsRequest(
 				return errors.Wrap(err, "encode query")
 			}
 		}
-		encoded := q.Values().Encode()
-		ht.SetBody(r, strings.NewReader(encoded), contentType)
-		return nil
-	case *WebBackendRequestMultipart:
-		const contentType = "multipart/form-data"
-		request := req
-
-		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "asteroid" form field.
+			// Encode "is_sysmail" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
+				Name:    "is_sysmail",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "destination" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "destination",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(string(request.Destination)))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Domain.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
+				if val, ok := request.IsSysmail.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
 			}); err != nil {
@@ -720,43 +275,14 @@ func encodeCreateAsteroidsWebdomainsBackendsRequest(
 			}
 		}
 		{
-			// Encode "path" form field.
+			// Encode "is_catchall" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "path",
+				Name:    "is_catchall",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Path))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "port" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "port",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Port.Get(); ok {
-					return e.EncodeValue(conv.IntToString(val))
-				}
-				return nil
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "remove_prefix" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "remove_prefix",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.RemovePrefix.Get(); ok {
+				if val, ok := request.IsCatchall.Get(); ok {
 					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
@@ -777,12 +303,12 @@ func encodeCreateAsteroidsWebdomainsBackendsRequest(
 	}
 }
 
-func encodeCreateAsteroidsWebdomainsHeadersRequest(
-	req CreateAsteroidsWebdomainsHeadersReq,
+func encodeAsteroidsMaildomainsUsersForwardsCreateRequest(
+	req AsteroidsMaildomainsUsersForwardsCreateReq,
 	r *http.Request,
 ) error {
 	switch req := req.(type) {
-	case *CreateAsteroidsWebdomainsHeadersApplicationJSON:
+	case *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON:
 		const contentType = "application/json"
 		e := new(jx.Encoder)
 		{
@@ -791,34 +317,24 @@ func encodeCreateAsteroidsWebdomainsHeadersRequest(
 		encoded := e.Bytes()
 		ht.SetBody(r, bytes.NewReader(encoded), contentType)
 		return nil
-	case *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded:
+	case *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded:
 		const contentType = "application/x-www-form-urlencoded"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "asteroid" form field.
+			// Encode "user" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
+				Name:    "user",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Domain.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
+				if val, ok := request.User.Get(); ok {
+					if unwrapped := string(val); true {
+						return e.EncodeValue(conv.StringToString(unwrapped))
+					}
+					return nil
 				}
 				return nil
 			}); err != nil {
@@ -826,43 +342,14 @@ func encodeCreateAsteroidsWebdomainsHeadersRequest(
 			}
 		}
 		{
-			// Encode "name" form field.
+			// Encode "destination" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "name",
+				Name:    "destination",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Name))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "path" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "path",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Path))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "value" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "value",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Value.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
-				}
-				return nil
+				return e.EncodeValue(conv.StringToString(request.Destination))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}
@@ -870,34 +357,24 @@ func encodeCreateAsteroidsWebdomainsHeadersRequest(
 		encoded := q.Values().Encode()
 		ht.SetBody(r, strings.NewReader(encoded), contentType)
 		return nil
-	case *WebHeaderRequestMultipart:
+	case *MailForwardRequestMultipart:
 		const contentType = "multipart/form-data"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "asteroid" form field.
+			// Encode "user" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "asteroid",
+				Name:    "user",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Asteroid))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "domain" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "domain",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Domain.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
+				if val, ok := request.User.Get(); ok {
+					if unwrapped := string(val); true {
+						return e.EncodeValue(conv.StringToString(unwrapped))
+					}
+					return nil
 				}
 				return nil
 			}); err != nil {
@@ -905,43 +382,14 @@ func encodeCreateAsteroidsWebdomainsHeadersRequest(
 			}
 		}
 		{
-			// Encode "name" form field.
+			// Encode "destination" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "name",
+				Name:    "destination",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Name))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "path" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "path",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				return e.EncodeValue(conv.StringToString(request.Path))
-			}); err != nil {
-				return errors.Wrap(err, "encode query")
-			}
-		}
-		{
-			// Encode "value" form field.
-			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "value",
-				Style:   uri.QueryStyleForm,
-				Explode: true,
-			}
-			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Value.Get(); ok {
-					return e.EncodeValue(conv.StringToString(val))
-				}
-				return nil
+				return e.EncodeValue(conv.StringToString(request.Destination))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}
@@ -959,15 +407,15 @@ func encodeCreateAsteroidsWebdomainsHeadersRequest(
 	}
 }
 
-func encodePatchAsteroidRequest(
-	req PatchAsteroidReq,
+func encodeAsteroidsMaildomainsUsersPatchRequest(
+	req AsteroidsMaildomainsUsersPatchReq,
 	r *http.Request,
 ) error {
 	switch req := req.(type) {
-	case *PatchAsteroidReqEmptyBody:
+	case *AsteroidsMaildomainsUsersPatchReqEmptyBody:
 		// Empty body case.
 		return nil
-	case *PatchAsteroidApplicationJSON:
+	case *AsteroidsMaildomainsUsersPatchApplicationJSON:
 		const contentType = "application/json"
 		e := new(jx.Encoder)
 		{
@@ -976,20 +424,229 @@ func encodePatchAsteroidRequest(
 		encoded := e.Bytes()
 		ht.SetBody(r, bytes.NewReader(encoded), contentType)
 		return nil
-	case *PatchAsteroidApplicationXWwwFormUrlencoded:
+	case *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded:
 		const contentType = "application/x-www-form-urlencoded"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "flag_log_access_nginx" form field.
+			// Encode "password_hash" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "flag_log_access_nginx",
+				Name:    "password_hash",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.FlagLogAccessNginx.Get(); ok {
+				if val, ok := request.PasswordHash.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "alias_of" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "alias_of",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.AliasOf.Get(); ok {
+					if unwrapped := string(val); true {
+						return e.EncodeValue(conv.StringToString(unwrapped))
+					}
+					return nil
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "keep_forwards" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "keep_forwards",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.KeepForwards.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "is_sysmail" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "is_sysmail",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.IsSysmail.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "is_catchall" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "is_catchall",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.IsCatchall.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		encoded := q.Values().Encode()
+		ht.SetBody(r, strings.NewReader(encoded), contentType)
+		return nil
+	case *PatchedMailUserRequestMultipart:
+		const contentType = "multipart/form-data"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "password_hash" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "password_hash",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.PasswordHash.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "alias_of" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "alias_of",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.AliasOf.Get(); ok {
+					if unwrapped := string(val); true {
+						return e.EncodeValue(conv.StringToString(unwrapped))
+					}
+					return nil
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "keep_forwards" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "keep_forwards",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.KeepForwards.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "is_sysmail" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "is_sysmail",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.IsSysmail.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "is_catchall" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "is_catchall",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.IsCatchall.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
+			if err := q.WriteMultipart(w); err != nil {
+				return errors.Wrap(err, "write multipart")
+			}
+			return nil
+		})
+		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
+		return nil
+	default:
+		return errors.Errorf("unexpected request type: %T", req)
+	}
+}
+
+func encodeAsteroidsPatchRequest(
+	req AsteroidsPatchReq,
+	r *http.Request,
+) error {
+	switch req := req.(type) {
+	case *AsteroidsPatchReqEmptyBody:
+		// Empty body case.
+		return nil
+	case *AsteroidsPatchApplicationJSON:
+		const contentType = "application/json"
+		e := new(jx.Encoder)
+		{
+			req.Encode(e)
+		}
+		encoded := e.Bytes()
+		ht.SetBody(r, bytes.NewReader(encoded), contentType)
+		return nil
+	case *AsteroidsPatchApplicationXWwwFormUrlencoded:
+		const contentType = "application/x-www-form-urlencoded"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "flag_log_error_php" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "flag_log_error_php",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.FlagLogErrorPhp.Get(); ok {
 					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
@@ -1014,14 +671,14 @@ func encodePatchAsteroidRequest(
 			}
 		}
 		{
-			// Encode "flag_log_error_php" form field.
+			// Encode "flag_log_access_nginx" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "flag_log_error_php",
+				Name:    "flag_log_access_nginx",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.FlagLogErrorPhp.Get(); ok {
+				if val, ok := request.FlagLogAccessNginx.Get(); ok {
 					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
@@ -1086,14 +743,14 @@ func encodePatchAsteroidRequest(
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "flag_log_access_nginx" form field.
+			// Encode "flag_log_error_php" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "flag_log_access_nginx",
+				Name:    "flag_log_error_php",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.FlagLogAccessNginx.Get(); ok {
+				if val, ok := request.FlagLogErrorPhp.Get(); ok {
 					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
@@ -1118,14 +775,14 @@ func encodePatchAsteroidRequest(
 			}
 		}
 		{
-			// Encode "flag_log_error_php" form field.
+			// Encode "flag_log_access_nginx" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "flag_log_error_php",
+				Name:    "flag_log_access_nginx",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.FlagLogErrorPhp.Get(); ok {
+				if val, ok := request.FlagLogAccessNginx.Get(); ok {
 					return e.EncodeValue(conv.BoolToString(val))
 				}
 				return nil
@@ -1194,15 +851,12 @@ func encodePatchAsteroidRequest(
 	}
 }
 
-func encodePatchAsteroidMaildomainUserRequest(
-	req PatchAsteroidMaildomainUserReq,
+func encodeAsteroidsSshkeysCreateRequest(
+	req AsteroidsSshkeysCreateReq,
 	r *http.Request,
 ) error {
 	switch req := req.(type) {
-	case *PatchAsteroidMaildomainUserReqEmptyBody:
-		// Empty body case.
-		return nil
-	case *PatchAsteroidMaildomainUserApplicationJSON:
+	case *AsteroidsSshkeysCreateApplicationJSON:
 		const contentType = "application/json"
 		e := new(jx.Encoder)
 		{
@@ -1211,24 +865,47 @@ func encodePatchAsteroidMaildomainUserRequest(
 		encoded := e.Bytes()
 		ht.SetBody(r, bytes.NewReader(encoded), contentType)
 		return nil
-	case *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded:
+	case *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded:
 		const contentType = "application/x-www-form-urlencoded"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "alias" form field.
+			// Encode "key_type" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "alias",
+				Name:    "key_type",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Alias.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
+				return e.EncodeValue(conv.StringToString(string(request.KeyType)))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "key" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "key",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Key))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "key_comment" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "key_comment",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.KeyComment.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
 				}
 				return nil
 			}); err != nil {
@@ -1236,14 +913,125 @@ func encodePatchAsteroidMaildomainUserRequest(
 			}
 		}
 		{
-			// Encode "password_hash" form field.
+			// Encode "asteroid" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "password_hash",
+				Name:    "asteroid",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.PasswordHash.Get(); ok {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		encoded := q.Values().Encode()
+		ht.SetBody(r, strings.NewReader(encoded), contentType)
+		return nil
+	case *SshKeyRequestMultipart:
+		const contentType = "multipart/form-data"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "key_type" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "key_type",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(string(request.KeyType)))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "key" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "key",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Key))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "key_comment" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "key_comment",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.KeyComment.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
+			if err := q.WriteMultipart(w); err != nil {
+				return errors.Wrap(err, "write multipart")
+			}
+			return nil
+		})
+		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
+		return nil
+	default:
+		return errors.Errorf("unexpected request type: %T", req)
+	}
+}
+
+func encodeAsteroidsToolversionsPatchRequest(
+	req AsteroidsToolversionsPatchReq,
+	r *http.Request,
+) error {
+	switch req := req.(type) {
+	case *AsteroidsToolversionsPatchReqEmptyBody:
+		// Empty body case.
+		return nil
+	case *AsteroidsToolversionsPatchApplicationJSON:
+		const contentType = "application/json"
+		e := new(jx.Encoder)
+		{
+			req.Encode(e)
+		}
+		encoded := e.Bytes()
+		ht.SetBody(r, bytes.NewReader(encoded), contentType)
+		return nil
+	case *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded:
+		const contentType = "application/x-www-form-urlencoded"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "version" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "version",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Version.Get(); ok {
 					return e.EncodeValue(conv.StringToString(val))
 				}
 				return nil
@@ -1254,24 +1042,82 @@ func encodePatchAsteroidMaildomainUserRequest(
 		encoded := q.Values().Encode()
 		ht.SetBody(r, strings.NewReader(encoded), contentType)
 		return nil
-	case *PatchedMailUserRequestMultipart:
+	case *PatchedSelectedToolVersionRequestMultipart:
 		const contentType = "multipart/form-data"
 		request := req
 
 		q := uri.NewFormEncoder(map[string]string{})
 		{
-			// Encode "alias" form field.
+			// Encode "version" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "alias",
+				Name:    "version",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.Alias.Get(); ok {
-					if unwrapped := string(val); true {
-						return e.EncodeValue(conv.StringToString(unwrapped))
-					}
-					return nil
+				if val, ok := request.Version.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
+			if err := q.WriteMultipart(w); err != nil {
+				return errors.Wrap(err, "write multipart")
+			}
+			return nil
+		})
+		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
+		return nil
+	default:
+		return errors.Errorf("unexpected request type: %T", req)
+	}
+}
+
+func encodeAsteroidsWebdomainsBackendsCreateRequest(
+	req AsteroidsWebdomainsBackendsCreateReq,
+	r *http.Request,
+) error {
+	switch req := req.(type) {
+	case *AsteroidsWebdomainsBackendsCreateApplicationJSON:
+		const contentType = "application/json"
+		e := new(jx.Encoder)
+		{
+			req.Encode(e)
+		}
+		encoded := e.Bytes()
+		ht.SetBody(r, bytes.NewReader(encoded), contentType)
+		return nil
+	case *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded:
+		const contentType = "application/x-www-form-urlencoded"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "domain" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "domain",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Domain.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
 				}
 				return nil
 			}); err != nil {
@@ -1279,17 +1125,428 @@ func encodePatchAsteroidMaildomainUserRequest(
 			}
 		}
 		{
-			// Encode "password_hash" form field.
+			// Encode "path" form field.
 			cfg := uri.QueryParameterEncodingConfig{
-				Name:    "password_hash",
+				Name:    "path",
 				Style:   uri.QueryStyleForm,
 				Explode: true,
 			}
 			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-				if val, ok := request.PasswordHash.Get(); ok {
+				return e.EncodeValue(conv.StringToString(request.Path))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "remove_prefix" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "remove_prefix",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.RemovePrefix.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "destination" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "destination",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(string(request.Destination)))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "port" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "port",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Port.Get(); ok {
+					return e.EncodeValue(conv.IntToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		encoded := q.Values().Encode()
+		ht.SetBody(r, strings.NewReader(encoded), contentType)
+		return nil
+	case *WebBackendRequestMultipart:
+		const contentType = "multipart/form-data"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "domain" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "domain",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Domain.Get(); ok {
 					return e.EncodeValue(conv.StringToString(val))
 				}
 				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "path" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "path",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Path))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "remove_prefix" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "remove_prefix",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.RemovePrefix.Get(); ok {
+					return e.EncodeValue(conv.BoolToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "destination" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "destination",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(string(request.Destination)))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "port" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "port",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Port.Get(); ok {
+					return e.EncodeValue(conv.IntToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
+			if err := q.WriteMultipart(w); err != nil {
+				return errors.Wrap(err, "write multipart")
+			}
+			return nil
+		})
+		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
+		return nil
+	default:
+		return errors.Errorf("unexpected request type: %T", req)
+	}
+}
+
+func encodeAsteroidsWebdomainsCreateRequest(
+	req AsteroidsWebdomainsCreateReq,
+	r *http.Request,
+) error {
+	switch req := req.(type) {
+	case *AsteroidsWebdomainsCreateApplicationJSON:
+		const contentType = "application/json"
+		e := new(jx.Encoder)
+		{
+			req.Encode(e)
+		}
+		encoded := e.Bytes()
+		ht.SetBody(r, bytes.NewReader(encoded), contentType)
+		return nil
+	case *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded:
+		const contentType = "application/x-www-form-urlencoded"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "name" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "name",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Name))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		encoded := q.Values().Encode()
+		ht.SetBody(r, strings.NewReader(encoded), contentType)
+		return nil
+	case *WebDomainRequestMultipart:
+		const contentType = "multipart/form-data"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "name" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "name",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Name))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		body, boundary := ht.CreateMultipartBody(func(w *multipart.Writer) error {
+			if err := q.WriteMultipart(w); err != nil {
+				return errors.Wrap(err, "write multipart")
+			}
+			return nil
+		})
+		ht.SetCloserBody(r, body, mime.FormatMediaType(contentType, map[string]string{"boundary": boundary}))
+		return nil
+	default:
+		return errors.Errorf("unexpected request type: %T", req)
+	}
+}
+
+func encodeAsteroidsWebdomainsHeadersCreateRequest(
+	req AsteroidsWebdomainsHeadersCreateReq,
+	r *http.Request,
+) error {
+	switch req := req.(type) {
+	case *AsteroidsWebdomainsHeadersCreateApplicationJSON:
+		const contentType = "application/json"
+		e := new(jx.Encoder)
+		{
+			req.Encode(e)
+		}
+		encoded := e.Bytes()
+		ht.SetBody(r, bytes.NewReader(encoded), contentType)
+		return nil
+	case *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded:
+		const contentType = "application/x-www-form-urlencoded"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "domain" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "domain",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Domain.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "path" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "path",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Path))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "value" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "value",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Value.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "name" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "name",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Name))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		encoded := q.Values().Encode()
+		ht.SetBody(r, strings.NewReader(encoded), contentType)
+		return nil
+	case *WebHeaderRequestMultipart:
+		const contentType = "multipart/form-data"
+		request := req
+
+		q := uri.NewFormEncoder(map[string]string{})
+		{
+			// Encode "asteroid" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "asteroid",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Asteroid))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "domain" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "domain",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Domain.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "path" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "path",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Path))
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "value" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "value",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				if val, ok := request.Value.Get(); ok {
+					return e.EncodeValue(conv.StringToString(val))
+				}
+				return nil
+			}); err != nil {
+				return errors.Wrap(err, "encode query")
+			}
+		}
+		{
+			// Encode "name" form field.
+			cfg := uri.QueryParameterEncodingConfig{
+				Name:    "name",
+				Style:   uri.QueryStyleForm,
+				Explode: true,
+			}
+			if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+				return e.EncodeValue(conv.StringToString(request.Name))
 			}); err != nil {
 				return errors.Wrap(err, "encode query")
 			}

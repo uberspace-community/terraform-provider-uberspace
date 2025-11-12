@@ -63,12 +63,12 @@ func (r *WebdomainResource) Create(ctx context.Context, req resource.CreateReque
 		return
 	}
 
-	apiReq := client.CreateAsteroidsWebdomainsApplicationJSON(client.WebDomainRequest{
-		Domain:   plan.Domain.ValueString(),
+	apiReq := client.AsteroidsWebdomainsCreateApplicationJSON(client.WebDomainRequest{
+		Name:     plan.Name.ValueString(),
 		Asteroid: plan.Asteroid.ValueString(),
 	})
 
-	Webdomain, err := r.client.CreateAsteroidsWebdomains(ctx, &apiReq, client.CreateAsteroidsWebdomainsParams{
+	Webdomain, err := r.client.AsteroidsWebdomainsCreate(ctx, &apiReq, client.AsteroidsWebdomainsCreateParams{
 		AsteroidName: plan.Asteroid.ValueString(),
 	})
 	if err != nil {
@@ -76,11 +76,16 @@ func (r *WebdomainResource) Create(ctx context.Context, req resource.CreateReque
 		return
 	}
 
-	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.Asteroid = types.StringValue(Webdomain.Asteroid)
+	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
 	plan.Domain = types.StringValue(Webdomain.Domain)
+	plan.DomainDisplay = types.StringValue(Webdomain.DomainDisplay)
 	plan.DomainIdn = types.StringValue(Webdomain.DomainIdn)
+	plan.Format = types.StringValue("json")
+	plan.NameIdn = types.StringValue(Webdomain.Name)
+	plan.NameDisplay = types.StringValue(Webdomain.NameDisplay)
+	plan.NameIdn = types.StringValue(Webdomain.NameIdn)
 	plan.UpdatedAt = types.StringValue(Webdomain.UpdatedAt.Format(time.RFC3339))
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
@@ -95,9 +100,9 @@ func (r *WebdomainResource) Read(ctx context.Context, req resource.ReadRequest, 
 		return
 	}
 
-	Webdomain, err := r.client.GetAsteroidWebdomain(ctx, client.GetAsteroidWebdomainParams{
+	Webdomain, err := r.client.AsteroidsWebdomainsGet(ctx, client.AsteroidsWebdomainsGetParams{
 		AsteroidName: state.Asteroid.ValueString(),
-		Domain:       state.Domain.ValueString(),
+		Name:         state.Name.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read web domain, got error: %s", err))
@@ -108,7 +113,12 @@ func (r *WebdomainResource) Read(ctx context.Context, req resource.ReadRequest, 
 	state.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	state.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
 	state.Domain = types.StringValue(Webdomain.Domain)
+	state.DomainDisplay = types.StringValue(Webdomain.DomainDisplay)
 	state.DomainIdn = types.StringValue(Webdomain.DomainIdn)
+	state.Format = types.StringValue("json")
+	state.NameIdn = types.StringValue(Webdomain.Name)
+	state.NameDisplay = types.StringValue(Webdomain.NameDisplay)
+	state.NameIdn = types.StringValue(Webdomain.NameIdn)
 	state.UpdatedAt = types.StringValue(Webdomain.UpdatedAt.Format(time.RFC3339))
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
@@ -124,19 +134,19 @@ func (r *WebdomainResource) Update(ctx context.Context, req resource.UpdateReque
 		return
 	}
 
-	if err := r.client.DeleteAsteroidWebdomain(ctx, client.DeleteAsteroidWebdomainParams{
+	if err := r.client.AsteroidsWebdomainsDelete(ctx, client.AsteroidsWebdomainsDeleteParams{
 		AsteroidName: state.Asteroid.ValueString(),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain, got error: %s", err))
 		return
 	}
 
-	apiReq := client.CreateAsteroidsWebdomainsApplicationJSON(client.WebDomainRequest{
-		Domain:   plan.Domain.ValueString(),
+	apiReq := client.AsteroidsWebdomainsCreateApplicationJSON(client.WebDomainRequest{
+		Name:     plan.Name.ValueString(),
 		Asteroid: plan.Asteroid.ValueString(),
 	})
 
-	Webdomain, err := r.client.CreateAsteroidsWebdomains(ctx, &apiReq, client.CreateAsteroidsWebdomainsParams{
+	Webdomain, err := r.client.AsteroidsWebdomainsCreate(ctx, &apiReq, client.AsteroidsWebdomainsCreateParams{
 		AsteroidName: plan.Asteroid.ValueString(),
 	})
 	if err != nil {
@@ -148,7 +158,12 @@ func (r *WebdomainResource) Update(ctx context.Context, req resource.UpdateReque
 	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
 	plan.Domain = types.StringValue(Webdomain.Domain)
+	plan.DomainDisplay = types.StringValue(Webdomain.DomainDisplay)
 	plan.DomainIdn = types.StringValue(Webdomain.DomainIdn)
+	plan.Format = types.StringValue("json")
+	plan.NameIdn = types.StringValue(Webdomain.Name)
+	plan.NameDisplay = types.StringValue(Webdomain.NameDisplay)
+	plan.NameIdn = types.StringValue(Webdomain.NameIdn)
 	plan.UpdatedAt = types.StringValue(Webdomain.UpdatedAt.Format(time.RFC3339))
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
@@ -163,9 +178,9 @@ func (r *WebdomainResource) Delete(ctx context.Context, req resource.DeleteReque
 		return
 	}
 
-	if err := r.client.DeleteAsteroidWebdomain(ctx, client.DeleteAsteroidWebdomainParams{
+	if err := r.client.AsteroidsWebdomainsDelete(ctx, client.AsteroidsWebdomainsDeleteParams{
 		AsteroidName: state.Asteroid.ValueString(),
-		Domain:       state.Domain.ValueString(),
+		Name:         state.Name.ValueString(),
 	}); err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete web domain, got error: %s", err))
 		return

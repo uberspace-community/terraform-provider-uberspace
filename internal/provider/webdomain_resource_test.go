@@ -21,7 +21,7 @@ func TestAccWebdomainResource(t *testing.T) {
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain.test",
-						tfjsonpath.New("domain"),
+						tfjsonpath.New("name"),
 						knownvalue.StringExact("test.tf.uber8.space"),
 					),
 					statecheck.ExpectKnownValue(
@@ -43,7 +43,7 @@ func TestAccWebdomainResource(t *testing.T) {
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain.test",
-						tfjsonpath.New("domain"),
+						tfjsonpath.New("name"),
 						knownvalue.StringExact("test.tf.uber8.space"),
 					),
 					statecheck.ExpectKnownValue(
@@ -58,11 +58,11 @@ func TestAccWebdomainResource(t *testing.T) {
 	})
 }
 
-func testAccWebdomainResourceConfig(asteroid, domain string) string {
+func testAccWebdomainResourceConfig(asteroid, name string) string {
 	return fmt.Sprintf(`
 resource "uberspace_webdomain" "test" {
   asteroid = %[1]q
-  domain = %[2]q
+  name = %[2]q
 }
-`, asteroid, domain)
+`, asteroid, name)
 }

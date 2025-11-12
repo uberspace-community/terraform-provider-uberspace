@@ -69,9 +69,9 @@ func (r *SshkeyResource) Create(ctx context.Context, req resource.CreateRequest,
 		reqBody.KeyComment.SetTo(plan.KeyComment.ValueString())
 	}
 
-	apiReq := client.CreateAsteroidsSshkeysApplicationJSON(reqBody)
+	apiReq := client.AsteroidsSshkeysCreateApplicationJSON(reqBody)
 
-	sshKey, err := r.client.CreateAsteroidsSshkeys(ctx, &apiReq, client.CreateAsteroidsSshkeysParams{
+	sshKey, err := r.client.AsteroidsSshkeysCreate(ctx, &apiReq, client.AsteroidsSshkeysCreateParams{
 		AsteroidName: plan.Asteroid.ValueString(),
 	})
 	if err != nil {
@@ -94,6 +94,7 @@ func (r *SshkeyResource) Create(ctx context.Context, req resource.CreateRequest,
 	plan.KeyType = types.StringValue(string(sshKey.KeyType))
 	plan.Asteroid = types.StringValue(sshKey.Asteroid)
 	plan.AsteroidName = types.StringValue(sshKey.Asteroid)
+	plan.Format = types.StringValue("json")
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
@@ -107,7 +108,7 @@ func (r *SshkeyResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	sshKey, err := r.client.GetAsteroidSshkey(ctx, client.GetAsteroidSshkeyParams{
+	sshKey, err := r.client.AsteroidsSshkeysGet(ctx, client.AsteroidsSshkeysGetParams{
 		AsteroidName: state.Asteroid.ValueString(),
 		ID:           int(state.Id.ValueInt64()),
 	})
@@ -133,6 +134,7 @@ func (r *SshkeyResource) Read(ctx context.Context, req resource.ReadRequest, res
 	state.Asteroid = types.StringValue(sshKey.Asteroid)
 	state.AsteroidName = types.StringValue(sshKey.Asteroid)
 	state.Id = types.Int64Value(int64(sshKey.Pk))
+	state.Format = types.StringValue("json")
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
@@ -147,7 +149,7 @@ func (r *SshkeyResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	if err := r.client.DeleteAsteroidSshkey(ctx, client.DeleteAsteroidSshkeyParams{
+	if err := r.client.AsteroidsSshkeysDelete(ctx, client.AsteroidsSshkeysDeleteParams{
 		AsteroidName: state.Asteroid.ValueString(),
 		ID:           int(state.Id.ValueInt64()),
 	}); err != nil {
@@ -164,9 +166,9 @@ func (r *SshkeyResource) Update(ctx context.Context, req resource.UpdateRequest,
 		reqBody.KeyComment.SetTo(plan.KeyComment.ValueString())
 	}
 
-	apiReq := client.CreateAsteroidsSshkeysApplicationJSON(reqBody)
+	apiReq := client.AsteroidsSshkeysCreateApplicationJSON(reqBody)
 
-	sshKey, err := r.client.CreateAsteroidsSshkeys(ctx, &apiReq, client.CreateAsteroidsSshkeysParams{
+	sshKey, err := r.client.AsteroidsSshkeysCreate(ctx, &apiReq, client.AsteroidsSshkeysCreateParams{
 		AsteroidName: plan.Asteroid.ValueString(),
 	})
 	if err != nil {
@@ -189,6 +191,7 @@ func (r *SshkeyResource) Update(ctx context.Context, req resource.UpdateRequest,
 	plan.KeyType = types.StringValue(string(sshKey.KeyType))
 	plan.Asteroid = types.StringValue(sshKey.Asteroid)
 	plan.AsteroidName = types.StringValue(sshKey.Asteroid)
+	plan.Format = types.StringValue("json")
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
@@ -202,7 +205,7 @@ func (r *SshkeyResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	if err := r.client.DeleteAsteroidSshkey(ctx, client.DeleteAsteroidSshkeyParams{
+	if err := r.client.AsteroidsSshkeysDelete(ctx, client.AsteroidsSshkeysDeleteParams{
 		AsteroidName: state.Asteroid.ValueString(),
 		ID:           int(state.Id.ValueInt64()),
 	}); err != nil {

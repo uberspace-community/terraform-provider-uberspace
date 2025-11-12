@@ -9,74 +9,1723 @@ import (
 	"github.com/go-faster/errors"
 )
 
-type CreateAsteroidsMaildomainsApplicationJSON MailDomainRequest
+type AsteroidsGetFormat string
 
-func (*CreateAsteroidsMaildomainsApplicationJSON) createAsteroidsMaildomainsReq() {}
+const (
+	AsteroidsGetFormatJSON            AsteroidsGetFormat = "json"
+	AsteroidsGetFormatTextEventStream AsteroidsGetFormat = "text/event-stream"
+)
 
-type CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded MailDomainRequest
-
-func (*CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) createAsteroidsMaildomainsReq() {}
-
-type CreateAsteroidsMaildomainsUsersApplicationJSON MailUserRequest
-
-func (*CreateAsteroidsMaildomainsUsersApplicationJSON) createAsteroidsMaildomainsUsersReq() {}
-
-type CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded MailUserRequest
-
-func (*CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) createAsteroidsMaildomainsUsersReq() {
+// AllValues returns all AsteroidsGetFormat values.
+func (AsteroidsGetFormat) AllValues() []AsteroidsGetFormat {
+	return []AsteroidsGetFormat{
+		AsteroidsGetFormatJSON,
+		AsteroidsGetFormatTextEventStream,
+	}
 }
 
-type CreateAsteroidsSshkeysApplicationJSON SshKeyRequest
-
-func (*CreateAsteroidsSshkeysApplicationJSON) createAsteroidsSshkeysReq() {}
-
-type CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded SshKeyRequest
-
-func (*CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) createAsteroidsSshkeysReq() {}
-
-type CreateAsteroidsWebdomainsApplicationJSON WebDomainRequest
-
-func (*CreateAsteroidsWebdomainsApplicationJSON) createAsteroidsWebdomainsReq() {}
-
-type CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded WebDomainRequest
-
-func (*CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) createAsteroidsWebdomainsReq() {}
-
-type CreateAsteroidsWebdomainsBackendsApplicationJSON WebBackendRequest
-
-func (*CreateAsteroidsWebdomainsBackendsApplicationJSON) createAsteroidsWebdomainsBackendsReq() {}
-
-type CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded WebBackendRequest
-
-func (*CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) createAsteroidsWebdomainsBackendsReq() {
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
 }
 
-type CreateAsteroidsWebdomainsHeadersApplicationJSON WebHeaderRequest
-
-func (*CreateAsteroidsWebdomainsHeadersApplicationJSON) createAsteroidsWebdomainsHeadersReq() {}
-
-type CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded WebHeaderRequest
-
-func (*CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) createAsteroidsWebdomainsHeadersReq() {
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsGetFormat(data) {
+	case AsteroidsGetFormatJSON:
+		*s = AsteroidsGetFormatJSON
+		return nil
+	case AsteroidsGetFormatTextEventStream:
+		*s = AsteroidsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
 }
 
-// DeleteAsteroidMaildomainNoContent is response for DeleteAsteroidMaildomain operation.
-type DeleteAsteroidMaildomainNoContent struct{}
+type AsteroidsMaildomainsCreateApplicationJSON MailDomainRequest
 
-// DeleteAsteroidMaildomainUserNoContent is response for DeleteAsteroidMaildomainUser operation.
-type DeleteAsteroidMaildomainUserNoContent struct{}
+func (*AsteroidsMaildomainsCreateApplicationJSON) asteroidsMaildomainsCreateReq() {}
 
-// DeleteAsteroidSshkeyNoContent is response for DeleteAsteroidSshkey operation.
-type DeleteAsteroidSshkeyNoContent struct{}
+type AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded MailDomainRequest
 
-// DeleteAsteroidWebdomainBackendNoContent is response for DeleteAsteroidWebdomainBackend operation.
-type DeleteAsteroidWebdomainBackendNoContent struct{}
+func (*AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded) asteroidsMaildomainsCreateReq() {}
 
-// DeleteAsteroidWebdomainHeaderNoContent is response for DeleteAsteroidWebdomainHeader operation.
-type DeleteAsteroidWebdomainHeaderNoContent struct{}
+type AsteroidsMaildomainsCreateFormat string
 
-// DeleteAsteroidWebdomainNoContent is response for DeleteAsteroidWebdomain operation.
-type DeleteAsteroidWebdomainNoContent struct{}
+const (
+	AsteroidsMaildomainsCreateFormatJSON            AsteroidsMaildomainsCreateFormat = "json"
+	AsteroidsMaildomainsCreateFormatTextEventStream AsteroidsMaildomainsCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsCreateFormat values.
+func (AsteroidsMaildomainsCreateFormat) AllValues() []AsteroidsMaildomainsCreateFormat {
+	return []AsteroidsMaildomainsCreateFormat{
+		AsteroidsMaildomainsCreateFormatJSON,
+		AsteroidsMaildomainsCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsCreateFormat(data) {
+	case AsteroidsMaildomainsCreateFormatJSON:
+		*s = AsteroidsMaildomainsCreateFormatJSON
+		return nil
+	case AsteroidsMaildomainsCreateFormatTextEventStream:
+		*s = AsteroidsMaildomainsCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsDeleteFormat string
+
+const (
+	AsteroidsMaildomainsDeleteFormatJSON            AsteroidsMaildomainsDeleteFormat = "json"
+	AsteroidsMaildomainsDeleteFormatTextEventStream AsteroidsMaildomainsDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsDeleteFormat values.
+func (AsteroidsMaildomainsDeleteFormat) AllValues() []AsteroidsMaildomainsDeleteFormat {
+	return []AsteroidsMaildomainsDeleteFormat{
+		AsteroidsMaildomainsDeleteFormatJSON,
+		AsteroidsMaildomainsDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsDeleteFormat(data) {
+	case AsteroidsMaildomainsDeleteFormatJSON:
+		*s = AsteroidsMaildomainsDeleteFormatJSON
+		return nil
+	case AsteroidsMaildomainsDeleteFormatTextEventStream:
+		*s = AsteroidsMaildomainsDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsMaildomainsDeleteNoContent is response for AsteroidsMaildomainsDelete operation.
+type AsteroidsMaildomainsDeleteNoContent struct{}
+
+type AsteroidsMaildomainsGetFormat string
+
+const (
+	AsteroidsMaildomainsGetFormatJSON            AsteroidsMaildomainsGetFormat = "json"
+	AsteroidsMaildomainsGetFormatTextEventStream AsteroidsMaildomainsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsGetFormat values.
+func (AsteroidsMaildomainsGetFormat) AllValues() []AsteroidsMaildomainsGetFormat {
+	return []AsteroidsMaildomainsGetFormat{
+		AsteroidsMaildomainsGetFormatJSON,
+		AsteroidsMaildomainsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsGetFormat(data) {
+	case AsteroidsMaildomainsGetFormatJSON:
+		*s = AsteroidsMaildomainsGetFormatJSON
+		return nil
+	case AsteroidsMaildomainsGetFormatTextEventStream:
+		*s = AsteroidsMaildomainsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsListFormat string
+
+const (
+	AsteroidsMaildomainsListFormatJSON            AsteroidsMaildomainsListFormat = "json"
+	AsteroidsMaildomainsListFormatTextEventStream AsteroidsMaildomainsListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsListFormat values.
+func (AsteroidsMaildomainsListFormat) AllValues() []AsteroidsMaildomainsListFormat {
+	return []AsteroidsMaildomainsListFormat{
+		AsteroidsMaildomainsListFormatJSON,
+		AsteroidsMaildomainsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsListFormat(data) {
+	case AsteroidsMaildomainsListFormatJSON:
+		*s = AsteroidsMaildomainsListFormatJSON
+		return nil
+	case AsteroidsMaildomainsListFormatTextEventStream:
+		*s = AsteroidsMaildomainsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersCreateApplicationJSON MailUserRequest
+
+func (*AsteroidsMaildomainsUsersCreateApplicationJSON) asteroidsMaildomainsUsersCreateReq() {}
+
+type AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded MailUserRequest
+
+func (*AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded) asteroidsMaildomainsUsersCreateReq() {
+}
+
+type AsteroidsMaildomainsUsersCreateFormat string
+
+const (
+	AsteroidsMaildomainsUsersCreateFormatJSON            AsteroidsMaildomainsUsersCreateFormat = "json"
+	AsteroidsMaildomainsUsersCreateFormatTextEventStream AsteroidsMaildomainsUsersCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersCreateFormat values.
+func (AsteroidsMaildomainsUsersCreateFormat) AllValues() []AsteroidsMaildomainsUsersCreateFormat {
+	return []AsteroidsMaildomainsUsersCreateFormat{
+		AsteroidsMaildomainsUsersCreateFormatJSON,
+		AsteroidsMaildomainsUsersCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersCreateFormat(data) {
+	case AsteroidsMaildomainsUsersCreateFormatJSON:
+		*s = AsteroidsMaildomainsUsersCreateFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersCreateFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersDeleteFormat string
+
+const (
+	AsteroidsMaildomainsUsersDeleteFormatJSON            AsteroidsMaildomainsUsersDeleteFormat = "json"
+	AsteroidsMaildomainsUsersDeleteFormatTextEventStream AsteroidsMaildomainsUsersDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersDeleteFormat values.
+func (AsteroidsMaildomainsUsersDeleteFormat) AllValues() []AsteroidsMaildomainsUsersDeleteFormat {
+	return []AsteroidsMaildomainsUsersDeleteFormat{
+		AsteroidsMaildomainsUsersDeleteFormatJSON,
+		AsteroidsMaildomainsUsersDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersDeleteFormat(data) {
+	case AsteroidsMaildomainsUsersDeleteFormatJSON:
+		*s = AsteroidsMaildomainsUsersDeleteFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersDeleteFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsMaildomainsUsersDeleteNoContent is response for AsteroidsMaildomainsUsersDelete operation.
+type AsteroidsMaildomainsUsersDeleteNoContent struct{}
+
+type AsteroidsMaildomainsUsersForwardsCreateApplicationJSON MailForwardRequest
+
+func (*AsteroidsMaildomainsUsersForwardsCreateApplicationJSON) asteroidsMaildomainsUsersForwardsCreateReq() {
+}
+
+type AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded MailForwardRequest
+
+func (*AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded) asteroidsMaildomainsUsersForwardsCreateReq() {
+}
+
+type AsteroidsMaildomainsUsersForwardsCreateFormat string
+
+const (
+	AsteroidsMaildomainsUsersForwardsCreateFormatJSON            AsteroidsMaildomainsUsersForwardsCreateFormat = "json"
+	AsteroidsMaildomainsUsersForwardsCreateFormatTextEventStream AsteroidsMaildomainsUsersForwardsCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersForwardsCreateFormat values.
+func (AsteroidsMaildomainsUsersForwardsCreateFormat) AllValues() []AsteroidsMaildomainsUsersForwardsCreateFormat {
+	return []AsteroidsMaildomainsUsersForwardsCreateFormat{
+		AsteroidsMaildomainsUsersForwardsCreateFormatJSON,
+		AsteroidsMaildomainsUsersForwardsCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersForwardsCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersForwardsCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersForwardsCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersForwardsCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersForwardsCreateFormat(data) {
+	case AsteroidsMaildomainsUsersForwardsCreateFormatJSON:
+		*s = AsteroidsMaildomainsUsersForwardsCreateFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersForwardsCreateFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersForwardsCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersForwardsDeleteFormat string
+
+const (
+	AsteroidsMaildomainsUsersForwardsDeleteFormatJSON            AsteroidsMaildomainsUsersForwardsDeleteFormat = "json"
+	AsteroidsMaildomainsUsersForwardsDeleteFormatTextEventStream AsteroidsMaildomainsUsersForwardsDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersForwardsDeleteFormat values.
+func (AsteroidsMaildomainsUsersForwardsDeleteFormat) AllValues() []AsteroidsMaildomainsUsersForwardsDeleteFormat {
+	return []AsteroidsMaildomainsUsersForwardsDeleteFormat{
+		AsteroidsMaildomainsUsersForwardsDeleteFormatJSON,
+		AsteroidsMaildomainsUsersForwardsDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersForwardsDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersForwardsDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersForwardsDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersForwardsDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersForwardsDeleteFormat(data) {
+	case AsteroidsMaildomainsUsersForwardsDeleteFormatJSON:
+		*s = AsteroidsMaildomainsUsersForwardsDeleteFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersForwardsDeleteFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersForwardsDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsMaildomainsUsersForwardsDeleteNoContent is response for AsteroidsMaildomainsUsersForwardsDelete operation.
+type AsteroidsMaildomainsUsersForwardsDeleteNoContent struct{}
+
+type AsteroidsMaildomainsUsersForwardsGetFormat string
+
+const (
+	AsteroidsMaildomainsUsersForwardsGetFormatJSON            AsteroidsMaildomainsUsersForwardsGetFormat = "json"
+	AsteroidsMaildomainsUsersForwardsGetFormatTextEventStream AsteroidsMaildomainsUsersForwardsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersForwardsGetFormat values.
+func (AsteroidsMaildomainsUsersForwardsGetFormat) AllValues() []AsteroidsMaildomainsUsersForwardsGetFormat {
+	return []AsteroidsMaildomainsUsersForwardsGetFormat{
+		AsteroidsMaildomainsUsersForwardsGetFormatJSON,
+		AsteroidsMaildomainsUsersForwardsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersForwardsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersForwardsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersForwardsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersForwardsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersForwardsGetFormat(data) {
+	case AsteroidsMaildomainsUsersForwardsGetFormatJSON:
+		*s = AsteroidsMaildomainsUsersForwardsGetFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersForwardsGetFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersForwardsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersForwardsListFormat string
+
+const (
+	AsteroidsMaildomainsUsersForwardsListFormatJSON            AsteroidsMaildomainsUsersForwardsListFormat = "json"
+	AsteroidsMaildomainsUsersForwardsListFormatTextEventStream AsteroidsMaildomainsUsersForwardsListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersForwardsListFormat values.
+func (AsteroidsMaildomainsUsersForwardsListFormat) AllValues() []AsteroidsMaildomainsUsersForwardsListFormat {
+	return []AsteroidsMaildomainsUsersForwardsListFormat{
+		AsteroidsMaildomainsUsersForwardsListFormatJSON,
+		AsteroidsMaildomainsUsersForwardsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersForwardsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersForwardsListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersForwardsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersForwardsListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersForwardsListFormat(data) {
+	case AsteroidsMaildomainsUsersForwardsListFormatJSON:
+		*s = AsteroidsMaildomainsUsersForwardsListFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersForwardsListFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersForwardsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersGetFormat string
+
+const (
+	AsteroidsMaildomainsUsersGetFormatJSON            AsteroidsMaildomainsUsersGetFormat = "json"
+	AsteroidsMaildomainsUsersGetFormatTextEventStream AsteroidsMaildomainsUsersGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersGetFormat values.
+func (AsteroidsMaildomainsUsersGetFormat) AllValues() []AsteroidsMaildomainsUsersGetFormat {
+	return []AsteroidsMaildomainsUsersGetFormat{
+		AsteroidsMaildomainsUsersGetFormatJSON,
+		AsteroidsMaildomainsUsersGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersGetFormat(data) {
+	case AsteroidsMaildomainsUsersGetFormatJSON:
+		*s = AsteroidsMaildomainsUsersGetFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersGetFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersListFormat string
+
+const (
+	AsteroidsMaildomainsUsersListFormatJSON            AsteroidsMaildomainsUsersListFormat = "json"
+	AsteroidsMaildomainsUsersListFormatTextEventStream AsteroidsMaildomainsUsersListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersListFormat values.
+func (AsteroidsMaildomainsUsersListFormat) AllValues() []AsteroidsMaildomainsUsersListFormat {
+	return []AsteroidsMaildomainsUsersListFormat{
+		AsteroidsMaildomainsUsersListFormatJSON,
+		AsteroidsMaildomainsUsersListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersListFormat(data) {
+	case AsteroidsMaildomainsUsersListFormatJSON:
+		*s = AsteroidsMaildomainsUsersListFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersListFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersPatchApplicationJSON PatchedMailUserRequest
+
+func (*AsteroidsMaildomainsUsersPatchApplicationJSON) asteroidsMaildomainsUsersPatchReq() {}
+
+type AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded PatchedMailUserRequest
+
+func (*AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded) asteroidsMaildomainsUsersPatchReq() {
+}
+
+type AsteroidsMaildomainsUsersPatchFormat string
+
+const (
+	AsteroidsMaildomainsUsersPatchFormatJSON            AsteroidsMaildomainsUsersPatchFormat = "json"
+	AsteroidsMaildomainsUsersPatchFormatTextEventStream AsteroidsMaildomainsUsersPatchFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMaildomainsUsersPatchFormat values.
+func (AsteroidsMaildomainsUsersPatchFormat) AllValues() []AsteroidsMaildomainsUsersPatchFormat {
+	return []AsteroidsMaildomainsUsersPatchFormat{
+		AsteroidsMaildomainsUsersPatchFormatJSON,
+		AsteroidsMaildomainsUsersPatchFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMaildomainsUsersPatchFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMaildomainsUsersPatchFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMaildomainsUsersPatchFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMaildomainsUsersPatchFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMaildomainsUsersPatchFormat(data) {
+	case AsteroidsMaildomainsUsersPatchFormatJSON:
+		*s = AsteroidsMaildomainsUsersPatchFormatJSON
+		return nil
+	case AsteroidsMaildomainsUsersPatchFormatTextEventStream:
+		*s = AsteroidsMaildomainsUsersPatchFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsMaildomainsUsersPatchReqEmptyBody struct{}
+
+func (*AsteroidsMaildomainsUsersPatchReqEmptyBody) asteroidsMaildomainsUsersPatchReq() {}
+
+type AsteroidsMailusersListFormat string
+
+const (
+	AsteroidsMailusersListFormatJSON            AsteroidsMailusersListFormat = "json"
+	AsteroidsMailusersListFormatTextEventStream AsteroidsMailusersListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsMailusersListFormat values.
+func (AsteroidsMailusersListFormat) AllValues() []AsteroidsMailusersListFormat {
+	return []AsteroidsMailusersListFormat{
+		AsteroidsMailusersListFormatJSON,
+		AsteroidsMailusersListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsMailusersListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsMailusersListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsMailusersListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsMailusersListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsMailusersListFormat(data) {
+	case AsteroidsMailusersListFormatJSON:
+		*s = AsteroidsMailusersListFormatJSON
+		return nil
+	case AsteroidsMailusersListFormatTextEventStream:
+		*s = AsteroidsMailusersListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsPatchApplicationJSON PatchedExternalAsteroidRequest
+
+func (*AsteroidsPatchApplicationJSON) asteroidsPatchReq() {}
+
+type AsteroidsPatchApplicationXWwwFormUrlencoded PatchedExternalAsteroidRequest
+
+func (*AsteroidsPatchApplicationXWwwFormUrlencoded) asteroidsPatchReq() {}
+
+type AsteroidsPatchFormat string
+
+const (
+	AsteroidsPatchFormatJSON            AsteroidsPatchFormat = "json"
+	AsteroidsPatchFormatTextEventStream AsteroidsPatchFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsPatchFormat values.
+func (AsteroidsPatchFormat) AllValues() []AsteroidsPatchFormat {
+	return []AsteroidsPatchFormat{
+		AsteroidsPatchFormatJSON,
+		AsteroidsPatchFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsPatchFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsPatchFormatJSON:
+		return []byte(s), nil
+	case AsteroidsPatchFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsPatchFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsPatchFormat(data) {
+	case AsteroidsPatchFormatJSON:
+		*s = AsteroidsPatchFormatJSON
+		return nil
+	case AsteroidsPatchFormatTextEventStream:
+		*s = AsteroidsPatchFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsPatchReqEmptyBody struct{}
+
+func (*AsteroidsPatchReqEmptyBody) asteroidsPatchReq() {}
+
+type AsteroidsSshkeysCreateApplicationJSON SshKeyRequest
+
+func (*AsteroidsSshkeysCreateApplicationJSON) asteroidsSshkeysCreateReq() {}
+
+type AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded SshKeyRequest
+
+func (*AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded) asteroidsSshkeysCreateReq() {}
+
+type AsteroidsSshkeysCreateFormat string
+
+const (
+	AsteroidsSshkeysCreateFormatJSON            AsteroidsSshkeysCreateFormat = "json"
+	AsteroidsSshkeysCreateFormatTextEventStream AsteroidsSshkeysCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsSshkeysCreateFormat values.
+func (AsteroidsSshkeysCreateFormat) AllValues() []AsteroidsSshkeysCreateFormat {
+	return []AsteroidsSshkeysCreateFormat{
+		AsteroidsSshkeysCreateFormatJSON,
+		AsteroidsSshkeysCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsSshkeysCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsSshkeysCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsSshkeysCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsSshkeysCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsSshkeysCreateFormat(data) {
+	case AsteroidsSshkeysCreateFormatJSON:
+		*s = AsteroidsSshkeysCreateFormatJSON
+		return nil
+	case AsteroidsSshkeysCreateFormatTextEventStream:
+		*s = AsteroidsSshkeysCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsSshkeysDeleteFormat string
+
+const (
+	AsteroidsSshkeysDeleteFormatJSON            AsteroidsSshkeysDeleteFormat = "json"
+	AsteroidsSshkeysDeleteFormatTextEventStream AsteroidsSshkeysDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsSshkeysDeleteFormat values.
+func (AsteroidsSshkeysDeleteFormat) AllValues() []AsteroidsSshkeysDeleteFormat {
+	return []AsteroidsSshkeysDeleteFormat{
+		AsteroidsSshkeysDeleteFormatJSON,
+		AsteroidsSshkeysDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsSshkeysDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsSshkeysDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsSshkeysDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsSshkeysDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsSshkeysDeleteFormat(data) {
+	case AsteroidsSshkeysDeleteFormatJSON:
+		*s = AsteroidsSshkeysDeleteFormatJSON
+		return nil
+	case AsteroidsSshkeysDeleteFormatTextEventStream:
+		*s = AsteroidsSshkeysDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsSshkeysDeleteNoContent is response for AsteroidsSshkeysDelete operation.
+type AsteroidsSshkeysDeleteNoContent struct{}
+
+type AsteroidsSshkeysGetFormat string
+
+const (
+	AsteroidsSshkeysGetFormatJSON            AsteroidsSshkeysGetFormat = "json"
+	AsteroidsSshkeysGetFormatTextEventStream AsteroidsSshkeysGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsSshkeysGetFormat values.
+func (AsteroidsSshkeysGetFormat) AllValues() []AsteroidsSshkeysGetFormat {
+	return []AsteroidsSshkeysGetFormat{
+		AsteroidsSshkeysGetFormatJSON,
+		AsteroidsSshkeysGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsSshkeysGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsSshkeysGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsSshkeysGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsSshkeysGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsSshkeysGetFormat(data) {
+	case AsteroidsSshkeysGetFormatJSON:
+		*s = AsteroidsSshkeysGetFormatJSON
+		return nil
+	case AsteroidsSshkeysGetFormatTextEventStream:
+		*s = AsteroidsSshkeysGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsSshkeysListFormat string
+
+const (
+	AsteroidsSshkeysListFormatJSON            AsteroidsSshkeysListFormat = "json"
+	AsteroidsSshkeysListFormatTextEventStream AsteroidsSshkeysListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsSshkeysListFormat values.
+func (AsteroidsSshkeysListFormat) AllValues() []AsteroidsSshkeysListFormat {
+	return []AsteroidsSshkeysListFormat{
+		AsteroidsSshkeysListFormatJSON,
+		AsteroidsSshkeysListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsSshkeysListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsSshkeysListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsSshkeysListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsSshkeysListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsSshkeysListFormat(data) {
+	case AsteroidsSshkeysListFormatJSON:
+		*s = AsteroidsSshkeysListFormatJSON
+		return nil
+	case AsteroidsSshkeysListFormatTextEventStream:
+		*s = AsteroidsSshkeysListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsToolversionsGetFormat string
+
+const (
+	AsteroidsToolversionsGetFormatJSON            AsteroidsToolversionsGetFormat = "json"
+	AsteroidsToolversionsGetFormatTextEventStream AsteroidsToolversionsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsToolversionsGetFormat values.
+func (AsteroidsToolversionsGetFormat) AllValues() []AsteroidsToolversionsGetFormat {
+	return []AsteroidsToolversionsGetFormat{
+		AsteroidsToolversionsGetFormatJSON,
+		AsteroidsToolversionsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsToolversionsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsToolversionsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsToolversionsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsToolversionsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsToolversionsGetFormat(data) {
+	case AsteroidsToolversionsGetFormatJSON:
+		*s = AsteroidsToolversionsGetFormatJSON
+		return nil
+	case AsteroidsToolversionsGetFormatTextEventStream:
+		*s = AsteroidsToolversionsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsToolversionsListFormat string
+
+const (
+	AsteroidsToolversionsListFormatJSON            AsteroidsToolversionsListFormat = "json"
+	AsteroidsToolversionsListFormatTextEventStream AsteroidsToolversionsListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsToolversionsListFormat values.
+func (AsteroidsToolversionsListFormat) AllValues() []AsteroidsToolversionsListFormat {
+	return []AsteroidsToolversionsListFormat{
+		AsteroidsToolversionsListFormatJSON,
+		AsteroidsToolversionsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsToolversionsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsToolversionsListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsToolversionsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsToolversionsListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsToolversionsListFormat(data) {
+	case AsteroidsToolversionsListFormatJSON:
+		*s = AsteroidsToolversionsListFormatJSON
+		return nil
+	case AsteroidsToolversionsListFormatTextEventStream:
+		*s = AsteroidsToolversionsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsToolversionsPatchApplicationJSON PatchedSelectedToolVersionRequest
+
+func (*AsteroidsToolversionsPatchApplicationJSON) asteroidsToolversionsPatchReq() {}
+
+type AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded PatchedSelectedToolVersionRequest
+
+func (*AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded) asteroidsToolversionsPatchReq() {}
+
+type AsteroidsToolversionsPatchFormat string
+
+const (
+	AsteroidsToolversionsPatchFormatJSON            AsteroidsToolversionsPatchFormat = "json"
+	AsteroidsToolversionsPatchFormatTextEventStream AsteroidsToolversionsPatchFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsToolversionsPatchFormat values.
+func (AsteroidsToolversionsPatchFormat) AllValues() []AsteroidsToolversionsPatchFormat {
+	return []AsteroidsToolversionsPatchFormat{
+		AsteroidsToolversionsPatchFormatJSON,
+		AsteroidsToolversionsPatchFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsToolversionsPatchFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsToolversionsPatchFormatJSON:
+		return []byte(s), nil
+	case AsteroidsToolversionsPatchFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsToolversionsPatchFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsToolversionsPatchFormat(data) {
+	case AsteroidsToolversionsPatchFormatJSON:
+		*s = AsteroidsToolversionsPatchFormatJSON
+		return nil
+	case AsteroidsToolversionsPatchFormatTextEventStream:
+		*s = AsteroidsToolversionsPatchFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsToolversionsPatchReqEmptyBody struct{}
+
+func (*AsteroidsToolversionsPatchReqEmptyBody) asteroidsToolversionsPatchReq() {}
+
+type AsteroidsWebbackendsGetFormat string
+
+const (
+	AsteroidsWebbackendsGetFormatJSON            AsteroidsWebbackendsGetFormat = "json"
+	AsteroidsWebbackendsGetFormatTextEventStream AsteroidsWebbackendsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebbackendsGetFormat values.
+func (AsteroidsWebbackendsGetFormat) AllValues() []AsteroidsWebbackendsGetFormat {
+	return []AsteroidsWebbackendsGetFormat{
+		AsteroidsWebbackendsGetFormatJSON,
+		AsteroidsWebbackendsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebbackendsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebbackendsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebbackendsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebbackendsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebbackendsGetFormat(data) {
+	case AsteroidsWebbackendsGetFormatJSON:
+		*s = AsteroidsWebbackendsGetFormatJSON
+		return nil
+	case AsteroidsWebbackendsGetFormatTextEventStream:
+		*s = AsteroidsWebbackendsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebbackendsListFormat string
+
+const (
+	AsteroidsWebbackendsListFormatJSON            AsteroidsWebbackendsListFormat = "json"
+	AsteroidsWebbackendsListFormatTextEventStream AsteroidsWebbackendsListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebbackendsListFormat values.
+func (AsteroidsWebbackendsListFormat) AllValues() []AsteroidsWebbackendsListFormat {
+	return []AsteroidsWebbackendsListFormat{
+		AsteroidsWebbackendsListFormatJSON,
+		AsteroidsWebbackendsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebbackendsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebbackendsListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebbackendsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebbackendsListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebbackendsListFormat(data) {
+	case AsteroidsWebbackendsListFormatJSON:
+		*s = AsteroidsWebbackendsListFormatJSON
+		return nil
+	case AsteroidsWebbackendsListFormatTextEventStream:
+		*s = AsteroidsWebbackendsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsBackendsCreateApplicationJSON WebBackendRequest
+
+func (*AsteroidsWebdomainsBackendsCreateApplicationJSON) asteroidsWebdomainsBackendsCreateReq() {}
+
+type AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded WebBackendRequest
+
+func (*AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded) asteroidsWebdomainsBackendsCreateReq() {
+}
+
+type AsteroidsWebdomainsBackendsCreateFormat string
+
+const (
+	AsteroidsWebdomainsBackendsCreateFormatJSON            AsteroidsWebdomainsBackendsCreateFormat = "json"
+	AsteroidsWebdomainsBackendsCreateFormatTextEventStream AsteroidsWebdomainsBackendsCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsBackendsCreateFormat values.
+func (AsteroidsWebdomainsBackendsCreateFormat) AllValues() []AsteroidsWebdomainsBackendsCreateFormat {
+	return []AsteroidsWebdomainsBackendsCreateFormat{
+		AsteroidsWebdomainsBackendsCreateFormatJSON,
+		AsteroidsWebdomainsBackendsCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsBackendsCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsBackendsCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsBackendsCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsBackendsCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsBackendsCreateFormat(data) {
+	case AsteroidsWebdomainsBackendsCreateFormatJSON:
+		*s = AsteroidsWebdomainsBackendsCreateFormatJSON
+		return nil
+	case AsteroidsWebdomainsBackendsCreateFormatTextEventStream:
+		*s = AsteroidsWebdomainsBackendsCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsBackendsDeleteFormat string
+
+const (
+	AsteroidsWebdomainsBackendsDeleteFormatJSON            AsteroidsWebdomainsBackendsDeleteFormat = "json"
+	AsteroidsWebdomainsBackendsDeleteFormatTextEventStream AsteroidsWebdomainsBackendsDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsBackendsDeleteFormat values.
+func (AsteroidsWebdomainsBackendsDeleteFormat) AllValues() []AsteroidsWebdomainsBackendsDeleteFormat {
+	return []AsteroidsWebdomainsBackendsDeleteFormat{
+		AsteroidsWebdomainsBackendsDeleteFormatJSON,
+		AsteroidsWebdomainsBackendsDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsBackendsDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsBackendsDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsBackendsDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsBackendsDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsBackendsDeleteFormat(data) {
+	case AsteroidsWebdomainsBackendsDeleteFormatJSON:
+		*s = AsteroidsWebdomainsBackendsDeleteFormatJSON
+		return nil
+	case AsteroidsWebdomainsBackendsDeleteFormatTextEventStream:
+		*s = AsteroidsWebdomainsBackendsDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsWebdomainsBackendsDeleteNoContent is response for AsteroidsWebdomainsBackendsDelete operation.
+type AsteroidsWebdomainsBackendsDeleteNoContent struct{}
+
+type AsteroidsWebdomainsBackendsGetFormat string
+
+const (
+	AsteroidsWebdomainsBackendsGetFormatJSON            AsteroidsWebdomainsBackendsGetFormat = "json"
+	AsteroidsWebdomainsBackendsGetFormatTextEventStream AsteroidsWebdomainsBackendsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsBackendsGetFormat values.
+func (AsteroidsWebdomainsBackendsGetFormat) AllValues() []AsteroidsWebdomainsBackendsGetFormat {
+	return []AsteroidsWebdomainsBackendsGetFormat{
+		AsteroidsWebdomainsBackendsGetFormatJSON,
+		AsteroidsWebdomainsBackendsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsBackendsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsBackendsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsBackendsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsBackendsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsBackendsGetFormat(data) {
+	case AsteroidsWebdomainsBackendsGetFormatJSON:
+		*s = AsteroidsWebdomainsBackendsGetFormatJSON
+		return nil
+	case AsteroidsWebdomainsBackendsGetFormatTextEventStream:
+		*s = AsteroidsWebdomainsBackendsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsBackendsListFormat string
+
+const (
+	AsteroidsWebdomainsBackendsListFormatJSON            AsteroidsWebdomainsBackendsListFormat = "json"
+	AsteroidsWebdomainsBackendsListFormatTextEventStream AsteroidsWebdomainsBackendsListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsBackendsListFormat values.
+func (AsteroidsWebdomainsBackendsListFormat) AllValues() []AsteroidsWebdomainsBackendsListFormat {
+	return []AsteroidsWebdomainsBackendsListFormat{
+		AsteroidsWebdomainsBackendsListFormatJSON,
+		AsteroidsWebdomainsBackendsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsBackendsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsBackendsListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsBackendsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsBackendsListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsBackendsListFormat(data) {
+	case AsteroidsWebdomainsBackendsListFormatJSON:
+		*s = AsteroidsWebdomainsBackendsListFormatJSON
+		return nil
+	case AsteroidsWebdomainsBackendsListFormatTextEventStream:
+		*s = AsteroidsWebdomainsBackendsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsCreateApplicationJSON WebDomainRequest
+
+func (*AsteroidsWebdomainsCreateApplicationJSON) asteroidsWebdomainsCreateReq() {}
+
+type AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded WebDomainRequest
+
+func (*AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded) asteroidsWebdomainsCreateReq() {}
+
+type AsteroidsWebdomainsCreateFormat string
+
+const (
+	AsteroidsWebdomainsCreateFormatJSON            AsteroidsWebdomainsCreateFormat = "json"
+	AsteroidsWebdomainsCreateFormatTextEventStream AsteroidsWebdomainsCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsCreateFormat values.
+func (AsteroidsWebdomainsCreateFormat) AllValues() []AsteroidsWebdomainsCreateFormat {
+	return []AsteroidsWebdomainsCreateFormat{
+		AsteroidsWebdomainsCreateFormatJSON,
+		AsteroidsWebdomainsCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsCreateFormat(data) {
+	case AsteroidsWebdomainsCreateFormatJSON:
+		*s = AsteroidsWebdomainsCreateFormatJSON
+		return nil
+	case AsteroidsWebdomainsCreateFormatTextEventStream:
+		*s = AsteroidsWebdomainsCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsDeleteFormat string
+
+const (
+	AsteroidsWebdomainsDeleteFormatJSON            AsteroidsWebdomainsDeleteFormat = "json"
+	AsteroidsWebdomainsDeleteFormatTextEventStream AsteroidsWebdomainsDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsDeleteFormat values.
+func (AsteroidsWebdomainsDeleteFormat) AllValues() []AsteroidsWebdomainsDeleteFormat {
+	return []AsteroidsWebdomainsDeleteFormat{
+		AsteroidsWebdomainsDeleteFormatJSON,
+		AsteroidsWebdomainsDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsDeleteFormat(data) {
+	case AsteroidsWebdomainsDeleteFormatJSON:
+		*s = AsteroidsWebdomainsDeleteFormatJSON
+		return nil
+	case AsteroidsWebdomainsDeleteFormatTextEventStream:
+		*s = AsteroidsWebdomainsDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsWebdomainsDeleteNoContent is response for AsteroidsWebdomainsDelete operation.
+type AsteroidsWebdomainsDeleteNoContent struct{}
+
+type AsteroidsWebdomainsGetFormat string
+
+const (
+	AsteroidsWebdomainsGetFormatJSON            AsteroidsWebdomainsGetFormat = "json"
+	AsteroidsWebdomainsGetFormatTextEventStream AsteroidsWebdomainsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsGetFormat values.
+func (AsteroidsWebdomainsGetFormat) AllValues() []AsteroidsWebdomainsGetFormat {
+	return []AsteroidsWebdomainsGetFormat{
+		AsteroidsWebdomainsGetFormatJSON,
+		AsteroidsWebdomainsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsGetFormat(data) {
+	case AsteroidsWebdomainsGetFormatJSON:
+		*s = AsteroidsWebdomainsGetFormatJSON
+		return nil
+	case AsteroidsWebdomainsGetFormatTextEventStream:
+		*s = AsteroidsWebdomainsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsHeadersCreateApplicationJSON WebHeaderRequest
+
+func (*AsteroidsWebdomainsHeadersCreateApplicationJSON) asteroidsWebdomainsHeadersCreateReq() {}
+
+type AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded WebHeaderRequest
+
+func (*AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded) asteroidsWebdomainsHeadersCreateReq() {
+}
+
+type AsteroidsWebdomainsHeadersCreateFormat string
+
+const (
+	AsteroidsWebdomainsHeadersCreateFormatJSON            AsteroidsWebdomainsHeadersCreateFormat = "json"
+	AsteroidsWebdomainsHeadersCreateFormatTextEventStream AsteroidsWebdomainsHeadersCreateFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsHeadersCreateFormat values.
+func (AsteroidsWebdomainsHeadersCreateFormat) AllValues() []AsteroidsWebdomainsHeadersCreateFormat {
+	return []AsteroidsWebdomainsHeadersCreateFormat{
+		AsteroidsWebdomainsHeadersCreateFormatJSON,
+		AsteroidsWebdomainsHeadersCreateFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsHeadersCreateFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsHeadersCreateFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsHeadersCreateFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsHeadersCreateFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsHeadersCreateFormat(data) {
+	case AsteroidsWebdomainsHeadersCreateFormatJSON:
+		*s = AsteroidsWebdomainsHeadersCreateFormatJSON
+		return nil
+	case AsteroidsWebdomainsHeadersCreateFormatTextEventStream:
+		*s = AsteroidsWebdomainsHeadersCreateFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsHeadersDeleteFormat string
+
+const (
+	AsteroidsWebdomainsHeadersDeleteFormatJSON            AsteroidsWebdomainsHeadersDeleteFormat = "json"
+	AsteroidsWebdomainsHeadersDeleteFormatTextEventStream AsteroidsWebdomainsHeadersDeleteFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsHeadersDeleteFormat values.
+func (AsteroidsWebdomainsHeadersDeleteFormat) AllValues() []AsteroidsWebdomainsHeadersDeleteFormat {
+	return []AsteroidsWebdomainsHeadersDeleteFormat{
+		AsteroidsWebdomainsHeadersDeleteFormatJSON,
+		AsteroidsWebdomainsHeadersDeleteFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsHeadersDeleteFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsHeadersDeleteFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsHeadersDeleteFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsHeadersDeleteFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsHeadersDeleteFormat(data) {
+	case AsteroidsWebdomainsHeadersDeleteFormatJSON:
+		*s = AsteroidsWebdomainsHeadersDeleteFormatJSON
+		return nil
+	case AsteroidsWebdomainsHeadersDeleteFormatTextEventStream:
+		*s = AsteroidsWebdomainsHeadersDeleteFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+// AsteroidsWebdomainsHeadersDeleteNoContent is response for AsteroidsWebdomainsHeadersDelete operation.
+type AsteroidsWebdomainsHeadersDeleteNoContent struct{}
+
+type AsteroidsWebdomainsHeadersGetFormat string
+
+const (
+	AsteroidsWebdomainsHeadersGetFormatJSON            AsteroidsWebdomainsHeadersGetFormat = "json"
+	AsteroidsWebdomainsHeadersGetFormatTextEventStream AsteroidsWebdomainsHeadersGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsHeadersGetFormat values.
+func (AsteroidsWebdomainsHeadersGetFormat) AllValues() []AsteroidsWebdomainsHeadersGetFormat {
+	return []AsteroidsWebdomainsHeadersGetFormat{
+		AsteroidsWebdomainsHeadersGetFormatJSON,
+		AsteroidsWebdomainsHeadersGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsHeadersGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsHeadersGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsHeadersGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsHeadersGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsHeadersGetFormat(data) {
+	case AsteroidsWebdomainsHeadersGetFormatJSON:
+		*s = AsteroidsWebdomainsHeadersGetFormatJSON
+		return nil
+	case AsteroidsWebdomainsHeadersGetFormatTextEventStream:
+		*s = AsteroidsWebdomainsHeadersGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsHeadersListFormat string
+
+const (
+	AsteroidsWebdomainsHeadersListFormatJSON            AsteroidsWebdomainsHeadersListFormat = "json"
+	AsteroidsWebdomainsHeadersListFormatTextEventStream AsteroidsWebdomainsHeadersListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsHeadersListFormat values.
+func (AsteroidsWebdomainsHeadersListFormat) AllValues() []AsteroidsWebdomainsHeadersListFormat {
+	return []AsteroidsWebdomainsHeadersListFormat{
+		AsteroidsWebdomainsHeadersListFormatJSON,
+		AsteroidsWebdomainsHeadersListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsHeadersListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsHeadersListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsHeadersListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsHeadersListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsHeadersListFormat(data) {
+	case AsteroidsWebdomainsHeadersListFormatJSON:
+		*s = AsteroidsWebdomainsHeadersListFormatJSON
+		return nil
+	case AsteroidsWebdomainsHeadersListFormatTextEventStream:
+		*s = AsteroidsWebdomainsHeadersListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebdomainsListFormat string
+
+const (
+	AsteroidsWebdomainsListFormatJSON            AsteroidsWebdomainsListFormat = "json"
+	AsteroidsWebdomainsListFormatTextEventStream AsteroidsWebdomainsListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebdomainsListFormat values.
+func (AsteroidsWebdomainsListFormat) AllValues() []AsteroidsWebdomainsListFormat {
+	return []AsteroidsWebdomainsListFormat{
+		AsteroidsWebdomainsListFormatJSON,
+		AsteroidsWebdomainsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebdomainsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebdomainsListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebdomainsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebdomainsListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebdomainsListFormat(data) {
+	case AsteroidsWebdomainsListFormatJSON:
+		*s = AsteroidsWebdomainsListFormatJSON
+		return nil
+	case AsteroidsWebdomainsListFormatTextEventStream:
+		*s = AsteroidsWebdomainsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebheadersGetFormat string
+
+const (
+	AsteroidsWebheadersGetFormatJSON            AsteroidsWebheadersGetFormat = "json"
+	AsteroidsWebheadersGetFormatTextEventStream AsteroidsWebheadersGetFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebheadersGetFormat values.
+func (AsteroidsWebheadersGetFormat) AllValues() []AsteroidsWebheadersGetFormat {
+	return []AsteroidsWebheadersGetFormat{
+		AsteroidsWebheadersGetFormatJSON,
+		AsteroidsWebheadersGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebheadersGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebheadersGetFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebheadersGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebheadersGetFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebheadersGetFormat(data) {
+	case AsteroidsWebheadersGetFormatJSON:
+		*s = AsteroidsWebheadersGetFormatJSON
+		return nil
+	case AsteroidsWebheadersGetFormatTextEventStream:
+		*s = AsteroidsWebheadersGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type AsteroidsWebheadersListFormat string
+
+const (
+	AsteroidsWebheadersListFormatJSON            AsteroidsWebheadersListFormat = "json"
+	AsteroidsWebheadersListFormatTextEventStream AsteroidsWebheadersListFormat = "text/event-stream"
+)
+
+// AllValues returns all AsteroidsWebheadersListFormat values.
+func (AsteroidsWebheadersListFormat) AllValues() []AsteroidsWebheadersListFormat {
+	return []AsteroidsWebheadersListFormat{
+		AsteroidsWebheadersListFormatJSON,
+		AsteroidsWebheadersListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s AsteroidsWebheadersListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case AsteroidsWebheadersListFormatJSON:
+		return []byte(s), nil
+	case AsteroidsWebheadersListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *AsteroidsWebheadersListFormat) UnmarshalText(data []byte) error {
+	switch AsteroidsWebheadersListFormat(data) {
+	case AsteroidsWebheadersListFormatJSON:
+		*s = AsteroidsWebheadersListFormatJSON
+		return nil
+	case AsteroidsWebheadersListFormatTextEventStream:
+		*s = AsteroidsWebheadersListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
 
 // * `APACHE` - Apache
 // * `STATIC` - Static
@@ -192,65 +1841,20 @@ func (s *DnsStateEnum) UnmarshalText(data []byte) error {
 
 // Ref: #/components/schemas/ExternalAsteroid
 type ExternalAsteroid struct {
-	// Whether this asteroid can be used or is locked, e.g. because of missing payment.
-	Active             bool      `json:"active"`
-	CreatedAt          time.Time `json:"created_at"`
-	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
-	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
-	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
-	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
+	Pk string `json:"pk"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Name string `json:"name"`
 	// Hostname of a server, e.g. 'tuttle'.
 	Host string `json:"host"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Name         string    `json:"name"`
-	PasswordHash OptString `json:"password_hash"`
-	Pk           string    `json:"pk"`
-	UpdatedAt    time.Time `json:"updated_at"`
-}
-
-// GetActive returns the value of Active.
-func (s *ExternalAsteroid) GetActive() bool {
-	return s.Active
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *ExternalAsteroid) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
-func (s *ExternalAsteroid) GetFlagLogAccessNginx() OptBool {
-	return s.FlagLogAccessNginx
-}
-
-// GetFlagLogErrorApache returns the value of FlagLogErrorApache.
-func (s *ExternalAsteroid) GetFlagLogErrorApache() OptBool {
-	return s.FlagLogErrorApache
-}
-
-// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
-func (s *ExternalAsteroid) GetFlagLogErrorPhp() OptBool {
-	return s.FlagLogErrorPhp
-}
-
-// GetFlagPageReplace500 returns the value of FlagPageReplace500.
-func (s *ExternalAsteroid) GetFlagPageReplace500() OptBool {
-	return s.FlagPageReplace500
-}
-
-// GetHost returns the value of Host.
-func (s *ExternalAsteroid) GetHost() string {
-	return s.Host
-}
-
-// GetName returns the value of Name.
-func (s *ExternalAsteroid) GetName() string {
-	return s.Name
-}
-
-// GetPasswordHash returns the value of PasswordHash.
-func (s *ExternalAsteroid) GetPasswordHash() OptString {
-	return s.PasswordHash
+	// Whether this asteroid can be used or is locked, e.g. because of missing payment.
+	Active             bool         `json:"active"`
+	FlagLogErrorPhp    OptBool      `json:"flag_log_error_php"`
+	FlagLogErrorApache OptBool      `json:"flag_log_error_apache"`
+	FlagLogAccessNginx OptBool      `json:"flag_log_access_nginx"`
+	FlagPageReplace500 OptBool      `json:"flag_page_replace_500"`
+	PasswordHash       OptNilString `json:"password_hash"`
+	CreatedAt          time.Time    `json:"created_at"`
+	UpdatedAt          time.Time    `json:"updated_at"`
 }
 
 // GetPk returns the value of Pk.
@@ -258,44 +1862,59 @@ func (s *ExternalAsteroid) GetPk() string {
 	return s.Pk
 }
 
+// GetName returns the value of Name.
+func (s *ExternalAsteroid) GetName() string {
+	return s.Name
+}
+
+// GetHost returns the value of Host.
+func (s *ExternalAsteroid) GetHost() string {
+	return s.Host
+}
+
+// GetActive returns the value of Active.
+func (s *ExternalAsteroid) GetActive() bool {
+	return s.Active
+}
+
+// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
+func (s *ExternalAsteroid) GetFlagLogErrorPhp() OptBool {
+	return s.FlagLogErrorPhp
+}
+
+// GetFlagLogErrorApache returns the value of FlagLogErrorApache.
+func (s *ExternalAsteroid) GetFlagLogErrorApache() OptBool {
+	return s.FlagLogErrorApache
+}
+
+// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
+func (s *ExternalAsteroid) GetFlagLogAccessNginx() OptBool {
+	return s.FlagLogAccessNginx
+}
+
+// GetFlagPageReplace500 returns the value of FlagPageReplace500.
+func (s *ExternalAsteroid) GetFlagPageReplace500() OptBool {
+	return s.FlagPageReplace500
+}
+
+// GetPasswordHash returns the value of PasswordHash.
+func (s *ExternalAsteroid) GetPasswordHash() OptNilString {
+	return s.PasswordHash
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *ExternalAsteroid) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
 // GetUpdatedAt returns the value of UpdatedAt.
 func (s *ExternalAsteroid) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetActive sets the value of Active.
-func (s *ExternalAsteroid) SetActive(val bool) {
-	s.Active = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *ExternalAsteroid) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
-// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
-func (s *ExternalAsteroid) SetFlagLogAccessNginx(val OptBool) {
-	s.FlagLogAccessNginx = val
-}
-
-// SetFlagLogErrorApache sets the value of FlagLogErrorApache.
-func (s *ExternalAsteroid) SetFlagLogErrorApache(val OptBool) {
-	s.FlagLogErrorApache = val
-}
-
-// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
-func (s *ExternalAsteroid) SetFlagLogErrorPhp(val OptBool) {
-	s.FlagLogErrorPhp = val
-}
-
-// SetFlagPageReplace500 sets the value of FlagPageReplace500.
-func (s *ExternalAsteroid) SetFlagPageReplace500(val OptBool) {
-	s.FlagPageReplace500 = val
-}
-
-// SetHost sets the value of Host.
-func (s *ExternalAsteroid) SetHost(val string) {
-	s.Host = val
+// SetPk sets the value of Pk.
+func (s *ExternalAsteroid) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetName sets the value of Name.
@@ -303,14 +1922,44 @@ func (s *ExternalAsteroid) SetName(val string) {
 	s.Name = val
 }
 
+// SetHost sets the value of Host.
+func (s *ExternalAsteroid) SetHost(val string) {
+	s.Host = val
+}
+
+// SetActive sets the value of Active.
+func (s *ExternalAsteroid) SetActive(val bool) {
+	s.Active = val
+}
+
+// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
+func (s *ExternalAsteroid) SetFlagLogErrorPhp(val OptBool) {
+	s.FlagLogErrorPhp = val
+}
+
+// SetFlagLogErrorApache sets the value of FlagLogErrorApache.
+func (s *ExternalAsteroid) SetFlagLogErrorApache(val OptBool) {
+	s.FlagLogErrorApache = val
+}
+
+// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
+func (s *ExternalAsteroid) SetFlagLogAccessNginx(val OptBool) {
+	s.FlagLogAccessNginx = val
+}
+
+// SetFlagPageReplace500 sets the value of FlagPageReplace500.
+func (s *ExternalAsteroid) SetFlagPageReplace500(val OptBool) {
+	s.FlagPageReplace500 = val
+}
+
 // SetPasswordHash sets the value of PasswordHash.
-func (s *ExternalAsteroid) SetPasswordHash(val OptString) {
+func (s *ExternalAsteroid) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetPk sets the value of Pk.
-func (s *ExternalAsteroid) SetPk(val string) {
-	s.Pk = val
+// SetCreatedAt sets the value of CreatedAt.
+func (s *ExternalAsteroid) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -404,53 +2053,21 @@ func (s *KeyTypeEnum) UnmarshalText(data []byte) error {
 
 // Ref: #/components/schemas/MailDomain
 type MailDomain struct {
-	// The domain this domain is an alias for, e.g. 'example.com'.
-	Alias *RelatedMailDomainField `json:"alias"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid  string    `json:"asteroid"`
-	CreatedAt time.Time `json:"created_at"`
-	// Error encountered when checking DNS records.
-	DNSError NilString `json:"dns_error"`
+	Domain        string       `json:"domain"`
+	DomainDisplay string       `json:"domain_display"`
+	DomainIdn     string       `json:"domain_idn"`
+	Name          string       `json:"name"`
+	NameDisplay   string       `json:"name_display"`
+	NameIdn       string       `json:"name_idn"`
+	CreatedAt     time.Time    `json:"created_at"`
+	UpdatedAt     time.Time    `json:"updated_at"`
+	DNSState      DnsStateEnum `json:"dns_state"`
 	// When the DNS records were checked last.
 	DNSLastCheck NilDateTime `json:"dns_last_check"`
-	// Whether this domain has valid DNS records and is ready to use.
-	// * `VALID` - valid
-	// * `INVALID` - invalid, could check, but invalid result
-	// * `ERROR` - error, could not check
-	// * `UNCHECKED` - unchecked, did not check yet.
-	DNSState  DnsStateEnum `json:"dns_state"`
-	Domain    string       `json:"domain"`
-	UpdatedAt time.Time    `json:"updated_at"`
-}
-
-// GetAlias returns the value of Alias.
-func (s *MailDomain) GetAlias() *RelatedMailDomainField {
-	return s.Alias
-}
-
-// GetAsteroid returns the value of Asteroid.
-func (s *MailDomain) GetAsteroid() string {
-	return s.Asteroid
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *MailDomain) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetDNSError returns the value of DNSError.
-func (s *MailDomain) GetDNSError() NilString {
-	return s.DNSError
-}
-
-// GetDNSLastCheck returns the value of DNSLastCheck.
-func (s *MailDomain) GetDNSLastCheck() NilDateTime {
-	return s.DNSLastCheck
-}
-
-// GetDNSState returns the value of DNSState.
-func (s *MailDomain) GetDNSState() DnsStateEnum {
-	return s.DNSState
+	// Error encountered when checking DNS records.
+	DNSError NilString `json:"dns_error"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
 }
 
 // GetDomain returns the value of Domain.
@@ -458,39 +2075,59 @@ func (s *MailDomain) GetDomain() string {
 	return s.Domain
 }
 
+// GetDomainDisplay returns the value of DomainDisplay.
+func (s *MailDomain) GetDomainDisplay() string {
+	return s.DomainDisplay
+}
+
+// GetDomainIdn returns the value of DomainIdn.
+func (s *MailDomain) GetDomainIdn() string {
+	return s.DomainIdn
+}
+
+// GetName returns the value of Name.
+func (s *MailDomain) GetName() string {
+	return s.Name
+}
+
+// GetNameDisplay returns the value of NameDisplay.
+func (s *MailDomain) GetNameDisplay() string {
+	return s.NameDisplay
+}
+
+// GetNameIdn returns the value of NameIdn.
+func (s *MailDomain) GetNameIdn() string {
+	return s.NameIdn
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *MailDomain) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
 // GetUpdatedAt returns the value of UpdatedAt.
 func (s *MailDomain) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetAlias sets the value of Alias.
-func (s *MailDomain) SetAlias(val *RelatedMailDomainField) {
-	s.Alias = val
+// GetDNSState returns the value of DNSState.
+func (s *MailDomain) GetDNSState() DnsStateEnum {
+	return s.DNSState
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *MailDomain) SetAsteroid(val string) {
-	s.Asteroid = val
+// GetDNSLastCheck returns the value of DNSLastCheck.
+func (s *MailDomain) GetDNSLastCheck() NilDateTime {
+	return s.DNSLastCheck
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *MailDomain) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// GetDNSError returns the value of DNSError.
+func (s *MailDomain) GetDNSError() NilString {
+	return s.DNSError
 }
 
-// SetDNSError sets the value of DNSError.
-func (s *MailDomain) SetDNSError(val NilString) {
-	s.DNSError = val
-}
-
-// SetDNSLastCheck sets the value of DNSLastCheck.
-func (s *MailDomain) SetDNSLastCheck(val NilDateTime) {
-	s.DNSLastCheck = val
-}
-
-// SetDNSState sets the value of DNSState.
-func (s *MailDomain) SetDNSState(val DnsStateEnum) {
-	s.DNSState = val
+// GetAsteroid returns the value of Asteroid.
+func (s *MailDomain) GetAsteroid() string {
+	return s.Asteroid
 }
 
 // SetDomain sets the value of Domain.
@@ -498,23 +2135,71 @@ func (s *MailDomain) SetDomain(val string) {
 	s.Domain = val
 }
 
+// SetDomainDisplay sets the value of DomainDisplay.
+func (s *MailDomain) SetDomainDisplay(val string) {
+	s.DomainDisplay = val
+}
+
+// SetDomainIdn sets the value of DomainIdn.
+func (s *MailDomain) SetDomainIdn(val string) {
+	s.DomainIdn = val
+}
+
+// SetName sets the value of Name.
+func (s *MailDomain) SetName(val string) {
+	s.Name = val
+}
+
+// SetNameDisplay sets the value of NameDisplay.
+func (s *MailDomain) SetNameDisplay(val string) {
+	s.NameDisplay = val
+}
+
+// SetNameIdn sets the value of NameIdn.
+func (s *MailDomain) SetNameIdn(val string) {
+	s.NameIdn = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *MailDomain) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
 // SetUpdatedAt sets the value of UpdatedAt.
 func (s *MailDomain) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
-// Ref: #/components/schemas/MailDomainRequest
-type MailDomainRequest struct {
-	// The domain this domain is an alias for, e.g. 'example.com'.
-	Alias OptRelatedMailDomainFieldRequest `json:"alias"`
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid string `json:"asteroid"`
-	Domain   string `json:"domain"`
+// SetDNSState sets the value of DNSState.
+func (s *MailDomain) SetDNSState(val DnsStateEnum) {
+	s.DNSState = val
 }
 
-// GetAlias returns the value of Alias.
-func (s *MailDomainRequest) GetAlias() OptRelatedMailDomainFieldRequest {
-	return s.Alias
+// SetDNSLastCheck sets the value of DNSLastCheck.
+func (s *MailDomain) SetDNSLastCheck(val NilDateTime) {
+	s.DNSLastCheck = val
+}
+
+// SetDNSError sets the value of DNSError.
+func (s *MailDomain) SetDNSError(val NilString) {
+	s.DNSError = val
+}
+
+// SetAsteroid sets the value of Asteroid.
+func (s *MailDomain) SetAsteroid(val string) {
+	s.Asteroid = val
+}
+
+// Ref: #/components/schemas/MailDomainRequest
+type MailDomainRequest struct {
+	Name string `json:"name"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
+}
+
+// GetName returns the value of Name.
+func (s *MailDomainRequest) GetName() string {
+	return s.Name
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -522,14 +2207,9 @@ func (s *MailDomainRequest) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// GetDomain returns the value of Domain.
-func (s *MailDomainRequest) GetDomain() string {
-	return s.Domain
-}
-
-// SetAlias sets the value of Alias.
-func (s *MailDomainRequest) SetAlias(val OptRelatedMailDomainFieldRequest) {
-	s.Alias = val
+// SetName sets the value of Name.
+func (s *MailDomainRequest) SetName(val string) {
+	s.Name = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -537,23 +2217,16 @@ func (s *MailDomainRequest) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// SetDomain sets the value of Domain.
-func (s *MailDomainRequest) SetDomain(val string) {
-	s.Domain = val
-}
-
 // Ref: #/components/schemas/MailDomainRequest
 type MailDomainRequestMultipart struct {
-	// The domain this domain is an alias for, e.g. 'example.com'.
-	Alias OptRelatedMailDomainFieldRequest `json:"alias"`
+	Name string `json:"name"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-	Domain   string `json:"domain"`
 }
 
-// GetAlias returns the value of Alias.
-func (s *MailDomainRequestMultipart) GetAlias() OptRelatedMailDomainFieldRequest {
-	return s.Alias
+// GetName returns the value of Name.
+func (s *MailDomainRequestMultipart) GetName() string {
+	return s.Name
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -561,14 +2234,9 @@ func (s *MailDomainRequestMultipart) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// GetDomain returns the value of Domain.
-func (s *MailDomainRequestMultipart) GetDomain() string {
-	return s.Domain
-}
-
-// SetAlias sets the value of Alias.
-func (s *MailDomainRequestMultipart) SetAlias(val OptRelatedMailDomainFieldRequest) {
-	s.Alias = val
+// SetName sets the value of Name.
+func (s *MailDomainRequestMultipart) SetName(val string) {
+	s.Name = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -576,47 +2244,130 @@ func (s *MailDomainRequestMultipart) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// SetDomain sets the value of Domain.
-func (s *MailDomainRequestMultipart) SetDomain(val string) {
-	s.Domain = val
+func (*MailDomainRequestMultipart) asteroidsMaildomainsCreateReq() {}
+
+// Ref: #/components/schemas/MailForward
+type MailForward struct {
+	User *RelatedMailUserField `json:"user"`
+	// Mail address to forward to, e.g. 'isabell@example.org'.
+	Destination string `json:"destination"`
+	Keep        bool   `json:"keep"`
 }
 
-func (*MailDomainRequestMultipart) createAsteroidsMaildomainsReq() {}
+// GetUser returns the value of User.
+func (s *MailForward) GetUser() *RelatedMailUserField {
+	return s.User
+}
+
+// GetDestination returns the value of Destination.
+func (s *MailForward) GetDestination() string {
+	return s.Destination
+}
+
+// GetKeep returns the value of Keep.
+func (s *MailForward) GetKeep() bool {
+	return s.Keep
+}
+
+// SetUser sets the value of User.
+func (s *MailForward) SetUser(val *RelatedMailUserField) {
+	s.User = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *MailForward) SetDestination(val string) {
+	s.Destination = val
+}
+
+// SetKeep sets the value of Keep.
+func (s *MailForward) SetKeep(val bool) {
+	s.Keep = val
+}
+
+// Ref: #/components/schemas/MailForwardRequest
+type MailForwardRequest struct {
+	User OptRelatedMailUserFieldRequest `json:"user"`
+	// Mail address to forward to, e.g. 'isabell@example.org'.
+	Destination string `json:"destination"`
+}
+
+// GetUser returns the value of User.
+func (s *MailForwardRequest) GetUser() OptRelatedMailUserFieldRequest {
+	return s.User
+}
+
+// GetDestination returns the value of Destination.
+func (s *MailForwardRequest) GetDestination() string {
+	return s.Destination
+}
+
+// SetUser sets the value of User.
+func (s *MailForwardRequest) SetUser(val OptRelatedMailUserFieldRequest) {
+	s.User = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *MailForwardRequest) SetDestination(val string) {
+	s.Destination = val
+}
+
+// Ref: #/components/schemas/MailForwardRequest
+type MailForwardRequestMultipart struct {
+	User OptRelatedMailUserFieldRequest `json:"user"`
+	// Mail address to forward to, e.g. 'isabell@example.org'.
+	Destination string `json:"destination"`
+}
+
+// GetUser returns the value of User.
+func (s *MailForwardRequestMultipart) GetUser() OptRelatedMailUserFieldRequest {
+	return s.User
+}
+
+// GetDestination returns the value of Destination.
+func (s *MailForwardRequestMultipart) GetDestination() string {
+	return s.Destination
+}
+
+// SetUser sets the value of User.
+func (s *MailForwardRequestMultipart) SetUser(val OptRelatedMailUserFieldRequest) {
+	s.User = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *MailForwardRequestMultipart) SetDestination(val string) {
+	s.Destination = val
+}
+
+func (*MailForwardRequestMultipart) asteroidsMaildomainsUsersForwardsCreateReq() {}
 
 // Ref: #/components/schemas/MailUser
 type MailUser struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias     OptRelatedMailUserField `json:"alias"`
-	Asteroid  string                  `json:"asteroid"`
-	CreatedAt time.Time               `json:"created_at"`
-	// The domain this user is part of.
-	Domain *RelatedMailDomainField `json:"domain"`
+	Pk       string `json:"pk"`
+	Asteroid string `json:"asteroid"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
-	Pk           string       `json:"pk"`
-	UpdatedAt    time.Time    `json:"updated_at"`
+	PasswordHash OptNilString        `json:"password_hash"`
+	CreatedAt    time.Time           `json:"created_at"`
+	UpdatedAt    time.Time           `json:"updated_at"`
+	Mailaddr     string              `json:"mailaddr"`
+	Forwards     []NestedMailForward `json:"forwards"`
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
-// GetAlias returns the value of Alias.
-func (s *MailUser) GetAlias() OptRelatedMailUserField {
-	return s.Alias
+// GetPk returns the value of Pk.
+func (s *MailUser) GetPk() string {
+	return s.Pk
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *MailUser) GetAsteroid() string {
 	return s.Asteroid
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *MailUser) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailUser) GetDomain() *RelatedMailDomainField {
-	return s.Domain
 }
 
 // GetName returns the value of Name.
@@ -629,9 +2380,9 @@ func (s *MailUser) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetPk returns the value of Pk.
-func (s *MailUser) GetPk() string {
-	return s.Pk
+// GetCreatedAt returns the value of CreatedAt.
+func (s *MailUser) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -639,24 +2390,39 @@ func (s *MailUser) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetAlias sets the value of Alias.
-func (s *MailUser) SetAlias(val OptRelatedMailUserField) {
-	s.Alias = val
+// GetMailaddr returns the value of Mailaddr.
+func (s *MailUser) GetMailaddr() string {
+	return s.Mailaddr
+}
+
+// GetForwards returns the value of Forwards.
+func (s *MailUser) GetForwards() []NestedMailForward {
+	return s.Forwards
+}
+
+// GetKeepForwards returns the value of KeepForwards.
+func (s *MailUser) GetKeepForwards() OptBool {
+	return s.KeepForwards
+}
+
+// GetIsSysmail returns the value of IsSysmail.
+func (s *MailUser) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *MailUser) GetIsCatchall() OptBool {
+	return s.IsCatchall
+}
+
+// SetPk sets the value of Pk.
+func (s *MailUser) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetAsteroid sets the value of Asteroid.
 func (s *MailUser) SetAsteroid(val string) {
 	s.Asteroid = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *MailUser) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
-// SetDomain sets the value of Domain.
-func (s *MailUser) SetDomain(val *RelatedMailDomainField) {
-	s.Domain = val
 }
 
 // SetName sets the value of Name.
@@ -669,9 +2435,9 @@ func (s *MailUser) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetPk sets the value of Pk.
-func (s *MailUser) SetPk(val string) {
-	s.Pk = val
+// SetCreatedAt sets the value of CreatedAt.
+func (s *MailUser) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -679,26 +2445,43 @@ func (s *MailUser) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
+// SetMailaddr sets the value of Mailaddr.
+func (s *MailUser) SetMailaddr(val string) {
+	s.Mailaddr = val
+}
+
+// SetForwards sets the value of Forwards.
+func (s *MailUser) SetForwards(val []NestedMailForward) {
+	s.Forwards = val
+}
+
+// SetKeepForwards sets the value of KeepForwards.
+func (s *MailUser) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *MailUser) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *MailUser) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
+
 // Ref: #/components/schemas/MailUserRequest
 type MailUserRequest struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
-	// The domain this user is part of.
-	Domain OptRelatedMailDomainFieldRequest `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-}
-
-// GetAlias returns the value of Alias.
-func (s *MailUserRequest) GetAlias() OptRelatedMailUserFieldRequest {
-	return s.Alias
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailUserRequest) GetDomain() OptRelatedMailDomainFieldRequest {
-	return s.Domain
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
 // GetName returns the value of Name.
@@ -711,14 +2494,19 @@ func (s *MailUserRequest) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// SetAlias sets the value of Alias.
-func (s *MailUserRequest) SetAlias(val OptRelatedMailUserFieldRequest) {
-	s.Alias = val
+// GetKeepForwards returns the value of KeepForwards.
+func (s *MailUserRequest) GetKeepForwards() OptBool {
+	return s.KeepForwards
 }
 
-// SetDomain sets the value of Domain.
-func (s *MailUserRequest) SetDomain(val OptRelatedMailDomainFieldRequest) {
-	s.Domain = val
+// GetIsSysmail returns the value of IsSysmail.
+func (s *MailUserRequest) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *MailUserRequest) GetIsCatchall() OptBool {
+	return s.IsCatchall
 }
 
 // SetName sets the value of Name.
@@ -731,26 +2519,33 @@ func (s *MailUserRequest) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
+// SetKeepForwards sets the value of KeepForwards.
+func (s *MailUserRequest) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *MailUserRequest) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *MailUserRequest) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
+
 // Ref: #/components/schemas/MailUserRequest
 type MailUserRequestMultipart struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
-	// The domain this user is part of.
-	Domain OptRelatedMailDomainFieldRequest `json:"domain"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
 	PasswordHash OptNilString `json:"password_hash"`
-}
-
-// GetAlias returns the value of Alias.
-func (s *MailUserRequestMultipart) GetAlias() OptRelatedMailUserFieldRequest {
-	return s.Alias
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailUserRequestMultipart) GetDomain() OptRelatedMailDomainFieldRequest {
-	return s.Domain
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
 // GetName returns the value of Name.
@@ -763,14 +2558,19 @@ func (s *MailUserRequestMultipart) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// SetAlias sets the value of Alias.
-func (s *MailUserRequestMultipart) SetAlias(val OptRelatedMailUserFieldRequest) {
-	s.Alias = val
+// GetKeepForwards returns the value of KeepForwards.
+func (s *MailUserRequestMultipart) GetKeepForwards() OptBool {
+	return s.KeepForwards
 }
 
-// SetDomain sets the value of Domain.
-func (s *MailUserRequestMultipart) SetDomain(val OptRelatedMailDomainFieldRequest) {
-	s.Domain = val
+// GetIsSysmail returns the value of IsSysmail.
+func (s *MailUserRequestMultipart) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *MailUserRequestMultipart) GetIsCatchall() OptBool {
+	return s.IsCatchall
 }
 
 // SetName sets the value of Name.
@@ -783,7 +2583,49 @@ func (s *MailUserRequestMultipart) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-func (*MailUserRequestMultipart) createAsteroidsMaildomainsUsersReq() {}
+// SetKeepForwards sets the value of KeepForwards.
+func (s *MailUserRequestMultipart) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *MailUserRequestMultipart) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *MailUserRequestMultipart) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
+
+func (*MailUserRequestMultipart) asteroidsMaildomainsUsersCreateReq() {}
+
+// Ref: #/components/schemas/NestedMailForward
+type NestedMailForward struct {
+	// Mail address to forward to, e.g. 'isabell@example.org'.
+	Destination string `json:"destination"`
+	Keep        bool   `json:"keep"`
+}
+
+// GetDestination returns the value of Destination.
+func (s *NestedMailForward) GetDestination() string {
+	return s.Destination
+}
+
+// GetKeep returns the value of Keep.
+func (s *NestedMailForward) GetKeep() bool {
+	return s.Keep
+}
+
+// SetDestination sets the value of Destination.
+func (s *NestedMailForward) SetDestination(val string) {
+	s.Destination = val
+}
+
+// SetKeep sets the value of Keep.
+func (s *NestedMailForward) SetKeep(val bool) {
+	s.Keep = val
+}
 
 // NewNilDateTime returns new NilDateTime with value set to v.
 func NewNilDateTime(v time.Time) NilDateTime {
@@ -869,6 +2711,1800 @@ func (o NilString) Get() (v string, ok bool) {
 
 // Or returns value if set, or given parameter if does not.
 func (o NilString) Or(d string) string {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsGetFormat returns new OptAsteroidsGetFormat with value set to v.
+func NewOptAsteroidsGetFormat(v AsteroidsGetFormat) OptAsteroidsGetFormat {
+	return OptAsteroidsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsGetFormat is optional AsteroidsGetFormat.
+type OptAsteroidsGetFormat struct {
+	Value AsteroidsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsGetFormat was set.
+func (o OptAsteroidsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsGetFormat) Reset() {
+	var v AsteroidsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsGetFormat) SetTo(v AsteroidsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsGetFormat) Get() (v AsteroidsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsGetFormat) Or(d AsteroidsGetFormat) AsteroidsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsCreateFormat returns new OptAsteroidsMaildomainsCreateFormat with value set to v.
+func NewOptAsteroidsMaildomainsCreateFormat(v AsteroidsMaildomainsCreateFormat) OptAsteroidsMaildomainsCreateFormat {
+	return OptAsteroidsMaildomainsCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsCreateFormat is optional AsteroidsMaildomainsCreateFormat.
+type OptAsteroidsMaildomainsCreateFormat struct {
+	Value AsteroidsMaildomainsCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsCreateFormat was set.
+func (o OptAsteroidsMaildomainsCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsCreateFormat) Reset() {
+	var v AsteroidsMaildomainsCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsCreateFormat) SetTo(v AsteroidsMaildomainsCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsCreateFormat) Get() (v AsteroidsMaildomainsCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsCreateFormat) Or(d AsteroidsMaildomainsCreateFormat) AsteroidsMaildomainsCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsDeleteFormat returns new OptAsteroidsMaildomainsDeleteFormat with value set to v.
+func NewOptAsteroidsMaildomainsDeleteFormat(v AsteroidsMaildomainsDeleteFormat) OptAsteroidsMaildomainsDeleteFormat {
+	return OptAsteroidsMaildomainsDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsDeleteFormat is optional AsteroidsMaildomainsDeleteFormat.
+type OptAsteroidsMaildomainsDeleteFormat struct {
+	Value AsteroidsMaildomainsDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsDeleteFormat was set.
+func (o OptAsteroidsMaildomainsDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsDeleteFormat) Reset() {
+	var v AsteroidsMaildomainsDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsDeleteFormat) SetTo(v AsteroidsMaildomainsDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsDeleteFormat) Get() (v AsteroidsMaildomainsDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsDeleteFormat) Or(d AsteroidsMaildomainsDeleteFormat) AsteroidsMaildomainsDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsGetFormat returns new OptAsteroidsMaildomainsGetFormat with value set to v.
+func NewOptAsteroidsMaildomainsGetFormat(v AsteroidsMaildomainsGetFormat) OptAsteroidsMaildomainsGetFormat {
+	return OptAsteroidsMaildomainsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsGetFormat is optional AsteroidsMaildomainsGetFormat.
+type OptAsteroidsMaildomainsGetFormat struct {
+	Value AsteroidsMaildomainsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsGetFormat was set.
+func (o OptAsteroidsMaildomainsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsGetFormat) Reset() {
+	var v AsteroidsMaildomainsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsGetFormat) SetTo(v AsteroidsMaildomainsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsGetFormat) Get() (v AsteroidsMaildomainsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsGetFormat) Or(d AsteroidsMaildomainsGetFormat) AsteroidsMaildomainsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsListFormat returns new OptAsteroidsMaildomainsListFormat with value set to v.
+func NewOptAsteroidsMaildomainsListFormat(v AsteroidsMaildomainsListFormat) OptAsteroidsMaildomainsListFormat {
+	return OptAsteroidsMaildomainsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsListFormat is optional AsteroidsMaildomainsListFormat.
+type OptAsteroidsMaildomainsListFormat struct {
+	Value AsteroidsMaildomainsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsListFormat was set.
+func (o OptAsteroidsMaildomainsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsListFormat) Reset() {
+	var v AsteroidsMaildomainsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsListFormat) SetTo(v AsteroidsMaildomainsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsListFormat) Get() (v AsteroidsMaildomainsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsListFormat) Or(d AsteroidsMaildomainsListFormat) AsteroidsMaildomainsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersCreateFormat returns new OptAsteroidsMaildomainsUsersCreateFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersCreateFormat(v AsteroidsMaildomainsUsersCreateFormat) OptAsteroidsMaildomainsUsersCreateFormat {
+	return OptAsteroidsMaildomainsUsersCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersCreateFormat is optional AsteroidsMaildomainsUsersCreateFormat.
+type OptAsteroidsMaildomainsUsersCreateFormat struct {
+	Value AsteroidsMaildomainsUsersCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersCreateFormat was set.
+func (o OptAsteroidsMaildomainsUsersCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersCreateFormat) Reset() {
+	var v AsteroidsMaildomainsUsersCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersCreateFormat) SetTo(v AsteroidsMaildomainsUsersCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersCreateFormat) Get() (v AsteroidsMaildomainsUsersCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersCreateFormat) Or(d AsteroidsMaildomainsUsersCreateFormat) AsteroidsMaildomainsUsersCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersDeleteFormat returns new OptAsteroidsMaildomainsUsersDeleteFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersDeleteFormat(v AsteroidsMaildomainsUsersDeleteFormat) OptAsteroidsMaildomainsUsersDeleteFormat {
+	return OptAsteroidsMaildomainsUsersDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersDeleteFormat is optional AsteroidsMaildomainsUsersDeleteFormat.
+type OptAsteroidsMaildomainsUsersDeleteFormat struct {
+	Value AsteroidsMaildomainsUsersDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersDeleteFormat was set.
+func (o OptAsteroidsMaildomainsUsersDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersDeleteFormat) Reset() {
+	var v AsteroidsMaildomainsUsersDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersDeleteFormat) SetTo(v AsteroidsMaildomainsUsersDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersDeleteFormat) Get() (v AsteroidsMaildomainsUsersDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersDeleteFormat) Or(d AsteroidsMaildomainsUsersDeleteFormat) AsteroidsMaildomainsUsersDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersForwardsCreateFormat returns new OptAsteroidsMaildomainsUsersForwardsCreateFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersForwardsCreateFormat(v AsteroidsMaildomainsUsersForwardsCreateFormat) OptAsteroidsMaildomainsUsersForwardsCreateFormat {
+	return OptAsteroidsMaildomainsUsersForwardsCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersForwardsCreateFormat is optional AsteroidsMaildomainsUsersForwardsCreateFormat.
+type OptAsteroidsMaildomainsUsersForwardsCreateFormat struct {
+	Value AsteroidsMaildomainsUsersForwardsCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersForwardsCreateFormat was set.
+func (o OptAsteroidsMaildomainsUsersForwardsCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersForwardsCreateFormat) Reset() {
+	var v AsteroidsMaildomainsUsersForwardsCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersForwardsCreateFormat) SetTo(v AsteroidsMaildomainsUsersForwardsCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersForwardsCreateFormat) Get() (v AsteroidsMaildomainsUsersForwardsCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersForwardsCreateFormat) Or(d AsteroidsMaildomainsUsersForwardsCreateFormat) AsteroidsMaildomainsUsersForwardsCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersForwardsDeleteFormat returns new OptAsteroidsMaildomainsUsersForwardsDeleteFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersForwardsDeleteFormat(v AsteroidsMaildomainsUsersForwardsDeleteFormat) OptAsteroidsMaildomainsUsersForwardsDeleteFormat {
+	return OptAsteroidsMaildomainsUsersForwardsDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersForwardsDeleteFormat is optional AsteroidsMaildomainsUsersForwardsDeleteFormat.
+type OptAsteroidsMaildomainsUsersForwardsDeleteFormat struct {
+	Value AsteroidsMaildomainsUsersForwardsDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersForwardsDeleteFormat was set.
+func (o OptAsteroidsMaildomainsUsersForwardsDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersForwardsDeleteFormat) Reset() {
+	var v AsteroidsMaildomainsUsersForwardsDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersForwardsDeleteFormat) SetTo(v AsteroidsMaildomainsUsersForwardsDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersForwardsDeleteFormat) Get() (v AsteroidsMaildomainsUsersForwardsDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersForwardsDeleteFormat) Or(d AsteroidsMaildomainsUsersForwardsDeleteFormat) AsteroidsMaildomainsUsersForwardsDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersForwardsGetFormat returns new OptAsteroidsMaildomainsUsersForwardsGetFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersForwardsGetFormat(v AsteroidsMaildomainsUsersForwardsGetFormat) OptAsteroidsMaildomainsUsersForwardsGetFormat {
+	return OptAsteroidsMaildomainsUsersForwardsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersForwardsGetFormat is optional AsteroidsMaildomainsUsersForwardsGetFormat.
+type OptAsteroidsMaildomainsUsersForwardsGetFormat struct {
+	Value AsteroidsMaildomainsUsersForwardsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersForwardsGetFormat was set.
+func (o OptAsteroidsMaildomainsUsersForwardsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersForwardsGetFormat) Reset() {
+	var v AsteroidsMaildomainsUsersForwardsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersForwardsGetFormat) SetTo(v AsteroidsMaildomainsUsersForwardsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersForwardsGetFormat) Get() (v AsteroidsMaildomainsUsersForwardsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersForwardsGetFormat) Or(d AsteroidsMaildomainsUsersForwardsGetFormat) AsteroidsMaildomainsUsersForwardsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersForwardsListFormat returns new OptAsteroidsMaildomainsUsersForwardsListFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersForwardsListFormat(v AsteroidsMaildomainsUsersForwardsListFormat) OptAsteroidsMaildomainsUsersForwardsListFormat {
+	return OptAsteroidsMaildomainsUsersForwardsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersForwardsListFormat is optional AsteroidsMaildomainsUsersForwardsListFormat.
+type OptAsteroidsMaildomainsUsersForwardsListFormat struct {
+	Value AsteroidsMaildomainsUsersForwardsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersForwardsListFormat was set.
+func (o OptAsteroidsMaildomainsUsersForwardsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersForwardsListFormat) Reset() {
+	var v AsteroidsMaildomainsUsersForwardsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersForwardsListFormat) SetTo(v AsteroidsMaildomainsUsersForwardsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersForwardsListFormat) Get() (v AsteroidsMaildomainsUsersForwardsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersForwardsListFormat) Or(d AsteroidsMaildomainsUsersForwardsListFormat) AsteroidsMaildomainsUsersForwardsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersGetFormat returns new OptAsteroidsMaildomainsUsersGetFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersGetFormat(v AsteroidsMaildomainsUsersGetFormat) OptAsteroidsMaildomainsUsersGetFormat {
+	return OptAsteroidsMaildomainsUsersGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersGetFormat is optional AsteroidsMaildomainsUsersGetFormat.
+type OptAsteroidsMaildomainsUsersGetFormat struct {
+	Value AsteroidsMaildomainsUsersGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersGetFormat was set.
+func (o OptAsteroidsMaildomainsUsersGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersGetFormat) Reset() {
+	var v AsteroidsMaildomainsUsersGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersGetFormat) SetTo(v AsteroidsMaildomainsUsersGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersGetFormat) Get() (v AsteroidsMaildomainsUsersGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersGetFormat) Or(d AsteroidsMaildomainsUsersGetFormat) AsteroidsMaildomainsUsersGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersListFormat returns new OptAsteroidsMaildomainsUsersListFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersListFormat(v AsteroidsMaildomainsUsersListFormat) OptAsteroidsMaildomainsUsersListFormat {
+	return OptAsteroidsMaildomainsUsersListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersListFormat is optional AsteroidsMaildomainsUsersListFormat.
+type OptAsteroidsMaildomainsUsersListFormat struct {
+	Value AsteroidsMaildomainsUsersListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersListFormat was set.
+func (o OptAsteroidsMaildomainsUsersListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersListFormat) Reset() {
+	var v AsteroidsMaildomainsUsersListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersListFormat) SetTo(v AsteroidsMaildomainsUsersListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersListFormat) Get() (v AsteroidsMaildomainsUsersListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersListFormat) Or(d AsteroidsMaildomainsUsersListFormat) AsteroidsMaildomainsUsersListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMaildomainsUsersPatchFormat returns new OptAsteroidsMaildomainsUsersPatchFormat with value set to v.
+func NewOptAsteroidsMaildomainsUsersPatchFormat(v AsteroidsMaildomainsUsersPatchFormat) OptAsteroidsMaildomainsUsersPatchFormat {
+	return OptAsteroidsMaildomainsUsersPatchFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMaildomainsUsersPatchFormat is optional AsteroidsMaildomainsUsersPatchFormat.
+type OptAsteroidsMaildomainsUsersPatchFormat struct {
+	Value AsteroidsMaildomainsUsersPatchFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMaildomainsUsersPatchFormat was set.
+func (o OptAsteroidsMaildomainsUsersPatchFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMaildomainsUsersPatchFormat) Reset() {
+	var v AsteroidsMaildomainsUsersPatchFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMaildomainsUsersPatchFormat) SetTo(v AsteroidsMaildomainsUsersPatchFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMaildomainsUsersPatchFormat) Get() (v AsteroidsMaildomainsUsersPatchFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMaildomainsUsersPatchFormat) Or(d AsteroidsMaildomainsUsersPatchFormat) AsteroidsMaildomainsUsersPatchFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsMailusersListFormat returns new OptAsteroidsMailusersListFormat with value set to v.
+func NewOptAsteroidsMailusersListFormat(v AsteroidsMailusersListFormat) OptAsteroidsMailusersListFormat {
+	return OptAsteroidsMailusersListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsMailusersListFormat is optional AsteroidsMailusersListFormat.
+type OptAsteroidsMailusersListFormat struct {
+	Value AsteroidsMailusersListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsMailusersListFormat was set.
+func (o OptAsteroidsMailusersListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsMailusersListFormat) Reset() {
+	var v AsteroidsMailusersListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsMailusersListFormat) SetTo(v AsteroidsMailusersListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsMailusersListFormat) Get() (v AsteroidsMailusersListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsMailusersListFormat) Or(d AsteroidsMailusersListFormat) AsteroidsMailusersListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsPatchFormat returns new OptAsteroidsPatchFormat with value set to v.
+func NewOptAsteroidsPatchFormat(v AsteroidsPatchFormat) OptAsteroidsPatchFormat {
+	return OptAsteroidsPatchFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsPatchFormat is optional AsteroidsPatchFormat.
+type OptAsteroidsPatchFormat struct {
+	Value AsteroidsPatchFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsPatchFormat was set.
+func (o OptAsteroidsPatchFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsPatchFormat) Reset() {
+	var v AsteroidsPatchFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsPatchFormat) SetTo(v AsteroidsPatchFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsPatchFormat) Get() (v AsteroidsPatchFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsPatchFormat) Or(d AsteroidsPatchFormat) AsteroidsPatchFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsSshkeysCreateFormat returns new OptAsteroidsSshkeysCreateFormat with value set to v.
+func NewOptAsteroidsSshkeysCreateFormat(v AsteroidsSshkeysCreateFormat) OptAsteroidsSshkeysCreateFormat {
+	return OptAsteroidsSshkeysCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsSshkeysCreateFormat is optional AsteroidsSshkeysCreateFormat.
+type OptAsteroidsSshkeysCreateFormat struct {
+	Value AsteroidsSshkeysCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsSshkeysCreateFormat was set.
+func (o OptAsteroidsSshkeysCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsSshkeysCreateFormat) Reset() {
+	var v AsteroidsSshkeysCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsSshkeysCreateFormat) SetTo(v AsteroidsSshkeysCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsSshkeysCreateFormat) Get() (v AsteroidsSshkeysCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsSshkeysCreateFormat) Or(d AsteroidsSshkeysCreateFormat) AsteroidsSshkeysCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsSshkeysDeleteFormat returns new OptAsteroidsSshkeysDeleteFormat with value set to v.
+func NewOptAsteroidsSshkeysDeleteFormat(v AsteroidsSshkeysDeleteFormat) OptAsteroidsSshkeysDeleteFormat {
+	return OptAsteroidsSshkeysDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsSshkeysDeleteFormat is optional AsteroidsSshkeysDeleteFormat.
+type OptAsteroidsSshkeysDeleteFormat struct {
+	Value AsteroidsSshkeysDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsSshkeysDeleteFormat was set.
+func (o OptAsteroidsSshkeysDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsSshkeysDeleteFormat) Reset() {
+	var v AsteroidsSshkeysDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsSshkeysDeleteFormat) SetTo(v AsteroidsSshkeysDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsSshkeysDeleteFormat) Get() (v AsteroidsSshkeysDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsSshkeysDeleteFormat) Or(d AsteroidsSshkeysDeleteFormat) AsteroidsSshkeysDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsSshkeysGetFormat returns new OptAsteroidsSshkeysGetFormat with value set to v.
+func NewOptAsteroidsSshkeysGetFormat(v AsteroidsSshkeysGetFormat) OptAsteroidsSshkeysGetFormat {
+	return OptAsteroidsSshkeysGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsSshkeysGetFormat is optional AsteroidsSshkeysGetFormat.
+type OptAsteroidsSshkeysGetFormat struct {
+	Value AsteroidsSshkeysGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsSshkeysGetFormat was set.
+func (o OptAsteroidsSshkeysGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsSshkeysGetFormat) Reset() {
+	var v AsteroidsSshkeysGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsSshkeysGetFormat) SetTo(v AsteroidsSshkeysGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsSshkeysGetFormat) Get() (v AsteroidsSshkeysGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsSshkeysGetFormat) Or(d AsteroidsSshkeysGetFormat) AsteroidsSshkeysGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsSshkeysListFormat returns new OptAsteroidsSshkeysListFormat with value set to v.
+func NewOptAsteroidsSshkeysListFormat(v AsteroidsSshkeysListFormat) OptAsteroidsSshkeysListFormat {
+	return OptAsteroidsSshkeysListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsSshkeysListFormat is optional AsteroidsSshkeysListFormat.
+type OptAsteroidsSshkeysListFormat struct {
+	Value AsteroidsSshkeysListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsSshkeysListFormat was set.
+func (o OptAsteroidsSshkeysListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsSshkeysListFormat) Reset() {
+	var v AsteroidsSshkeysListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsSshkeysListFormat) SetTo(v AsteroidsSshkeysListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsSshkeysListFormat) Get() (v AsteroidsSshkeysListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsSshkeysListFormat) Or(d AsteroidsSshkeysListFormat) AsteroidsSshkeysListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsToolversionsGetFormat returns new OptAsteroidsToolversionsGetFormat with value set to v.
+func NewOptAsteroidsToolversionsGetFormat(v AsteroidsToolversionsGetFormat) OptAsteroidsToolversionsGetFormat {
+	return OptAsteroidsToolversionsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsToolversionsGetFormat is optional AsteroidsToolversionsGetFormat.
+type OptAsteroidsToolversionsGetFormat struct {
+	Value AsteroidsToolversionsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsToolversionsGetFormat was set.
+func (o OptAsteroidsToolversionsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsToolversionsGetFormat) Reset() {
+	var v AsteroidsToolversionsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsToolversionsGetFormat) SetTo(v AsteroidsToolversionsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsToolversionsGetFormat) Get() (v AsteroidsToolversionsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsToolversionsGetFormat) Or(d AsteroidsToolversionsGetFormat) AsteroidsToolversionsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsToolversionsListFormat returns new OptAsteroidsToolversionsListFormat with value set to v.
+func NewOptAsteroidsToolversionsListFormat(v AsteroidsToolversionsListFormat) OptAsteroidsToolversionsListFormat {
+	return OptAsteroidsToolversionsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsToolversionsListFormat is optional AsteroidsToolversionsListFormat.
+type OptAsteroidsToolversionsListFormat struct {
+	Value AsteroidsToolversionsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsToolversionsListFormat was set.
+func (o OptAsteroidsToolversionsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsToolversionsListFormat) Reset() {
+	var v AsteroidsToolversionsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsToolversionsListFormat) SetTo(v AsteroidsToolversionsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsToolversionsListFormat) Get() (v AsteroidsToolversionsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsToolversionsListFormat) Or(d AsteroidsToolversionsListFormat) AsteroidsToolversionsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsToolversionsPatchFormat returns new OptAsteroidsToolversionsPatchFormat with value set to v.
+func NewOptAsteroidsToolversionsPatchFormat(v AsteroidsToolversionsPatchFormat) OptAsteroidsToolversionsPatchFormat {
+	return OptAsteroidsToolversionsPatchFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsToolversionsPatchFormat is optional AsteroidsToolversionsPatchFormat.
+type OptAsteroidsToolversionsPatchFormat struct {
+	Value AsteroidsToolversionsPatchFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsToolversionsPatchFormat was set.
+func (o OptAsteroidsToolversionsPatchFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsToolversionsPatchFormat) Reset() {
+	var v AsteroidsToolversionsPatchFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsToolversionsPatchFormat) SetTo(v AsteroidsToolversionsPatchFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsToolversionsPatchFormat) Get() (v AsteroidsToolversionsPatchFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsToolversionsPatchFormat) Or(d AsteroidsToolversionsPatchFormat) AsteroidsToolversionsPatchFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebbackendsGetFormat returns new OptAsteroidsWebbackendsGetFormat with value set to v.
+func NewOptAsteroidsWebbackendsGetFormat(v AsteroidsWebbackendsGetFormat) OptAsteroidsWebbackendsGetFormat {
+	return OptAsteroidsWebbackendsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebbackendsGetFormat is optional AsteroidsWebbackendsGetFormat.
+type OptAsteroidsWebbackendsGetFormat struct {
+	Value AsteroidsWebbackendsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebbackendsGetFormat was set.
+func (o OptAsteroidsWebbackendsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebbackendsGetFormat) Reset() {
+	var v AsteroidsWebbackendsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebbackendsGetFormat) SetTo(v AsteroidsWebbackendsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebbackendsGetFormat) Get() (v AsteroidsWebbackendsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebbackendsGetFormat) Or(d AsteroidsWebbackendsGetFormat) AsteroidsWebbackendsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebbackendsListFormat returns new OptAsteroidsWebbackendsListFormat with value set to v.
+func NewOptAsteroidsWebbackendsListFormat(v AsteroidsWebbackendsListFormat) OptAsteroidsWebbackendsListFormat {
+	return OptAsteroidsWebbackendsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebbackendsListFormat is optional AsteroidsWebbackendsListFormat.
+type OptAsteroidsWebbackendsListFormat struct {
+	Value AsteroidsWebbackendsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebbackendsListFormat was set.
+func (o OptAsteroidsWebbackendsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebbackendsListFormat) Reset() {
+	var v AsteroidsWebbackendsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebbackendsListFormat) SetTo(v AsteroidsWebbackendsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebbackendsListFormat) Get() (v AsteroidsWebbackendsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebbackendsListFormat) Or(d AsteroidsWebbackendsListFormat) AsteroidsWebbackendsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsBackendsCreateFormat returns new OptAsteroidsWebdomainsBackendsCreateFormat with value set to v.
+func NewOptAsteroidsWebdomainsBackendsCreateFormat(v AsteroidsWebdomainsBackendsCreateFormat) OptAsteroidsWebdomainsBackendsCreateFormat {
+	return OptAsteroidsWebdomainsBackendsCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsBackendsCreateFormat is optional AsteroidsWebdomainsBackendsCreateFormat.
+type OptAsteroidsWebdomainsBackendsCreateFormat struct {
+	Value AsteroidsWebdomainsBackendsCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsBackendsCreateFormat was set.
+func (o OptAsteroidsWebdomainsBackendsCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsBackendsCreateFormat) Reset() {
+	var v AsteroidsWebdomainsBackendsCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsBackendsCreateFormat) SetTo(v AsteroidsWebdomainsBackendsCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsBackendsCreateFormat) Get() (v AsteroidsWebdomainsBackendsCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsBackendsCreateFormat) Or(d AsteroidsWebdomainsBackendsCreateFormat) AsteroidsWebdomainsBackendsCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsBackendsDeleteFormat returns new OptAsteroidsWebdomainsBackendsDeleteFormat with value set to v.
+func NewOptAsteroidsWebdomainsBackendsDeleteFormat(v AsteroidsWebdomainsBackendsDeleteFormat) OptAsteroidsWebdomainsBackendsDeleteFormat {
+	return OptAsteroidsWebdomainsBackendsDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsBackendsDeleteFormat is optional AsteroidsWebdomainsBackendsDeleteFormat.
+type OptAsteroidsWebdomainsBackendsDeleteFormat struct {
+	Value AsteroidsWebdomainsBackendsDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsBackendsDeleteFormat was set.
+func (o OptAsteroidsWebdomainsBackendsDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsBackendsDeleteFormat) Reset() {
+	var v AsteroidsWebdomainsBackendsDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsBackendsDeleteFormat) SetTo(v AsteroidsWebdomainsBackendsDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsBackendsDeleteFormat) Get() (v AsteroidsWebdomainsBackendsDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsBackendsDeleteFormat) Or(d AsteroidsWebdomainsBackendsDeleteFormat) AsteroidsWebdomainsBackendsDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsBackendsGetFormat returns new OptAsteroidsWebdomainsBackendsGetFormat with value set to v.
+func NewOptAsteroidsWebdomainsBackendsGetFormat(v AsteroidsWebdomainsBackendsGetFormat) OptAsteroidsWebdomainsBackendsGetFormat {
+	return OptAsteroidsWebdomainsBackendsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsBackendsGetFormat is optional AsteroidsWebdomainsBackendsGetFormat.
+type OptAsteroidsWebdomainsBackendsGetFormat struct {
+	Value AsteroidsWebdomainsBackendsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsBackendsGetFormat was set.
+func (o OptAsteroidsWebdomainsBackendsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsBackendsGetFormat) Reset() {
+	var v AsteroidsWebdomainsBackendsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsBackendsGetFormat) SetTo(v AsteroidsWebdomainsBackendsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsBackendsGetFormat) Get() (v AsteroidsWebdomainsBackendsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsBackendsGetFormat) Or(d AsteroidsWebdomainsBackendsGetFormat) AsteroidsWebdomainsBackendsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsBackendsListFormat returns new OptAsteroidsWebdomainsBackendsListFormat with value set to v.
+func NewOptAsteroidsWebdomainsBackendsListFormat(v AsteroidsWebdomainsBackendsListFormat) OptAsteroidsWebdomainsBackendsListFormat {
+	return OptAsteroidsWebdomainsBackendsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsBackendsListFormat is optional AsteroidsWebdomainsBackendsListFormat.
+type OptAsteroidsWebdomainsBackendsListFormat struct {
+	Value AsteroidsWebdomainsBackendsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsBackendsListFormat was set.
+func (o OptAsteroidsWebdomainsBackendsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsBackendsListFormat) Reset() {
+	var v AsteroidsWebdomainsBackendsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsBackendsListFormat) SetTo(v AsteroidsWebdomainsBackendsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsBackendsListFormat) Get() (v AsteroidsWebdomainsBackendsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsBackendsListFormat) Or(d AsteroidsWebdomainsBackendsListFormat) AsteroidsWebdomainsBackendsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsCreateFormat returns new OptAsteroidsWebdomainsCreateFormat with value set to v.
+func NewOptAsteroidsWebdomainsCreateFormat(v AsteroidsWebdomainsCreateFormat) OptAsteroidsWebdomainsCreateFormat {
+	return OptAsteroidsWebdomainsCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsCreateFormat is optional AsteroidsWebdomainsCreateFormat.
+type OptAsteroidsWebdomainsCreateFormat struct {
+	Value AsteroidsWebdomainsCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsCreateFormat was set.
+func (o OptAsteroidsWebdomainsCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsCreateFormat) Reset() {
+	var v AsteroidsWebdomainsCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsCreateFormat) SetTo(v AsteroidsWebdomainsCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsCreateFormat) Get() (v AsteroidsWebdomainsCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsCreateFormat) Or(d AsteroidsWebdomainsCreateFormat) AsteroidsWebdomainsCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsDeleteFormat returns new OptAsteroidsWebdomainsDeleteFormat with value set to v.
+func NewOptAsteroidsWebdomainsDeleteFormat(v AsteroidsWebdomainsDeleteFormat) OptAsteroidsWebdomainsDeleteFormat {
+	return OptAsteroidsWebdomainsDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsDeleteFormat is optional AsteroidsWebdomainsDeleteFormat.
+type OptAsteroidsWebdomainsDeleteFormat struct {
+	Value AsteroidsWebdomainsDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsDeleteFormat was set.
+func (o OptAsteroidsWebdomainsDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsDeleteFormat) Reset() {
+	var v AsteroidsWebdomainsDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsDeleteFormat) SetTo(v AsteroidsWebdomainsDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsDeleteFormat) Get() (v AsteroidsWebdomainsDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsDeleteFormat) Or(d AsteroidsWebdomainsDeleteFormat) AsteroidsWebdomainsDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsGetFormat returns new OptAsteroidsWebdomainsGetFormat with value set to v.
+func NewOptAsteroidsWebdomainsGetFormat(v AsteroidsWebdomainsGetFormat) OptAsteroidsWebdomainsGetFormat {
+	return OptAsteroidsWebdomainsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsGetFormat is optional AsteroidsWebdomainsGetFormat.
+type OptAsteroidsWebdomainsGetFormat struct {
+	Value AsteroidsWebdomainsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsGetFormat was set.
+func (o OptAsteroidsWebdomainsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsGetFormat) Reset() {
+	var v AsteroidsWebdomainsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsGetFormat) SetTo(v AsteroidsWebdomainsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsGetFormat) Get() (v AsteroidsWebdomainsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsGetFormat) Or(d AsteroidsWebdomainsGetFormat) AsteroidsWebdomainsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsHeadersCreateFormat returns new OptAsteroidsWebdomainsHeadersCreateFormat with value set to v.
+func NewOptAsteroidsWebdomainsHeadersCreateFormat(v AsteroidsWebdomainsHeadersCreateFormat) OptAsteroidsWebdomainsHeadersCreateFormat {
+	return OptAsteroidsWebdomainsHeadersCreateFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsHeadersCreateFormat is optional AsteroidsWebdomainsHeadersCreateFormat.
+type OptAsteroidsWebdomainsHeadersCreateFormat struct {
+	Value AsteroidsWebdomainsHeadersCreateFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsHeadersCreateFormat was set.
+func (o OptAsteroidsWebdomainsHeadersCreateFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsHeadersCreateFormat) Reset() {
+	var v AsteroidsWebdomainsHeadersCreateFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsHeadersCreateFormat) SetTo(v AsteroidsWebdomainsHeadersCreateFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsHeadersCreateFormat) Get() (v AsteroidsWebdomainsHeadersCreateFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsHeadersCreateFormat) Or(d AsteroidsWebdomainsHeadersCreateFormat) AsteroidsWebdomainsHeadersCreateFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsHeadersDeleteFormat returns new OptAsteroidsWebdomainsHeadersDeleteFormat with value set to v.
+func NewOptAsteroidsWebdomainsHeadersDeleteFormat(v AsteroidsWebdomainsHeadersDeleteFormat) OptAsteroidsWebdomainsHeadersDeleteFormat {
+	return OptAsteroidsWebdomainsHeadersDeleteFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsHeadersDeleteFormat is optional AsteroidsWebdomainsHeadersDeleteFormat.
+type OptAsteroidsWebdomainsHeadersDeleteFormat struct {
+	Value AsteroidsWebdomainsHeadersDeleteFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsHeadersDeleteFormat was set.
+func (o OptAsteroidsWebdomainsHeadersDeleteFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsHeadersDeleteFormat) Reset() {
+	var v AsteroidsWebdomainsHeadersDeleteFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsHeadersDeleteFormat) SetTo(v AsteroidsWebdomainsHeadersDeleteFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsHeadersDeleteFormat) Get() (v AsteroidsWebdomainsHeadersDeleteFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsHeadersDeleteFormat) Or(d AsteroidsWebdomainsHeadersDeleteFormat) AsteroidsWebdomainsHeadersDeleteFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsHeadersGetFormat returns new OptAsteroidsWebdomainsHeadersGetFormat with value set to v.
+func NewOptAsteroidsWebdomainsHeadersGetFormat(v AsteroidsWebdomainsHeadersGetFormat) OptAsteroidsWebdomainsHeadersGetFormat {
+	return OptAsteroidsWebdomainsHeadersGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsHeadersGetFormat is optional AsteroidsWebdomainsHeadersGetFormat.
+type OptAsteroidsWebdomainsHeadersGetFormat struct {
+	Value AsteroidsWebdomainsHeadersGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsHeadersGetFormat was set.
+func (o OptAsteroidsWebdomainsHeadersGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsHeadersGetFormat) Reset() {
+	var v AsteroidsWebdomainsHeadersGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsHeadersGetFormat) SetTo(v AsteroidsWebdomainsHeadersGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsHeadersGetFormat) Get() (v AsteroidsWebdomainsHeadersGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsHeadersGetFormat) Or(d AsteroidsWebdomainsHeadersGetFormat) AsteroidsWebdomainsHeadersGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsHeadersListFormat returns new OptAsteroidsWebdomainsHeadersListFormat with value set to v.
+func NewOptAsteroidsWebdomainsHeadersListFormat(v AsteroidsWebdomainsHeadersListFormat) OptAsteroidsWebdomainsHeadersListFormat {
+	return OptAsteroidsWebdomainsHeadersListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsHeadersListFormat is optional AsteroidsWebdomainsHeadersListFormat.
+type OptAsteroidsWebdomainsHeadersListFormat struct {
+	Value AsteroidsWebdomainsHeadersListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsHeadersListFormat was set.
+func (o OptAsteroidsWebdomainsHeadersListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsHeadersListFormat) Reset() {
+	var v AsteroidsWebdomainsHeadersListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsHeadersListFormat) SetTo(v AsteroidsWebdomainsHeadersListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsHeadersListFormat) Get() (v AsteroidsWebdomainsHeadersListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsHeadersListFormat) Or(d AsteroidsWebdomainsHeadersListFormat) AsteroidsWebdomainsHeadersListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebdomainsListFormat returns new OptAsteroidsWebdomainsListFormat with value set to v.
+func NewOptAsteroidsWebdomainsListFormat(v AsteroidsWebdomainsListFormat) OptAsteroidsWebdomainsListFormat {
+	return OptAsteroidsWebdomainsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebdomainsListFormat is optional AsteroidsWebdomainsListFormat.
+type OptAsteroidsWebdomainsListFormat struct {
+	Value AsteroidsWebdomainsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebdomainsListFormat was set.
+func (o OptAsteroidsWebdomainsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebdomainsListFormat) Reset() {
+	var v AsteroidsWebdomainsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebdomainsListFormat) SetTo(v AsteroidsWebdomainsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebdomainsListFormat) Get() (v AsteroidsWebdomainsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebdomainsListFormat) Or(d AsteroidsWebdomainsListFormat) AsteroidsWebdomainsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebheadersGetFormat returns new OptAsteroidsWebheadersGetFormat with value set to v.
+func NewOptAsteroidsWebheadersGetFormat(v AsteroidsWebheadersGetFormat) OptAsteroidsWebheadersGetFormat {
+	return OptAsteroidsWebheadersGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebheadersGetFormat is optional AsteroidsWebheadersGetFormat.
+type OptAsteroidsWebheadersGetFormat struct {
+	Value AsteroidsWebheadersGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebheadersGetFormat was set.
+func (o OptAsteroidsWebheadersGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebheadersGetFormat) Reset() {
+	var v AsteroidsWebheadersGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebheadersGetFormat) SetTo(v AsteroidsWebheadersGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebheadersGetFormat) Get() (v AsteroidsWebheadersGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebheadersGetFormat) Or(d AsteroidsWebheadersGetFormat) AsteroidsWebheadersGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptAsteroidsWebheadersListFormat returns new OptAsteroidsWebheadersListFormat with value set to v.
+func NewOptAsteroidsWebheadersListFormat(v AsteroidsWebheadersListFormat) OptAsteroidsWebheadersListFormat {
+	return OptAsteroidsWebheadersListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptAsteroidsWebheadersListFormat is optional AsteroidsWebheadersListFormat.
+type OptAsteroidsWebheadersListFormat struct {
+	Value AsteroidsWebheadersListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptAsteroidsWebheadersListFormat was set.
+func (o OptAsteroidsWebheadersListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptAsteroidsWebheadersListFormat) Reset() {
+	var v AsteroidsWebheadersListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptAsteroidsWebheadersListFormat) SetTo(v AsteroidsWebheadersListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptAsteroidsWebheadersListFormat) Get() (v AsteroidsWebheadersListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptAsteroidsWebheadersListFormat) Or(d AsteroidsWebheadersListFormat) AsteroidsWebheadersListFormat {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -1202,52 +4838,6 @@ func (o OptRelatedMailDomainField) Or(d RelatedMailDomainField) RelatedMailDomai
 	return d
 }
 
-// NewOptRelatedMailDomainFieldRequest returns new OptRelatedMailDomainFieldRequest with value set to v.
-func NewOptRelatedMailDomainFieldRequest(v RelatedMailDomainFieldRequest) OptRelatedMailDomainFieldRequest {
-	return OptRelatedMailDomainFieldRequest{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptRelatedMailDomainFieldRequest is optional RelatedMailDomainFieldRequest.
-type OptRelatedMailDomainFieldRequest struct {
-	Value RelatedMailDomainFieldRequest
-	Set   bool
-}
-
-// IsSet returns true if OptRelatedMailDomainFieldRequest was set.
-func (o OptRelatedMailDomainFieldRequest) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptRelatedMailDomainFieldRequest) Reset() {
-	var v RelatedMailDomainFieldRequest
-	o.Value = v
-	o.Set = false
-}
-
-// SetTo sets value to v.
-func (o *OptRelatedMailDomainFieldRequest) SetTo(v RelatedMailDomainFieldRequest) {
-	o.Set = true
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptRelatedMailDomainFieldRequest) Get() (v RelatedMailDomainFieldRequest, ok bool) {
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptRelatedMailDomainFieldRequest) Or(d RelatedMailDomainFieldRequest) RelatedMailDomainFieldRequest {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptRelatedMailUserField returns new OptRelatedMailUserField with value set to v.
 func NewOptRelatedMailUserField(v RelatedMailUserField) OptRelatedMailUserField {
 	return OptRelatedMailUserField{
@@ -1386,6 +4976,190 @@ func (o OptString) Or(d string) string {
 	return d
 }
 
+// NewOptToolsGetFormat returns new OptToolsGetFormat with value set to v.
+func NewOptToolsGetFormat(v ToolsGetFormat) OptToolsGetFormat {
+	return OptToolsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptToolsGetFormat is optional ToolsGetFormat.
+type OptToolsGetFormat struct {
+	Value ToolsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptToolsGetFormat was set.
+func (o OptToolsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptToolsGetFormat) Reset() {
+	var v ToolsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptToolsGetFormat) SetTo(v ToolsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptToolsGetFormat) Get() (v ToolsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptToolsGetFormat) Or(d ToolsGetFormat) ToolsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptToolsListFormat returns new OptToolsListFormat with value set to v.
+func NewOptToolsListFormat(v ToolsListFormat) OptToolsListFormat {
+	return OptToolsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptToolsListFormat is optional ToolsListFormat.
+type OptToolsListFormat struct {
+	Value ToolsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptToolsListFormat was set.
+func (o OptToolsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptToolsListFormat) Reset() {
+	var v ToolsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptToolsListFormat) SetTo(v ToolsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptToolsListFormat) Get() (v ToolsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptToolsListFormat) Or(d ToolsListFormat) ToolsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptToolsVersionsGetFormat returns new OptToolsVersionsGetFormat with value set to v.
+func NewOptToolsVersionsGetFormat(v ToolsVersionsGetFormat) OptToolsVersionsGetFormat {
+	return OptToolsVersionsGetFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptToolsVersionsGetFormat is optional ToolsVersionsGetFormat.
+type OptToolsVersionsGetFormat struct {
+	Value ToolsVersionsGetFormat
+	Set   bool
+}
+
+// IsSet returns true if OptToolsVersionsGetFormat was set.
+func (o OptToolsVersionsGetFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptToolsVersionsGetFormat) Reset() {
+	var v ToolsVersionsGetFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptToolsVersionsGetFormat) SetTo(v ToolsVersionsGetFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptToolsVersionsGetFormat) Get() (v ToolsVersionsGetFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptToolsVersionsGetFormat) Or(d ToolsVersionsGetFormat) ToolsVersionsGetFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptToolsVersionsListFormat returns new OptToolsVersionsListFormat with value set to v.
+func NewOptToolsVersionsListFormat(v ToolsVersionsListFormat) OptToolsVersionsListFormat {
+	return OptToolsVersionsListFormat{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptToolsVersionsListFormat is optional ToolsVersionsListFormat.
+type OptToolsVersionsListFormat struct {
+	Value ToolsVersionsListFormat
+	Set   bool
+}
+
+// IsSet returns true if OptToolsVersionsListFormat was set.
+func (o OptToolsVersionsListFormat) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptToolsVersionsListFormat) Reset() {
+	var v ToolsVersionsListFormat
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptToolsVersionsListFormat) SetTo(v ToolsVersionsListFormat) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptToolsVersionsListFormat) Get() (v ToolsVersionsListFormat, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptToolsVersionsListFormat) Or(d ToolsVersionsListFormat) ToolsVersionsListFormat {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
 // Ref: #/components/schemas/PaginatedMailDomainList
 type PaginatedMailDomainList struct {
 	Count    int          `json:"count"`
@@ -1431,6 +5205,54 @@ func (s *PaginatedMailDomainList) SetPrevious(val OptNilURI) {
 
 // SetResults sets the value of Results.
 func (s *PaginatedMailDomainList) SetResults(val []MailDomain) {
+	s.Results = val
+}
+
+// Ref: #/components/schemas/PaginatedMailForwardList
+type PaginatedMailForwardList struct {
+	Count    int           `json:"count"`
+	Next     OptNilURI     `json:"next"`
+	Previous OptNilURI     `json:"previous"`
+	Results  []MailForward `json:"results"`
+}
+
+// GetCount returns the value of Count.
+func (s *PaginatedMailForwardList) GetCount() int {
+	return s.Count
+}
+
+// GetNext returns the value of Next.
+func (s *PaginatedMailForwardList) GetNext() OptNilURI {
+	return s.Next
+}
+
+// GetPrevious returns the value of Previous.
+func (s *PaginatedMailForwardList) GetPrevious() OptNilURI {
+	return s.Previous
+}
+
+// GetResults returns the value of Results.
+func (s *PaginatedMailForwardList) GetResults() []MailForward {
+	return s.Results
+}
+
+// SetCount sets the value of Count.
+func (s *PaginatedMailForwardList) SetCount(val int) {
+	s.Count = val
+}
+
+// SetNext sets the value of Next.
+func (s *PaginatedMailForwardList) SetNext(val OptNilURI) {
+	s.Next = val
+}
+
+// SetPrevious sets the value of Previous.
+func (s *PaginatedMailForwardList) SetPrevious(val OptNilURI) {
+	s.Previous = val
+}
+
+// SetResults sets the value of Results.
+func (s *PaginatedMailForwardList) SetResults(val []MailForward) {
 	s.Results = val
 }
 
@@ -1482,6 +5304,54 @@ func (s *PaginatedMailUserList) SetResults(val []MailUser) {
 	s.Results = val
 }
 
+// Ref: #/components/schemas/PaginatedSelectedToolVersionList
+type PaginatedSelectedToolVersionList struct {
+	Count    int                   `json:"count"`
+	Next     OptNilURI             `json:"next"`
+	Previous OptNilURI             `json:"previous"`
+	Results  []SelectedToolVersion `json:"results"`
+}
+
+// GetCount returns the value of Count.
+func (s *PaginatedSelectedToolVersionList) GetCount() int {
+	return s.Count
+}
+
+// GetNext returns the value of Next.
+func (s *PaginatedSelectedToolVersionList) GetNext() OptNilURI {
+	return s.Next
+}
+
+// GetPrevious returns the value of Previous.
+func (s *PaginatedSelectedToolVersionList) GetPrevious() OptNilURI {
+	return s.Previous
+}
+
+// GetResults returns the value of Results.
+func (s *PaginatedSelectedToolVersionList) GetResults() []SelectedToolVersion {
+	return s.Results
+}
+
+// SetCount sets the value of Count.
+func (s *PaginatedSelectedToolVersionList) SetCount(val int) {
+	s.Count = val
+}
+
+// SetNext sets the value of Next.
+func (s *PaginatedSelectedToolVersionList) SetNext(val OptNilURI) {
+	s.Next = val
+}
+
+// SetPrevious sets the value of Previous.
+func (s *PaginatedSelectedToolVersionList) SetPrevious(val OptNilURI) {
+	s.Previous = val
+}
+
+// SetResults sets the value of Results.
+func (s *PaginatedSelectedToolVersionList) SetResults(val []SelectedToolVersion) {
+	s.Results = val
+}
+
 // Ref: #/components/schemas/PaginatedSshKeyList
 type PaginatedSshKeyList struct {
 	Count    int       `json:"count"`
@@ -1527,6 +5397,102 @@ func (s *PaginatedSshKeyList) SetPrevious(val OptNilURI) {
 
 // SetResults sets the value of Results.
 func (s *PaginatedSshKeyList) SetResults(val []SshKey) {
+	s.Results = val
+}
+
+// Ref: #/components/schemas/PaginatedToolList
+type PaginatedToolList struct {
+	Count    int       `json:"count"`
+	Next     OptNilURI `json:"next"`
+	Previous OptNilURI `json:"previous"`
+	Results  []Tool    `json:"results"`
+}
+
+// GetCount returns the value of Count.
+func (s *PaginatedToolList) GetCount() int {
+	return s.Count
+}
+
+// GetNext returns the value of Next.
+func (s *PaginatedToolList) GetNext() OptNilURI {
+	return s.Next
+}
+
+// GetPrevious returns the value of Previous.
+func (s *PaginatedToolList) GetPrevious() OptNilURI {
+	return s.Previous
+}
+
+// GetResults returns the value of Results.
+func (s *PaginatedToolList) GetResults() []Tool {
+	return s.Results
+}
+
+// SetCount sets the value of Count.
+func (s *PaginatedToolList) SetCount(val int) {
+	s.Count = val
+}
+
+// SetNext sets the value of Next.
+func (s *PaginatedToolList) SetNext(val OptNilURI) {
+	s.Next = val
+}
+
+// SetPrevious sets the value of Previous.
+func (s *PaginatedToolList) SetPrevious(val OptNilURI) {
+	s.Previous = val
+}
+
+// SetResults sets the value of Results.
+func (s *PaginatedToolList) SetResults(val []Tool) {
+	s.Results = val
+}
+
+// Ref: #/components/schemas/PaginatedToolVersionList
+type PaginatedToolVersionList struct {
+	Count    int           `json:"count"`
+	Next     OptNilURI     `json:"next"`
+	Previous OptNilURI     `json:"previous"`
+	Results  []ToolVersion `json:"results"`
+}
+
+// GetCount returns the value of Count.
+func (s *PaginatedToolVersionList) GetCount() int {
+	return s.Count
+}
+
+// GetNext returns the value of Next.
+func (s *PaginatedToolVersionList) GetNext() OptNilURI {
+	return s.Next
+}
+
+// GetPrevious returns the value of Previous.
+func (s *PaginatedToolVersionList) GetPrevious() OptNilURI {
+	return s.Previous
+}
+
+// GetResults returns the value of Results.
+func (s *PaginatedToolVersionList) GetResults() []ToolVersion {
+	return s.Results
+}
+
+// SetCount sets the value of Count.
+func (s *PaginatedToolVersionList) SetCount(val int) {
+	s.Count = val
+}
+
+// SetNext sets the value of Next.
+func (s *PaginatedToolVersionList) SetNext(val OptNilURI) {
+	s.Next = val
+}
+
+// SetPrevious sets the value of Previous.
+func (s *PaginatedToolVersionList) SetPrevious(val OptNilURI) {
+	s.Previous = val
+}
+
+// SetResults sets the value of Results.
+func (s *PaginatedToolVersionList) SetResults(val []ToolVersion) {
 	s.Results = val
 }
 
@@ -1674,43 +5640,19 @@ func (s *PaginatedWebHeaderList) SetResults(val []WebHeader) {
 	s.Results = val
 }
 
-type PatchAsteroidApplicationJSON PatchedExternalAsteroidRequest
-
-func (*PatchAsteroidApplicationJSON) patchAsteroidReq() {}
-
-type PatchAsteroidApplicationXWwwFormUrlencoded PatchedExternalAsteroidRequest
-
-func (*PatchAsteroidApplicationXWwwFormUrlencoded) patchAsteroidReq() {}
-
-type PatchAsteroidMaildomainUserApplicationJSON PatchedMailUserRequest
-
-func (*PatchAsteroidMaildomainUserApplicationJSON) patchAsteroidMaildomainUserReq() {}
-
-type PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded PatchedMailUserRequest
-
-func (*PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded) patchAsteroidMaildomainUserReq() {}
-
-type PatchAsteroidMaildomainUserReqEmptyBody struct{}
-
-func (*PatchAsteroidMaildomainUserReqEmptyBody) patchAsteroidMaildomainUserReq() {}
-
-type PatchAsteroidReqEmptyBody struct{}
-
-func (*PatchAsteroidReqEmptyBody) patchAsteroidReq() {}
-
 // Ref: #/components/schemas/PatchedExternalAsteroidRequest
 type PatchedExternalAsteroidRequest struct {
-	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
-	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
-	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
-	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
-	Password           OptString `json:"password"`
-	PasswordHash       OptString `json:"password_hash"`
+	FlagLogErrorPhp    OptBool      `json:"flag_log_error_php"`
+	FlagLogErrorApache OptBool      `json:"flag_log_error_apache"`
+	FlagLogAccessNginx OptBool      `json:"flag_log_access_nginx"`
+	FlagPageReplace500 OptBool      `json:"flag_page_replace_500"`
+	Password           OptNilString `json:"password"`
+	PasswordHash       OptNilString `json:"password_hash"`
 }
 
-// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequest) GetFlagLogAccessNginx() OptBool {
-	return s.FlagLogAccessNginx
+// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequest) GetFlagLogErrorPhp() OptBool {
+	return s.FlagLogErrorPhp
 }
 
 // GetFlagLogErrorApache returns the value of FlagLogErrorApache.
@@ -1718,9 +5660,9 @@ func (s *PatchedExternalAsteroidRequest) GetFlagLogErrorApache() OptBool {
 	return s.FlagLogErrorApache
 }
 
-// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequest) GetFlagLogErrorPhp() OptBool {
-	return s.FlagLogErrorPhp
+// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequest) GetFlagLogAccessNginx() OptBool {
+	return s.FlagLogAccessNginx
 }
 
 // GetFlagPageReplace500 returns the value of FlagPageReplace500.
@@ -1729,18 +5671,18 @@ func (s *PatchedExternalAsteroidRequest) GetFlagPageReplace500() OptBool {
 }
 
 // GetPassword returns the value of Password.
-func (s *PatchedExternalAsteroidRequest) GetPassword() OptString {
+func (s *PatchedExternalAsteroidRequest) GetPassword() OptNilString {
 	return s.Password
 }
 
 // GetPasswordHash returns the value of PasswordHash.
-func (s *PatchedExternalAsteroidRequest) GetPasswordHash() OptString {
+func (s *PatchedExternalAsteroidRequest) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequest) SetFlagLogAccessNginx(val OptBool) {
-	s.FlagLogAccessNginx = val
+// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequest) SetFlagLogErrorPhp(val OptBool) {
+	s.FlagLogErrorPhp = val
 }
 
 // SetFlagLogErrorApache sets the value of FlagLogErrorApache.
@@ -1748,9 +5690,9 @@ func (s *PatchedExternalAsteroidRequest) SetFlagLogErrorApache(val OptBool) {
 	s.FlagLogErrorApache = val
 }
 
-// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequest) SetFlagLogErrorPhp(val OptBool) {
-	s.FlagLogErrorPhp = val
+// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequest) SetFlagLogAccessNginx(val OptBool) {
+	s.FlagLogAccessNginx = val
 }
 
 // SetFlagPageReplace500 sets the value of FlagPageReplace500.
@@ -1759,28 +5701,28 @@ func (s *PatchedExternalAsteroidRequest) SetFlagPageReplace500(val OptBool) {
 }
 
 // SetPassword sets the value of Password.
-func (s *PatchedExternalAsteroidRequest) SetPassword(val OptString) {
+func (s *PatchedExternalAsteroidRequest) SetPassword(val OptNilString) {
 	s.Password = val
 }
 
 // SetPasswordHash sets the value of PasswordHash.
-func (s *PatchedExternalAsteroidRequest) SetPasswordHash(val OptString) {
+func (s *PatchedExternalAsteroidRequest) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
 // Ref: #/components/schemas/PatchedExternalAsteroidRequest
 type PatchedExternalAsteroidRequestMultipart struct {
-	FlagLogAccessNginx OptBool   `json:"flag_log_access_nginx"`
-	FlagLogErrorApache OptBool   `json:"flag_log_error_apache"`
-	FlagLogErrorPhp    OptBool   `json:"flag_log_error_php"`
-	FlagPageReplace500 OptBool   `json:"flag_page_replace_500"`
-	Password           OptString `json:"password"`
-	PasswordHash       OptString `json:"password_hash"`
+	FlagLogErrorPhp    OptBool      `json:"flag_log_error_php"`
+	FlagLogErrorApache OptBool      `json:"flag_log_error_apache"`
+	FlagLogAccessNginx OptBool      `json:"flag_log_access_nginx"`
+	FlagPageReplace500 OptBool      `json:"flag_page_replace_500"`
+	Password           OptNilString `json:"password"`
+	PasswordHash       OptNilString `json:"password_hash"`
 }
 
-// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogAccessNginx() OptBool {
-	return s.FlagLogAccessNginx
+// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogErrorPhp() OptBool {
+	return s.FlagLogErrorPhp
 }
 
 // GetFlagLogErrorApache returns the value of FlagLogErrorApache.
@@ -1788,9 +5730,9 @@ func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogErrorApache() OptBoo
 	return s.FlagLogErrorApache
 }
 
-// GetFlagLogErrorPhp returns the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogErrorPhp() OptBool {
-	return s.FlagLogErrorPhp
+// GetFlagLogAccessNginx returns the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequestMultipart) GetFlagLogAccessNginx() OptBool {
+	return s.FlagLogAccessNginx
 }
 
 // GetFlagPageReplace500 returns the value of FlagPageReplace500.
@@ -1799,18 +5741,18 @@ func (s *PatchedExternalAsteroidRequestMultipart) GetFlagPageReplace500() OptBoo
 }
 
 // GetPassword returns the value of Password.
-func (s *PatchedExternalAsteroidRequestMultipart) GetPassword() OptString {
+func (s *PatchedExternalAsteroidRequestMultipart) GetPassword() OptNilString {
 	return s.Password
 }
 
 // GetPasswordHash returns the value of PasswordHash.
-func (s *PatchedExternalAsteroidRequestMultipart) GetPasswordHash() OptString {
+func (s *PatchedExternalAsteroidRequestMultipart) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
-func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogAccessNginx(val OptBool) {
-	s.FlagLogAccessNginx = val
+// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
+func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogErrorPhp(val OptBool) {
+	s.FlagLogErrorPhp = val
 }
 
 // SetFlagLogErrorApache sets the value of FlagLogErrorApache.
@@ -1818,9 +5760,9 @@ func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogErrorApache(val OptB
 	s.FlagLogErrorApache = val
 }
 
-// SetFlagLogErrorPhp sets the value of FlagLogErrorPhp.
-func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogErrorPhp(val OptBool) {
-	s.FlagLogErrorPhp = val
+// SetFlagLogAccessNginx sets the value of FlagLogAccessNginx.
+func (s *PatchedExternalAsteroidRequestMultipart) SetFlagLogAccessNginx(val OptBool) {
+	s.FlagLogAccessNginx = val
 }
 
 // SetFlagPageReplace500 sets the value of FlagPageReplace500.
@@ -1829,28 +5771,28 @@ func (s *PatchedExternalAsteroidRequestMultipart) SetFlagPageReplace500(val OptB
 }
 
 // SetPassword sets the value of Password.
-func (s *PatchedExternalAsteroidRequestMultipart) SetPassword(val OptString) {
+func (s *PatchedExternalAsteroidRequestMultipart) SetPassword(val OptNilString) {
 	s.Password = val
 }
 
 // SetPasswordHash sets the value of PasswordHash.
-func (s *PatchedExternalAsteroidRequestMultipart) SetPasswordHash(val OptString) {
+func (s *PatchedExternalAsteroidRequestMultipart) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-func (*PatchedExternalAsteroidRequestMultipart) patchAsteroidReq() {}
+func (*PatchedExternalAsteroidRequestMultipart) asteroidsPatchReq() {}
 
 // Ref: #/components/schemas/PatchedMailUserRequest
 type PatchedMailUserRequest struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
 	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
-}
-
-// GetAlias returns the value of Alias.
-func (s *PatchedMailUserRequest) GetAlias() OptRelatedMailUserFieldRequest {
-	return s.Alias
+	PasswordHash OptNilString                   `json:"password_hash"`
+	AliasOf      OptRelatedMailUserFieldRequest `json:"alias_of"`
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
 // GetPasswordHash returns the value of PasswordHash.
@@ -1858,9 +5800,24 @@ func (s *PatchedMailUserRequest) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// SetAlias sets the value of Alias.
-func (s *PatchedMailUserRequest) SetAlias(val OptRelatedMailUserFieldRequest) {
-	s.Alias = val
+// GetAliasOf returns the value of AliasOf.
+func (s *PatchedMailUserRequest) GetAliasOf() OptRelatedMailUserFieldRequest {
+	return s.AliasOf
+}
+
+// GetKeepForwards returns the value of KeepForwards.
+func (s *PatchedMailUserRequest) GetKeepForwards() OptBool {
+	return s.KeepForwards
+}
+
+// GetIsSysmail returns the value of IsSysmail.
+func (s *PatchedMailUserRequest) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *PatchedMailUserRequest) GetIsCatchall() OptBool {
+	return s.IsCatchall
 }
 
 // SetPasswordHash sets the value of PasswordHash.
@@ -1868,17 +5825,37 @@ func (s *PatchedMailUserRequest) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// Ref: #/components/schemas/PatchedMailUserRequest
-type PatchedMailUserRequestMultipart struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias OptRelatedMailUserFieldRequest `json:"alias"`
-	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
+// SetAliasOf sets the value of AliasOf.
+func (s *PatchedMailUserRequest) SetAliasOf(val OptRelatedMailUserFieldRequest) {
+	s.AliasOf = val
 }
 
-// GetAlias returns the value of Alias.
-func (s *PatchedMailUserRequestMultipart) GetAlias() OptRelatedMailUserFieldRequest {
-	return s.Alias
+// SetKeepForwards sets the value of KeepForwards.
+func (s *PatchedMailUserRequest) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *PatchedMailUserRequest) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *PatchedMailUserRequest) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
+
+// Ref: #/components/schemas/PatchedMailUserRequest
+type PatchedMailUserRequestMultipart struct {
+	// Mutually exclusive with alias. Either must be given.
+	PasswordHash OptNilString                   `json:"password_hash"`
+	AliasOf      OptRelatedMailUserFieldRequest `json:"alias_of"`
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
 // GetPasswordHash returns the value of PasswordHash.
@@ -1886,9 +5863,24 @@ func (s *PatchedMailUserRequestMultipart) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// SetAlias sets the value of Alias.
-func (s *PatchedMailUserRequestMultipart) SetAlias(val OptRelatedMailUserFieldRequest) {
-	s.Alias = val
+// GetAliasOf returns the value of AliasOf.
+func (s *PatchedMailUserRequestMultipart) GetAliasOf() OptRelatedMailUserFieldRequest {
+	return s.AliasOf
+}
+
+// GetKeepForwards returns the value of KeepForwards.
+func (s *PatchedMailUserRequestMultipart) GetKeepForwards() OptBool {
+	return s.KeepForwards
+}
+
+// GetIsSysmail returns the value of IsSysmail.
+func (s *PatchedMailUserRequestMultipart) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *PatchedMailUserRequestMultipart) GetIsCatchall() OptBool {
+	return s.IsCatchall
 }
 
 // SetPasswordHash sets the value of PasswordHash.
@@ -1896,42 +5888,95 @@ func (s *PatchedMailUserRequestMultipart) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-func (*PatchedMailUserRequestMultipart) patchAsteroidMaildomainUserReq() {}
+// SetAliasOf sets the value of AliasOf.
+func (s *PatchedMailUserRequestMultipart) SetAliasOf(val OptRelatedMailUserFieldRequest) {
+	s.AliasOf = val
+}
+
+// SetKeepForwards sets the value of KeepForwards.
+func (s *PatchedMailUserRequestMultipart) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *PatchedMailUserRequestMultipart) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *PatchedMailUserRequestMultipart) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
+
+func (*PatchedMailUserRequestMultipart) asteroidsMaildomainsUsersPatchReq() {}
+
+// Ref: #/components/schemas/PatchedSelectedToolVersionRequest
+type PatchedSelectedToolVersionRequest struct {
+	Version OptString `json:"version"`
+}
+
+// GetVersion returns the value of Version.
+func (s *PatchedSelectedToolVersionRequest) GetVersion() OptString {
+	return s.Version
+}
+
+// SetVersion sets the value of Version.
+func (s *PatchedSelectedToolVersionRequest) SetVersion(val OptString) {
+	s.Version = val
+}
+
+// Ref: #/components/schemas/PatchedSelectedToolVersionRequest
+type PatchedSelectedToolVersionRequestMultipart struct {
+	Version OptString `json:"version"`
+}
+
+// GetVersion returns the value of Version.
+func (s *PatchedSelectedToolVersionRequestMultipart) GetVersion() OptString {
+	return s.Version
+}
+
+// SetVersion sets the value of Version.
+func (s *PatchedSelectedToolVersionRequestMultipart) SetVersion(val OptString) {
+	s.Version = val
+}
+
+func (*PatchedSelectedToolVersionRequestMultipart) asteroidsToolversionsPatchReq() {}
 
 // Ref: #/components/schemas/RelatedMailDomainField
 type RelatedMailDomainField struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias     OptRelatedMailUserField `json:"alias"`
-	Asteroid  string                  `json:"asteroid"`
-	CreatedAt time.Time               `json:"created_at"`
-	// The domain this user is part of.
-	Domain *RelatedMailDomainField `json:"domain"`
+	Pk       string                  `json:"pk"`
+	Domain   *RelatedMailDomainField `json:"domain"`
+	Asteroid string                  `json:"asteroid"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
-	Pk           string       `json:"pk"`
-	UpdatedAt    time.Time    `json:"updated_at"`
+	PasswordHash OptNilString          `json:"password_hash"`
+	AliasOf      *RelatedMailUserField `json:"alias_of"`
+	CreatedAt    time.Time             `json:"created_at"`
+	UpdatedAt    time.Time             `json:"updated_at"`
+	Mailaddr     string                `json:"mailaddr"`
+	Forwards     []NestedMailForward   `json:"forwards"`
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
-// GetAlias returns the value of Alias.
-func (s *RelatedMailDomainField) GetAlias() OptRelatedMailUserField {
-	return s.Alias
-}
-
-// GetAsteroid returns the value of Asteroid.
-func (s *RelatedMailDomainField) GetAsteroid() string {
-	return s.Asteroid
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *RelatedMailDomainField) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetPk returns the value of Pk.
+func (s *RelatedMailDomainField) GetPk() string {
+	return s.Pk
 }
 
 // GetDomain returns the value of Domain.
 func (s *RelatedMailDomainField) GetDomain() *RelatedMailDomainField {
 	return s.Domain
+}
+
+// GetAsteroid returns the value of Asteroid.
+func (s *RelatedMailDomainField) GetAsteroid() string {
+	return s.Asteroid
 }
 
 // GetName returns the value of Name.
@@ -1944,9 +5989,14 @@ func (s *RelatedMailDomainField) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetPk returns the value of Pk.
-func (s *RelatedMailDomainField) GetPk() string {
-	return s.Pk
+// GetAliasOf returns the value of AliasOf.
+func (s *RelatedMailDomainField) GetAliasOf() *RelatedMailUserField {
+	return s.AliasOf
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *RelatedMailDomainField) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -1954,24 +6004,44 @@ func (s *RelatedMailDomainField) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetAlias sets the value of Alias.
-func (s *RelatedMailDomainField) SetAlias(val OptRelatedMailUserField) {
-	s.Alias = val
+// GetMailaddr returns the value of Mailaddr.
+func (s *RelatedMailDomainField) GetMailaddr() string {
+	return s.Mailaddr
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *RelatedMailDomainField) SetAsteroid(val string) {
-	s.Asteroid = val
+// GetForwards returns the value of Forwards.
+func (s *RelatedMailDomainField) GetForwards() []NestedMailForward {
+	return s.Forwards
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *RelatedMailDomainField) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// GetKeepForwards returns the value of KeepForwards.
+func (s *RelatedMailDomainField) GetKeepForwards() OptBool {
+	return s.KeepForwards
+}
+
+// GetIsSysmail returns the value of IsSysmail.
+func (s *RelatedMailDomainField) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *RelatedMailDomainField) GetIsCatchall() OptBool {
+	return s.IsCatchall
+}
+
+// SetPk sets the value of Pk.
+func (s *RelatedMailDomainField) SetPk(val string) {
+	s.Pk = val
 }
 
 // SetDomain sets the value of Domain.
 func (s *RelatedMailDomainField) SetDomain(val *RelatedMailDomainField) {
 	s.Domain = val
+}
+
+// SetAsteroid sets the value of Asteroid.
+func (s *RelatedMailDomainField) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
 // SetName sets the value of Name.
@@ -1984,9 +6054,14 @@ func (s *RelatedMailDomainField) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetPk sets the value of Pk.
-func (s *RelatedMailDomainField) SetPk(val string) {
-	s.Pk = val
+// SetAliasOf sets the value of AliasOf.
+func (s *RelatedMailDomainField) SetAliasOf(val *RelatedMailUserField) {
+	s.AliasOf = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *RelatedMailDomainField) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -1994,42 +6069,66 @@ func (s *RelatedMailDomainField) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
-type RelatedMailDomainFieldRequest string
+// SetMailaddr sets the value of Mailaddr.
+func (s *RelatedMailDomainField) SetMailaddr(val string) {
+	s.Mailaddr = val
+}
+
+// SetForwards sets the value of Forwards.
+func (s *RelatedMailDomainField) SetForwards(val []NestedMailForward) {
+	s.Forwards = val
+}
+
+// SetKeepForwards sets the value of KeepForwards.
+func (s *RelatedMailDomainField) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *RelatedMailDomainField) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *RelatedMailDomainField) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
 
 // Ref: #/components/schemas/RelatedMailUserField
 type RelatedMailUserField struct {
-	// Other user this user is an alias of, referred to by local@domain.
-	Alias     *RelatedMailUserField `json:"alias"`
-	Asteroid  string                `json:"asteroid"`
-	CreatedAt time.Time             `json:"created_at"`
-	// The domain this user is part of.
-	Domain *RelatedMailDomainField `json:"domain"`
+	Pk       string                    `json:"pk"`
+	Domain   OptRelatedMailDomainField `json:"domain"`
+	Asteroid string                    `json:"asteroid"`
 	// Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
 	Name string `json:"name"`
 	// Mutually exclusive with alias. Either must be given.
-	PasswordHash OptNilString `json:"password_hash"`
-	Pk           string       `json:"pk"`
-	UpdatedAt    time.Time    `json:"updated_at"`
+	PasswordHash OptNilString          `json:"password_hash"`
+	AliasOf      *RelatedMailUserField `json:"alias_of"`
+	CreatedAt    time.Time             `json:"created_at"`
+	UpdatedAt    time.Time             `json:"updated_at"`
+	Mailaddr     string                `json:"mailaddr"`
+	Forwards     []NestedMailForward   `json:"forwards"`
+	// If the mails should stay in the mailbox after forwarding (true), or be deleted (false).
+	KeepForwards OptBool `json:"keep_forwards"`
+	// Whether this mail user should receive mails to name@uber.space.
+	IsSysmail OptBool `json:"is_sysmail"`
+	// Whether this mail user should receive all mails to the domain.
+	IsCatchall OptBool `json:"is_catchall"`
 }
 
-// GetAlias returns the value of Alias.
-func (s *RelatedMailUserField) GetAlias() *RelatedMailUserField {
-	return s.Alias
+// GetPk returns the value of Pk.
+func (s *RelatedMailUserField) GetPk() string {
+	return s.Pk
+}
+
+// GetDomain returns the value of Domain.
+func (s *RelatedMailUserField) GetDomain() OptRelatedMailDomainField {
+	return s.Domain
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *RelatedMailUserField) GetAsteroid() string {
 	return s.Asteroid
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *RelatedMailUserField) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetDomain returns the value of Domain.
-func (s *RelatedMailUserField) GetDomain() *RelatedMailDomainField {
-	return s.Domain
 }
 
 // GetName returns the value of Name.
@@ -2042,9 +6141,14 @@ func (s *RelatedMailUserField) GetPasswordHash() OptNilString {
 	return s.PasswordHash
 }
 
-// GetPk returns the value of Pk.
-func (s *RelatedMailUserField) GetPk() string {
-	return s.Pk
+// GetAliasOf returns the value of AliasOf.
+func (s *RelatedMailUserField) GetAliasOf() *RelatedMailUserField {
+	return s.AliasOf
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *RelatedMailUserField) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -2052,24 +6156,44 @@ func (s *RelatedMailUserField) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetAlias sets the value of Alias.
-func (s *RelatedMailUserField) SetAlias(val *RelatedMailUserField) {
-	s.Alias = val
+// GetMailaddr returns the value of Mailaddr.
+func (s *RelatedMailUserField) GetMailaddr() string {
+	return s.Mailaddr
+}
+
+// GetForwards returns the value of Forwards.
+func (s *RelatedMailUserField) GetForwards() []NestedMailForward {
+	return s.Forwards
+}
+
+// GetKeepForwards returns the value of KeepForwards.
+func (s *RelatedMailUserField) GetKeepForwards() OptBool {
+	return s.KeepForwards
+}
+
+// GetIsSysmail returns the value of IsSysmail.
+func (s *RelatedMailUserField) GetIsSysmail() OptBool {
+	return s.IsSysmail
+}
+
+// GetIsCatchall returns the value of IsCatchall.
+func (s *RelatedMailUserField) GetIsCatchall() OptBool {
+	return s.IsCatchall
+}
+
+// SetPk sets the value of Pk.
+func (s *RelatedMailUserField) SetPk(val string) {
+	s.Pk = val
+}
+
+// SetDomain sets the value of Domain.
+func (s *RelatedMailUserField) SetDomain(val OptRelatedMailDomainField) {
+	s.Domain = val
 }
 
 // SetAsteroid sets the value of Asteroid.
 func (s *RelatedMailUserField) SetAsteroid(val string) {
 	s.Asteroid = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *RelatedMailUserField) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
-// SetDomain sets the value of Domain.
-func (s *RelatedMailUserField) SetDomain(val *RelatedMailDomainField) {
-	s.Domain = val
 }
 
 // SetName sets the value of Name.
@@ -2082,9 +6206,14 @@ func (s *RelatedMailUserField) SetPasswordHash(val OptNilString) {
 	s.PasswordHash = val
 }
 
-// SetPk sets the value of Pk.
-func (s *RelatedMailUserField) SetPk(val string) {
-	s.Pk = val
+// SetAliasOf sets the value of AliasOf.
+func (s *RelatedMailUserField) SetAliasOf(val *RelatedMailUserField) {
+	s.AliasOf = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *RelatedMailUserField) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -2092,35 +6221,104 @@ func (s *RelatedMailUserField) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
+// SetMailaddr sets the value of Mailaddr.
+func (s *RelatedMailUserField) SetMailaddr(val string) {
+	s.Mailaddr = val
+}
+
+// SetForwards sets the value of Forwards.
+func (s *RelatedMailUserField) SetForwards(val []NestedMailForward) {
+	s.Forwards = val
+}
+
+// SetKeepForwards sets the value of KeepForwards.
+func (s *RelatedMailUserField) SetKeepForwards(val OptBool) {
+	s.KeepForwards = val
+}
+
+// SetIsSysmail sets the value of IsSysmail.
+func (s *RelatedMailUserField) SetIsSysmail(val OptBool) {
+	s.IsSysmail = val
+}
+
+// SetIsCatchall sets the value of IsCatchall.
+func (s *RelatedMailUserField) SetIsCatchall(val OptBool) {
+	s.IsCatchall = val
+}
+
 type RelatedMailUserFieldRequest string
 
-// Ref: #/components/schemas/SshKey
-type SshKey struct {
+// Ref: #/components/schemas/SelectedToolVersion
+type SelectedToolVersion struct {
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid     string      `json:"asteroid"`
-	CreatedAt    time.Time   `json:"created_at"`
-	FormattedKey string      `json:"formatted_key"`
-	Key          string      `json:"key"`
-	KeyComment   OptString   `json:"key_comment"`
-	KeyType      KeyTypeEnum `json:"key_type"`
-	Pk           int         `json:"pk"`
-	ShortenedKey string      `json:"shortened_key"`
-	UpdatedAt    time.Time   `json:"updated_at"`
+	Asteroid    string `json:"asteroid"`
+	Tool        string `json:"tool"`
+	Version     string `json:"version"`
+	IsSetByUser bool   `json:"is_set_by_user"`
 }
 
 // GetAsteroid returns the value of Asteroid.
-func (s *SshKey) GetAsteroid() string {
+func (s *SelectedToolVersion) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *SshKey) GetCreatedAt() time.Time {
-	return s.CreatedAt
+// GetTool returns the value of Tool.
+func (s *SelectedToolVersion) GetTool() string {
+	return s.Tool
 }
 
-// GetFormattedKey returns the value of FormattedKey.
-func (s *SshKey) GetFormattedKey() string {
-	return s.FormattedKey
+// GetVersion returns the value of Version.
+func (s *SelectedToolVersion) GetVersion() string {
+	return s.Version
+}
+
+// GetIsSetByUser returns the value of IsSetByUser.
+func (s *SelectedToolVersion) GetIsSetByUser() bool {
+	return s.IsSetByUser
+}
+
+// SetAsteroid sets the value of Asteroid.
+func (s *SelectedToolVersion) SetAsteroid(val string) {
+	s.Asteroid = val
+}
+
+// SetTool sets the value of Tool.
+func (s *SelectedToolVersion) SetTool(val string) {
+	s.Tool = val
+}
+
+// SetVersion sets the value of Version.
+func (s *SelectedToolVersion) SetVersion(val string) {
+	s.Version = val
+}
+
+// SetIsSetByUser sets the value of IsSetByUser.
+func (s *SelectedToolVersion) SetIsSetByUser(val bool) {
+	s.IsSetByUser = val
+}
+
+// Ref: #/components/schemas/SshKey
+type SshKey struct {
+	Pk           int         `json:"pk"`
+	KeyType      KeyTypeEnum `json:"key_type"`
+	Key          string      `json:"key"`
+	KeyComment   OptString   `json:"key_comment"`
+	FormattedKey string      `json:"formatted_key"`
+	ShortenedKey string      `json:"shortened_key"`
+	CreatedAt    time.Time   `json:"created_at"`
+	UpdatedAt    time.Time   `json:"updated_at"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
+}
+
+// GetPk returns the value of Pk.
+func (s *SshKey) GetPk() int {
+	return s.Pk
+}
+
+// GetKeyType returns the value of KeyType.
+func (s *SshKey) GetKeyType() KeyTypeEnum {
+	return s.KeyType
 }
 
 // GetKey returns the value of Key.
@@ -2133,14 +6331,9 @@ func (s *SshKey) GetKeyComment() OptString {
 	return s.KeyComment
 }
 
-// GetKeyType returns the value of KeyType.
-func (s *SshKey) GetKeyType() KeyTypeEnum {
-	return s.KeyType
-}
-
-// GetPk returns the value of Pk.
-func (s *SshKey) GetPk() int {
-	return s.Pk
+// GetFormattedKey returns the value of FormattedKey.
+func (s *SshKey) GetFormattedKey() string {
+	return s.FormattedKey
 }
 
 // GetShortenedKey returns the value of ShortenedKey.
@@ -2148,24 +6341,29 @@ func (s *SshKey) GetShortenedKey() string {
 	return s.ShortenedKey
 }
 
+// GetCreatedAt returns the value of CreatedAt.
+func (s *SshKey) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
 // GetUpdatedAt returns the value of UpdatedAt.
 func (s *SshKey) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *SshKey) SetAsteroid(val string) {
-	s.Asteroid = val
+// GetAsteroid returns the value of Asteroid.
+func (s *SshKey) GetAsteroid() string {
+	return s.Asteroid
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *SshKey) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// SetPk sets the value of Pk.
+func (s *SshKey) SetPk(val int) {
+	s.Pk = val
 }
 
-// SetFormattedKey sets the value of FormattedKey.
-func (s *SshKey) SetFormattedKey(val string) {
-	s.FormattedKey = val
+// SetKeyType sets the value of KeyType.
+func (s *SshKey) SetKeyType(val KeyTypeEnum) {
+	s.KeyType = val
 }
 
 // SetKey sets the value of Key.
@@ -2178,14 +6376,9 @@ func (s *SshKey) SetKeyComment(val OptString) {
 	s.KeyComment = val
 }
 
-// SetKeyType sets the value of KeyType.
-func (s *SshKey) SetKeyType(val KeyTypeEnum) {
-	s.KeyType = val
-}
-
-// SetPk sets the value of Pk.
-func (s *SshKey) SetPk(val int) {
-	s.Pk = val
+// SetFormattedKey sets the value of FormattedKey.
+func (s *SshKey) SetFormattedKey(val string) {
+	s.FormattedKey = val
 }
 
 // SetShortenedKey sets the value of ShortenedKey.
@@ -2193,23 +6386,33 @@ func (s *SshKey) SetShortenedKey(val string) {
 	s.ShortenedKey = val
 }
 
+// SetCreatedAt sets the value of CreatedAt.
+func (s *SshKey) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
 // SetUpdatedAt sets the value of UpdatedAt.
 func (s *SshKey) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
-// Ref: #/components/schemas/SshKeyRequest
-type SshKeyRequest struct {
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid   string      `json:"asteroid"`
-	Key        string      `json:"key"`
-	KeyComment OptString   `json:"key_comment"`
-	KeyType    KeyTypeEnum `json:"key_type"`
+// SetAsteroid sets the value of Asteroid.
+func (s *SshKey) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
-// GetAsteroid returns the value of Asteroid.
-func (s *SshKeyRequest) GetAsteroid() string {
-	return s.Asteroid
+// Ref: #/components/schemas/SshKeyRequest
+type SshKeyRequest struct {
+	KeyType    KeyTypeEnum `json:"key_type"`
+	Key        string      `json:"key"`
+	KeyComment OptString   `json:"key_comment"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
+}
+
+// GetKeyType returns the value of KeyType.
+func (s *SshKeyRequest) GetKeyType() KeyTypeEnum {
+	return s.KeyType
 }
 
 // GetKey returns the value of Key.
@@ -2222,14 +6425,14 @@ func (s *SshKeyRequest) GetKeyComment() OptString {
 	return s.KeyComment
 }
 
-// GetKeyType returns the value of KeyType.
-func (s *SshKeyRequest) GetKeyType() KeyTypeEnum {
-	return s.KeyType
+// GetAsteroid returns the value of Asteroid.
+func (s *SshKeyRequest) GetAsteroid() string {
+	return s.Asteroid
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *SshKeyRequest) SetAsteroid(val string) {
-	s.Asteroid = val
+// SetKeyType sets the value of KeyType.
+func (s *SshKeyRequest) SetKeyType(val KeyTypeEnum) {
+	s.KeyType = val
 }
 
 // SetKey sets the value of Key.
@@ -2242,23 +6445,23 @@ func (s *SshKeyRequest) SetKeyComment(val OptString) {
 	s.KeyComment = val
 }
 
-// SetKeyType sets the value of KeyType.
-func (s *SshKeyRequest) SetKeyType(val KeyTypeEnum) {
-	s.KeyType = val
+// SetAsteroid sets the value of Asteroid.
+func (s *SshKeyRequest) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
 // Ref: #/components/schemas/SshKeyRequest
 type SshKeyRequestMultipart struct {
-	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid   string      `json:"asteroid"`
+	KeyType    KeyTypeEnum `json:"key_type"`
 	Key        string      `json:"key"`
 	KeyComment OptString   `json:"key_comment"`
-	KeyType    KeyTypeEnum `json:"key_type"`
+	// Name of a hosting account, e.g. 'isabell'.
+	Asteroid string `json:"asteroid"`
 }
 
-// GetAsteroid returns the value of Asteroid.
-func (s *SshKeyRequestMultipart) GetAsteroid() string {
-	return s.Asteroid
+// GetKeyType returns the value of KeyType.
+func (s *SshKeyRequestMultipart) GetKeyType() KeyTypeEnum {
+	return s.KeyType
 }
 
 // GetKey returns the value of Key.
@@ -2271,14 +6474,14 @@ func (s *SshKeyRequestMultipart) GetKeyComment() OptString {
 	return s.KeyComment
 }
 
-// GetKeyType returns the value of KeyType.
-func (s *SshKeyRequestMultipart) GetKeyType() KeyTypeEnum {
-	return s.KeyType
+// GetAsteroid returns the value of Asteroid.
+func (s *SshKeyRequestMultipart) GetAsteroid() string {
+	return s.Asteroid
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *SshKeyRequestMultipart) SetAsteroid(val string) {
-	s.Asteroid = val
+// SetKeyType sets the value of KeyType.
+func (s *SshKeyRequestMultipart) SetKeyType(val KeyTypeEnum) {
+	s.KeyType = val
 }
 
 // SetKey sets the value of Key.
@@ -2291,42 +6494,264 @@ func (s *SshKeyRequestMultipart) SetKeyComment(val OptString) {
 	s.KeyComment = val
 }
 
-// SetKeyType sets the value of KeyType.
-func (s *SshKeyRequestMultipart) SetKeyType(val KeyTypeEnum) {
-	s.KeyType = val
+// SetAsteroid sets the value of Asteroid.
+func (s *SshKeyRequestMultipart) SetAsteroid(val string) {
+	s.Asteroid = val
 }
 
-func (*SshKeyRequestMultipart) createAsteroidsSshkeysReq() {}
+func (*SshKeyRequestMultipart) asteroidsSshkeysCreateReq() {}
+
+// Ref: #/components/schemas/Tool
+type Tool struct {
+	Slug string `json:"slug"`
+	Name string `json:"name"`
+}
+
+// GetSlug returns the value of Slug.
+func (s *Tool) GetSlug() string {
+	return s.Slug
+}
+
+// GetName returns the value of Name.
+func (s *Tool) GetName() string {
+	return s.Name
+}
+
+// SetSlug sets the value of Slug.
+func (s *Tool) SetSlug(val string) {
+	s.Slug = val
+}
+
+// SetName sets the value of Name.
+func (s *Tool) SetName(val string) {
+	s.Name = val
+}
+
+// Ref: #/components/schemas/ToolVersion
+type ToolVersion struct {
+	Tool      string  `json:"tool"`
+	Version   string  `json:"version"`
+	IsDefault OptBool `json:"is_default"`
+}
+
+// GetTool returns the value of Tool.
+func (s *ToolVersion) GetTool() string {
+	return s.Tool
+}
+
+// GetVersion returns the value of Version.
+func (s *ToolVersion) GetVersion() string {
+	return s.Version
+}
+
+// GetIsDefault returns the value of IsDefault.
+func (s *ToolVersion) GetIsDefault() OptBool {
+	return s.IsDefault
+}
+
+// SetTool sets the value of Tool.
+func (s *ToolVersion) SetTool(val string) {
+	s.Tool = val
+}
+
+// SetVersion sets the value of Version.
+func (s *ToolVersion) SetVersion(val string) {
+	s.Version = val
+}
+
+// SetIsDefault sets the value of IsDefault.
+func (s *ToolVersion) SetIsDefault(val OptBool) {
+	s.IsDefault = val
+}
+
+type ToolsGetFormat string
+
+const (
+	ToolsGetFormatJSON            ToolsGetFormat = "json"
+	ToolsGetFormatTextEventStream ToolsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all ToolsGetFormat values.
+func (ToolsGetFormat) AllValues() []ToolsGetFormat {
+	return []ToolsGetFormat{
+		ToolsGetFormatJSON,
+		ToolsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s ToolsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case ToolsGetFormatJSON:
+		return []byte(s), nil
+	case ToolsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *ToolsGetFormat) UnmarshalText(data []byte) error {
+	switch ToolsGetFormat(data) {
+	case ToolsGetFormatJSON:
+		*s = ToolsGetFormatJSON
+		return nil
+	case ToolsGetFormatTextEventStream:
+		*s = ToolsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type ToolsListFormat string
+
+const (
+	ToolsListFormatJSON            ToolsListFormat = "json"
+	ToolsListFormatTextEventStream ToolsListFormat = "text/event-stream"
+)
+
+// AllValues returns all ToolsListFormat values.
+func (ToolsListFormat) AllValues() []ToolsListFormat {
+	return []ToolsListFormat{
+		ToolsListFormatJSON,
+		ToolsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s ToolsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case ToolsListFormatJSON:
+		return []byte(s), nil
+	case ToolsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *ToolsListFormat) UnmarshalText(data []byte) error {
+	switch ToolsListFormat(data) {
+	case ToolsListFormatJSON:
+		*s = ToolsListFormatJSON
+		return nil
+	case ToolsListFormatTextEventStream:
+		*s = ToolsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type ToolsVersionsGetFormat string
+
+const (
+	ToolsVersionsGetFormatJSON            ToolsVersionsGetFormat = "json"
+	ToolsVersionsGetFormatTextEventStream ToolsVersionsGetFormat = "text/event-stream"
+)
+
+// AllValues returns all ToolsVersionsGetFormat values.
+func (ToolsVersionsGetFormat) AllValues() []ToolsVersionsGetFormat {
+	return []ToolsVersionsGetFormat{
+		ToolsVersionsGetFormatJSON,
+		ToolsVersionsGetFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s ToolsVersionsGetFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case ToolsVersionsGetFormatJSON:
+		return []byte(s), nil
+	case ToolsVersionsGetFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *ToolsVersionsGetFormat) UnmarshalText(data []byte) error {
+	switch ToolsVersionsGetFormat(data) {
+	case ToolsVersionsGetFormatJSON:
+		*s = ToolsVersionsGetFormatJSON
+		return nil
+	case ToolsVersionsGetFormatTextEventStream:
+		*s = ToolsVersionsGetFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
+
+type ToolsVersionsListFormat string
+
+const (
+	ToolsVersionsListFormatJSON            ToolsVersionsListFormat = "json"
+	ToolsVersionsListFormatTextEventStream ToolsVersionsListFormat = "text/event-stream"
+)
+
+// AllValues returns all ToolsVersionsListFormat values.
+func (ToolsVersionsListFormat) AllValues() []ToolsVersionsListFormat {
+	return []ToolsVersionsListFormat{
+		ToolsVersionsListFormatJSON,
+		ToolsVersionsListFormatTextEventStream,
+	}
+}
+
+// MarshalText implements encoding.TextMarshaler.
+func (s ToolsVersionsListFormat) MarshalText() ([]byte, error) {
+	switch s {
+	case ToolsVersionsListFormatJSON:
+		return []byte(s), nil
+	case ToolsVersionsListFormatTextEventStream:
+		return []byte(s), nil
+	default:
+		return nil, errors.Errorf("invalid value: %q", s)
+	}
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *ToolsVersionsListFormat) UnmarshalText(data []byte) error {
+	switch ToolsVersionsListFormat(data) {
+	case ToolsVersionsListFormatJSON:
+		*s = ToolsVersionsListFormatJSON
+		return nil
+	case ToolsVersionsListFormatTextEventStream:
+		*s = ToolsVersionsListFormatTextEventStream
+		return nil
+	default:
+		return errors.Errorf("invalid value: %q", data)
+	}
+}
 
 // Ref: #/components/schemas/WebBackend
 type WebBackend struct {
+	Pk int `json:"pk"`
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid    string          `json:"asteroid"`
-	CreatedAt   time.Time       `json:"created_at"`
-	Destination DestinationEnum `json:"destination"`
-	Domain      NilString       `json:"domain"`
-	Path        string          `json:"path"`
-	Pk          int             `json:"pk"`
-	// TCP port of the upstream HTTP server.
-	Port OptNilInt `json:"port"`
+	Asteroid string    `json:"asteroid"`
+	Domain   NilString `json:"domain"`
+	Path     string    `json:"path"`
 	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
-	RemovePrefix OptBool   `json:"remove_prefix"`
-	UpdatedAt    time.Time `json:"updated_at"`
+	RemovePrefix OptBool         `json:"remove_prefix"`
+	Destination  DestinationEnum `json:"destination"`
+	// TCP port of the upstream HTTP server.
+	Port      OptNilInt `json:"port"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
+// GetPk returns the value of Pk.
+func (s *WebBackend) GetPk() int {
+	return s.Pk
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *WebBackend) GetAsteroid() string {
 	return s.Asteroid
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *WebBackend) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetDestination returns the value of Destination.
-func (s *WebBackend) GetDestination() DestinationEnum {
-	return s.Destination
 }
 
 // GetDomain returns the value of Domain.
@@ -2339,9 +6764,14 @@ func (s *WebBackend) GetPath() string {
 	return s.Path
 }
 
-// GetPk returns the value of Pk.
-func (s *WebBackend) GetPk() int {
-	return s.Pk
+// GetRemovePrefix returns the value of RemovePrefix.
+func (s *WebBackend) GetRemovePrefix() OptBool {
+	return s.RemovePrefix
+}
+
+// GetDestination returns the value of Destination.
+func (s *WebBackend) GetDestination() DestinationEnum {
+	return s.Destination
 }
 
 // GetPort returns the value of Port.
@@ -2349,9 +6779,9 @@ func (s *WebBackend) GetPort() OptNilInt {
 	return s.Port
 }
 
-// GetRemovePrefix returns the value of RemovePrefix.
-func (s *WebBackend) GetRemovePrefix() OptBool {
-	return s.RemovePrefix
+// GetCreatedAt returns the value of CreatedAt.
+func (s *WebBackend) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -2359,19 +6789,14 @@ func (s *WebBackend) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
+// SetPk sets the value of Pk.
+func (s *WebBackend) SetPk(val int) {
+	s.Pk = val
+}
+
 // SetAsteroid sets the value of Asteroid.
 func (s *WebBackend) SetAsteroid(val string) {
 	s.Asteroid = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *WebBackend) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
-// SetDestination sets the value of Destination.
-func (s *WebBackend) SetDestination(val DestinationEnum) {
-	s.Destination = val
 }
 
 // SetDomain sets the value of Domain.
@@ -2384,9 +6809,14 @@ func (s *WebBackend) SetPath(val string) {
 	s.Path = val
 }
 
-// SetPk sets the value of Pk.
-func (s *WebBackend) SetPk(val int) {
-	s.Pk = val
+// SetRemovePrefix sets the value of RemovePrefix.
+func (s *WebBackend) SetRemovePrefix(val OptBool) {
+	s.RemovePrefix = val
+}
+
+// SetDestination sets the value of Destination.
+func (s *WebBackend) SetDestination(val DestinationEnum) {
+	s.Destination = val
 }
 
 // SetPort sets the value of Port.
@@ -2394,9 +6824,9 @@ func (s *WebBackend) SetPort(val OptNilInt) {
 	s.Port = val
 }
 
-// SetRemovePrefix sets the value of RemovePrefix.
-func (s *WebBackend) SetRemovePrefix(val OptBool) {
-	s.RemovePrefix = val
+// SetCreatedAt sets the value of CreatedAt.
+func (s *WebBackend) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -2407,24 +6837,19 @@ func (s *WebBackend) SetUpdatedAt(val time.Time) {
 // Ref: #/components/schemas/WebBackendRequest
 type WebBackendRequest struct {
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid    string          `json:"asteroid"`
-	Destination DestinationEnum `json:"destination"`
-	Domain      NilString       `json:"domain"`
-	Path        string          `json:"path"`
+	Asteroid string    `json:"asteroid"`
+	Domain   NilString `json:"domain"`
+	Path     string    `json:"path"`
+	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
+	RemovePrefix OptBool         `json:"remove_prefix"`
+	Destination  DestinationEnum `json:"destination"`
 	// TCP port of the upstream HTTP server.
 	Port OptNilInt `json:"port"`
-	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
-	RemovePrefix OptBool `json:"remove_prefix"`
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *WebBackendRequest) GetAsteroid() string {
 	return s.Asteroid
-}
-
-// GetDestination returns the value of Destination.
-func (s *WebBackendRequest) GetDestination() DestinationEnum {
-	return s.Destination
 }
 
 // GetDomain returns the value of Domain.
@@ -2437,24 +6862,24 @@ func (s *WebBackendRequest) GetPath() string {
 	return s.Path
 }
 
-// GetPort returns the value of Port.
-func (s *WebBackendRequest) GetPort() OptNilInt {
-	return s.Port
-}
-
 // GetRemovePrefix returns the value of RemovePrefix.
 func (s *WebBackendRequest) GetRemovePrefix() OptBool {
 	return s.RemovePrefix
 }
 
+// GetDestination returns the value of Destination.
+func (s *WebBackendRequest) GetDestination() DestinationEnum {
+	return s.Destination
+}
+
+// GetPort returns the value of Port.
+func (s *WebBackendRequest) GetPort() OptNilInt {
+	return s.Port
+}
+
 // SetAsteroid sets the value of Asteroid.
 func (s *WebBackendRequest) SetAsteroid(val string) {
 	s.Asteroid = val
-}
-
-// SetDestination sets the value of Destination.
-func (s *WebBackendRequest) SetDestination(val DestinationEnum) {
-	s.Destination = val
 }
 
 // SetDomain sets the value of Domain.
@@ -2467,37 +6892,37 @@ func (s *WebBackendRequest) SetPath(val string) {
 	s.Path = val
 }
 
-// SetPort sets the value of Port.
-func (s *WebBackendRequest) SetPort(val OptNilInt) {
-	s.Port = val
-}
-
 // SetRemovePrefix sets the value of RemovePrefix.
 func (s *WebBackendRequest) SetRemovePrefix(val OptBool) {
 	s.RemovePrefix = val
 }
 
+// SetDestination sets the value of Destination.
+func (s *WebBackendRequest) SetDestination(val DestinationEnum) {
+	s.Destination = val
+}
+
+// SetPort sets the value of Port.
+func (s *WebBackendRequest) SetPort(val OptNilInt) {
+	s.Port = val
+}
+
 // Ref: #/components/schemas/WebBackendRequest
 type WebBackendRequestMultipart struct {
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid    string          `json:"asteroid"`
-	Destination DestinationEnum `json:"destination"`
-	Domain      NilString       `json:"domain"`
-	Path        string          `json:"path"`
+	Asteroid string    `json:"asteroid"`
+	Domain   NilString `json:"domain"`
+	Path     string    `json:"path"`
+	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
+	RemovePrefix OptBool         `json:"remove_prefix"`
+	Destination  DestinationEnum `json:"destination"`
 	// TCP port of the upstream HTTP server.
 	Port OptNilInt `json:"port"`
-	// Whether to remove the path while proxying, e.g. /ep/123 => /123.
-	RemovePrefix OptBool `json:"remove_prefix"`
 }
 
 // GetAsteroid returns the value of Asteroid.
 func (s *WebBackendRequestMultipart) GetAsteroid() string {
 	return s.Asteroid
-}
-
-// GetDestination returns the value of Destination.
-func (s *WebBackendRequestMultipart) GetDestination() DestinationEnum {
-	return s.Destination
 }
 
 // GetDomain returns the value of Domain.
@@ -2510,24 +6935,24 @@ func (s *WebBackendRequestMultipart) GetPath() string {
 	return s.Path
 }
 
-// GetPort returns the value of Port.
-func (s *WebBackendRequestMultipart) GetPort() OptNilInt {
-	return s.Port
-}
-
 // GetRemovePrefix returns the value of RemovePrefix.
 func (s *WebBackendRequestMultipart) GetRemovePrefix() OptBool {
 	return s.RemovePrefix
 }
 
+// GetDestination returns the value of Destination.
+func (s *WebBackendRequestMultipart) GetDestination() DestinationEnum {
+	return s.Destination
+}
+
+// GetPort returns the value of Port.
+func (s *WebBackendRequestMultipart) GetPort() OptNilInt {
+	return s.Port
+}
+
 // SetAsteroid sets the value of Asteroid.
 func (s *WebBackendRequestMultipart) SetAsteroid(val string) {
 	s.Asteroid = val
-}
-
-// SetDestination sets the value of Destination.
-func (s *WebBackendRequestMultipart) SetDestination(val DestinationEnum) {
-	s.Destination = val
 }
 
 // SetDomain sets the value of Domain.
@@ -2540,36 +6965,35 @@ func (s *WebBackendRequestMultipart) SetPath(val string) {
 	s.Path = val
 }
 
-// SetPort sets the value of Port.
-func (s *WebBackendRequestMultipart) SetPort(val OptNilInt) {
-	s.Port = val
-}
-
 // SetRemovePrefix sets the value of RemovePrefix.
 func (s *WebBackendRequestMultipart) SetRemovePrefix(val OptBool) {
 	s.RemovePrefix = val
 }
 
-func (*WebBackendRequestMultipart) createAsteroidsWebdomainsBackendsReq() {}
+// SetDestination sets the value of Destination.
+func (s *WebBackendRequestMultipart) SetDestination(val DestinationEnum) {
+	s.Destination = val
+}
+
+// SetPort sets the value of Port.
+func (s *WebBackendRequestMultipart) SetPort(val OptNilInt) {
+	s.Port = val
+}
+
+func (*WebBackendRequestMultipart) asteroidsWebdomainsBackendsCreateReq() {}
 
 // Ref: #/components/schemas/WebDomain
 type WebDomain struct {
+	Domain        string    `json:"domain"`
+	DomainDisplay string    `json:"domain_display"`
+	DomainIdn     string    `json:"domain_idn"`
+	Name          string    `json:"name"`
+	NameDisplay   string    `json:"name_display"`
+	NameIdn       string    `json:"name_idn"`
+	CreatedAt     time.Time `json:"created_at"`
+	UpdatedAt     time.Time `json:"updated_at"`
 	// Name of a hosting account, e.g. 'isabell'.
-	Asteroid  string    `json:"asteroid"`
-	CreatedAt time.Time `json:"created_at"`
-	Domain    string    `json:"domain"`
-	DomainIdn string    `json:"domain_idn"`
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// GetAsteroid returns the value of Asteroid.
-func (s *WebDomain) GetAsteroid() string {
-	return s.Asteroid
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *WebDomain) GetCreatedAt() time.Time {
-	return s.CreatedAt
+	Asteroid string `json:"asteroid"`
 }
 
 // GetDomain returns the value of Domain.
@@ -2577,9 +7001,34 @@ func (s *WebDomain) GetDomain() string {
 	return s.Domain
 }
 
+// GetDomainDisplay returns the value of DomainDisplay.
+func (s *WebDomain) GetDomainDisplay() string {
+	return s.DomainDisplay
+}
+
 // GetDomainIdn returns the value of DomainIdn.
 func (s *WebDomain) GetDomainIdn() string {
 	return s.DomainIdn
+}
+
+// GetName returns the value of Name.
+func (s *WebDomain) GetName() string {
+	return s.Name
+}
+
+// GetNameDisplay returns the value of NameDisplay.
+func (s *WebDomain) GetNameDisplay() string {
+	return s.NameDisplay
+}
+
+// GetNameIdn returns the value of NameIdn.
+func (s *WebDomain) GetNameIdn() string {
+	return s.NameIdn
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *WebDomain) GetCreatedAt() time.Time {
+	return s.CreatedAt
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -2587,14 +7036,9 @@ func (s *WebDomain) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// SetAsteroid sets the value of Asteroid.
-func (s *WebDomain) SetAsteroid(val string) {
-	s.Asteroid = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *WebDomain) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
+// GetAsteroid returns the value of Asteroid.
+func (s *WebDomain) GetAsteroid() string {
+	return s.Asteroid
 }
 
 // SetDomain sets the value of Domain.
@@ -2602,9 +7046,34 @@ func (s *WebDomain) SetDomain(val string) {
 	s.Domain = val
 }
 
+// SetDomainDisplay sets the value of DomainDisplay.
+func (s *WebDomain) SetDomainDisplay(val string) {
+	s.DomainDisplay = val
+}
+
 // SetDomainIdn sets the value of DomainIdn.
 func (s *WebDomain) SetDomainIdn(val string) {
 	s.DomainIdn = val
+}
+
+// SetName sets the value of Name.
+func (s *WebDomain) SetName(val string) {
+	s.Name = val
+}
+
+// SetNameDisplay sets the value of NameDisplay.
+func (s *WebDomain) SetNameDisplay(val string) {
+	s.NameDisplay = val
+}
+
+// SetNameIdn sets the value of NameIdn.
+func (s *WebDomain) SetNameIdn(val string) {
+	s.NameIdn = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *WebDomain) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
 }
 
 // SetUpdatedAt sets the value of UpdatedAt.
@@ -2612,11 +7081,21 @@ func (s *WebDomain) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
 }
 
+// SetAsteroid sets the value of Asteroid.
+func (s *WebDomain) SetAsteroid(val string) {
+	s.Asteroid = val
+}
+
 // Ref: #/components/schemas/WebDomainRequest
 type WebDomainRequest struct {
+	Name string `json:"name"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-	Domain   string `json:"domain"`
+}
+
+// GetName returns the value of Name.
+func (s *WebDomainRequest) GetName() string {
+	return s.Name
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2624,9 +7103,9 @@ func (s *WebDomainRequest) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// GetDomain returns the value of Domain.
-func (s *WebDomainRequest) GetDomain() string {
-	return s.Domain
+// SetName sets the value of Name.
+func (s *WebDomainRequest) SetName(val string) {
+	s.Name = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2634,16 +7113,16 @@ func (s *WebDomainRequest) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// SetDomain sets the value of Domain.
-func (s *WebDomainRequest) SetDomain(val string) {
-	s.Domain = val
-}
-
 // Ref: #/components/schemas/WebDomainRequest
 type WebDomainRequestMultipart struct {
+	Name string `json:"name"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-	Domain   string `json:"domain"`
+}
+
+// GetName returns the value of Name.
+func (s *WebDomainRequestMultipart) GetName() string {
+	return s.Name
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2651,9 +7130,9 @@ func (s *WebDomainRequestMultipart) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// GetDomain returns the value of Domain.
-func (s *WebDomainRequestMultipart) GetDomain() string {
-	return s.Domain
+// SetName sets the value of Name.
+func (s *WebDomainRequestMultipart) SetName(val string) {
+	s.Name = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2661,23 +7140,24 @@ func (s *WebDomainRequestMultipart) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// SetDomain sets the value of Domain.
-func (s *WebDomainRequestMultipart) SetDomain(val string) {
-	s.Domain = val
-}
-
-func (*WebDomainRequestMultipart) createAsteroidsWebdomainsReq() {}
+func (*WebDomainRequestMultipart) asteroidsWebdomainsCreateReq() {}
 
 // Ref: #/components/schemas/WebHeader
 type WebHeader struct {
+	Pk int `json:"pk"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid  string       `json:"asteroid"`
-	CreatedAt time.Time    `json:"created_at"`
 	Domain    NilString    `json:"domain"`
-	Name      string       `json:"name"`
 	Path      string       `json:"path"`
-	UpdatedAt time.Time    `json:"updated_at"`
 	Value     OptNilString `json:"value"`
+	Name      string       `json:"name"`
+	CreatedAt time.Time    `json:"created_at"`
+	UpdatedAt time.Time    `json:"updated_at"`
+}
+
+// GetPk returns the value of Pk.
+func (s *WebHeader) GetPk() int {
+	return s.Pk
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2685,19 +7165,9 @@ func (s *WebHeader) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *WebHeader) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
 // GetDomain returns the value of Domain.
 func (s *WebHeader) GetDomain() NilString {
 	return s.Domain
-}
-
-// GetName returns the value of Name.
-func (s *WebHeader) GetName() string {
-	return s.Name
 }
 
 // GetPath returns the value of Path.
@@ -2705,14 +7175,29 @@ func (s *WebHeader) GetPath() string {
 	return s.Path
 }
 
+// GetValue returns the value of Value.
+func (s *WebHeader) GetValue() OptNilString {
+	return s.Value
+}
+
+// GetName returns the value of Name.
+func (s *WebHeader) GetName() string {
+	return s.Name
+}
+
+// GetCreatedAt returns the value of CreatedAt.
+func (s *WebHeader) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
 // GetUpdatedAt returns the value of UpdatedAt.
 func (s *WebHeader) GetUpdatedAt() time.Time {
 	return s.UpdatedAt
 }
 
-// GetValue returns the value of Value.
-func (s *WebHeader) GetValue() OptNilString {
-	return s.Value
+// SetPk sets the value of Pk.
+func (s *WebHeader) SetPk(val int) {
+	s.Pk = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2720,19 +7205,9 @@ func (s *WebHeader) SetAsteroid(val string) {
 	s.Asteroid = val
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *WebHeader) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
 // SetDomain sets the value of Domain.
 func (s *WebHeader) SetDomain(val NilString) {
 	s.Domain = val
-}
-
-// SetName sets the value of Name.
-func (s *WebHeader) SetName(val string) {
-	s.Name = val
 }
 
 // SetPath sets the value of Path.
@@ -2740,14 +7215,24 @@ func (s *WebHeader) SetPath(val string) {
 	s.Path = val
 }
 
-// SetUpdatedAt sets the value of UpdatedAt.
-func (s *WebHeader) SetUpdatedAt(val time.Time) {
-	s.UpdatedAt = val
-}
-
 // SetValue sets the value of Value.
 func (s *WebHeader) SetValue(val OptNilString) {
 	s.Value = val
+}
+
+// SetName sets the value of Name.
+func (s *WebHeader) SetName(val string) {
+	s.Name = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *WebHeader) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetUpdatedAt sets the value of UpdatedAt.
+func (s *WebHeader) SetUpdatedAt(val time.Time) {
+	s.UpdatedAt = val
 }
 
 // Ref: #/components/schemas/WebHeaderRequest
@@ -2755,9 +7240,9 @@ type WebHeaderRequest struct {
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string       `json:"asteroid"`
 	Domain   NilString    `json:"domain"`
-	Name     string       `json:"name"`
 	Path     string       `json:"path"`
 	Value    OptNilString `json:"value"`
+	Name     string       `json:"name"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2770,11 +7255,6 @@ func (s *WebHeaderRequest) GetDomain() NilString {
 	return s.Domain
 }
 
-// GetName returns the value of Name.
-func (s *WebHeaderRequest) GetName() string {
-	return s.Name
-}
-
 // GetPath returns the value of Path.
 func (s *WebHeaderRequest) GetPath() string {
 	return s.Path
@@ -2783,6 +7263,11 @@ func (s *WebHeaderRequest) GetPath() string {
 // GetValue returns the value of Value.
 func (s *WebHeaderRequest) GetValue() OptNilString {
 	return s.Value
+}
+
+// GetName returns the value of Name.
+func (s *WebHeaderRequest) GetName() string {
+	return s.Name
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2795,11 +7280,6 @@ func (s *WebHeaderRequest) SetDomain(val NilString) {
 	s.Domain = val
 }
 
-// SetName sets the value of Name.
-func (s *WebHeaderRequest) SetName(val string) {
-	s.Name = val
-}
-
 // SetPath sets the value of Path.
 func (s *WebHeaderRequest) SetPath(val string) {
 	s.Path = val
@@ -2810,14 +7290,19 @@ func (s *WebHeaderRequest) SetValue(val OptNilString) {
 	s.Value = val
 }
 
+// SetName sets the value of Name.
+func (s *WebHeaderRequest) SetName(val string) {
+	s.Name = val
+}
+
 // Ref: #/components/schemas/WebHeaderRequest
 type WebHeaderRequestMultipart struct {
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string       `json:"asteroid"`
 	Domain   NilString    `json:"domain"`
-	Name     string       `json:"name"`
 	Path     string       `json:"path"`
 	Value    OptNilString `json:"value"`
+	Name     string       `json:"name"`
 }
 
 // GetAsteroid returns the value of Asteroid.
@@ -2830,11 +7315,6 @@ func (s *WebHeaderRequestMultipart) GetDomain() NilString {
 	return s.Domain
 }
 
-// GetName returns the value of Name.
-func (s *WebHeaderRequestMultipart) GetName() string {
-	return s.Name
-}
-
 // GetPath returns the value of Path.
 func (s *WebHeaderRequestMultipart) GetPath() string {
 	return s.Path
@@ -2843,6 +7323,11 @@ func (s *WebHeaderRequestMultipart) GetPath() string {
 // GetValue returns the value of Value.
 func (s *WebHeaderRequestMultipart) GetValue() OptNilString {
 	return s.Value
+}
+
+// GetName returns the value of Name.
+func (s *WebHeaderRequestMultipart) GetName() string {
+	return s.Name
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -2855,11 +7340,6 @@ func (s *WebHeaderRequestMultipart) SetDomain(val NilString) {
 	s.Domain = val
 }
 
-// SetName sets the value of Name.
-func (s *WebHeaderRequestMultipart) SetName(val string) {
-	s.Name = val
-}
-
 // SetPath sets the value of Path.
 func (s *WebHeaderRequestMultipart) SetPath(val string) {
 	s.Path = val
@@ -2870,4 +7350,9 @@ func (s *WebHeaderRequestMultipart) SetValue(val OptNilString) {
 	s.Value = val
 }
 
-func (*WebHeaderRequestMultipart) createAsteroidsWebdomainsHeadersReq() {}
+// SetName sets the value of Name.
+func (s *WebHeaderRequestMultipart) SetName(val string) {
+	s.Name = val
+}
+
+func (*WebHeaderRequestMultipart) asteroidsWebdomainsHeadersCreateReq() {}

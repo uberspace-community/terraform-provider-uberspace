@@ -21,130 +21,190 @@ func trimTrailingSlashes(u *url.URL) {
 
 // Invoker invokes operations described by OpenAPI v3 specification.
 type Invoker interface {
-	// CreateAsteroidsMaildomains invokes create_asteroids_maildomains operation.
-	//
-	// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/
-	CreateAsteroidsMaildomains(ctx context.Context, request CreateAsteroidsMaildomainsReq, params CreateAsteroidsMaildomainsParams) (*MailDomain, error)
-	// CreateAsteroidsMaildomainsUsers invokes create_asteroids_maildomains_users operation.
-	//
-	// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
-	CreateAsteroidsMaildomainsUsers(ctx context.Context, request CreateAsteroidsMaildomainsUsersReq, params CreateAsteroidsMaildomainsUsersParams) (*MailUser, error)
-	// CreateAsteroidsSshkeys invokes create_asteroids_sshkeys operation.
-	//
-	// POST /api/v1/external/asteroids/{asteroid_name}/sshkeys/
-	CreateAsteroidsSshkeys(ctx context.Context, request CreateAsteroidsSshkeysReq, params CreateAsteroidsSshkeysParams) (*SshKey, error)
-	// CreateAsteroidsWebdomains invokes create_asteroids_webdomains operation.
-	//
-	// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/
-	CreateAsteroidsWebdomains(ctx context.Context, request CreateAsteroidsWebdomainsReq, params CreateAsteroidsWebdomainsParams) (*WebDomain, error)
-	// CreateAsteroidsWebdomainsBackends invokes create_asteroids_webdomains_backends operation.
-	//
-	// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/
-	CreateAsteroidsWebdomainsBackends(ctx context.Context, request CreateAsteroidsWebdomainsBackendsReq, params CreateAsteroidsWebdomainsBackendsParams) (*WebBackend, error)
-	// CreateAsteroidsWebdomainsHeaders invokes create_asteroids_webdomains_headers operation.
-	//
-	// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/
-	CreateAsteroidsWebdomainsHeaders(ctx context.Context, request CreateAsteroidsWebdomainsHeadersReq, params CreateAsteroidsWebdomainsHeadersParams) (*WebHeader, error)
-	// DeleteAsteroidMaildomain invokes delete_asteroid_maildomain operation.
-	//
-	// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
-	DeleteAsteroidMaildomain(ctx context.Context, params DeleteAsteroidMaildomainParams) error
-	// DeleteAsteroidMaildomainUser invokes delete_asteroid_maildomain_user operation.
-	//
-	// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-	DeleteAsteroidMaildomainUser(ctx context.Context, params DeleteAsteroidMaildomainUserParams) error
-	// DeleteAsteroidSshkey invokes delete_asteroid_sshkey operation.
-	//
-	// DELETE /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
-	DeleteAsteroidSshkey(ctx context.Context, params DeleteAsteroidSshkeyParams) error
-	// DeleteAsteroidWebdomain invokes delete_asteroid_webdomain operation.
-	//
-	// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{domain}/
-	DeleteAsteroidWebdomain(ctx context.Context, params DeleteAsteroidWebdomainParams) error
-	// DeleteAsteroidWebdomainBackend invokes delete_asteroid_webdomain_backend operation.
-	//
-	// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/{path}/
-	DeleteAsteroidWebdomainBackend(ctx context.Context, params DeleteAsteroidWebdomainBackendParams) error
-	// DeleteAsteroidWebdomainHeader invokes delete_asteroid_webdomain_header operation.
-	//
-	// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/{path}/
-	DeleteAsteroidWebdomainHeader(ctx context.Context, params DeleteAsteroidWebdomainHeaderParams) error
-	// GetAsteroid invokes get_asteroid operation.
+	// AsteroidsGet invokes asteroids_get operation.
 	//
 	// GET /api/v1/external/asteroids/{name}/
-	GetAsteroid(ctx context.Context, params GetAsteroidParams) (*ExternalAsteroid, error)
-	// GetAsteroidMaildomain invokes get_asteroid_maildomain operation.
+	AsteroidsGet(ctx context.Context, params AsteroidsGetParams) (*ExternalAsteroid, error)
+	// AsteroidsMaildomainsCreate invokes asteroids_maildomains_create operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
-	GetAsteroidMaildomain(ctx context.Context, params GetAsteroidMaildomainParams) (*MailDomain, error)
-	// GetAsteroidMaildomainUser invokes get_asteroid_maildomain_user operation.
+	// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/
+	AsteroidsMaildomainsCreate(ctx context.Context, request AsteroidsMaildomainsCreateReq, params AsteroidsMaildomainsCreateParams) (*MailDomain, error)
+	// AsteroidsMaildomainsDelete invokes asteroids_maildomains_delete operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-	GetAsteroidMaildomainUser(ctx context.Context, params GetAsteroidMaildomainUserParams) (*MailUser, error)
-	// GetAsteroidMaildomains invokes get_asteroid_maildomains operation.
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/
+	AsteroidsMaildomainsDelete(ctx context.Context, params AsteroidsMaildomainsDeleteParams) error
+	// AsteroidsMaildomainsGet invokes asteroids_maildomains_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/
+	AsteroidsMaildomainsGet(ctx context.Context, params AsteroidsMaildomainsGetParams) (*MailDomain, error)
+	// AsteroidsMaildomainsList invokes asteroids_maildomains_list operation.
 	//
 	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/
-	GetAsteroidMaildomains(ctx context.Context, params GetAsteroidMaildomainsParams) (*PaginatedMailDomainList, error)
-	// GetAsteroidMaildomainsUsers invokes get_asteroid_maildomains_users operation.
+	AsteroidsMaildomainsList(ctx context.Context, params AsteroidsMaildomainsListParams) (*PaginatedMailDomainList, error)
+	// AsteroidsMaildomainsUsersCreate invokes asteroids_maildomains_users_create operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
-	GetAsteroidMaildomainsUsers(ctx context.Context, params GetAsteroidMaildomainsUsersParams) (*PaginatedMailUserList, error)
-	// GetAsteroidSshkey invokes get_asteroid_sshkey operation.
+	// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/
+	AsteroidsMaildomainsUsersCreate(ctx context.Context, request AsteroidsMaildomainsUsersCreateReq, params AsteroidsMaildomainsUsersCreateParams) (*MailUser, error)
+	// AsteroidsMaildomainsUsersDelete invokes asteroids_maildomains_users_delete operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
-	GetAsteroidSshkey(ctx context.Context, params GetAsteroidSshkeyParams) (*SshKey, error)
-	// GetAsteroidSshkeys invokes get_asteroid_sshkeys operation.
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
+	AsteroidsMaildomainsUsersDelete(ctx context.Context, params AsteroidsMaildomainsUsersDeleteParams) error
+	// AsteroidsMaildomainsUsersForwardsCreate invokes asteroids_maildomains_users_forwards_create operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/
-	GetAsteroidSshkeys(ctx context.Context, params GetAsteroidSshkeysParams) (*PaginatedSshKeyList, error)
-	// GetAsteroidWebbackend invokes get_asteroid_webbackend operation.
+	// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/
+	AsteroidsMaildomainsUsersForwardsCreate(ctx context.Context, request AsteroidsMaildomainsUsersForwardsCreateReq, params AsteroidsMaildomainsUsersForwardsCreateParams) (*MailForward, error)
+	// AsteroidsMaildomainsUsersForwardsDelete invokes asteroids_maildomains_users_forwards_delete operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/{id}/
-	GetAsteroidWebbackend(ctx context.Context, params GetAsteroidWebbackendParams) (*WebBackend, error)
-	// GetAsteroidWebbackends invokes get_asteroid_webbackends operation.
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/{destination}/
+	AsteroidsMaildomainsUsersForwardsDelete(ctx context.Context, params AsteroidsMaildomainsUsersForwardsDeleteParams) error
+	// AsteroidsMaildomainsUsersForwardsGet invokes asteroids_maildomains_users_forwards_get operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/
-	GetAsteroidWebbackends(ctx context.Context, params GetAsteroidWebbackendsParams) (*PaginatedWebBackendList, error)
-	// GetAsteroidWebdomain invokes get_asteroid_webdomain operation.
+	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/{destination}/
+	AsteroidsMaildomainsUsersForwardsGet(ctx context.Context, params AsteroidsMaildomainsUsersForwardsGetParams) (*MailForward, error)
+	// AsteroidsMaildomainsUsersForwardsList invokes asteroids_maildomains_users_forwards_list operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{domain}/
-	GetAsteroidWebdomain(ctx context.Context, params GetAsteroidWebdomainParams) (*WebDomain, error)
-	// GetAsteroidWebdomainBackend invokes get_asteroid_webdomain_backend operation.
+	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/
+	AsteroidsMaildomainsUsersForwardsList(ctx context.Context, params AsteroidsMaildomainsUsersForwardsListParams) (*PaginatedMailForwardList, error)
+	// AsteroidsMaildomainsUsersGet invokes asteroids_maildomains_users_get operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/{path}/
-	GetAsteroidWebdomainBackend(ctx context.Context, params GetAsteroidWebdomainBackendParams) (*WebBackend, error)
-	// GetAsteroidWebdomainHeader invokes get_asteroid_webdomain_header operation.
+	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
+	AsteroidsMaildomainsUsersGet(ctx context.Context, params AsteroidsMaildomainsUsersGetParams) (*MailUser, error)
+	// AsteroidsMaildomainsUsersList invokes asteroids_maildomains_users_list operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/{path}/
-	GetAsteroidWebdomainHeader(ctx context.Context, params GetAsteroidWebdomainHeaderParams) (*WebHeader, error)
-	// GetAsteroidWebdomains invokes get_asteroid_webdomains operation.
+	// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/
+	AsteroidsMaildomainsUsersList(ctx context.Context, params AsteroidsMaildomainsUsersListParams) (*PaginatedMailUserList, error)
+	// AsteroidsMaildomainsUsersPatch invokes asteroids_maildomains_users_patch operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/
-	GetAsteroidWebdomains(ctx context.Context, params GetAsteroidWebdomainsParams) (*PaginatedWebDomainList, error)
-	// GetAsteroidWebdomainsBackends invokes get_asteroid_webdomains_backends operation.
+	// PATCH /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
+	AsteroidsMaildomainsUsersPatch(ctx context.Context, request AsteroidsMaildomainsUsersPatchReq, params AsteroidsMaildomainsUsersPatchParams) (*MailUser, error)
+	// AsteroidsMailusersList invokes asteroids_mailusers_list operation.
 	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/
-	GetAsteroidWebdomainsBackends(ctx context.Context, params GetAsteroidWebdomainsBackendsParams) (*PaginatedWebBackendList, error)
-	// GetAsteroidWebdomainsHeaders invokes get_asteroid_webdomains_headers operation.
-	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/
-	GetAsteroidWebdomainsHeaders(ctx context.Context, params GetAsteroidWebdomainsHeadersParams) (*PaginatedWebHeaderList, error)
-	// GetAsteroidWebheader invokes get_asteroid_webheader operation.
-	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/{id}/
-	GetAsteroidWebheader(ctx context.Context, params GetAsteroidWebheaderParams) (*WebHeader, error)
-	// GetAsteroidWebheaders invokes get_asteroid_webheaders operation.
-	//
-	// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/
-	GetAsteroidWebheaders(ctx context.Context, params GetAsteroidWebheadersParams) (*PaginatedWebHeaderList, error)
-	// PatchAsteroid invokes patch_asteroid operation.
+	// GET /api/v1/external/asteroids/{asteroid_name}/mailusers/
+	AsteroidsMailusersList(ctx context.Context, params AsteroidsMailusersListParams) (*PaginatedMailUserList, error)
+	// AsteroidsPatch invokes asteroids_patch operation.
 	//
 	// PATCH /api/v1/external/asteroids/{name}/
-	PatchAsteroid(ctx context.Context, request PatchAsteroidReq, params PatchAsteroidParams) (*ExternalAsteroid, error)
-	// PatchAsteroidMaildomainUser invokes patch_asteroid_maildomain_user operation.
+	AsteroidsPatch(ctx context.Context, request AsteroidsPatchReq, params AsteroidsPatchParams) (*ExternalAsteroid, error)
+	// AsteroidsSshkeysCreate invokes asteroids_sshkeys_create operation.
 	//
-	// PATCH /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-	PatchAsteroidMaildomainUser(ctx context.Context, request PatchAsteroidMaildomainUserReq, params PatchAsteroidMaildomainUserParams) (*MailUser, error)
+	// POST /api/v1/external/asteroids/{asteroid_name}/sshkeys/
+	AsteroidsSshkeysCreate(ctx context.Context, request AsteroidsSshkeysCreateReq, params AsteroidsSshkeysCreateParams) (*SshKey, error)
+	// AsteroidsSshkeysDelete invokes asteroids_sshkeys_delete operation.
+	//
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
+	AsteroidsSshkeysDelete(ctx context.Context, params AsteroidsSshkeysDeleteParams) error
+	// AsteroidsSshkeysGet invokes asteroids_sshkeys_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
+	AsteroidsSshkeysGet(ctx context.Context, params AsteroidsSshkeysGetParams) (*SshKey, error)
+	// AsteroidsSshkeysList invokes asteroids_sshkeys_list operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/
+	AsteroidsSshkeysList(ctx context.Context, params AsteroidsSshkeysListParams) (*PaginatedSshKeyList, error)
+	// AsteroidsToolversionsGet invokes asteroids_toolversions_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/toolversions/{tool__slug}/
+	AsteroidsToolversionsGet(ctx context.Context, params AsteroidsToolversionsGetParams) (*SelectedToolVersion, error)
+	// AsteroidsToolversionsList invokes asteroids_toolversions_list operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/toolversions/
+	AsteroidsToolversionsList(ctx context.Context, params AsteroidsToolversionsListParams) (*PaginatedSelectedToolVersionList, error)
+	// AsteroidsToolversionsPatch invokes asteroids_toolversions_patch operation.
+	//
+	// PATCH /api/v1/external/asteroids/{asteroid_name}/toolversions/{tool__slug}/
+	AsteroidsToolversionsPatch(ctx context.Context, request AsteroidsToolversionsPatchReq, params AsteroidsToolversionsPatchParams) (*SelectedToolVersion, error)
+	// AsteroidsWebbackendsGet invokes asteroids_webbackends_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/{id}/
+	AsteroidsWebbackendsGet(ctx context.Context, params AsteroidsWebbackendsGetParams) (*WebBackend, error)
+	// AsteroidsWebbackendsList invokes asteroids_webbackends_list operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/
+	AsteroidsWebbackendsList(ctx context.Context, params AsteroidsWebbackendsListParams) (*PaginatedWebBackendList, error)
+	// AsteroidsWebdomainsBackendsCreate invokes asteroids_webdomains_backends_create operation.
+	//
+	// Backends configured for the given domain, or the backends used by default for all domains if you
+	// supply `-` as the domain.
+	//
+	// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/
+	AsteroidsWebdomainsBackendsCreate(ctx context.Context, request AsteroidsWebdomainsBackendsCreateReq, params AsteroidsWebdomainsBackendsCreateParams) (*WebBackend, error)
+	// AsteroidsWebdomainsBackendsDelete invokes asteroids_webdomains_backends_delete operation.
+	//
+	// Backends configured for the given domain, or the backends used by default for all domains if you
+	// supply `-` as the domain.
+	//
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/
+	AsteroidsWebdomainsBackendsDelete(ctx context.Context, params AsteroidsWebdomainsBackendsDeleteParams) error
+	// AsteroidsWebdomainsBackendsGet invokes asteroids_webdomains_backends_get operation.
+	//
+	// Backends configured for the given domain, or the backends used by default for all domains if you
+	// supply `-` as the domain.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/
+	AsteroidsWebdomainsBackendsGet(ctx context.Context, params AsteroidsWebdomainsBackendsGetParams) (*WebBackend, error)
+	// AsteroidsWebdomainsBackendsList invokes asteroids_webdomains_backends_list operation.
+	//
+	// Backends configured for the given domain, or the backends used by default for all domains if you
+	// supply `-` as the domain.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/
+	AsteroidsWebdomainsBackendsList(ctx context.Context, params AsteroidsWebdomainsBackendsListParams) (*PaginatedWebBackendList, error)
+	// AsteroidsWebdomainsCreate invokes asteroids_webdomains_create operation.
+	//
+	// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/
+	AsteroidsWebdomainsCreate(ctx context.Context, request AsteroidsWebdomainsCreateReq, params AsteroidsWebdomainsCreateParams) (*WebDomain, error)
+	// AsteroidsWebdomainsDelete invokes asteroids_webdomains_delete operation.
+	//
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/
+	AsteroidsWebdomainsDelete(ctx context.Context, params AsteroidsWebdomainsDeleteParams) error
+	// AsteroidsWebdomainsGet invokes asteroids_webdomains_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/
+	AsteroidsWebdomainsGet(ctx context.Context, params AsteroidsWebdomainsGetParams) (*WebDomain, error)
+	// AsteroidsWebdomainsHeadersCreate invokes asteroids_webdomains_headers_create operation.
+	//
+	// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/
+	AsteroidsWebdomainsHeadersCreate(ctx context.Context, request AsteroidsWebdomainsHeadersCreateReq, params AsteroidsWebdomainsHeadersCreateParams) (*WebHeader, error)
+	// AsteroidsWebdomainsHeadersDelete invokes asteroids_webdomains_headers_delete operation.
+	//
+	// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/
+	AsteroidsWebdomainsHeadersDelete(ctx context.Context, params AsteroidsWebdomainsHeadersDeleteParams) error
+	// AsteroidsWebdomainsHeadersGet invokes asteroids_webdomains_headers_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/
+	AsteroidsWebdomainsHeadersGet(ctx context.Context, params AsteroidsWebdomainsHeadersGetParams) (*WebHeader, error)
+	// AsteroidsWebdomainsHeadersList invokes asteroids_webdomains_headers_list operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/
+	AsteroidsWebdomainsHeadersList(ctx context.Context, params AsteroidsWebdomainsHeadersListParams) (*PaginatedWebHeaderList, error)
+	// AsteroidsWebdomainsList invokes asteroids_webdomains_list operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/
+	AsteroidsWebdomainsList(ctx context.Context, params AsteroidsWebdomainsListParams) (*PaginatedWebDomainList, error)
+	// AsteroidsWebheadersGet invokes asteroids_webheaders_get operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/{id}/
+	AsteroidsWebheadersGet(ctx context.Context, params AsteroidsWebheadersGetParams) (*WebHeader, error)
+	// AsteroidsWebheadersList invokes asteroids_webheaders_list operation.
+	//
+	// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/
+	AsteroidsWebheadersList(ctx context.Context, params AsteroidsWebheadersListParams) (*PaginatedWebHeaderList, error)
+	// ToolsGet invokes tools_get operation.
+	//
+	// GET /api/v1/external/tools/{slug}/
+	ToolsGet(ctx context.Context, params ToolsGetParams) (*Tool, error)
+	// ToolsList invokes tools_list operation.
+	//
+	// GET /api/v1/external/tools/
+	ToolsList(ctx context.Context, params ToolsListParams) (*PaginatedToolList, error)
+	// ToolsVersionsGet invokes tools_versions_get operation.
+	//
+	// GET /api/v1/external/tools/{tool_slug}/versions/{version}/
+	ToolsVersionsGet(ctx context.Context, params ToolsVersionsGetParams) (*ToolVersion, error)
+	// ToolsVersionsList invokes tools_versions_list operation.
+	//
+	// GET /api/v1/external/tools/{tool_slug}/versions/
+	ToolsVersionsList(ctx context.Context, params ToolsVersionsListParams) (*PaginatedToolVersionList, error)
 }
 
 // Client implements OAS client.
@@ -186,18 +246,91 @@ func (c *Client) requestURL(ctx context.Context) *url.URL {
 	return u
 }
 
-// CreateAsteroidsMaildomains invokes create_asteroids_maildomains operation.
+// AsteroidsGet invokes asteroids_get operation.
 //
-// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/
-func (c *Client) CreateAsteroidsMaildomains(ctx context.Context, request CreateAsteroidsMaildomainsReq, params CreateAsteroidsMaildomainsParams) (*MailDomain, error) {
-	res, err := c.sendCreateAsteroidsMaildomains(ctx, request, params)
+// GET /api/v1/external/asteroids/{name}/
+func (c *Client) AsteroidsGet(ctx context.Context, params AsteroidsGetParams) (*ExternalAsteroid, error) {
+	res, err := c.sendAsteroidsGet(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendCreateAsteroidsMaildomains(ctx context.Context, request CreateAsteroidsMaildomainsReq, params CreateAsteroidsMaildomainsParams) (res *MailDomain, err error) {
+func (c *Client) sendAsteroidsGet(ctx context.Context, params AsteroidsGetParams) (res *ExternalAsteroid, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Name))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsCreate invokes asteroids_maildomains_create operation.
+//
+// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/
+func (c *Client) AsteroidsMaildomainsCreate(ctx context.Context, request AsteroidsMaildomainsCreateReq, params AsteroidsMaildomainsCreateParams) (*MailDomain, error) {
+	res, err := c.sendAsteroidsMaildomainsCreate(ctx, request, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsMaildomainsCreate(ctx context.Context, request AsteroidsMaildomainsCreateReq, params AsteroidsMaildomainsCreateParams) (res *MailDomain, err error) {
 	// Validate request before sending.
 	switch request := request.(type) {
-	case *CreateAsteroidsMaildomainsApplicationJSON:
+	case *AsteroidsMaildomainsCreateApplicationJSON:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -206,7 +339,7 @@ func (c *Client) sendCreateAsteroidsMaildomains(ctx context.Context, request Cre
 		}(); err != nil {
 			return res, errors.Wrap(err, "validate")
 		}
-	case *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded:
+	case *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -252,11 +385,31 @@ func (c *Client) sendCreateAsteroidsMaildomains(ctx context.Context, request Cre
 	pathParts[2] = "/maildomains/"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "POST", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodeCreateAsteroidsMaildomainsRequest(request, r); err != nil {
+	if err := encodeAsteroidsMaildomainsCreateRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -266,7 +419,7 @@ func (c *Client) sendCreateAsteroidsMaildomains(ctx context.Context, request Cre
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeCreateAsteroidsMaildomainsResponse(resp)
+	result, err := decodeAsteroidsMaildomainsCreateResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -274,18 +427,309 @@ func (c *Client) sendCreateAsteroidsMaildomains(ctx context.Context, request Cre
 	return result, nil
 }
 
-// CreateAsteroidsMaildomainsUsers invokes create_asteroids_maildomains_users operation.
+// AsteroidsMaildomainsDelete invokes asteroids_maildomains_delete operation.
 //
-// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
-func (c *Client) CreateAsteroidsMaildomainsUsers(ctx context.Context, request CreateAsteroidsMaildomainsUsersReq, params CreateAsteroidsMaildomainsUsersParams) (*MailUser, error) {
-	res, err := c.sendCreateAsteroidsMaildomainsUsers(ctx, request, params)
+// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/
+func (c *Client) AsteroidsMaildomainsDelete(ctx context.Context, params AsteroidsMaildomainsDeleteParams) error {
+	_, err := c.sendAsteroidsMaildomainsDelete(ctx, params)
+	return err
+}
+
+func (c *Client) sendAsteroidsMaildomainsDelete(ctx context.Context, params AsteroidsMaildomainsDeleteParams) (res *AsteroidsMaildomainsDeleteNoContent, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	{
+		// Encode "name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Name))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "DELETE", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsDeleteResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsGet invokes asteroids_maildomains_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/
+func (c *Client) AsteroidsMaildomainsGet(ctx context.Context, params AsteroidsMaildomainsGetParams) (*MailDomain, error) {
+	res, err := c.sendAsteroidsMaildomainsGet(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendCreateAsteroidsMaildomainsUsers(ctx context.Context, request CreateAsteroidsMaildomainsUsersReq, params CreateAsteroidsMaildomainsUsersParams) (res *MailUser, err error) {
+func (c *Client) sendAsteroidsMaildomainsGet(ctx context.Context, params AsteroidsMaildomainsGetParams) (res *MailDomain, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	{
+		// Encode "name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Name))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsList invokes asteroids_maildomains_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/
+func (c *Client) AsteroidsMaildomainsList(ctx context.Context, params AsteroidsMaildomainsListParams) (*PaginatedMailDomainList, error) {
+	res, err := c.sendAsteroidsMaildomainsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsMaildomainsList(ctx context.Context, params AsteroidsMaildomainsListParams) (res *PaginatedMailDomainList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsUsersCreate invokes asteroids_maildomains_users_create operation.
+//
+// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/
+func (c *Client) AsteroidsMaildomainsUsersCreate(ctx context.Context, request AsteroidsMaildomainsUsersCreateReq, params AsteroidsMaildomainsUsersCreateParams) (*MailUser, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersCreate(ctx, request, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsMaildomainsUsersCreate(ctx context.Context, request AsteroidsMaildomainsUsersCreateReq, params AsteroidsMaildomainsUsersCreateParams) (res *MailUser, err error) {
 	// Validate request before sending.
 	switch request := request.(type) {
-	case *CreateAsteroidsMaildomainsUsersApplicationJSON:
+	case *AsteroidsMaildomainsUsersCreateApplicationJSON:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -294,7 +738,7 @@ func (c *Client) sendCreateAsteroidsMaildomainsUsers(ctx context.Context, reques
 		}(); err != nil {
 			return res, errors.Wrap(err, "validate")
 		}
-	case *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded:
+	case *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -339,14 +783,14 @@ func (c *Client) sendCreateAsteroidsMaildomainsUsers(ctx context.Context, reques
 	}
 	pathParts[2] = "/maildomains/"
 	{
-		// Encode "maildomain_domain" parameter.
+		// Encode "maildomain_name" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "maildomain_domain",
+			Param:   "maildomain_name",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.MaildomainDomain))
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -359,11 +803,31 @@ func (c *Client) sendCreateAsteroidsMaildomainsUsers(ctx context.Context, reques
 	pathParts[4] = "/users/"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "POST", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodeCreateAsteroidsMaildomainsUsersRequest(request, r); err != nil {
+	if err := encodeAsteroidsMaildomainsUsersCreateRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -373,7 +837,7 @@ func (c *Client) sendCreateAsteroidsMaildomainsUsers(ctx context.Context, reques
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeCreateAsteroidsMaildomainsUsersResponse(resp)
+	result, err := decodeAsteroidsMaildomainsUsersCreateResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -381,477 +845,15 @@ func (c *Client) sendCreateAsteroidsMaildomainsUsers(ctx context.Context, reques
 	return result, nil
 }
 
-// CreateAsteroidsSshkeys invokes create_asteroids_sshkeys operation.
+// AsteroidsMaildomainsUsersDelete invokes asteroids_maildomains_users_delete operation.
 //
-// POST /api/v1/external/asteroids/{asteroid_name}/sshkeys/
-func (c *Client) CreateAsteroidsSshkeys(ctx context.Context, request CreateAsteroidsSshkeysReq, params CreateAsteroidsSshkeysParams) (*SshKey, error) {
-	res, err := c.sendCreateAsteroidsSshkeys(ctx, request, params)
-	return res, err
-}
-
-func (c *Client) sendCreateAsteroidsSshkeys(ctx context.Context, request CreateAsteroidsSshkeysReq, params CreateAsteroidsSshkeysParams) (res *SshKey, err error) {
-	// Validate request before sending.
-	switch request := request.(type) {
-	case *CreateAsteroidsSshkeysApplicationJSON:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *SshKeyRequestMultipart:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	default:
-		return res, errors.Errorf("unexpected request type: %T", request)
-	}
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/sshkeys/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "POST", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeCreateAsteroidsSshkeysRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeCreateAsteroidsSshkeysResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// CreateAsteroidsWebdomains invokes create_asteroids_webdomains operation.
-//
-// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/
-func (c *Client) CreateAsteroidsWebdomains(ctx context.Context, request CreateAsteroidsWebdomainsReq, params CreateAsteroidsWebdomainsParams) (*WebDomain, error) {
-	res, err := c.sendCreateAsteroidsWebdomains(ctx, request, params)
-	return res, err
-}
-
-func (c *Client) sendCreateAsteroidsWebdomains(ctx context.Context, request CreateAsteroidsWebdomainsReq, params CreateAsteroidsWebdomainsParams) (res *WebDomain, err error) {
-	// Validate request before sending.
-	switch request := request.(type) {
-	case *CreateAsteroidsWebdomainsApplicationJSON:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *WebDomainRequestMultipart:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	default:
-		return res, errors.Errorf("unexpected request type: %T", request)
-	}
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "POST", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeCreateAsteroidsWebdomainsRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeCreateAsteroidsWebdomainsResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// CreateAsteroidsWebdomainsBackends invokes create_asteroids_webdomains_backends operation.
-//
-// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/
-func (c *Client) CreateAsteroidsWebdomainsBackends(ctx context.Context, request CreateAsteroidsWebdomainsBackendsReq, params CreateAsteroidsWebdomainsBackendsParams) (*WebBackend, error) {
-	res, err := c.sendCreateAsteroidsWebdomainsBackends(ctx, request, params)
-	return res, err
-}
-
-func (c *Client) sendCreateAsteroidsWebdomainsBackends(ctx context.Context, request CreateAsteroidsWebdomainsBackendsReq, params CreateAsteroidsWebdomainsBackendsParams) (res *WebBackend, err error) {
-	// Validate request before sending.
-	switch request := request.(type) {
-	case *CreateAsteroidsWebdomainsBackendsApplicationJSON:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *WebBackendRequestMultipart:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	default:
-		return res, errors.Errorf("unexpected request type: %T", request)
-	}
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/backends/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "POST", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeCreateAsteroidsWebdomainsBackendsRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeCreateAsteroidsWebdomainsBackendsResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// CreateAsteroidsWebdomainsHeaders invokes create_asteroids_webdomains_headers operation.
-//
-// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/
-func (c *Client) CreateAsteroidsWebdomainsHeaders(ctx context.Context, request CreateAsteroidsWebdomainsHeadersReq, params CreateAsteroidsWebdomainsHeadersParams) (*WebHeader, error) {
-	res, err := c.sendCreateAsteroidsWebdomainsHeaders(ctx, request, params)
-	return res, err
-}
-
-func (c *Client) sendCreateAsteroidsWebdomainsHeaders(ctx context.Context, request CreateAsteroidsWebdomainsHeadersReq, params CreateAsteroidsWebdomainsHeadersParams) (res *WebHeader, err error) {
-	// Validate request before sending.
-	switch request := request.(type) {
-	case *CreateAsteroidsWebdomainsHeadersApplicationJSON:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	case *WebHeaderRequestMultipart:
-		if err := func() error {
-			if err := request.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return res, errors.Wrap(err, "validate")
-		}
-	default:
-		return res, errors.Errorf("unexpected request type: %T", request)
-	}
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/headers/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "POST", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeCreateAsteroidsWebdomainsHeadersRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeCreateAsteroidsWebdomainsHeadersResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// DeleteAsteroidMaildomain invokes delete_asteroid_maildomain operation.
-//
-// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
-func (c *Client) DeleteAsteroidMaildomain(ctx context.Context, params DeleteAsteroidMaildomainParams) error {
-	_, err := c.sendDeleteAsteroidMaildomain(ctx, params)
+// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
+func (c *Client) AsteroidsMaildomainsUsersDelete(ctx context.Context, params AsteroidsMaildomainsUsersDeleteParams) error {
+	_, err := c.sendAsteroidsMaildomainsUsersDelete(ctx, params)
 	return err
 }
 
-func (c *Client) sendDeleteAsteroidMaildomain(ctx context.Context, params DeleteAsteroidMaildomainParams) (res *DeleteAsteroidMaildomainNoContent, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/maildomains/"
-	{
-		// Encode "domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Domain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "DELETE", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeDeleteAsteroidMaildomainResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// DeleteAsteroidMaildomainUser invokes delete_asteroid_maildomain_user operation.
-//
-// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-func (c *Client) DeleteAsteroidMaildomainUser(ctx context.Context, params DeleteAsteroidMaildomainUserParams) error {
-	_, err := c.sendDeleteAsteroidMaildomainUser(ctx, params)
-	return err
-}
-
-func (c *Client) sendDeleteAsteroidMaildomainUser(ctx context.Context, params DeleteAsteroidMaildomainUserParams) (res *DeleteAsteroidMaildomainUserNoContent, err error) {
+func (c *Client) sendAsteroidsMaildomainsUsersDelete(ctx context.Context, params AsteroidsMaildomainsUsersDeleteParams) (res *AsteroidsMaildomainsUsersDeleteNoContent, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -876,14 +878,14 @@ func (c *Client) sendDeleteAsteroidMaildomainUser(ctx context.Context, params De
 	}
 	pathParts[2] = "/maildomains/"
 	{
-		// Encode "maildomain_domain" parameter.
+		// Encode "maildomain_name" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "maildomain_domain",
+			Param:   "maildomain_name",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.MaildomainDomain))
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -915,77 +917,25 @@ func (c *Client) sendDeleteAsteroidMaildomainUser(ctx context.Context, params De
 	pathParts[6] = "/"
 	uri.AddPathParts(u, pathParts[:]...)
 
-	r, err := ht.NewRequest(ctx, "DELETE", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeDeleteAsteroidMaildomainUserResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// DeleteAsteroidSshkey invokes delete_asteroid_sshkey operation.
-//
-// DELETE /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
-func (c *Client) DeleteAsteroidSshkey(ctx context.Context, params DeleteAsteroidSshkeyParams) error {
-	_, err := c.sendDeleteAsteroidSshkey(ctx, params)
-	return err
-}
-
-func (c *Client) sendDeleteAsteroidSshkey(ctx context.Context, params DeleteAsteroidSshkeyParams) (res *DeleteAsteroidSshkeyNoContent, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
+	q := uri.NewQueryEncoder()
 	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
 		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
 		}
-		pathParts[1] = encoded
 	}
-	pathParts[2] = "/sshkeys/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.IntToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
+	u.RawQuery = q.Values().Encode()
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
 	if err != nil {
@@ -998,7 +948,7 @@ func (c *Client) sendDeleteAsteroidSshkey(ctx context.Context, params DeleteAste
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeDeleteAsteroidSshkeyResponse(resp)
+	result, err := decodeAsteroidsMaildomainsUsersDeleteResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -1006,394 +956,47 @@ func (c *Client) sendDeleteAsteroidSshkey(ctx context.Context, params DeleteAste
 	return result, nil
 }
 
-// DeleteAsteroidWebdomain invokes delete_asteroid_webdomain operation.
+// AsteroidsMaildomainsUsersForwardsCreate invokes asteroids_maildomains_users_forwards_create operation.
 //
-// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{domain}/
-func (c *Client) DeleteAsteroidWebdomain(ctx context.Context, params DeleteAsteroidWebdomainParams) error {
-	_, err := c.sendDeleteAsteroidWebdomain(ctx, params)
-	return err
-}
-
-func (c *Client) sendDeleteAsteroidWebdomain(ctx context.Context, params DeleteAsteroidWebdomainParams) (res *DeleteAsteroidWebdomainNoContent, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Domain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "DELETE", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeDeleteAsteroidWebdomainResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// DeleteAsteroidWebdomainBackend invokes delete_asteroid_webdomain_backend operation.
-//
-// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/{path}/
-func (c *Client) DeleteAsteroidWebdomainBackend(ctx context.Context, params DeleteAsteroidWebdomainBackendParams) error {
-	_, err := c.sendDeleteAsteroidWebdomainBackend(ctx, params)
-	return err
-}
-
-func (c *Client) sendDeleteAsteroidWebdomainBackend(ctx context.Context, params DeleteAsteroidWebdomainBackendParams) (res *DeleteAsteroidWebdomainBackendNoContent, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/backends/"
-	{
-		// Encode "path" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "path",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Path))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[5] = encoded
-	}
-	pathParts[6] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "DELETE", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeDeleteAsteroidWebdomainBackendResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// DeleteAsteroidWebdomainHeader invokes delete_asteroid_webdomain_header operation.
-//
-// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/{path}/
-func (c *Client) DeleteAsteroidWebdomainHeader(ctx context.Context, params DeleteAsteroidWebdomainHeaderParams) error {
-	_, err := c.sendDeleteAsteroidWebdomainHeader(ctx, params)
-	return err
-}
-
-func (c *Client) sendDeleteAsteroidWebdomainHeader(ctx context.Context, params DeleteAsteroidWebdomainHeaderParams) (res *DeleteAsteroidWebdomainHeaderNoContent, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/headers/"
-	{
-		// Encode "path" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "path",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Path))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[5] = encoded
-	}
-	pathParts[6] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "DELETE", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeDeleteAsteroidWebdomainHeaderResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroid invokes get_asteroid operation.
-//
-// GET /api/v1/external/asteroids/{name}/
-func (c *Client) GetAsteroid(ctx context.Context, params GetAsteroidParams) (*ExternalAsteroid, error) {
-	res, err := c.sendGetAsteroid(ctx, params)
+// POST /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/
+func (c *Client) AsteroidsMaildomainsUsersForwardsCreate(ctx context.Context, request AsteroidsMaildomainsUsersForwardsCreateReq, params AsteroidsMaildomainsUsersForwardsCreateParams) (*MailForward, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersForwardsCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendGetAsteroid(ctx context.Context, params GetAsteroidParams) (res *ExternalAsteroid, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
+func (c *Client) sendAsteroidsMaildomainsUsersForwardsCreate(ctx context.Context, request AsteroidsMaildomainsUsersForwardsCreateReq, params AsteroidsMaildomainsUsersForwardsCreateParams) (res *MailForward, err error) {
+	// Validate request before sending.
+	switch request := request.(type) {
+	case *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON:
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Name))
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
 		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
+			return res, errors.Wrap(err, "validate")
 		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidMaildomain invokes get_asteroid_maildomain operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
-func (c *Client) GetAsteroidMaildomain(ctx context.Context, params GetAsteroidMaildomainParams) (*MailDomain, error) {
-	res, err := c.sendGetAsteroidMaildomain(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidMaildomain(ctx context.Context, params GetAsteroidMaildomainParams) (res *MailDomain, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
+	case *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded:
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
 		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
+			return res, errors.Wrap(err, "validate")
 		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/maildomains/"
-	{
-		// Encode "domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
+	case *MailForwardRequestMultipart:
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Domain))
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
 		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
+			return res, errors.Wrap(err, "validate")
 		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
+	default:
+		return res, errors.Errorf("unexpected request type: %T", request)
 	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidMaildomainResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidMaildomainUser invokes get_asteroid_maildomain_user operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-func (c *Client) GetAsteroidMaildomainUser(ctx context.Context, params GetAsteroidMaildomainUserParams) (*MailUser, error) {
-	res, err := c.sendGetAsteroidMaildomainUser(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidMaildomainUser(ctx context.Context, params GetAsteroidMaildomainUserParams) (res *MailUser, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -1418,14 +1021,533 @@ func (c *Client) sendGetAsteroidMaildomainUser(ctx context.Context, params GetAs
 	}
 	pathParts[2] = "/maildomains/"
 	{
-		// Encode "maildomain_domain" parameter.
+		// Encode "maildomain_name" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "maildomain_domain",
+			Param:   "maildomain_name",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.MaildomainDomain))
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/users/"
+	{
+		// Encode "mailuser_local" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "mailuser_local",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MailuserLocal))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/forwards/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "POST", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsMaildomainsUsersForwardsCreateRequest(request, r); err != nil {
+		return res, errors.Wrap(err, "encode request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsUsersForwardsCreateResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsUsersForwardsDelete invokes asteroids_maildomains_users_forwards_delete operation.
+//
+// DELETE /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/{destination}/
+func (c *Client) AsteroidsMaildomainsUsersForwardsDelete(ctx context.Context, params AsteroidsMaildomainsUsersForwardsDeleteParams) error {
+	_, err := c.sendAsteroidsMaildomainsUsersForwardsDelete(ctx, params)
+	return err
+}
+
+func (c *Client) sendAsteroidsMaildomainsUsersForwardsDelete(ctx context.Context, params AsteroidsMaildomainsUsersForwardsDeleteParams) (res *AsteroidsMaildomainsUsersForwardsDeleteNoContent, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [9]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	{
+		// Encode "maildomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "maildomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/users/"
+	{
+		// Encode "mailuser_local" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "mailuser_local",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MailuserLocal))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/forwards/"
+	{
+		// Encode "destination" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "destination",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Destination))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[7] = encoded
+	}
+	pathParts[8] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "DELETE", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsUsersForwardsDeleteResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsUsersForwardsGet invokes asteroids_maildomains_users_forwards_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/{destination}/
+func (c *Client) AsteroidsMaildomainsUsersForwardsGet(ctx context.Context, params AsteroidsMaildomainsUsersForwardsGetParams) (*MailForward, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersForwardsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsMaildomainsUsersForwardsGet(ctx context.Context, params AsteroidsMaildomainsUsersForwardsGetParams) (res *MailForward, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [9]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	{
+		// Encode "maildomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "maildomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/users/"
+	{
+		// Encode "mailuser_local" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "mailuser_local",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MailuserLocal))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/forwards/"
+	{
+		// Encode "destination" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "destination",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Destination))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[7] = encoded
+	}
+	pathParts[8] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsUsersForwardsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsUsersForwardsList invokes asteroids_maildomains_users_forwards_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/
+func (c *Client) AsteroidsMaildomainsUsersForwardsList(ctx context.Context, params AsteroidsMaildomainsUsersForwardsListParams) (*PaginatedMailForwardList, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersForwardsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsMaildomainsUsersForwardsList(ctx context.Context, params AsteroidsMaildomainsUsersForwardsListParams) (res *PaginatedMailForwardList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [7]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	{
+		// Encode "maildomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "maildomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/users/"
+	{
+		// Encode "mailuser_local" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "mailuser_local",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MailuserLocal))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/forwards/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsMaildomainsUsersForwardsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsMaildomainsUsersGet invokes asteroids_maildomains_users_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
+func (c *Client) AsteroidsMaildomainsUsersGet(ctx context.Context, params AsteroidsMaildomainsUsersGetParams) (*MailUser, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsMaildomainsUsersGet(ctx context.Context, params AsteroidsMaildomainsUsersGetParams) (res *MailUser, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [7]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/maildomains/"
+	{
+		// Encode "maildomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "maildomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -1457,88 +1579,18 @@ func (c *Client) sendGetAsteroidMaildomainUser(ctx context.Context, params GetAs
 	pathParts[6] = "/"
 	uri.AddPathParts(u, pathParts[:]...)
 
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidMaildomainUserResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidMaildomains invokes get_asteroid_maildomains operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/
-func (c *Client) GetAsteroidMaildomains(ctx context.Context, params GetAsteroidMaildomainsParams) (*PaginatedMailDomainList, error) {
-	res, err := c.sendGetAsteroidMaildomains(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidMaildomains(ctx context.Context, params GetAsteroidMaildomainsParams) (res *PaginatedMailDomainList, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/maildomains/"
-	uri.AddPathParts(u, pathParts[:]...)
-
 	q := uri.NewQueryEncoder()
 	{
-		// Encode "limit" parameter.
+		// Encode "format" parameter.
 		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "limit",
+			Name:    "format",
 			Style:   uri.QueryStyleForm,
 			Explode: true,
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	{
-		// Encode "offset" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "offset",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Offset.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
 			}
 			return nil
 		}); err != nil {
@@ -1558,7 +1610,7 @@ func (c *Client) sendGetAsteroidMaildomains(ctx context.Context, params GetAster
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeGetAsteroidMaildomainsResponse(resp)
+	result, err := decodeAsteroidsMaildomainsUsersGetResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -1566,15 +1618,15 @@ func (c *Client) sendGetAsteroidMaildomains(ctx context.Context, params GetAster
 	return result, nil
 }
 
-// GetAsteroidMaildomainsUsers invokes get_asteroid_maildomains_users operation.
+// AsteroidsMaildomainsUsersList invokes asteroids_maildomains_users_list operation.
 //
-// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
-func (c *Client) GetAsteroidMaildomainsUsers(ctx context.Context, params GetAsteroidMaildomainsUsersParams) (*PaginatedMailUserList, error) {
-	res, err := c.sendGetAsteroidMaildomainsUsers(ctx, params)
+// GET /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/
+func (c *Client) AsteroidsMaildomainsUsersList(ctx context.Context, params AsteroidsMaildomainsUsersListParams) (*PaginatedMailUserList, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersList(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendGetAsteroidMaildomainsUsers(ctx context.Context, params GetAsteroidMaildomainsUsersParams) (res *PaginatedMailUserList, err error) {
+func (c *Client) sendAsteroidsMaildomainsUsersList(ctx context.Context, params AsteroidsMaildomainsUsersListParams) (res *PaginatedMailUserList, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -1599,14 +1651,14 @@ func (c *Client) sendGetAsteroidMaildomainsUsers(ctx context.Context, params Get
 	}
 	pathParts[2] = "/maildomains/"
 	{
-		// Encode "maildomain_domain" parameter.
+		// Encode "maildomain_name" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "maildomain_domain",
+			Param:   "maildomain_name",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.MaildomainDomain))
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -1621,167 +1673,22 @@ func (c *Client) sendGetAsteroidMaildomainsUsers(ctx context.Context, params Get
 
 	q := uri.NewQueryEncoder()
 	{
-		// Encode "limit" parameter.
+		// Encode "format" parameter.
 		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "limit",
+			Name:    "format",
 			Style:   uri.QueryStyleForm,
 			Explode: true,
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
 			}
 			return nil
 		}); err != nil {
 			return res, errors.Wrap(err, "encode query")
 		}
 	}
-	{
-		// Encode "offset" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "offset",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Offset.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	u.RawQuery = q.Values().Encode()
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidMaildomainsUsersResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidSshkey invokes get_asteroid_sshkey operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
-func (c *Client) GetAsteroidSshkey(ctx context.Context, params GetAsteroidSshkeyParams) (*SshKey, error) {
-	res, err := c.sendGetAsteroidSshkey(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidSshkey(ctx context.Context, params GetAsteroidSshkeyParams) (res *SshKey, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/sshkeys/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.IntToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidSshkeyResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidSshkeys invokes get_asteroid_sshkeys operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/
-func (c *Client) GetAsteroidSshkeys(ctx context.Context, params GetAsteroidSshkeysParams) (*PaginatedSshKeyList, error) {
-	res, err := c.sendGetAsteroidSshkeys(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidSshkeys(ctx context.Context, params GetAsteroidSshkeysParams) (res *PaginatedSshKeyList, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/sshkeys/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	q := uri.NewQueryEncoder()
 	{
 		// Encode "limit" parameter.
 		cfg := uri.QueryParameterEncodingConfig{
@@ -1829,7 +1736,7 @@ func (c *Client) sendGetAsteroidSshkeys(ctx context.Context, params GetAsteroidS
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeGetAsteroidSshkeysResponse(resp)
+	result, err := decodeAsteroidsMaildomainsUsersListResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -1837,249 +1744,49 @@ func (c *Client) sendGetAsteroidSshkeys(ctx context.Context, params GetAsteroidS
 	return result, nil
 }
 
-// GetAsteroidWebbackend invokes get_asteroid_webbackend operation.
+// AsteroidsMaildomainsUsersPatch invokes asteroids_maildomains_users_patch operation.
 //
-// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/{id}/
-func (c *Client) GetAsteroidWebbackend(ctx context.Context, params GetAsteroidWebbackendParams) (*WebBackend, error) {
-	res, err := c.sendGetAsteroidWebbackend(ctx, params)
+// PATCH /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
+func (c *Client) AsteroidsMaildomainsUsersPatch(ctx context.Context, request AsteroidsMaildomainsUsersPatchReq, params AsteroidsMaildomainsUsersPatchParams) (*MailUser, error) {
+	res, err := c.sendAsteroidsMaildomainsUsersPatch(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendGetAsteroidWebbackend(ctx context.Context, params GetAsteroidWebbackendParams) (res *WebBackend, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
+func (c *Client) sendAsteroidsMaildomainsUsersPatch(ctx context.Context, request AsteroidsMaildomainsUsersPatchReq, params AsteroidsMaildomainsUsersPatchParams) (res *MailUser, err error) {
+	// Validate request before sending.
+	switch request := request.(type) {
+	case *AsteroidsMaildomainsUsersPatchReqEmptyBody:
+		// Validation is not needed for the empty body type.
+	case *AsteroidsMaildomainsUsersPatchApplicationJSON:
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webbackends/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.IntToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebbackendResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebbackends invokes get_asteroid_webbackends operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/
-func (c *Client) GetAsteroidWebbackends(ctx context.Context, params GetAsteroidWebbackendsParams) (*PaginatedWebBackendList, error) {
-	res, err := c.sendGetAsteroidWebbackends(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebbackends(ctx context.Context, params GetAsteroidWebbackendsParams) (res *PaginatedWebBackendList, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webbackends/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	q := uri.NewQueryEncoder()
-	{
-		// Encode "limit" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "limit",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
+			if err := request.Validate(); err != nil {
+				return err
 			}
 			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
 		}
-	}
-	{
-		// Encode "offset" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "offset",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Offset.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
+	case *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
 			}
 			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	u.RawQuery = q.Values().Encode()
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebbackendsResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebdomain invokes get_asteroid_webdomain operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{domain}/
-func (c *Client) GetAsteroidWebdomain(ctx context.Context, params GetAsteroidWebdomainParams) (*WebDomain, error) {
-	res, err := c.sendGetAsteroidWebdomain(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebdomain(ctx context.Context, params GetAsteroidWebdomainParams) (res *WebDomain, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
 		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
+			return res, errors.Wrap(err, "validate")
 		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
+	case *PatchedMailUserRequestMultipart:
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Domain))
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
 		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
+			return res, errors.Wrap(err, "validate")
 		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
+	default:
+		return res, errors.Errorf("unexpected request type: %T", request)
 	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebdomainResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebdomainBackend invokes get_asteroid_webdomain_backend operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/{path}/
-func (c *Client) GetAsteroidWebdomainBackend(ctx context.Context, params GetAsteroidWebdomainBackendParams) (*WebBackend, error) {
-	res, err := c.sendGetAsteroidWebdomainBackend(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebdomainBackend(ctx context.Context, params GetAsteroidWebdomainBackendParams) (res *WebBackend, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -2102,16 +1809,16 @@ func (c *Client) sendGetAsteroidWebdomainBackend(ctx context.Context, params Get
 		}
 		pathParts[1] = encoded
 	}
-	pathParts[2] = "/webdomains/"
+	pathParts[2] = "/maildomains/"
 	{
-		// Encode "webdomain_domain" parameter.
+		// Encode "maildomain_name" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
+			Param:   "maildomain_name",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
+			return e.EncodeValue(conv.StringToString(params.MaildomainName))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2121,16 +1828,16 @@ func (c *Client) sendGetAsteroidWebdomainBackend(ctx context.Context, params Get
 		}
 		pathParts[3] = encoded
 	}
-	pathParts[4] = "/backends/"
+	pathParts[4] = "/users/"
 	{
-		// Encode "path" parameter.
+		// Encode "local" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "path",
+			Param:   "local",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Path))
+			return e.EncodeValue(conv.StringToString(params.Local))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2143,9 +1850,32 @@ func (c *Client) sendGetAsteroidWebdomainBackend(ctx context.Context, params Get
 	pathParts[6] = "/"
 	uri.AddPathParts(u, pathParts[:]...)
 
-	r, err := ht.NewRequest(ctx, "GET", u)
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "PATCH", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsMaildomainsUsersPatchRequest(request, r); err != nil {
+		return res, errors.Wrap(err, "encode request")
 	}
 
 	resp, err := c.cfg.Client.Do(r)
@@ -2154,7 +1884,7 @@ func (c *Client) sendGetAsteroidWebdomainBackend(ctx context.Context, params Get
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeGetAsteroidWebdomainBackendResponse(resp)
+	result, err := decodeAsteroidsMaildomainsUsersPatchResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -2162,106 +1892,15 @@ func (c *Client) sendGetAsteroidWebdomainBackend(ctx context.Context, params Get
 	return result, nil
 }
 
-// GetAsteroidWebdomainHeader invokes get_asteroid_webdomain_header operation.
+// AsteroidsMailusersList invokes asteroids_mailusers_list operation.
 //
-// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/{path}/
-func (c *Client) GetAsteroidWebdomainHeader(ctx context.Context, params GetAsteroidWebdomainHeaderParams) (*WebHeader, error) {
-	res, err := c.sendGetAsteroidWebdomainHeader(ctx, params)
+// GET /api/v1/external/asteroids/{asteroid_name}/mailusers/
+func (c *Client) AsteroidsMailusersList(ctx context.Context, params AsteroidsMailusersListParams) (*PaginatedMailUserList, error) {
+	res, err := c.sendAsteroidsMailusersList(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendGetAsteroidWebdomainHeader(ctx context.Context, params GetAsteroidWebdomainHeaderParams) (res *WebHeader, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/headers/"
-	{
-		// Encode "path" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "path",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Path))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[5] = encoded
-	}
-	pathParts[6] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebdomainHeaderResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebdomains invokes get_asteroid_webdomains operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/
-func (c *Client) GetAsteroidWebdomains(ctx context.Context, params GetAsteroidWebdomainsParams) (*PaginatedWebDomainList, error) {
-	res, err := c.sendGetAsteroidWebdomains(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebdomains(ctx context.Context, params GetAsteroidWebdomainsParams) (res *PaginatedWebDomainList, err error) {
+func (c *Client) sendAsteroidsMailusersList(ctx context.Context, params AsteroidsMailusersListParams) (res *PaginatedMailUserList, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -2284,10 +1923,27 @@ func (c *Client) sendGetAsteroidWebdomains(ctx context.Context, params GetAstero
 		}
 		pathParts[1] = encoded
 	}
-	pathParts[2] = "/webdomains/"
+	pathParts[2] = "/mailusers/"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
 	{
 		// Encode "limit" parameter.
 		cfg := uri.QueryParameterEncodingConfig{
@@ -2335,7 +1991,7 @@ func (c *Client) sendGetAsteroidWebdomains(ctx context.Context, params GetAstero
 	}
 	defer resp.Body.Close()
 
-	result, err := decodeGetAsteroidWebdomainsResponse(resp)
+	result, err := decodeAsteroidsMailusersListResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -2343,400 +1999,20 @@ func (c *Client) sendGetAsteroidWebdomains(ctx context.Context, params GetAstero
 	return result, nil
 }
 
-// GetAsteroidWebdomainsBackends invokes get_asteroid_webdomains_backends operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/
-func (c *Client) GetAsteroidWebdomainsBackends(ctx context.Context, params GetAsteroidWebdomainsBackendsParams) (*PaginatedWebBackendList, error) {
-	res, err := c.sendGetAsteroidWebdomainsBackends(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebdomainsBackends(ctx context.Context, params GetAsteroidWebdomainsBackendsParams) (res *PaginatedWebBackendList, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/backends/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	q := uri.NewQueryEncoder()
-	{
-		// Encode "limit" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "limit",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	{
-		// Encode "offset" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "offset",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Offset.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	u.RawQuery = q.Values().Encode()
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebdomainsBackendsResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebdomainsHeaders invokes get_asteroid_webdomains_headers operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/
-func (c *Client) GetAsteroidWebdomainsHeaders(ctx context.Context, params GetAsteroidWebdomainsHeadersParams) (*PaginatedWebHeaderList, error) {
-	res, err := c.sendGetAsteroidWebdomainsHeaders(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebdomainsHeaders(ctx context.Context, params GetAsteroidWebdomainsHeadersParams) (res *PaginatedWebHeaderList, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webdomains/"
-	{
-		// Encode "webdomain_domain" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "webdomain_domain",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.WebdomainDomain))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/headers/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	q := uri.NewQueryEncoder()
-	{
-		// Encode "limit" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "limit",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	{
-		// Encode "offset" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "offset",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Offset.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	u.RawQuery = q.Values().Encode()
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebdomainsHeadersResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebheader invokes get_asteroid_webheader operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/{id}/
-func (c *Client) GetAsteroidWebheader(ctx context.Context, params GetAsteroidWebheaderParams) (*WebHeader, error) {
-	res, err := c.sendGetAsteroidWebheader(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebheader(ctx context.Context, params GetAsteroidWebheaderParams) (res *WebHeader, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webheaders/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.IntToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebheaderResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// GetAsteroidWebheaders invokes get_asteroid_webheaders operation.
-//
-// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/
-func (c *Client) GetAsteroidWebheaders(ctx context.Context, params GetAsteroidWebheadersParams) (*PaginatedWebHeaderList, error) {
-	res, err := c.sendGetAsteroidWebheaders(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendGetAsteroidWebheaders(ctx context.Context, params GetAsteroidWebheadersParams) (res *PaginatedWebHeaderList, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/api/v1/external/asteroids/"
-	{
-		// Encode "asteroid_name" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "asteroid_name",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AsteroidName))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/webheaders/"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	q := uri.NewQueryEncoder()
-	{
-		// Encode "limit" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "limit",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	{
-		// Encode "offset" parameter.
-		cfg := uri.QueryParameterEncodingConfig{
-			Name:    "offset",
-			Style:   uri.QueryStyleForm,
-			Explode: true,
-		}
-
-		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if val, ok := params.Offset.Get(); ok {
-				return e.EncodeValue(conv.IntToString(val))
-			}
-			return nil
-		}); err != nil {
-			return res, errors.Wrap(err, "encode query")
-		}
-	}
-	u.RawQuery = q.Values().Encode()
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	defer resp.Body.Close()
-
-	result, err := decodeGetAsteroidWebheadersResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// PatchAsteroid invokes patch_asteroid operation.
+// AsteroidsPatch invokes asteroids_patch operation.
 //
 // PATCH /api/v1/external/asteroids/{name}/
-func (c *Client) PatchAsteroid(ctx context.Context, request PatchAsteroidReq, params PatchAsteroidParams) (*ExternalAsteroid, error) {
-	res, err := c.sendPatchAsteroid(ctx, request, params)
+func (c *Client) AsteroidsPatch(ctx context.Context, request AsteroidsPatchReq, params AsteroidsPatchParams) (*ExternalAsteroid, error) {
+	res, err := c.sendAsteroidsPatch(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPatchAsteroid(ctx context.Context, request PatchAsteroidReq, params PatchAsteroidParams) (res *ExternalAsteroid, err error) {
+func (c *Client) sendAsteroidsPatch(ctx context.Context, request AsteroidsPatchReq, params AsteroidsPatchParams) (res *ExternalAsteroid, err error) {
 	// Validate request before sending.
 	switch request := request.(type) {
-	case *PatchAsteroidReqEmptyBody:
+	case *AsteroidsPatchReqEmptyBody:
 		// Validation is not needed for the empty body type.
-	case *PatchAsteroidApplicationJSON:
+	case *AsteroidsPatchApplicationJSON:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -2745,7 +2021,7 @@ func (c *Client) sendPatchAsteroid(ctx context.Context, request PatchAsteroidReq
 		}(); err != nil {
 			return res, errors.Wrap(err, "validate")
 		}
-	case *PatchAsteroidApplicationXWwwFormUrlencoded:
+	case *AsteroidsPatchApplicationXWwwFormUrlencoded:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -2791,11 +2067,31 @@ func (c *Client) sendPatchAsteroid(ctx context.Context, request PatchAsteroidReq
 	pathParts[2] = "/"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "PATCH", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodePatchAsteroidRequest(request, r); err != nil {
+	if err := encodeAsteroidsPatchRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -2805,7 +2101,7 @@ func (c *Client) sendPatchAsteroid(ctx context.Context, request PatchAsteroidReq
 	}
 	defer resp.Body.Close()
 
-	result, err := decodePatchAsteroidResponse(resp)
+	result, err := decodeAsteroidsPatchResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -2813,20 +2109,18 @@ func (c *Client) sendPatchAsteroid(ctx context.Context, request PatchAsteroidReq
 	return result, nil
 }
 
-// PatchAsteroidMaildomainUser invokes patch_asteroid_maildomain_user operation.
+// AsteroidsSshkeysCreate invokes asteroids_sshkeys_create operation.
 //
-// PATCH /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
-func (c *Client) PatchAsteroidMaildomainUser(ctx context.Context, request PatchAsteroidMaildomainUserReq, params PatchAsteroidMaildomainUserParams) (*MailUser, error) {
-	res, err := c.sendPatchAsteroidMaildomainUser(ctx, request, params)
+// POST /api/v1/external/asteroids/{asteroid_name}/sshkeys/
+func (c *Client) AsteroidsSshkeysCreate(ctx context.Context, request AsteroidsSshkeysCreateReq, params AsteroidsSshkeysCreateParams) (*SshKey, error) {
+	res, err := c.sendAsteroidsSshkeysCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request PatchAsteroidMaildomainUserReq, params PatchAsteroidMaildomainUserParams) (res *MailUser, err error) {
+func (c *Client) sendAsteroidsSshkeysCreate(ctx context.Context, request AsteroidsSshkeysCreateReq, params AsteroidsSshkeysCreateParams) (res *SshKey, err error) {
 	// Validate request before sending.
 	switch request := request.(type) {
-	case *PatchAsteroidMaildomainUserReqEmptyBody:
-		// Validation is not needed for the empty body type.
-	case *PatchAsteroidMaildomainUserApplicationJSON:
+	case *AsteroidsSshkeysCreateApplicationJSON:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -2835,7 +2129,7 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 		}(); err != nil {
 			return res, errors.Wrap(err, "validate")
 		}
-	case *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded:
+	case *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -2844,7 +2138,7 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 		}(); err != nil {
 			return res, errors.Wrap(err, "validate")
 		}
-	case *PatchedMailUserRequestMultipart:
+	case *SshKeyRequestMultipart:
 		if err := func() error {
 			if err := request.Validate(); err != nil {
 				return err
@@ -2856,6 +2150,1033 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 	default:
 		return res, errors.Errorf("unexpected request type: %T", request)
 	}
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/sshkeys/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "POST", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsSshkeysCreateRequest(request, r); err != nil {
+		return res, errors.Wrap(err, "encode request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsSshkeysCreateResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsSshkeysDelete invokes asteroids_sshkeys_delete operation.
+//
+// DELETE /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
+func (c *Client) AsteroidsSshkeysDelete(ctx context.Context, params AsteroidsSshkeysDeleteParams) error {
+	_, err := c.sendAsteroidsSshkeysDelete(ctx, params)
+	return err
+}
+
+func (c *Client) sendAsteroidsSshkeysDelete(ctx context.Context, params AsteroidsSshkeysDeleteParams) (res *AsteroidsSshkeysDeleteNoContent, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/sshkeys/"
+	{
+		// Encode "id" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "id",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.IntToString(params.ID))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "DELETE", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsSshkeysDeleteResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsSshkeysGet invokes asteroids_sshkeys_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/
+func (c *Client) AsteroidsSshkeysGet(ctx context.Context, params AsteroidsSshkeysGetParams) (*SshKey, error) {
+	res, err := c.sendAsteroidsSshkeysGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsSshkeysGet(ctx context.Context, params AsteroidsSshkeysGetParams) (res *SshKey, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/sshkeys/"
+	{
+		// Encode "id" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "id",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.IntToString(params.ID))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsSshkeysGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsSshkeysList invokes asteroids_sshkeys_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/sshkeys/
+func (c *Client) AsteroidsSshkeysList(ctx context.Context, params AsteroidsSshkeysListParams) (*PaginatedSshKeyList, error) {
+	res, err := c.sendAsteroidsSshkeysList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsSshkeysList(ctx context.Context, params AsteroidsSshkeysListParams) (res *PaginatedSshKeyList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/sshkeys/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsSshkeysListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsToolversionsGet invokes asteroids_toolversions_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/toolversions/{tool__slug}/
+func (c *Client) AsteroidsToolversionsGet(ctx context.Context, params AsteroidsToolversionsGetParams) (*SelectedToolVersion, error) {
+	res, err := c.sendAsteroidsToolversionsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsToolversionsGet(ctx context.Context, params AsteroidsToolversionsGetParams) (res *SelectedToolVersion, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/toolversions/"
+	{
+		// Encode "tool__slug" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "tool__slug",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ToolSlug))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsToolversionsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsToolversionsList invokes asteroids_toolversions_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/toolversions/
+func (c *Client) AsteroidsToolversionsList(ctx context.Context, params AsteroidsToolversionsListParams) (*PaginatedSelectedToolVersionList, error) {
+	res, err := c.sendAsteroidsToolversionsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsToolversionsList(ctx context.Context, params AsteroidsToolversionsListParams) (res *PaginatedSelectedToolVersionList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/toolversions/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsToolversionsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsToolversionsPatch invokes asteroids_toolversions_patch operation.
+//
+// PATCH /api/v1/external/asteroids/{asteroid_name}/toolversions/{tool__slug}/
+func (c *Client) AsteroidsToolversionsPatch(ctx context.Context, request AsteroidsToolversionsPatchReq, params AsteroidsToolversionsPatchParams) (*SelectedToolVersion, error) {
+	res, err := c.sendAsteroidsToolversionsPatch(ctx, request, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsToolversionsPatch(ctx context.Context, request AsteroidsToolversionsPatchReq, params AsteroidsToolversionsPatchParams) (res *SelectedToolVersion, err error) {
+	// Validate request before sending.
+	switch request := request.(type) {
+	case *AsteroidsToolversionsPatchReqEmptyBody:
+		// Validation is not needed for the empty body type.
+	case *AsteroidsToolversionsPatchApplicationJSON:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *PatchedSelectedToolVersionRequestMultipart:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	default:
+		return res, errors.Errorf("unexpected request type: %T", request)
+	}
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/toolversions/"
+	{
+		// Encode "tool__slug" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "tool__slug",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ToolSlug))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "PATCH", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsToolversionsPatchRequest(request, r); err != nil {
+		return res, errors.Wrap(err, "encode request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsToolversionsPatchResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebbackendsGet invokes asteroids_webbackends_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/{id}/
+func (c *Client) AsteroidsWebbackendsGet(ctx context.Context, params AsteroidsWebbackendsGetParams) (*WebBackend, error) {
+	res, err := c.sendAsteroidsWebbackendsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebbackendsGet(ctx context.Context, params AsteroidsWebbackendsGetParams) (res *WebBackend, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webbackends/"
+	{
+		// Encode "id" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "id",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ID))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebbackendsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebbackendsList invokes asteroids_webbackends_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webbackends/
+func (c *Client) AsteroidsWebbackendsList(ctx context.Context, params AsteroidsWebbackendsListParams) (*PaginatedWebBackendList, error) {
+	res, err := c.sendAsteroidsWebbackendsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebbackendsList(ctx context.Context, params AsteroidsWebbackendsListParams) (res *PaginatedWebBackendList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webbackends/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebbackendsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsBackendsCreate invokes asteroids_webdomains_backends_create operation.
+//
+// Backends configured for the given domain, or the backends used by default for all domains if you
+// supply `-` as the domain.
+//
+// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/
+func (c *Client) AsteroidsWebdomainsBackendsCreate(ctx context.Context, request AsteroidsWebdomainsBackendsCreateReq, params AsteroidsWebdomainsBackendsCreateParams) (*WebBackend, error) {
+	res, err := c.sendAsteroidsWebdomainsBackendsCreate(ctx, request, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsBackendsCreate(ctx context.Context, request AsteroidsWebdomainsBackendsCreateReq, params AsteroidsWebdomainsBackendsCreateParams) (res *WebBackend, err error) {
+	// Validate request before sending.
+	switch request := request.(type) {
+	case *AsteroidsWebdomainsBackendsCreateApplicationJSON:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *WebBackendRequestMultipart:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	default:
+		return res, errors.Errorf("unexpected request type: %T", request)
+	}
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/backends/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "POST", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsWebdomainsBackendsCreateRequest(request, r); err != nil {
+		return res, errors.Wrap(err, "encode request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsBackendsCreateResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsBackendsDelete invokes asteroids_webdomains_backends_delete operation.
+//
+// Backends configured for the given domain, or the backends used by default for all domains if you
+// supply `-` as the domain.
+//
+// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/
+func (c *Client) AsteroidsWebdomainsBackendsDelete(ctx context.Context, params AsteroidsWebdomainsBackendsDeleteParams) error {
+	_, err := c.sendAsteroidsWebdomainsBackendsDelete(ctx, params)
+	return err
+}
+
+func (c *Client) sendAsteroidsWebdomainsBackendsDelete(ctx context.Context, params AsteroidsWebdomainsBackendsDeleteParams) (res *AsteroidsWebdomainsBackendsDeleteNoContent, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -2878,16 +3199,16 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 		}
 		pathParts[1] = encoded
 	}
-	pathParts[2] = "/maildomains/"
+	pathParts[2] = "/webdomains/"
 	{
-		// Encode "maildomain_domain" parameter.
+		// Encode "webdomain_name" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "maildomain_domain",
+			Param:   "webdomain_name",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.MaildomainDomain))
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2897,16 +3218,16 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 		}
 		pathParts[3] = encoded
 	}
-	pathParts[4] = "/users/"
+	pathParts[4] = "/backends/"
 	{
-		// Encode "local" parameter.
+		// Encode "path" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "local",
+			Param:   "path",
 			Style:   uri.PathStyleSimple,
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Local))
+			return e.EncodeValue(conv.StringToString(params.Path))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2919,11 +3240,379 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 	pathParts[6] = "/"
 	uri.AddPathParts(u, pathParts[:]...)
 
-	r, err := ht.NewRequest(ctx, "PATCH", u)
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "DELETE", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodePatchAsteroidMaildomainUserRequest(request, r); err != nil {
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsBackendsDeleteResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsBackendsGet invokes asteroids_webdomains_backends_get operation.
+//
+// Backends configured for the given domain, or the backends used by default for all domains if you
+// supply `-` as the domain.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/
+func (c *Client) AsteroidsWebdomainsBackendsGet(ctx context.Context, params AsteroidsWebdomainsBackendsGetParams) (*WebBackend, error) {
+	res, err := c.sendAsteroidsWebdomainsBackendsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsBackendsGet(ctx context.Context, params AsteroidsWebdomainsBackendsGetParams) (res *WebBackend, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [7]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/backends/"
+	{
+		// Encode "path" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "path",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Path))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsBackendsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsBackendsList invokes asteroids_webdomains_backends_list operation.
+//
+// Backends configured for the given domain, or the backends used by default for all domains if you
+// supply `-` as the domain.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/
+func (c *Client) AsteroidsWebdomainsBackendsList(ctx context.Context, params AsteroidsWebdomainsBackendsListParams) (*PaginatedWebBackendList, error) {
+	res, err := c.sendAsteroidsWebdomainsBackendsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsBackendsList(ctx context.Context, params AsteroidsWebdomainsBackendsListParams) (res *PaginatedWebBackendList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/backends/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsBackendsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsCreate invokes asteroids_webdomains_create operation.
+//
+// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/
+func (c *Client) AsteroidsWebdomainsCreate(ctx context.Context, request AsteroidsWebdomainsCreateReq, params AsteroidsWebdomainsCreateParams) (*WebDomain, error) {
+	res, err := c.sendAsteroidsWebdomainsCreate(ctx, request, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsCreate(ctx context.Context, request AsteroidsWebdomainsCreateReq, params AsteroidsWebdomainsCreateParams) (res *WebDomain, err error) {
+	// Validate request before sending.
+	switch request := request.(type) {
+	case *AsteroidsWebdomainsCreateApplicationJSON:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *WebDomainRequestMultipart:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	default:
+		return res, errors.Errorf("unexpected request type: %T", request)
+	}
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "POST", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsWebdomainsCreateRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -2933,7 +3622,1332 @@ func (c *Client) sendPatchAsteroidMaildomainUser(ctx context.Context, request Pa
 	}
 	defer resp.Body.Close()
 
-	result, err := decodePatchAsteroidMaildomainUserResponse(resp)
+	result, err := decodeAsteroidsWebdomainsCreateResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsDelete invokes asteroids_webdomains_delete operation.
+//
+// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/
+func (c *Client) AsteroidsWebdomainsDelete(ctx context.Context, params AsteroidsWebdomainsDeleteParams) error {
+	_, err := c.sendAsteroidsWebdomainsDelete(ctx, params)
+	return err
+}
+
+func (c *Client) sendAsteroidsWebdomainsDelete(ctx context.Context, params AsteroidsWebdomainsDeleteParams) (res *AsteroidsWebdomainsDeleteNoContent, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Name))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "DELETE", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsDeleteResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsGet invokes asteroids_webdomains_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/
+func (c *Client) AsteroidsWebdomainsGet(ctx context.Context, params AsteroidsWebdomainsGetParams) (*WebDomain, error) {
+	res, err := c.sendAsteroidsWebdomainsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsGet(ctx context.Context, params AsteroidsWebdomainsGetParams) (res *WebDomain, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Name))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsHeadersCreate invokes asteroids_webdomains_headers_create operation.
+//
+// POST /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/
+func (c *Client) AsteroidsWebdomainsHeadersCreate(ctx context.Context, request AsteroidsWebdomainsHeadersCreateReq, params AsteroidsWebdomainsHeadersCreateParams) (*WebHeader, error) {
+	res, err := c.sendAsteroidsWebdomainsHeadersCreate(ctx, request, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsHeadersCreate(ctx context.Context, request AsteroidsWebdomainsHeadersCreateReq, params AsteroidsWebdomainsHeadersCreateParams) (res *WebHeader, err error) {
+	// Validate request before sending.
+	switch request := request.(type) {
+	case *AsteroidsWebdomainsHeadersCreateApplicationJSON:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	case *WebHeaderRequestMultipart:
+		if err := func() error {
+			if err := request.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return res, errors.Wrap(err, "validate")
+		}
+	default:
+		return res, errors.Errorf("unexpected request type: %T", request)
+	}
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/headers/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "POST", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+	if err := encodeAsteroidsWebdomainsHeadersCreateRequest(request, r); err != nil {
+		return res, errors.Wrap(err, "encode request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsHeadersCreateResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsHeadersDelete invokes asteroids_webdomains_headers_delete operation.
+//
+// DELETE /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/
+func (c *Client) AsteroidsWebdomainsHeadersDelete(ctx context.Context, params AsteroidsWebdomainsHeadersDeleteParams) error {
+	_, err := c.sendAsteroidsWebdomainsHeadersDelete(ctx, params)
+	return err
+}
+
+func (c *Client) sendAsteroidsWebdomainsHeadersDelete(ctx context.Context, params AsteroidsWebdomainsHeadersDeleteParams) (res *AsteroidsWebdomainsHeadersDeleteNoContent, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [7]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/headers/"
+	{
+		// Encode "id" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "id",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ID))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "DELETE", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsHeadersDeleteResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsHeadersGet invokes asteroids_webdomains_headers_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/
+func (c *Client) AsteroidsWebdomainsHeadersGet(ctx context.Context, params AsteroidsWebdomainsHeadersGetParams) (*WebHeader, error) {
+	res, err := c.sendAsteroidsWebdomainsHeadersGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsHeadersGet(ctx context.Context, params AsteroidsWebdomainsHeadersGetParams) (res *WebHeader, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [7]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/headers/"
+	{
+		// Encode "id" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "id",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ID))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[5] = encoded
+	}
+	pathParts[6] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsHeadersGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsHeadersList invokes asteroids_webdomains_headers_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/
+func (c *Client) AsteroidsWebdomainsHeadersList(ctx context.Context, params AsteroidsWebdomainsHeadersListParams) (*PaginatedWebHeaderList, error) {
+	res, err := c.sendAsteroidsWebdomainsHeadersList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsHeadersList(ctx context.Context, params AsteroidsWebdomainsHeadersListParams) (res *PaginatedWebHeaderList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	{
+		// Encode "webdomain_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "webdomain_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.WebdomainName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/headers/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsHeadersListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebdomainsList invokes asteroids_webdomains_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webdomains/
+func (c *Client) AsteroidsWebdomainsList(ctx context.Context, params AsteroidsWebdomainsListParams) (*PaginatedWebDomainList, error) {
+	res, err := c.sendAsteroidsWebdomainsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebdomainsList(ctx context.Context, params AsteroidsWebdomainsListParams) (res *PaginatedWebDomainList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webdomains/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebdomainsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebheadersGet invokes asteroids_webheaders_get operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/{id}/
+func (c *Client) AsteroidsWebheadersGet(ctx context.Context, params AsteroidsWebheadersGetParams) (*WebHeader, error) {
+	res, err := c.sendAsteroidsWebheadersGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebheadersGet(ctx context.Context, params AsteroidsWebheadersGetParams) (res *WebHeader, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webheaders/"
+	{
+		// Encode "id" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "id",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.IntToString(params.ID))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebheadersGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// AsteroidsWebheadersList invokes asteroids_webheaders_list operation.
+//
+// GET /api/v1/external/asteroids/{asteroid_name}/webheaders/
+func (c *Client) AsteroidsWebheadersList(ctx context.Context, params AsteroidsWebheadersListParams) (*PaginatedWebHeaderList, error) {
+	res, err := c.sendAsteroidsWebheadersList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendAsteroidsWebheadersList(ctx context.Context, params AsteroidsWebheadersListParams) (res *PaginatedWebHeaderList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/asteroids/"
+	{
+		// Encode "asteroid_name" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "asteroid_name",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.AsteroidName))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/webheaders/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeAsteroidsWebheadersListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// ToolsGet invokes tools_get operation.
+//
+// GET /api/v1/external/tools/{slug}/
+func (c *Client) ToolsGet(ctx context.Context, params ToolsGetParams) (*Tool, error) {
+	res, err := c.sendToolsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendToolsGet(ctx context.Context, params ToolsGetParams) (res *Tool, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/tools/"
+	{
+		// Encode "slug" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "slug",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Slug))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeToolsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// ToolsList invokes tools_list operation.
+//
+// GET /api/v1/external/tools/
+func (c *Client) ToolsList(ctx context.Context, params ToolsListParams) (*PaginatedToolList, error) {
+	res, err := c.sendToolsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendToolsList(ctx context.Context, params ToolsListParams) (res *PaginatedToolList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [1]string
+	pathParts[0] = "/api/v1/external/tools/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeToolsListResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// ToolsVersionsGet invokes tools_versions_get operation.
+//
+// GET /api/v1/external/tools/{tool_slug}/versions/{version}/
+func (c *Client) ToolsVersionsGet(ctx context.Context, params ToolsVersionsGetParams) (*ToolVersion, error) {
+	res, err := c.sendToolsVersionsGet(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendToolsVersionsGet(ctx context.Context, params ToolsVersionsGetParams) (res *ToolVersion, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [5]string
+	pathParts[0] = "/api/v1/external/tools/"
+	{
+		// Encode "tool_slug" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "tool_slug",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ToolSlug))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/versions/"
+	{
+		// Encode "version" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "version",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.Version))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[3] = encoded
+	}
+	pathParts[4] = "/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeToolsVersionsGetResponse(resp)
+	if err != nil {
+		return res, errors.Wrap(err, "decode response")
+	}
+
+	return result, nil
+}
+
+// ToolsVersionsList invokes tools_versions_list operation.
+//
+// GET /api/v1/external/tools/{tool_slug}/versions/
+func (c *Client) ToolsVersionsList(ctx context.Context, params ToolsVersionsListParams) (*PaginatedToolVersionList, error) {
+	res, err := c.sendToolsVersionsList(ctx, params)
+	return res, err
+}
+
+func (c *Client) sendToolsVersionsList(ctx context.Context, params ToolsVersionsListParams) (res *PaginatedToolVersionList, err error) {
+
+	u := uri.Clone(c.requestURL(ctx))
+	var pathParts [3]string
+	pathParts[0] = "/api/v1/external/tools/"
+	{
+		// Encode "tool_slug" parameter.
+		e := uri.NewPathEncoder(uri.PathEncoderConfig{
+			Param:   "tool_slug",
+			Style:   uri.PathStyleSimple,
+			Explode: false,
+		})
+		if err := func() error {
+			return e.EncodeValue(conv.StringToString(params.ToolSlug))
+		}(); err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		encoded, err := e.Result()
+		if err != nil {
+			return res, errors.Wrap(err, "encode path")
+		}
+		pathParts[1] = encoded
+	}
+	pathParts[2] = "/versions/"
+	uri.AddPathParts(u, pathParts[:]...)
+
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "format" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "format",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Format.Get(); ok {
+				return e.EncodeValue(conv.StringToString(string(val)))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "limit" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "limit",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Limit.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	{
+		// Encode "offset" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "offset",
+			Style:   uri.QueryStyleForm,
+			Explode: true,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Offset.Get(); ok {
+				return e.EncodeValue(conv.IntToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
+	r, err := ht.NewRequest(ctx, "GET", u)
+	if err != nil {
+		return res, errors.Wrap(err, "create request")
+	}
+
+	resp, err := c.cfg.Client.Do(r)
+	if err != nil {
+		return res, errors.Wrap(err, "do request")
+	}
+	defer resp.Body.Close()
+
+	result, err := decodeToolsVersionsListResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}

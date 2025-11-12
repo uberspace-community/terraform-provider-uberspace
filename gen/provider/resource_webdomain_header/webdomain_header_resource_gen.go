@@ -36,6 +36,23 @@ func WebdomainHeaderResourceSchema(ctx context.Context) schema.Schema {
 					stringvalidator.LengthAtLeast(1),
 				},
 			},
+			"format": schema.StringAttribute{
+				Optional: true,
+				Computed: true,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"json",
+						"text/event-stream",
+					),
+				},
+			},
+			"id": schema.StringAttribute{
+				Optional: true,
+				Computed: true,
+				Validators: []validator.String{
+					stringvalidator.RegexMatches(regexp.MustCompile("^[0-9]+$"), ""),
+				},
+			},
 			"name": schema.StringAttribute{
 				Required: true,
 				Validators: []validator.String{
@@ -50,6 +67,9 @@ func WebdomainHeaderResourceSchema(ctx context.Context) schema.Schema {
 					stringvalidator.RegexMatches(regexp.MustCompile("^/([a-zA-ZüäöÜÄÖß0-9._=-]+/?)*$"), ""),
 				},
 			},
+			"pk": schema.Int64Attribute{
+				Computed: true,
+			},
 			"updated_at": schema.StringAttribute{
 				Computed: true,
 			},
@@ -61,7 +81,7 @@ func WebdomainHeaderResourceSchema(ctx context.Context) schema.Schema {
 					stringvalidator.RegexMatches(regexp.MustCompile("^[ -~]+$"), ""),
 				},
 			},
-			"webdomain_domain": schema.StringAttribute{
+			"webdomain_name": schema.StringAttribute{
 				Optional: true,
 				Computed: true,
 				Validators: []validator.String{
@@ -73,13 +93,16 @@ func WebdomainHeaderResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type WebdomainHeaderModel struct {
-	Asteroid        types.String `tfsdk:"asteroid"`
-	AsteroidName    types.String `tfsdk:"asteroid_name"`
-	CreatedAt       types.String `tfsdk:"created_at"`
-	Domain          types.String `tfsdk:"domain"`
-	Name            types.String `tfsdk:"name"`
-	Path            types.String `tfsdk:"path"`
-	UpdatedAt       types.String `tfsdk:"updated_at"`
-	Value           types.String `tfsdk:"value"`
-	WebdomainDomain types.String `tfsdk:"webdomain_domain"`
+	Asteroid      types.String `tfsdk:"asteroid"`
+	AsteroidName  types.String `tfsdk:"asteroid_name"`
+	CreatedAt     types.String `tfsdk:"created_at"`
+	Domain        types.String `tfsdk:"domain"`
+	Format        types.String `tfsdk:"format"`
+	Id            types.String `tfsdk:"id"`
+	Name          types.String `tfsdk:"name"`
+	Path          types.String `tfsdk:"path"`
+	Pk            types.Int64  `tfsdk:"pk"`
+	UpdatedAt     types.String `tfsdk:"updated_at"`
+	Value         types.String `tfsdk:"value"`
+	WebdomainName types.String `tfsdk:"webdomain_name"`
 }

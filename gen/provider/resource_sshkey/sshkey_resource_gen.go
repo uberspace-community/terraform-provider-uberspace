@@ -30,6 +30,16 @@ func SshkeyResourceSchema(ctx context.Context) schema.Schema {
 			"created_at": schema.StringAttribute{
 				Computed: true,
 			},
+			"format": schema.StringAttribute{
+				Optional: true,
+				Computed: true,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"json",
+						"text/event-stream",
+					),
+				},
+			},
 			"formatted_key": schema.StringAttribute{
 				Computed: true,
 			},
@@ -86,6 +96,7 @@ type SshkeyModel struct {
 	Asteroid     types.String `tfsdk:"asteroid"`
 	AsteroidName types.String `tfsdk:"asteroid_name"`
 	CreatedAt    types.String `tfsdk:"created_at"`
+	Format       types.String `tfsdk:"format"`
 	FormattedKey types.String `tfsdk:"formatted_key"`
 	Id           types.Int64  `tfsdk:"id"`
 	Key          types.String `tfsdk:"key"`

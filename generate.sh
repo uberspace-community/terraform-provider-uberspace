@@ -1,5 +1,6 @@
 # save to tmp file
-cat openapi.json > openapi_tmp_in.json
+yq -o=json eval openapi.yaml > openapi_tmp_in.json
+# cat openapi.json > openapi_tmp_in.json
 
 # remove allOf from openapi_umlauts.json and save as openapi_no_allof.json
 # jq '
@@ -31,20 +32,20 @@ jq 'walk(
 )' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
-# delete components.schemas.MailDomainRequest.properties.alias
-jq 'del(.components.schemas.MailDomainRequest.properties.alias)' openapi_tmp_in.json > openapi_tmp_out.json
+# delete components.schemas.MailDomainRequest.properties.alias_of
+jq 'del(.components.schemas.MailDomainRequest.properties.alias_of)' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
-# delete components.schemas.MailDomain.properties.alias
-jq 'del(.components.schemas.MailDomain.properties.alias)' openapi_tmp_in.json > openapi_tmp_out.json
+# delete components.schemas.MailDomain.properties.alias_of
+jq 'del(.components.schemas.MailDomain.properties.alias_of)' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
-# delete components.schemas.MailUserRequest.properties.alias
-jq 'del(.components.schemas.MailUserRequest.properties.alias)' openapi_tmp_in.json > openapi_tmp_out.json
+# delete components.schemas.MailUserRequest.properties.alias_of
+jq 'del(.components.schemas.MailUserRequest.properties.alias_of)' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
-# delete components.schemas.MailUser.properties.alias
-jq 'del(.components.schemas.MailUser.properties.alias)' openapi_tmp_in.json > openapi_tmp_out.json
+# delete components.schemas.MailUser.properties.alias_of
+jq 'del(.components.schemas.MailUser.properties.alias_of)' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
 # delete components.schemas.MailUserRequest.properties.domain
@@ -55,12 +56,18 @@ cat openapi_tmp_out.json > openapi_tmp_in.json
 jq 'del(.components.schemas.MailUser.properties.domain)' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
+# delete components.schemas.MailUser.properties.domain
+
 # delete info.contact
 jq 'del(.info.contact)' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
 # replace \u00fc\u00e4\u00f6\u00dc\u00c4\u00d6\u00df with üäöÜÄÖß in openapi.json and save as openapi_fixed.json
 sed 's/\\\\u00fc/ü/g; s/\\\\u00e4/ä/g; s/\\\\u00f6/ö/g; s/\\\\u00dc/Ü/g; s/\\\\u00c4/Ä/g; s/\\\\u00d6/Ö/g; s/\\\\u00df/ß/g' openapi_tmp_in.json > openapi_tmp_out.json
+cat openapi_tmp_out.json > openapi_tmp_in.json
+
+# remove api_v1_external_ prefix from all operationIds
+sed 's/api_v1_external_//g' openapi_tmp_in.json > openapi_tmp_out.json
 cat openapi_tmp_out.json > openapi_tmp_in.json
 
 # save the final cleaned up openapi.json
@@ -80,4 +87,4 @@ tfplugingen-framework generate all \
   --output gen/provider
 
 # generate client code
-# go tool ogen --package client --target gen/client --clean openapi_clean.json
+go tool ogen --package client --target gen/client --clean openapi_clean.json

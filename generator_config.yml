@@ -6,23 +6,23 @@ resources:
       path: /api/v1/external/asteroids/{asteroid_name}/maildomains/
       method: POST
     read:
-      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/
       method: GET
     delete:
-      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{domain}/
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/
       method: DELETE
   mailuser:
     create:
-      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/
       method: POST
     read:
-      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
       method: GET
     update:
-      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
       method: PATCH
     delete:
-      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_domain}/users/{local}/
+      path: /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/
       method: DELETE
   sshkey:
     create:
@@ -39,28 +39,28 @@ resources:
       path: /api/v1/external/asteroids/{asteroid_name}/webdomains/
       method: POST
     read:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{domain}/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/
       method: GET
     delete:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{domain}/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/
       method: DELETE
   webdomain_backend:
     create:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/
       method: POST
     read:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/{path}/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/
       method: GET
     delete:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/backends/{path}/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/
       method: DELETE
   webdomain_header:
     create:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/
       method: POST
     read:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/{path}/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/
       method: GET
     delete:
-      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_domain}/headers/{path}/
+      path: /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/
       method: DELETE

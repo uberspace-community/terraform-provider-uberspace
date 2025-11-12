@@ -15,7 +15,7 @@ description: |-
 ```terraform
 resource "uberspace_webdomain" "minio" {
   asteroid = "isabell"
-  domain   = "minio.isabell.uber.space"
+  name     = "minio.isabell.uber.space"
 }
 
 resource "uberspace_webdomain_backend" "minio" {
@@ -44,9 +44,10 @@ resource "uberspace_webdomain_backend" "minio" {
 ### Optional
 
 - `asteroid_name` (String)
+- `format` (String)
 - `port` (Number) TCP port of the upstream HTTP server.
 - `remove_prefix` (Boolean) Whether to remove the path while proxying, e.g. /ep/123 => /123.
-- `webdomain_domain` (String)
+- `webdomain_name` (String)
 
 ### Read-Only
 

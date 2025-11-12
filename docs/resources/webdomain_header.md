@@ -15,7 +15,7 @@ description: |-
 ```terraform
 resource "uberspace_webdomain" "minio" {
   asteroid = "isabell"
-  domain   = "minio.isabell.uber.space"
+  name     = "minio.isabell.uber.space"
 }
 
 resource "uberspace_webdomain_header" "cors" {
@@ -43,10 +43,13 @@ resource "uberspace_webdomain_header" "cors" {
 ### Optional
 
 - `asteroid_name` (String)
+- `format` (String)
 - `value` (String)
-- `webdomain_domain` (String)
+- `webdomain_name` (String)
 
 ### Read-Only
 
 - `created_at` (String)
+- `id` (String) The ID of this resource.
+- `pk` (Number)
 - `updated_at` (String)

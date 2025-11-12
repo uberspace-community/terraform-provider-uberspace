@@ -1,0 +1,5037 @@
+openapi: 3.0.3
+info:
+  title: Marvin API
+  version: 1.0.0 (v1)
+  summary: API for Marvin. Marvin is the uberspace.de component managing anything
+    technical related to uberspace 8.
+  description: |-
+    # Authentication
+    Marvin uses API keys for authentication. Ask a marvin admin for an API key, to get one.
+
+    Provide the API key in a header like so: `Authorization: Api-Key MYAPIKEY`.
+  contact: hallo@uberspace.de
+paths:
+  /api/v1/common/events/:
+    get:
+      operationId: api_v1_common_events_list
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEventList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedEventList'
+          description: ''
+  /api/v1/common/events/{event_pk}/logs/:
+    get:
+      operationId: api_v1_common_events_logs_list
+      parameters:
+        - in: path
+          name: event_pk
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobLogList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobLogList'
+          description: ''
+  /api/v1/common/events/{id}/:
+    get:
+      operationId: api_v1_common_events_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this event.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+  /api/v1/common/refreshevents/:
+    post:
+      operationId: api_v1_common_refreshevents_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshEventRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RefreshEventRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RefreshEventRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshEvent'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/RefreshEvent'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/maildomains/:
+    get:
+      operationId: api_v1_external_asteroids_maildomains_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailDomainList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailDomainList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_maildomains_create
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailDomainRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MailDomainRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MailDomainRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailDomain'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailDomain'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/:
+    get:
+      operationId: api_v1_external_asteroids_maildomains_users_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailUserList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailUserList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_maildomains_users_create
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailUserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MailUserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MailUserRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{local}/:
+    get:
+      operationId: api_v1_external_asteroids_maildomains_users_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+          description: ''
+    patch:
+      operationId: api_v1_external_asteroids_maildomains_users_patch
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMailUserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMailUserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMailUserRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_maildomains_users_delete
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/:
+    get:
+      operationId: api_v1_external_asteroids_maildomains_users_forwards_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+        - in: path
+          name: mailuser_local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailForwardList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailForwardList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_maildomains_users_forwards_create
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+        - in: path
+          name: mailuser_local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailForwardRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MailForwardRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MailForwardRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailForward'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailForward'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/maildomains/{maildomain_name}/users/{mailuser_local}/forwards/{destination}/:
+    get:
+      operationId: api_v1_external_asteroids_maildomains_users_forwards_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: destination
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+        - in: path
+          name: mailuser_local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailForward'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailForward'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_maildomains_users_forwards_delete
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: destination
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: maildomain_name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+        - in: path
+          name: mailuser_local
+          schema:
+            type: string
+            pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/maildomains/{name}/:
+    get:
+      operationId: api_v1_external_asteroids_maildomains_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailDomain'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailDomain'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_maildomains_delete
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/mailusers/:
+    get:
+      operationId: api_v1_external_asteroids_mailusers_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailUserList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailUserList'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/sshkeys/:
+    get:
+      operationId: api_v1_external_asteroids_sshkeys_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSshKeyList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedSshKeyList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_sshkeys_create
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshKeyRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SshKeyRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SshKeyRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/sshkeys/{id}/:
+    get:
+      operationId: api_v1_external_asteroids_sshkeys_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ssh key.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_sshkeys_delete
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ssh key.
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/toolversions/:
+    get:
+      operationId: api_v1_external_asteroids_toolversions_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSelectedToolVersionList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedSelectedToolVersionList'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/toolversions/{tool__slug}/:
+    get:
+      operationId: api_v1_external_asteroids_toolversions_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: tool__slug
+          schema:
+            type: string
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SelectedToolVersion'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SelectedToolVersion'
+          description: ''
+    patch:
+      operationId: api_v1_external_asteroids_toolversions_patch
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: tool__slug
+          schema:
+            type: string
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSelectedToolVersionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSelectedToolVersionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSelectedToolVersionRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SelectedToolVersion'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SelectedToolVersion'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webbackends/:
+    get:
+      operationId: api_v1_external_asteroids_webbackends_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebBackendList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebBackendList'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webbackends/{id}/:
+    get:
+      operationId: api_v1_external_asteroids_webbackends_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: string
+            pattern: ^[0-9]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebBackend'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebBackend'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webdomains/:
+    get:
+      operationId: api_v1_external_asteroids_webdomains_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebDomainList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebDomainList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_webdomains_create
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebDomainRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebDomainRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebDomainRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebDomain'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebDomain'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webdomains/{name}/:
+    get:
+      operationId: api_v1_external_asteroids_webdomains_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebDomain'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebDomain'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_webdomains_delete
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/:
+    get:
+      operationId: api_v1_external_asteroids_webdomains_backends_list
+      description: Backends configured for the given domain, or the backends used
+        by default for all domains if you supply `-` as the domain.
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebBackendList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebBackendList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_webdomains_backends_create
+      description: Backends configured for the given domain, or the backends used
+        by default for all domains if you supply `-` as the domain.
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebBackendRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebBackendRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebBackendRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebBackend'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebBackend'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/backends/{path}/:
+    get:
+      operationId: api_v1_external_asteroids_webdomains_backends_get
+      description: Backends configured for the given domain, or the backends used
+        by default for all domains if you supply `-` as the domain.
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: path
+          schema:
+            type: string
+            pattern: ^.*$
+          required: true
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebBackend'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebBackend'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_webdomains_backends_delete
+      description: Backends configured for the given domain, or the backends used
+        by default for all domains if you supply `-` as the domain.
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: path
+          schema:
+            type: string
+            pattern: ^.*$
+          required: true
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/:
+    get:
+      operationId: api_v1_external_asteroids_webdomains_headers_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebHeaderList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebHeaderList'
+          description: ''
+    post:
+      operationId: api_v1_external_asteroids_webdomains_headers_create
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebHeaderRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebHeaderRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebHeaderRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHeader'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebHeader'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webdomains/{webdomain_name}/headers/{id}/:
+    get:
+      operationId: api_v1_external_asteroids_webdomains_headers_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: string
+            pattern: ^[0-9]+$
+          required: true
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHeader'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebHeader'
+          description: ''
+    delete:
+      operationId: api_v1_external_asteroids_webdomains_headers_delete
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: string
+            pattern: ^[0-9]+$
+          required: true
+        - in: path
+          name: webdomain_name
+          schema:
+            type: string
+            pattern: ^([^/]+\.[^/]+|-)$
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/external/asteroids/{asteroid_name}/webheaders/:
+    get:
+      operationId: api_v1_external_asteroids_webheaders_list
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebHeaderList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebHeaderList'
+          description: ''
+  /api/v1/external/asteroids/{asteroid_name}/webheaders/{id}/:
+    get:
+      operationId: api_v1_external_asteroids_webheaders_get
+      parameters:
+        - in: path
+          name: asteroid_name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this web header.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHeader'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebHeader'
+          description: ''
+  /api/v1/external/asteroids/{name}/:
+    get:
+      operationId: api_v1_external_asteroids_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Name of a hosting account, e.g. 'isabell'.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalAsteroid'
+              examples:
+                Example:
+                  value:
+                    name: isabell
+                    host: tuttle
+                    active: true
+                    flag_log_error_php: false
+                    flag_log_error_apache: false
+                    flag_log_access_nginx: false
+                    flag_page_replace_500: true
+                  summary: example
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/ExternalAsteroid'
+          description: ''
+    patch:
+      operationId: api_v1_external_asteroids_patch
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Name of a hosting account, e.g. 'isabell'.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedExternalAsteroidRequest'
+            examples:
+              Example:
+                value:
+                  name: isabell
+                  host: tuttle
+                  active: true
+                  flag_log_error_php: false
+                  flag_log_error_apache: false
+                  flag_log_access_nginx: false
+                  flag_page_replace_500: true
+                summary: example
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedExternalAsteroidRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedExternalAsteroidRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalAsteroid'
+              examples:
+                Example:
+                  value:
+                    name: isabell
+                    host: tuttle
+                    active: true
+                    flag_log_error_php: false
+                    flag_log_error_apache: false
+                    flag_log_access_nginx: false
+                    flag_page_replace_500: true
+                  summary: example
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/ExternalAsteroid'
+          description: ''
+  /api/v1/external/tools/:
+    get:
+      operationId: api_v1_external_tools_list
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedToolList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedToolList'
+          description: ''
+  /api/v1/external/tools/{slug}/:
+    get:
+      operationId: api_v1_external_tools_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: slug
+          schema:
+            type: string
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+  /api/v1/external/tools/{tool_slug}/versions/:
+    get:
+      operationId: api_v1_external_tools_versions_list
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+        - in: path
+          name: tool_slug
+          schema:
+            type: string
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedToolVersionList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedToolVersionList'
+          description: ''
+  /api/v1/external/tools/{tool_slug}/versions/{version}/:
+    get:
+      operationId: api_v1_external_tools_versions_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: tool_slug
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: version
+          schema:
+            type: string
+            pattern: ^[0-9a-z._]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolVersion'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/ToolVersion'
+          description: ''
+  /api/v1/internal/asteroidclients/:
+    post:
+      operationId: api_v1_internal_asteroidclients_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsteroidClientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AsteroidClientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AsteroidClientRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsteroidClient'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/AsteroidClient'
+          description: ''
+  /api/v1/internal/asteroids/:
+    get:
+      operationId: api_v1_internal_asteroids_list
+      parameters:
+        - in: query
+          name: active
+          schema:
+            type: boolean
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - in: query
+          name: name
+          schema:
+            type: string
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAsteroidList'
+              examples:
+                Example:
+                  value:
+                    count: 123
+                    next: http://api.example.org/accounts/?offset=400&limit=100
+                    previous: http://api.example.org/accounts/?offset=200&limit=100
+                    results:
+                      - name: isabell
+                        host: tuttle
+                        active: true
+                        flag_log_error_php: false
+                        flag_log_error_apache: false
+                        flag_log_access_nginx: false
+                        flag_page_replace_500: true
+                  summary: example
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedAsteroidList'
+          description: ''
+    post:
+      operationId: api_v1_internal_asteroids_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsteroidRequest'
+            examples:
+              Example:
+                value:
+                  name: isabell
+                  host: tuttle
+                  active: true
+                  flag_log_error_php: false
+                  flag_log_error_apache: false
+                  flag_log_access_nginx: false
+                  flag_page_replace_500: true
+                summary: example
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AsteroidRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AsteroidRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asteroid'
+              examples:
+                Example:
+                  value:
+                    name: isabell
+                    host: tuttle
+                    active: true
+                    flag_log_error_php: false
+                    flag_log_error_apache: false
+                    flag_log_access_nginx: false
+                    flag_page_replace_500: true
+                  summary: example
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Asteroid'
+          description: ''
+  /api/v1/internal/asteroids/{name}/:
+    get:
+      operationId: api_v1_internal_asteroids_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Name of a hosting account, e.g. 'isabell'.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asteroid'
+              examples:
+                Example:
+                  value:
+                    name: isabell
+                    host: tuttle
+                    active: true
+                    flag_log_error_php: false
+                    flag_log_error_apache: false
+                    flag_log_access_nginx: false
+                    flag_page_replace_500: true
+                  summary: example
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Asteroid'
+          description: ''
+    patch:
+      operationId: api_v1_internal_asteroids_patch
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Name of a hosting account, e.g. 'isabell'.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAsteroidRequest'
+            examples:
+              Example:
+                value:
+                  name: isabell
+                  host: tuttle
+                  active: true
+                  flag_log_error_php: false
+                  flag_log_error_apache: false
+                  flag_log_access_nginx: false
+                  flag_page_replace_500: true
+                summary: example
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAsteroidRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAsteroidRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asteroid'
+              examples:
+                Example:
+                  value:
+                    name: isabell
+                    host: tuttle
+                    active: true
+                    flag_log_error_php: false
+                    flag_log_error_apache: false
+                    flag_log_access_nginx: false
+                    flag_page_replace_500: true
+                  summary: example
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Asteroid'
+          description: ''
+    delete:
+      operationId: api_v1_internal_asteroids_delete
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Name of a hosting account, e.g. 'isabell'.
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/internal/clients/:
+    get:
+      operationId: api_v1_internal_clients_list
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedClientList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedClientList'
+          description: ''
+    post:
+      operationId: api_v1_internal_clients_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+  /api/v1/internal/clients/{id}/:
+    get:
+      operationId: api_v1_internal_clients_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this client.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    patch:
+      operationId: api_v1_internal_clients_patch
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this client.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedClientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedClientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedClientRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    delete:
+      operationId: api_v1_internal_clients_delete
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this client.
+          required: true
+      tags:
+        - api
+      responses:
+        '204':
+          description: No response body
+  /api/v1/internal/events/{event_pk}/logs/:
+    get:
+      operationId: api_v1_internal_events_logs_list
+      parameters:
+        - in: path
+          name: event_pk
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobLogList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobLogList'
+          description: ''
+  /api/v1/internal/hosts/:
+    get:
+      operationId: api_v1_internal_hosts_list
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedHostList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedHostList'
+          description: ''
+  /api/v1/internal/hosts/{name}/:
+    get:
+      operationId: api_v1_internal_hosts_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Hostname of a server, e.g. 'tuttle'
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: ''
+  /api/v1/internal/hosts/{name}/web_summary/:
+    get:
+      operationId: api_v1_internal_hosts_web_summary_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Hostname of a server, e.g. 'tuttle'
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: ''
+    post:
+      operationId: api_v1_internal_hosts_web_summary_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            description: Hostname of a server, e.g. 'tuttle'
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HostRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HostRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: ''
+  /api/v1/internal/jobs/{id}/defer/:
+    post:
+      operationId: api_v1_internal_jobs_defer_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this job.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+  /api/v1/internal/jobs/{id}/done/:
+    post:
+      operationId: api_v1_internal_jobs_done_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this job.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+  /api/v1/internal/jobs/{id}/fail/:
+    post:
+      operationId: api_v1_internal_jobs_fail_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this job.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+  /api/v1/internal/jobs/{id}/skip/:
+    post:
+      operationId: api_v1_internal_jobs_skip_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this job.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+  /api/v1/internal/jobs/pushnext/:
+    get:
+      operationId: api_v1_internal_jobs_pushnext_get
+      description: This endpoint streams Server-Sent Events (SSE). The response is
+        an event stream, not JSON.
+      tags:
+        - api
+      responses:
+        '200':
+          description: No response body
+  /api/v1/internal/jobs/startnext/:
+    post:
+      operationId: api_v1_internal_jobs_startnext_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+  /api/v1/internal/maildomains/:
+    get:
+      operationId: api_v1_internal_maildomains_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this domain is in, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this domain is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailDomainList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailDomainList'
+          description: ''
+  /api/v1/internal/maildomains/{name}/:
+    get:
+      operationId: api_v1_internal_maildomains_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailDomain'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailDomain'
+          description: ''
+  /api/v1/internal/mailforwards/:
+    get:
+      operationId: api_v1_internal_mailforwards_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this forward is within, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this forward is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailForwardList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailForwardList'
+          description: ''
+  /api/v1/internal/mailforwards/{id}/:
+    get:
+      operationId: api_v1_internal_mailforwards_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this mail forward.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailForward'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailForward'
+          description: ''
+  /api/v1/internal/mailusers/:
+    get:
+      operationId: api_v1_internal_mailusers_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this user is within, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this user is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailUserList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedMailUserList'
+          description: ''
+  /api/v1/internal/mailusers/{mail_address}/:
+    get:
+      operationId: api_v1_internal_mailusers_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: mail_address
+          schema:
+            type: integer
+          description: A unique integer value identifying this mail user.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+          description: ''
+  /api/v1/internal/mailusers/{mail_address}/set_password_hash/:
+    post:
+      operationId: api_v1_internal_mailusers_set_password_hash_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: mail_address
+          schema:
+            type: integer
+          description: A unique integer value identifying this mail user.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailUserPasswordHashRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MailUserPasswordHashRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MailUserPasswordHashRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MailUser'
+          description: ''
+  /api/v1/internal/sshkeys/:
+    get:
+      operationId: api_v1_internal_sshkeys_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this key is allowed to access, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this key is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSshKeyList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedSshKeyList'
+          description: ''
+  /api/v1/internal/sshkeys/{id}/:
+    get:
+      operationId: api_v1_internal_sshkeys_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ssh key.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SshKey'
+          description: ''
+  /api/v1/internal/subscriptions/:
+    get:
+      operationId: api_v1_internal_subscriptions_list
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSubscriptionList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedSubscriptionList'
+          description: ''
+  /api/v1/internal/subscriptions/{id}/:
+    get:
+      operationId: api_v1_internal_subscriptions_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+  /api/v1/internal/subscriptions/replace/:
+    post:
+      operationId: api_v1_internal_subscriptions_replace_create
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+  /api/v1/internal/webbackends/:
+    get:
+      operationId: api_v1_internal_webbackends_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this backend is in, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this backend is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebBackendList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebBackendList'
+          description: ''
+  /api/v1/internal/webdomains/:
+    get:
+      operationId: api_v1_internal_webdomains_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this domain is in, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this domain is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebDomainList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebDomainList'
+          description: ''
+  /api/v1/internal/webdomains/{name}/:
+    get:
+      operationId: api_v1_internal_webdomains_get
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: ^[^/]+\.[^/]+$
+          required: true
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebDomain'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/WebDomain'
+          description: ''
+  /api/v1/internal/webheaders/:
+    get:
+      operationId: api_v1_internal_webheaders_list
+      parameters:
+        - in: query
+          name: asteroid
+          schema:
+            type: string
+          description: Name of the asteroid this backend is in, e.g. 'isabell'.
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - text/event-stream
+        - in: query
+          name: host
+          schema:
+            type: string
+          description: Name of the host this backend is on, e.g. 'tuttle'.
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - api
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebHeaderList'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebHeaderList'
+          description: ''
+components:
+  schemas:
+    Asteroid:
+      type: object
+      properties:
+        pk:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+          pattern: ^[a-z][a-z0-9]*$
+          maxLength: 32
+        host:
+          type: string
+          description: Hostname of a server, e.g. 'tuttle'
+        active:
+          type: boolean
+          default: true
+          description: Whether this asteroid can be used or is locked, e.g. because
+            of missing payment.
+        flag_log_error_php:
+          type: boolean
+          default: true
+          title: Enable PHP error log
+        flag_log_error_apache:
+          type: boolean
+          default: true
+          title: Enable Apache error log
+        flag_log_access_nginx:
+          type: boolean
+          default: true
+          title: Enable nginx access log
+        flag_page_replace_500:
+          type: boolean
+          default: true
+          title: Enable uberspace status 500 page
+        password_hash:
+          type: string
+          nullable: true
+          pattern: ^(\$[a-zA-Z0-9./-]+){3,}$
+          maxLength: 128
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - created_at
+        - host
+        - name
+        - pk
+        - updated_at
+    AsteroidClient:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        name:
+          type: string
+          readOnly: true
+        can_write:
+          type: boolean
+          readOnly: true
+        can_subscribe:
+          type: boolean
+          readOnly: true
+        can_refresh:
+          type: boolean
+          readOnly: true
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+        host:
+          type: integer
+          readOnly: true
+          nullable: true
+        all_hosts:
+          type: boolean
+          readOnly: true
+      required:
+        - all_hosts
+        - can_refresh
+        - can_subscribe
+        - can_write
+        - host
+        - name
+        - pk
+    AsteroidClientRequest:
+      type: object
+      properties:
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+    AsteroidRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+          pattern: ^[a-z][a-z0-9]*$
+          maxLength: 32
+        host:
+          type: string
+          minLength: 1
+          description: Hostname of a server, e.g. 'tuttle'
+        active:
+          type: boolean
+          default: true
+          description: Whether this asteroid can be used or is locked, e.g. because
+            of missing payment.
+        flag_log_error_php:
+          type: boolean
+          default: true
+          title: Enable PHP error log
+        flag_log_error_apache:
+          type: boolean
+          default: true
+          title: Enable Apache error log
+        flag_log_access_nginx:
+          type: boolean
+          default: true
+          title: Enable nginx access log
+        flag_page_replace_500:
+          type: boolean
+          default: true
+          title: Enable uberspace status 500 page
+        password:
+          type: string
+          writeOnly: true
+          nullable: true
+        password_hash:
+          type: string
+          nullable: true
+          pattern: ^(\$[a-zA-Z0-9./-]+){3,}$
+          maxLength: 128
+      required:
+        - host
+        - name
+    CauseEnum:
+      enum:
+        - DELETED
+        - CHANGED
+        - CREATED
+        - REFRESH
+      type: string
+      description: |-
+        * `DELETED` - deleted
+        * `CHANGED` - changed
+        * `CREATED` - created
+        * `REFRESH` - refresh
+    CausesEnum:
+      enum:
+        - DELETED
+        - CHANGED
+        - CREATED
+        - REFRESH
+      type: string
+      description: |-
+        * `DELETED` - deleted
+        * `CHANGED` - changed
+        * `CREATED` - created
+        * `REFRESH` - refresh
+    Client:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        name:
+          type: string
+          maxLength: 255
+        can_write:
+          type: boolean
+          default: false
+        can_subscribe:
+          type: boolean
+          default: false
+        can_create_asteroid_clients:
+          type: boolean
+          default: false
+        can_refresh:
+          type: boolean
+          default: false
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+        host:
+          type: string
+          description: Hostname of a server, e.g. 'tuttle'
+        all_hosts:
+          type: boolean
+          default: false
+      required:
+        - name
+        - pk
+    ClientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        can_write:
+          type: boolean
+          default: false
+        can_subscribe:
+          type: boolean
+          default: false
+        can_create_asteroid_clients:
+          type: boolean
+          default: false
+        can_refresh:
+          type: boolean
+          default: false
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+        host:
+          type: string
+          minLength: 1
+          description: Hostname of a server, e.g. 'tuttle'
+        all_hosts:
+          type: boolean
+          default: false
+      required:
+        - name
+    DestinationEnum:
+      enum:
+        - APACHE
+        - STATIC
+        - PORT
+      type: string
+      description: |-
+        * `APACHE` - Apache
+        * `STATIC` - Static
+        * `PORT` - Port
+    DnsStateEnum:
+      enum:
+        - VALID
+        - INVALID
+        - ERROR
+        - UNCHECKED
+      type: string
+      description: |-
+        * `VALID` - valid
+        * `INVALID` - invalid, could check, but invalid result
+        * `ERROR` - error, could not check
+        * `UNCHECKED` - unchecked, did not check yet
+    Event:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        content_type:
+          type: string
+        object_id:
+          type: integer
+          readOnly: true
+          nullable: true
+        object_name:
+          type: string
+          readOnly: true
+          nullable: true
+        human_identifier:
+          type: string
+          readOnly: true
+        cause:
+          allOf:
+            - $ref: '#/components/schemas/CauseEnum'
+          readOnly: true
+        change_kind:
+          type: string
+        state:
+          allOf:
+            - $ref: '#/components/schemas/EventStateEnum'
+          readOnly: true
+      required:
+        - cause
+        - change_kind
+        - content_type
+        - created_at
+        - human_identifier
+        - object_id
+        - object_name
+        - pk
+        - state
+    EventRequest:
+      type: object
+      properties:
+        content_type:
+          type: string
+        change_kind:
+          type: string
+          minLength: 1
+      required:
+        - change_kind
+        - content_type
+    EventStateEnum:
+      enum:
+        - PENDING
+        - RUNNING
+        - FAILED
+        - SKIPPED
+        - DONE
+      type: string
+    ExternalAsteroid:
+      type: object
+      properties:
+        pk:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+          description: Name of a hosting account, e.g. 'isabell'.
+        host:
+          type: string
+          description: Hostname of a server, e.g. 'tuttle'
+        active:
+          type: boolean
+          readOnly: true
+          description: Whether this asteroid can be used or is locked, e.g. because
+            of missing payment.
+        flag_log_error_php:
+          type: boolean
+          default: true
+          title: Enable PHP error log
+        flag_log_error_apache:
+          type: boolean
+          default: true
+          title: Enable Apache error log
+        flag_log_access_nginx:
+          type: boolean
+          default: true
+          title: Enable nginx access log
+        flag_page_replace_500:
+          type: boolean
+          default: true
+          title: Enable uberspace status 500 page
+        password_hash:
+          type: string
+          nullable: true
+          pattern: ^(\$[a-zA-Z0-9./-]+){3,}$
+          maxLength: 128
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - active
+        - created_at
+        - host
+        - name
+        - pk
+        - updated_at
+    Host:
+      type: object
+      properties:
+        fqdn:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Hostname of a server, e.g. 'tuttle'
+          pattern: ^[a-z0-9]+$
+          maxLength: 255
+      required:
+        - fqdn
+        - name
+    HostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Hostname of a server, e.g. 'tuttle'
+          pattern: ^[a-z0-9]+$
+          maxLength: 255
+      required:
+        - name
+    Job:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        state:
+          allOf:
+            - $ref: '#/components/schemas/EventStateEnum'
+          readOnly: true
+        event:
+          $ref: '#/components/schemas/Event'
+        subscription_host_name:
+          type: string
+          nullable: true
+          readOnly: true
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+        context: {}
+      required:
+        - context
+        - created_at
+        - event
+        - pk
+        - state
+        - subscription
+        - subscription_host_name
+    JobLog:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        job:
+          type: integer
+          readOnly: true
+        state_old:
+          allOf:
+            - $ref: '#/components/schemas/EventStateEnum'
+          readOnly: true
+        state_new:
+          allOf:
+            - $ref: '#/components/schemas/EventStateEnum'
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+        client_name:
+          type: string
+      required:
+        - client_name
+        - created_at
+        - job
+        - message
+        - state_new
+        - state_old
+    JobRequest:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/EventRequest'
+        subscription:
+          $ref: '#/components/schemas/SubscriptionRequest'
+        context: {}
+      required:
+        - context
+        - event
+        - subscription
+    KeyTypeEnum:
+      enum:
+        - sk-ecdsa-sha2-nistp256@openssh.com
+        - ecdsa-sha2-nistp256
+        - ecdsa-sha2-nistp384
+        - ecdsa-sha2-nistp521
+        - sk-ssh-ed25519@openssh.com
+        - ssh-ed25519
+        - ssh-rsa
+      type: string
+      description: |-
+        * `sk-ecdsa-sha2-nistp256@openssh.com` - sk-ecdsa-sha2-nistp256@openssh.com
+        * `ecdsa-sha2-nistp256` - ecdsa-sha2-nistp256
+        * `ecdsa-sha2-nistp384` - ecdsa-sha2-nistp384
+        * `ecdsa-sha2-nistp521` - ecdsa-sha2-nistp521
+        * `sk-ssh-ed25519@openssh.com` - sk-ssh-ed25519@openssh.com
+        * `ssh-ed25519` - ssh-ed25519
+        * `ssh-rsa` - ssh-rsa
+    MailDomain:
+      type: object
+      properties:
+        domain:
+          type: string
+          readOnly: true
+        domain_display:
+          type: string
+          readOnly: true
+        domain_idn:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        name_display:
+          type: string
+          readOnly: true
+        name_idn:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailDomainField'
+          description: The domain this domain is an alias for, e.g. 'example.com'.
+        dns_state:
+          allOf:
+            - $ref: '#/components/schemas/DnsStateEnum'
+          readOnly: true
+          description: |-
+            Whether this domain has valid DNS records and is ready to use.
+
+            * `VALID` - valid
+            * `INVALID` - invalid, could check, but invalid result
+            * `ERROR` - error, could not check
+            * `UNCHECKED` - unchecked, did not check yet
+        dns_last_check:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: When the DNS records were checked last.
+        dns_error:
+          type: string
+          readOnly: true
+          nullable: true
+          description: Error encountered when checking DNS records.
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+      required:
+        - asteroid
+        - created_at
+        - dns_error
+        - dns_last_check
+        - dns_state
+        - domain
+        - domain_display
+        - domain_idn
+        - name
+        - name_display
+        - name_idn
+        - updated_at
+    MailDomainRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailDomainFieldRequest'
+          description: The domain this domain is an alias for, e.g. 'example.com'.
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+      required:
+        - asteroid
+        - name
+    MailForward:
+      type: object
+      properties:
+        user:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserField'
+          description: Mail user to forward mail from, to destination.
+        destination:
+          type: string
+          description: Mail address to forward to, e.g. 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+          maxLength: 64
+        keep:
+          type: boolean
+          readOnly: true
+      required:
+        - destination
+        - keep
+    MailForwardRequest:
+      type: object
+      properties:
+        user:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserFieldRequest'
+          description: Mail user to forward mail from, to destination.
+        destination:
+          type: string
+          minLength: 1
+          description: Mail address to forward to, e.g. 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+          maxLength: 64
+      required:
+        - destination
+    MailUser:
+      type: object
+      properties:
+        pk:
+          type: string
+          readOnly: true
+        domain:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailDomainField'
+          description: The domain this user is part of.
+        asteroid:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          maxLength: 64
+        password_hash:
+          type: string
+          nullable: true
+          description: Mutually exclusive with alias. Either must be given.
+          maxLength: 512
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserField'
+          nullable: true
+          description: Other user this user is an alias of, referred to by local@domain.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        mailaddr:
+          type: string
+          readOnly: true
+        forwards:
+          type: array
+          items:
+            $ref: '#/components/schemas/NestedMailForward'
+          readOnly: true
+        keep_forwards:
+          type: boolean
+          default: false
+          description: If the mails should stay in the mailbox after forwarding (true),
+            or be deleted (false).
+        is_sysmail:
+          type: boolean
+          default: false
+          description: whether this mail user should receive mails to name@uber.space.
+        is_catchall:
+          type: boolean
+          default: false
+          description: whether this mail user should receive all mails to the domain.
+      required:
+        - asteroid
+        - created_at
+        - forwards
+        - mailaddr
+        - name
+        - pk
+        - updated_at
+    MailUserPasswordHashRequest:
+      type: object
+      properties:
+        password_hash:
+          type: string
+          nullable: true
+          description: Mutually exclusive with alias. Either must be given.
+          maxLength: 512
+    MailUserRequest:
+      type: object
+      properties:
+        domain:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailDomainFieldRequest'
+          description: The domain this user is part of.
+        name:
+          type: string
+          minLength: 1
+          description: Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          maxLength: 64
+        password_hash:
+          type: string
+          nullable: true
+          description: Mutually exclusive with alias. Either must be given.
+          maxLength: 512
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserFieldRequest'
+          nullable: true
+          description: Other user this user is an alias of, referred to by local@domain.
+        keep_forwards:
+          type: boolean
+          default: false
+          description: If the mails should stay in the mailbox after forwarding (true),
+            or be deleted (false).
+        is_sysmail:
+          type: boolean
+          default: false
+          description: whether this mail user should receive mails to name@uber.space.
+        is_catchall:
+          type: boolean
+          default: false
+          description: whether this mail user should receive all mails to the domain.
+      required:
+        - name
+    NestedMailForward:
+      type: object
+      properties:
+        destination:
+          type: string
+          description: Mail address to forward to, e.g. 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+          maxLength: 64
+        keep:
+          type: boolean
+          readOnly: true
+      required:
+        - destination
+        - keep
+    NestedMailForwardRequest:
+      type: object
+      properties:
+        destination:
+          type: string
+          minLength: 1
+          description: Mail address to forward to, e.g. 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+          maxLength: 64
+      required:
+        - destination
+    PaginatedAsteroidList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asteroid'
+    PaginatedClientList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Client'
+    PaginatedEventList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    PaginatedHostList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Host'
+    PaginatedJobLogList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobLog'
+    PaginatedMailDomainList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MailDomain'
+    PaginatedMailForwardList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MailForward'
+    PaginatedMailUserList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MailUser'
+    PaginatedSelectedToolVersionList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedToolVersion'
+    PaginatedSshKeyList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SshKey'
+    PaginatedSubscriptionList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    PaginatedToolList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+    PaginatedToolVersionList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolVersion'
+    PaginatedWebBackendList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebBackend'
+    PaginatedWebDomainList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebDomain'
+    PaginatedWebHeaderList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebHeader'
+    PatchedAsteroidRequest:
+      type: object
+      properties:
+        active:
+          type: boolean
+          default: true
+          description: Whether this asteroid can be used or is locked, e.g. because
+            of missing payment.
+        flag_log_error_php:
+          type: boolean
+          default: true
+          title: Enable PHP error log
+        flag_log_error_apache:
+          type: boolean
+          default: true
+          title: Enable Apache error log
+        flag_log_access_nginx:
+          type: boolean
+          default: true
+          title: Enable nginx access log
+        flag_page_replace_500:
+          type: boolean
+          default: true
+          title: Enable uberspace status 500 page
+        password:
+          type: string
+          writeOnly: true
+          nullable: true
+        password_hash:
+          type: string
+          nullable: true
+          pattern: ^(\$[a-zA-Z0-9./-]+){3,}$
+          maxLength: 128
+    PatchedClientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        can_write:
+          type: boolean
+          default: false
+        can_subscribe:
+          type: boolean
+          default: false
+        can_create_asteroid_clients:
+          type: boolean
+          default: false
+        can_refresh:
+          type: boolean
+          default: false
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+        host:
+          type: string
+          minLength: 1
+          description: Hostname of a server, e.g. 'tuttle'
+        all_hosts:
+          type: boolean
+          default: false
+    PatchedExternalAsteroidRequest:
+      type: object
+      properties:
+        flag_log_error_php:
+          type: boolean
+          default: true
+          title: Enable PHP error log
+        flag_log_error_apache:
+          type: boolean
+          default: true
+          title: Enable Apache error log
+        flag_log_access_nginx:
+          type: boolean
+          default: true
+          title: Enable nginx access log
+        flag_page_replace_500:
+          type: boolean
+          default: true
+          title: Enable uberspace status 500 page
+        password:
+          type: string
+          writeOnly: true
+          nullable: true
+        password_hash:
+          type: string
+          nullable: true
+          pattern: ^(\$[a-zA-Z0-9./-]+){3,}$
+          maxLength: 128
+    PatchedMailUserRequest:
+      type: object
+      properties:
+        password_hash:
+          type: string
+          nullable: true
+          description: Mutually exclusive with alias. Either must be given.
+          maxLength: 512
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserFieldRequest'
+          nullable: true
+          description: Other user this user is an alias of, referred to by local@domain.
+        keep_forwards:
+          type: boolean
+          default: false
+          description: If the mails should stay in the mailbox after forwarding (true),
+            or be deleted (false).
+        is_sysmail:
+          type: boolean
+          default: false
+          description: whether this mail user should receive mails to name@uber.space.
+        is_catchall:
+          type: boolean
+          default: false
+          description: whether this mail user should receive all mails to the domain.
+    PatchedSelectedToolVersionRequest:
+      type: object
+      properties:
+        version:
+          type: string
+          minLength: 1
+    RefreshEvent:
+      type: object
+      properties:
+        model:
+          type: string
+          title: Python model class name
+        target_host:
+          type: string
+          description: Hostname of a server, e.g. 'tuttle'
+        client:
+          type: string
+      required:
+        - client
+        - model
+        - target_host
+    RefreshEventRequest:
+      type: object
+      properties:
+        model:
+          type: string
+          minLength: 1
+          title: Python model class name
+        target_host:
+          type: string
+          minLength: 1
+          description: Hostname of a server, e.g. 'tuttle'
+        client:
+          type: string
+          minLength: 1
+      required:
+        - client
+        - model
+        - target_host
+    RelatedMailDomainField:
+      type: object
+      properties:
+        pk:
+          type: string
+          readOnly: true
+        domain:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailDomainField'
+          description: The domain this user is part of.
+        asteroid:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          maxLength: 64
+        password_hash:
+          type: string
+          nullable: true
+          description: Mutually exclusive with alias. Either must be given.
+          maxLength: 512
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserField'
+          nullable: true
+          description: Other user this user is an alias of, referred to by local@domain.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        mailaddr:
+          type: string
+          readOnly: true
+        forwards:
+          type: array
+          items:
+            $ref: '#/components/schemas/NestedMailForward'
+          readOnly: true
+        keep_forwards:
+          type: boolean
+          default: false
+          description: If the mails should stay in the mailbox after forwarding (true),
+            or be deleted (false).
+        is_sysmail:
+          type: boolean
+          default: false
+          description: whether this mail user should receive mails to name@uber.space.
+        is_catchall:
+          type: boolean
+          default: false
+          description: whether this mail user should receive all mails to the domain.
+      required:
+        - asteroid
+        - created_at
+        - forwards
+        - mailaddr
+        - name
+        - pk
+        - updated_at
+    RelatedMailDomainFieldRequest:
+      type: string
+    RelatedMailUserField:
+      type: object
+      properties:
+        pk:
+          type: string
+          readOnly: true
+        domain:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailDomainField'
+          description: The domain this user is part of.
+        asteroid:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Local part of the mail address, e.g. 'isabell' for 'isabell@example.org'.
+          pattern: ^(([!#$%&'*+\-=?^_`{|}~\w])|([!#$%&'*+\-=?^_`{|}~\w][!#$%&'*+\-=?^_`{|}~\.\w]{0,}[!#$%&'*+\-=?^_`{|}~\w]))$
+          maxLength: 64
+        password_hash:
+          type: string
+          nullable: true
+          description: Mutually exclusive with alias. Either must be given.
+          maxLength: 512
+        alias_of:
+          allOf:
+            - $ref: '#/components/schemas/RelatedMailUserField'
+          nullable: true
+          description: Other user this user is an alias of, referred to by local@domain.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        mailaddr:
+          type: string
+          readOnly: true
+        forwards:
+          type: array
+          items:
+            $ref: '#/components/schemas/NestedMailForward'
+          readOnly: true
+        keep_forwards:
+          type: boolean
+          default: false
+          description: If the mails should stay in the mailbox after forwarding (true),
+            or be deleted (false).
+        is_sysmail:
+          type: boolean
+          default: false
+          description: whether this mail user should receive mails to name@uber.space.
+        is_catchall:
+          type: boolean
+          default: false
+          description: whether this mail user should receive all mails to the domain.
+      required:
+        - asteroid
+        - created_at
+        - forwards
+        - mailaddr
+        - name
+        - pk
+        - updated_at
+    RelatedMailUserFieldRequest:
+      type: string
+    SelectedToolVersion:
+      type: object
+      properties:
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+          readOnly: true
+        tool:
+          type: string
+          readOnly: true
+        version:
+          type: string
+        is_set_by_user:
+          type: boolean
+          readOnly: true
+      required:
+        - asteroid
+        - is_set_by_user
+        - tool
+        - version
+    SshKey:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        key_type:
+          $ref: '#/components/schemas/KeyTypeEnum'
+        key:
+          type: string
+          pattern: '[a-z0-9+/=]+'
+          maxLength: 1396
+        key_comment:
+          type: string
+          maxLength: 1024
+        formatted_key:
+          type: string
+          readOnly: true
+        shortened_key:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+      required:
+        - asteroid
+        - created_at
+        - formatted_key
+        - key
+        - key_type
+        - pk
+        - shortened_key
+        - updated_at
+    SshKeyRequest:
+      type: object
+      properties:
+        key_type:
+          $ref: '#/components/schemas/KeyTypeEnum'
+        key:
+          type: string
+          minLength: 1
+          pattern: '[a-z0-9+/=]+'
+          maxLength: 1396
+        key_comment:
+          type: string
+          maxLength: 1024
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+      required:
+        - asteroid
+        - key
+        - key_type
+    Subscription:
+      type: object
+      properties:
+        content_type:
+          type: string
+        host:
+          type: string
+          description: Hostname of a server, e.g. 'tuttle'
+        causes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CausesEnum'
+        contexts:
+          type: array
+          items:
+            type: string
+          nullable: true
+        identifier:
+          type: string
+          pattern: ^[-a-zA-Z0-9_@.]+$
+          maxLength: 64
+      required:
+        - content_type
+    SubscriptionRequest:
+      type: object
+      properties:
+        client:
+          type: integer
+          writeOnly: true
+        content_type:
+          type: string
+        host:
+          type: string
+          minLength: 1
+          description: Hostname of a server, e.g. 'tuttle'
+        causes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CausesEnum'
+        contexts:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          nullable: true
+        identifier:
+          type: string
+          minLength: 1
+          pattern: ^[-a-zA-Z0-9_@.]+$
+          maxLength: 64
+      required:
+        - content_type
+    Tool:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          maxLength: 32
+      required:
+        - name
+        - slug
+    ToolVersion:
+      type: object
+      properties:
+        tool:
+          type: string
+        version:
+          type: string
+          maxLength: 64
+        is_default:
+          type: boolean
+          default: false
+      required:
+        - tool
+        - version
+    WebBackend:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+        domain:
+          type: string
+          nullable: true
+        path:
+          type: string
+          pattern: ^/([a-zA-Z\u00fc\u00e4\u00f6\u00dc\u00c4\u00d6\u00df0-9._=-]+/?)*$
+          maxLength: 1024
+          minLength: 1
+        remove_prefix:
+          type: boolean
+          default: false
+          description: Whether to remove the path while proxying, e.g. /ep/123 =>
+            /123.
+        destination:
+          $ref: '#/components/schemas/DestinationEnum'
+        port:
+          type: integer
+          maximum: 65535
+          minimum: 1024
+          nullable: true
+          description: TCP port of the upstream HTTP server.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - asteroid
+        - created_at
+        - destination
+        - domain
+        - path
+        - pk
+        - updated_at
+    WebBackendRequest:
+      type: object
+      properties:
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+        domain:
+          type: string
+          minLength: 1
+          nullable: true
+        path:
+          type: string
+          minLength: 1
+          pattern: ^/([a-zA-Z\u00fc\u00e4\u00f6\u00dc\u00c4\u00d6\u00df0-9._=-]+/?)*$
+          maxLength: 1024
+        remove_prefix:
+          type: boolean
+          default: false
+          description: Whether to remove the path while proxying, e.g. /ep/123 =>
+            /123.
+        destination:
+          $ref: '#/components/schemas/DestinationEnum'
+        port:
+          type: integer
+          maximum: 65535
+          minimum: 1024
+          nullable: true
+          description: TCP port of the upstream HTTP server.
+      required:
+        - asteroid
+        - destination
+        - domain
+        - path
+    WebDomain:
+      type: object
+      properties:
+        domain:
+          type: string
+          readOnly: true
+        domain_display:
+          type: string
+          readOnly: true
+        domain_idn:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        name_display:
+          type: string
+          readOnly: true
+        name_idn:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+      required:
+        - asteroid
+        - created_at
+        - domain
+        - domain_display
+        - domain_idn
+        - name
+        - name_display
+        - name_idn
+        - updated_at
+    WebDomainRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+      required:
+        - asteroid
+        - name
+    WebHeader:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        asteroid:
+          type: string
+          description: Name of a hosting account, e.g. 'isabell'.
+        domain:
+          type: string
+          nullable: true
+        path:
+          type: string
+          pattern: ^/([a-zA-Z\u00fc\u00e4\u00f6\u00dc\u00c4\u00d6\u00df0-9._=-]+/?)*$
+          maxLength: 1024
+          minLength: 1
+        value:
+          type: string
+          nullable: true
+          pattern: ^[ -~]+$
+          maxLength: 2048
+          minLength: 1
+        name:
+          type: string
+          pattern: ^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$
+          maxLength: 255
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - asteroid
+        - created_at
+        - domain
+        - name
+        - path
+        - pk
+        - updated_at
+    WebHeaderRequest:
+      type: object
+      properties:
+        asteroid:
+          type: string
+          minLength: 1
+          description: Name of a hosting account, e.g. 'isabell'.
+        domain:
+          type: string
+          minLength: 1
+          nullable: true
+        path:
+          type: string
+          minLength: 1
+          pattern: ^/([a-zA-Z\u00fc\u00e4\u00f6\u00dc\u00c4\u00d6\u00df0-9._=-]+/?)*$
+          maxLength: 1024
+        value:
+          type: string
+          nullable: true
+          pattern: ^[ -~]+$
+          maxLength: 2048
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+          pattern: ^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$
+          maxLength: 255
+      required:
+        - asteroid
+        - domain
+        - name
+        - path

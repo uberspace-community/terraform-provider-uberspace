@@ -101,6 +101,8 @@ func (p *UberspaceProvider) Resources(_ context.Context) []func() resource.Resou
 		NewSshkeyResource,
 		NewWebdomainBackendResource,
 		NewWebdomainHeaderResource,
+		NewMaildomainResource,
+		NewMailuserResource,
 	}
 }
 

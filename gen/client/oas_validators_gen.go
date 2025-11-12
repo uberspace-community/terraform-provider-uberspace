@@ -10,7 +10,18 @@ import (
 	"github.com/ogen-go/ogen/validate"
 )
 
-func (s *CreateAsteroidsMaildomainsApplicationJSON) Validate() error {
+func (s AsteroidsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsMaildomainsCreateApplicationJSON) Validate() error {
 	alias := (*MailDomainRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -18,7 +29,7 @@ func (s *CreateAsteroidsMaildomainsApplicationJSON) Validate() error {
 	return nil
 }
 
-func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) Validate() error {
+func (s *AsteroidsMaildomainsCreateApplicationXWwwFormUrlencoded) Validate() error {
 	alias := (*MailDomainRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -26,7 +37,51 @@ func (s *CreateAsteroidsMaildomainsApplicationXWwwFormUrlencoded) Validate() err
 	return nil
 }
 
-func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) Validate() error {
+func (s AsteroidsMaildomainsCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsMaildomainsUsersCreateApplicationJSON) Validate() error {
 	alias := (*MailUserRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -34,7 +89,7 @@ func (s *CreateAsteroidsMaildomainsUsersApplicationJSON) Validate() error {
 	return nil
 }
 
-func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) Validate() error {
+func (s *AsteroidsMaildomainsUsersCreateApplicationXWwwFormUrlencoded) Validate() error {
 	alias := (*MailUserRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -42,7 +97,176 @@ func (s *CreateAsteroidsMaildomainsUsersApplicationXWwwFormUrlencoded) Validate(
 	return nil
 }
 
-func (s *CreateAsteroidsSshkeysApplicationJSON) Validate() error {
+func (s AsteroidsMaildomainsUsersCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsUsersDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationJSON) Validate() error {
+	alias := (*MailForwardRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *AsteroidsMaildomainsUsersForwardsCreateApplicationXWwwFormUrlencoded) Validate() error {
+	alias := (*MailForwardRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s AsteroidsMaildomainsUsersForwardsCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsUsersForwardsDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsUsersForwardsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsUsersForwardsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsUsersGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMaildomainsUsersListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsMaildomainsUsersPatchApplicationJSON) Validate() error {
+	alias := (*PatchedMailUserRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *AsteroidsMaildomainsUsersPatchApplicationXWwwFormUrlencoded) Validate() error {
+	alias := (*PatchedMailUserRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s AsteroidsMaildomainsUsersPatchFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsMailusersListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsPatchApplicationJSON) Validate() error {
+	alias := (*PatchedExternalAsteroidRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *AsteroidsPatchApplicationXWwwFormUrlencoded) Validate() error {
+	alias := (*PatchedExternalAsteroidRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s AsteroidsPatchFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsSshkeysCreateApplicationJSON) Validate() error {
 	alias := (*SshKeyRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -50,7 +274,7 @@ func (s *CreateAsteroidsSshkeysApplicationJSON) Validate() error {
 	return nil
 }
 
-func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) Validate() error {
+func (s *AsteroidsSshkeysCreateApplicationXWwwFormUrlencoded) Validate() error {
 	alias := (*SshKeyRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -58,23 +282,122 @@ func (s *CreateAsteroidsSshkeysApplicationXWwwFormUrlencoded) Validate() error {
 	return nil
 }
 
-func (s *CreateAsteroidsWebdomainsApplicationJSON) Validate() error {
-	alias := (*WebDomainRequest)(s)
+func (s AsteroidsSshkeysCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsSshkeysDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsSshkeysGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsSshkeysListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsToolversionsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsToolversionsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsToolversionsPatchApplicationJSON) Validate() error {
+	alias := (*PatchedSelectedToolVersionRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *CreateAsteroidsWebdomainsApplicationXWwwFormUrlencoded) Validate() error {
-	alias := (*WebDomainRequest)(s)
+func (s *AsteroidsToolversionsPatchApplicationXWwwFormUrlencoded) Validate() error {
+	alias := (*PatchedSelectedToolVersionRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) Validate() error {
+func (s AsteroidsToolversionsPatchFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebbackendsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebbackendsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsWebdomainsBackendsCreateApplicationJSON) Validate() error {
 	alias := (*WebBackendRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -82,7 +405,7 @@ func (s *CreateAsteroidsWebdomainsBackendsApplicationJSON) Validate() error {
 	return nil
 }
 
-func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) Validate() error {
+func (s *AsteroidsWebdomainsBackendsCreateApplicationXWwwFormUrlencoded) Validate() error {
 	alias := (*WebBackendRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -90,7 +413,100 @@ func (s *CreateAsteroidsWebdomainsBackendsApplicationXWwwFormUrlencoded) Validat
 	return nil
 }
 
-func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) Validate() error {
+func (s AsteroidsWebdomainsBackendsCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsBackendsDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsBackendsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsBackendsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsWebdomainsCreateApplicationJSON) Validate() error {
+	alias := (*WebDomainRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *AsteroidsWebdomainsCreateApplicationXWwwFormUrlencoded) Validate() error {
+	alias := (*WebDomainRequest)(s)
+	if err := alias.Validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s AsteroidsWebdomainsCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *AsteroidsWebdomainsHeadersCreateApplicationJSON) Validate() error {
 	alias := (*WebHeaderRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
@@ -98,12 +514,89 @@ func (s *CreateAsteroidsWebdomainsHeadersApplicationJSON) Validate() error {
 	return nil
 }
 
-func (s *CreateAsteroidsWebdomainsHeadersApplicationXWwwFormUrlencoded) Validate() error {
+func (s *AsteroidsWebdomainsHeadersCreateApplicationXWwwFormUrlencoded) Validate() error {
 	alias := (*WebHeaderRequest)(s)
 	if err := alias.Validate(); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (s AsteroidsWebdomainsHeadersCreateFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsHeadersDeleteFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsHeadersGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsHeadersListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebdomainsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebheadersGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s AsteroidsWebheadersListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
 }
 
 func (s DestinationEnum) Validate() error {
@@ -150,7 +643,7 @@ func (s *ExternalAsteroid) Validate() error {
 					MaxLengthSet: true,
 					Email:        false,
 					Hostname:     false,
-					Regex:        regexMap["^(\\$[a-z0-9./-]+){3,}$"],
+					Regex:        regexMap["^(\\$[a-zA-Z0-9./-]+){3,}$"],
 				}).Validate(string(value)); err != nil {
 					return errors.Wrap(err, "string")
 				}
@@ -200,25 +693,6 @@ func (s *MailDomain) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Alias == nil {
-			return nil // optional
-		}
-		if err := func() error {
-			if err := s.Alias.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return errors.Wrap(err, "pointer")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "alias",
-			Error: err,
-		})
-	}
-	if err := func() error {
 		if err := s.DNSState.Validate(); err != nil {
 			return err
 		}
@@ -250,13 +724,13 @@ func (s *MailDomainRequest) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Asteroid)); err != nil {
+		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "asteroid",
+			Name:  "name",
 			Error: err,
 		})
 	}
@@ -269,13 +743,13 @@ func (s *MailDomainRequest) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Domain)); err != nil {
+		}).Validate(string(s.Asteroid)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "domain",
+			Name:  "asteroid",
 			Error: err,
 		})
 	}
@@ -300,13 +774,13 @@ func (s *MailDomainRequestMultipart) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Asteroid)); err != nil {
+		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "asteroid",
+			Name:  "name",
 			Error: err,
 		})
 	}
@@ -319,13 +793,125 @@ func (s *MailDomainRequestMultipart) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Domain)); err != nil {
+		}).Validate(string(s.Asteroid)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "domain",
+			Name:  "asteroid",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *MailForward) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.User == nil {
+			return nil // optional
+		}
+		if err := func() error {
+			if err := s.User.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return errors.Wrap(err, "pointer")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "user",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    0,
+			MinLengthSet: false,
+			MaxLength:    64,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"],
+		}).Validate(string(s.Destination)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *MailForwardRequest) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    1,
+			MinLengthSet: true,
+			MaxLength:    64,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"],
+		}).Validate(string(s.Destination)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *MailForwardRequestMultipart) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    1,
+			MinLengthSet: true,
+			MaxLength:    64,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"],
+		}).Validate(string(s.Destination)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
 			Error: err,
 		})
 	}
@@ -342,43 +928,6 @@ func (s *MailUser) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if value, ok := s.Alias.Get(); ok {
-			if err := func() error {
-				if err := value.Validate(); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return err
-			}
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "alias",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if s.Domain == nil {
-			return nil // optional
-		}
-		if err := func() error {
-			if err := s.Domain.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return errors.Wrap(err, "pointer")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "domain",
-			Error: err,
-		})
-	}
-	if err := func() error {
 		if err := (validate.String{
 			MinLength:    0,
 			MinLengthSet: false,
@@ -386,7 +935,7 @@ func (s *MailUser) Validate() error {
 			MaxLengthSet: true,
 			Email:        false,
 			Hostname:     false,
-			Regex:        regexMap["^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"],
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"],
 		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
@@ -423,6 +972,34 @@ func (s *MailUser) Validate() error {
 			Error: err,
 		})
 	}
+	if err := func() error {
+		if s.Forwards == nil {
+			return errors.New("nil is invalid value")
+		}
+		var failures []validate.FieldError
+		for i, elem := range s.Forwards {
+			if err := func() error {
+				if err := elem.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				failures = append(failures, validate.FieldError{
+					Name:  fmt.Sprintf("[%d]", i),
+					Error: err,
+				})
+			}
+		}
+		if len(failures) > 0 {
+			return &validate.Error{Fields: failures}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "forwards",
+			Error: err,
+		})
+	}
 	if len(failures) > 0 {
 		return &validate.Error{Fields: failures}
 	}
@@ -443,7 +1020,7 @@ func (s *MailUserRequest) Validate() error {
 			MaxLengthSet: true,
 			Email:        false,
 			Hostname:     false,
-			Regex:        regexMap["^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"],
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"],
 		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
@@ -500,7 +1077,7 @@ func (s *MailUserRequestMultipart) Validate() error {
 			MaxLengthSet: true,
 			Email:        false,
 			Hostname:     false,
-			Regex:        regexMap["^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"],
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"],
 		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
@@ -543,7 +1120,78 @@ func (s *MailUserRequestMultipart) Validate() error {
 	return nil
 }
 
+func (s *NestedMailForward) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    0,
+			MinLengthSet: false,
+			MaxLength:    64,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))@(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"],
+		}).Validate(string(s.Destination)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *PaginatedMailDomainList) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Results == nil {
+			return errors.New("nil is invalid value")
+		}
+		var failures []validate.FieldError
+		for i, elem := range s.Results {
+			if err := func() error {
+				if err := elem.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				failures = append(failures, validate.FieldError{
+					Name:  fmt.Sprintf("[%d]", i),
+					Error: err,
+				})
+			}
+		}
+		if len(failures) > 0 {
+			return &validate.Error{Fields: failures}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "results",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *PaginatedMailForwardList) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
@@ -623,7 +1271,110 @@ func (s *PaginatedMailUserList) Validate() error {
 	return nil
 }
 
+func (s *PaginatedSelectedToolVersionList) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Results == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "results",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *PaginatedSshKeyList) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Results == nil {
+			return errors.New("nil is invalid value")
+		}
+		var failures []validate.FieldError
+		for i, elem := range s.Results {
+			if err := func() error {
+				if err := elem.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				failures = append(failures, validate.FieldError{
+					Name:  fmt.Sprintf("[%d]", i),
+					Error: err,
+				})
+			}
+		}
+		if len(failures) > 0 {
+			return &validate.Error{Fields: failures}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "results",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *PaginatedToolList) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Results == nil {
+			return errors.New("nil is invalid value")
+		}
+		var failures []validate.FieldError
+		for i, elem := range s.Results {
+			if err := func() error {
+				if err := elem.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				failures = append(failures, validate.FieldError{
+					Name:  fmt.Sprintf("[%d]", i),
+					Error: err,
+				})
+			}
+		}
+		if len(failures) > 0 {
+			return &validate.Error{Fields: failures}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "results",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *PaginatedToolVersionList) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
@@ -766,70 +1517,12 @@ func (s *PaginatedWebHeaderList) Validate() error {
 	return nil
 }
 
-func (s *PatchAsteroidApplicationJSON) Validate() error {
-	alias := (*PatchedExternalAsteroidRequest)(s)
-	if err := alias.Validate(); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (s *PatchAsteroidApplicationXWwwFormUrlencoded) Validate() error {
-	alias := (*PatchedExternalAsteroidRequest)(s)
-	if err := alias.Validate(); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (s *PatchAsteroidMaildomainUserApplicationJSON) Validate() error {
-	alias := (*PatchedMailUserRequest)(s)
-	if err := alias.Validate(); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (s *PatchAsteroidMaildomainUserApplicationXWwwFormUrlencoded) Validate() error {
-	alias := (*PatchedMailUserRequest)(s)
-	if err := alias.Validate(); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (s *PatchedExternalAsteroidRequest) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
-	if err := func() error {
-		if value, ok := s.Password.Get(); ok {
-			if err := func() error {
-				if err := (validate.String{
-					MinLength:    1,
-					MinLengthSet: true,
-					MaxLength:    0,
-					MaxLengthSet: false,
-					Email:        false,
-					Hostname:     false,
-					Regex:        nil,
-				}).Validate(string(value)); err != nil {
-					return errors.Wrap(err, "string")
-				}
-				return nil
-			}(); err != nil {
-				return err
-			}
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "password",
-			Error: err,
-		})
-	}
 	if err := func() error {
 		if value, ok := s.PasswordHash.Get(); ok {
 			if err := func() error {
@@ -840,7 +1533,7 @@ func (s *PatchedExternalAsteroidRequest) Validate() error {
 					MaxLengthSet: true,
 					Email:        false,
 					Hostname:     false,
-					Regex:        regexMap["^(\\$[a-z0-9./-]+){3,}$"],
+					Regex:        regexMap["^(\\$[a-zA-Z0-9./-]+){3,}$"],
 				}).Validate(string(value)); err != nil {
 					return errors.Wrap(err, "string")
 				}
@@ -869,32 +1562,6 @@ func (s *PatchedExternalAsteroidRequestMultipart) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if value, ok := s.Password.Get(); ok {
-			if err := func() error {
-				if err := (validate.String{
-					MinLength:    1,
-					MinLengthSet: true,
-					MaxLength:    0,
-					MaxLengthSet: false,
-					Email:        false,
-					Hostname:     false,
-					Regex:        nil,
-				}).Validate(string(value)); err != nil {
-					return errors.Wrap(err, "string")
-				}
-				return nil
-			}(); err != nil {
-				return err
-			}
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "password",
-			Error: err,
-		})
-	}
-	if err := func() error {
 		if value, ok := s.PasswordHash.Get(); ok {
 			if err := func() error {
 				if err := (validate.String{
@@ -904,7 +1571,7 @@ func (s *PatchedExternalAsteroidRequestMultipart) Validate() error {
 					MaxLengthSet: true,
 					Email:        false,
 					Hostname:     false,
-					Regex:        regexMap["^(\\$[a-z0-9./-]+){3,}$"],
+					Regex:        regexMap["^(\\$[a-zA-Z0-9./-]+){3,}$"],
 				}).Validate(string(value)); err != nil {
 					return errors.Wrap(err, "string")
 				}
@@ -1002,17 +1669,25 @@ func (s *PatchedMailUserRequestMultipart) Validate() error {
 	return nil
 }
 
-func (s *RelatedMailDomainField) Validate() error {
+func (s *PatchedSelectedToolVersionRequest) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if value, ok := s.Alias.Get(); ok {
+		if value, ok := s.Version.Get(); ok {
 			if err := func() error {
-				if err := value.Validate(); err != nil {
-					return err
+				if err := (validate.String{
+					MinLength:    1,
+					MinLengthSet: true,
+					MaxLength:    0,
+					MaxLengthSet: false,
+					Email:        false,
+					Hostname:     false,
+					Regex:        nil,
+				}).Validate(string(value)); err != nil {
+					return errors.Wrap(err, "string")
 				}
 				return nil
 			}(); err != nil {
@@ -1022,10 +1697,60 @@ func (s *RelatedMailDomainField) Validate() error {
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "alias",
+			Name:  "version",
 			Error: err,
 		})
 	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *PatchedSelectedToolVersionRequestMultipart) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if value, ok := s.Version.Get(); ok {
+			if err := func() error {
+				if err := (validate.String{
+					MinLength:    1,
+					MinLengthSet: true,
+					MaxLength:    0,
+					MaxLengthSet: false,
+					Email:        false,
+					Hostname:     false,
+					Regex:        nil,
+				}).Validate(string(value)); err != nil {
+					return errors.Wrap(err, "string")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "version",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *RelatedMailDomainField) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
 	if err := func() error {
 		if s.Domain == nil {
 			return nil // optional
@@ -1053,7 +1778,7 @@ func (s *RelatedMailDomainField) Validate() error {
 			MaxLengthSet: true,
 			Email:        false,
 			Hostname:     false,
-			Regex:        regexMap["^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"],
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"],
 		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
@@ -1087,6 +1812,53 @@ func (s *RelatedMailDomainField) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "password_hash",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.AliasOf == nil {
+			return nil // optional
+		}
+		if err := func() error {
+			if err := s.AliasOf.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return errors.Wrap(err, "pointer")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "alias_of",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Forwards == nil {
+			return errors.New("nil is invalid value")
+		}
+		var failures []validate.FieldError
+		for i, elem := range s.Forwards {
+			if err := func() error {
+				if err := elem.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				failures = append(failures, validate.FieldError{
+					Name:  fmt.Sprintf("[%d]", i),
+					Error: err,
+				})
+			}
+		}
+		if len(failures) > 0 {
+			return &validate.Error{Fields: failures}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "forwards",
 			Error: err,
 		})
 	}
@@ -1103,35 +1875,15 @@ func (s *RelatedMailUserField) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Alias == nil {
-			return nil // optional
-		}
-		if err := func() error {
-			if err := s.Alias.Validate(); err != nil {
+		if value, ok := s.Domain.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
 				return err
 			}
-			return nil
-		}(); err != nil {
-			return errors.Wrap(err, "pointer")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "alias",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if s.Domain == nil {
-			return nil // optional
-		}
-		if err := func() error {
-			if err := s.Domain.Validate(); err != nil {
-				return err
-			}
-			return nil
-		}(); err != nil {
-			return errors.Wrap(err, "pointer")
 		}
 		return nil
 	}(); err != nil {
@@ -1148,7 +1900,7 @@ func (s *RelatedMailUserField) Validate() error {
 			MaxLengthSet: true,
 			Email:        false,
 			Hostname:     false,
-			Regex:        regexMap["^(([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))$"],
+			Regex:        regexMap["^(([!#$%&'*+\\-=?^_`{|}~\\w])|([!#$%&'*+\\-=?^_`{|}~\\w][!#$%&'*+\\-=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-=?^_`{|}~\\w]))$"],
 		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
@@ -1185,6 +1937,53 @@ func (s *RelatedMailUserField) Validate() error {
 			Error: err,
 		})
 	}
+	if err := func() error {
+		if s.AliasOf == nil {
+			return nil // optional
+		}
+		if err := func() error {
+			if err := s.AliasOf.Validate(); err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return errors.Wrap(err, "pointer")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "alias_of",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Forwards == nil {
+			return errors.New("nil is invalid value")
+		}
+		var failures []validate.FieldError
+		for i, elem := range s.Forwards {
+			if err := func() error {
+				if err := elem.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				failures = append(failures, validate.FieldError{
+					Name:  fmt.Sprintf("[%d]", i),
+					Error: err,
+				})
+			}
+		}
+		if len(failures) > 0 {
+			return &validate.Error{Fields: failures}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "forwards",
+			Error: err,
+		})
+	}
 	if len(failures) > 0 {
 		return &validate.Error{Fields: failures}
 	}
@@ -1197,6 +1996,17 @@ func (s *SshKey) Validate() error {
 	}
 
 	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.KeyType.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "key_type",
+			Error: err,
+		})
+	}
 	if err := func() error {
 		if err := (validate.String{
 			MinLength:    0,
@@ -1242,17 +2052,6 @@ func (s *SshKey) Validate() error {
 			Error: err,
 		})
 	}
-	if err := func() error {
-		if err := s.KeyType.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "key_type",
-			Error: err,
-		})
-	}
 	if len(failures) > 0 {
 		return &validate.Error{Fields: failures}
 	}
@@ -1266,21 +2065,13 @@ func (s *SshKeyRequest) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := (validate.String{
-			MinLength:    1,
-			MinLengthSet: true,
-			MaxLength:    0,
-			MaxLengthSet: false,
-			Email:        false,
-			Hostname:     false,
-			Regex:        nil,
-		}).Validate(string(s.Asteroid)); err != nil {
-			return errors.Wrap(err, "string")
+		if err := s.KeyType.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "asteroid",
+			Name:  "key_type",
 			Error: err,
 		})
 	}
@@ -1330,13 +2121,21 @@ func (s *SshKeyRequest) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.KeyType.Validate(); err != nil {
-			return err
+		if err := (validate.String{
+			MinLength:    1,
+			MinLengthSet: true,
+			MaxLength:    0,
+			MaxLengthSet: false,
+			Email:        false,
+			Hostname:     false,
+			Regex:        nil,
+		}).Validate(string(s.Asteroid)); err != nil {
+			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "key_type",
+			Name:  "asteroid",
 			Error: err,
 		})
 	}
@@ -1353,21 +2152,13 @@ func (s *SshKeyRequestMultipart) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := (validate.String{
-			MinLength:    1,
-			MinLengthSet: true,
-			MaxLength:    0,
-			MaxLengthSet: false,
-			Email:        false,
-			Hostname:     false,
-			Regex:        nil,
-		}).Validate(string(s.Asteroid)); err != nil {
-			return errors.Wrap(err, "string")
+		if err := s.KeyType.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "asteroid",
+			Name:  "key_type",
 			Error: err,
 		})
 	}
@@ -1417,13 +2208,21 @@ func (s *SshKeyRequestMultipart) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.KeyType.Validate(); err != nil {
-			return err
+		if err := (validate.String{
+			MinLength:    1,
+			MinLengthSet: true,
+			MaxLength:    0,
+			MaxLengthSet: false,
+			Email:        false,
+			Hostname:     false,
+			Regex:        nil,
+		}).Validate(string(s.Asteroid)); err != nil {
+			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "key_type",
+			Name:  "asteroid",
 			Error: err,
 		})
 	}
@@ -1433,23 +2232,137 @@ func (s *SshKeyRequestMultipart) Validate() error {
 	return nil
 }
 
-func (s *WebBackend) Validate() error {
+func (s *Tool) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Destination.Validate(); err != nil {
-			return err
+		if err := (validate.String{
+			MinLength:    0,
+			MinLengthSet: false,
+			MaxLength:    50,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^[-a-zA-Z0-9_]+$"],
+		}).Validate(string(s.Slug)); err != nil {
+			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "destination",
+			Name:  "slug",
 			Error: err,
 		})
 	}
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    0,
+			MinLengthSet: false,
+			MaxLength:    32,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        nil,
+		}).Validate(string(s.Name)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "name",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *ToolVersion) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    0,
+			MinLengthSet: false,
+			MaxLength:    64,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        nil,
+		}).Validate(string(s.Version)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "version",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s ToolsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s ToolsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s ToolsVersionsGetFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s ToolsVersionsListFormat) Validate() error {
+	switch s {
+	case "json":
+		return nil
+	case "text/event-stream":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
+func (s *WebBackend) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
 	if err := func() error {
 		if err := (validate.String{
 			MinLength:    1,
@@ -1466,6 +2379,17 @@ func (s *WebBackend) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "path",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := s.Destination.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
 			Error: err,
 		})
 	}
@@ -1528,17 +2452,6 @@ func (s *WebBackendRequest) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.Destination.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "destination",
-			Error: err,
-		})
-	}
-	if err := func() error {
 		if value, ok := s.Domain.Get(); ok {
 			if err := func() error {
 				if err := (validate.String{
@@ -1580,6 +2493,17 @@ func (s *WebBackendRequest) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "path",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := s.Destination.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
 			Error: err,
 		})
 	}
@@ -1642,17 +2566,6 @@ func (s *WebBackendRequestMultipart) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.Destination.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "destination",
-			Error: err,
-		})
-	}
-	if err := func() error {
 		if value, ok := s.Domain.Get(); ok {
 			if err := func() error {
 				if err := (validate.String{
@@ -1694,6 +2607,17 @@ func (s *WebBackendRequestMultipart) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "path",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := s.Destination.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "destination",
 			Error: err,
 		})
 	}
@@ -1745,13 +2669,13 @@ func (s *WebDomainRequest) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Asteroid)); err != nil {
+		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "asteroid",
+			Name:  "name",
 			Error: err,
 		})
 	}
@@ -1764,13 +2688,13 @@ func (s *WebDomainRequest) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Domain)); err != nil {
+		}).Validate(string(s.Asteroid)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "domain",
+			Name:  "asteroid",
 			Error: err,
 		})
 	}
@@ -1795,13 +2719,13 @@ func (s *WebDomainRequestMultipart) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Asteroid)); err != nil {
+		}).Validate(string(s.Name)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "asteroid",
+			Name:  "name",
 			Error: err,
 		})
 	}
@@ -1814,13 +2738,13 @@ func (s *WebDomainRequestMultipart) Validate() error {
 			Email:        false,
 			Hostname:     false,
 			Regex:        nil,
-		}).Validate(string(s.Domain)); err != nil {
+		}).Validate(string(s.Asteroid)); err != nil {
 			return errors.Wrap(err, "string")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "domain",
+			Name:  "asteroid",
 			Error: err,
 		})
 	}
@@ -1836,25 +2760,6 @@ func (s *WebHeader) Validate() error {
 	}
 
 	var failures []validate.FieldError
-	if err := func() error {
-		if err := (validate.String{
-			MinLength:    0,
-			MinLengthSet: false,
-			MaxLength:    255,
-			MaxLengthSet: true,
-			Email:        false,
-			Hostname:     false,
-			Regex:        regexMap["^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$"],
-		}).Validate(string(s.Name)); err != nil {
-			return errors.Wrap(err, "string")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "name",
-			Error: err,
-		})
-	}
 	if err := func() error {
 		if err := (validate.String{
 			MinLength:    1,
@@ -1897,6 +2802,25 @@ func (s *WebHeader) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "value",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    0,
+			MinLengthSet: false,
+			MaxLength:    255,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$"],
+		}).Validate(string(s.Name)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "name",
 			Error: err,
 		})
 	}
@@ -1961,25 +2885,6 @@ func (s *WebHeaderRequest) Validate() error {
 		if err := (validate.String{
 			MinLength:    1,
 			MinLengthSet: true,
-			MaxLength:    255,
-			MaxLengthSet: true,
-			Email:        false,
-			Hostname:     false,
-			Regex:        regexMap["^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$"],
-		}).Validate(string(s.Name)); err != nil {
-			return errors.Wrap(err, "string")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "name",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if err := (validate.String{
-			MinLength:    1,
-			MinLengthSet: true,
 			MaxLength:    1024,
 			MaxLengthSet: true,
 			Email:        false,
@@ -2018,6 +2923,25 @@ func (s *WebHeaderRequest) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "value",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    1,
+			MinLengthSet: true,
+			MaxLength:    255,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$"],
+		}).Validate(string(s.Name)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "name",
 			Error: err,
 		})
 	}
@@ -2082,25 +3006,6 @@ func (s *WebHeaderRequestMultipart) Validate() error {
 		if err := (validate.String{
 			MinLength:    1,
 			MinLengthSet: true,
-			MaxLength:    255,
-			MaxLengthSet: true,
-			Email:        false,
-			Hostname:     false,
-			Regex:        regexMap["^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$"],
-		}).Validate(string(s.Name)); err != nil {
-			return errors.Wrap(err, "string")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "name",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if err := (validate.String{
-			MinLength:    1,
-			MinLengthSet: true,
 			MaxLength:    1024,
 			MaxLengthSet: true,
 			Email:        false,
@@ -2139,6 +3044,25 @@ func (s *WebHeaderRequestMultipart) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "value",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if err := (validate.String{
+			MinLength:    1,
+			MinLengthSet: true,
+			MaxLength:    255,
+			MaxLengthSet: true,
+			Email:        false,
+			Hostname:     false,
+			Regex:        regexMap["^([a-zA-Z0-9_]+-)*[a-zA-Z0-9_]+$"],
+		}).Validate(string(s.Name)); err != nil {
+			return errors.Wrap(err, "string")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "name",
 			Error: err,
 		})
 	}

@@ -15,7 +15,7 @@ description: |-
 ```terraform
 resource "uberspace_webdomain" "minio" {
   asteroid = "isabell"
-  domain   = "minio.isabell.uber.space"
+  name     = "minio.isabell.uber.space"
 }
 ```
 
@@ -25,14 +25,19 @@ resource "uberspace_webdomain" "minio" {
 ### Required
 
 - `asteroid` (String) Name of a hosting account, e.g. 'isabell'.
-- `domain` (String)
+- `name` (String)
 
 ### Optional
 
 - `asteroid_name` (String)
+- `format` (String)
 
 ### Read-Only
 
 - `created_at` (String)
+- `domain` (String)
+- `domain_display` (String)
 - `domain_idn` (String)
+- `name_display` (String)
+- `name_idn` (String)
 - `updated_at` (String)

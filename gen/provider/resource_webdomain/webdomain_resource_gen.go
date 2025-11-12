@@ -30,12 +30,34 @@ func WebdomainResourceSchema(ctx context.Context) schema.Schema {
 				Computed: true,
 			},
 			"domain": schema.StringAttribute{
+				Computed: true,
+			},
+			"domain_display": schema.StringAttribute{
+				Computed: true,
+			},
+			"domain_idn": schema.StringAttribute{
+				Computed: true,
+			},
+			"format": schema.StringAttribute{
+				Optional: true,
+				Computed: true,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"json",
+						"text/event-stream",
+					),
+				},
+			},
+			"name": schema.StringAttribute{
 				Required: true,
 				Validators: []validator.String{
 					stringvalidator.LengthAtLeast(1),
 				},
 			},
-			"domain_idn": schema.StringAttribute{
+			"name_display": schema.StringAttribute{
+				Computed: true,
+			},
+			"name_idn": schema.StringAttribute{
 				Computed: true,
 			},
 			"updated_at": schema.StringAttribute{
@@ -46,10 +68,15 @@ func WebdomainResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type WebdomainModel struct {
-	Asteroid     types.String `tfsdk:"asteroid"`
-	AsteroidName types.String `tfsdk:"asteroid_name"`
-	CreatedAt    types.String `tfsdk:"created_at"`
-	Domain       types.String `tfsdk:"domain"`
-	DomainIdn    types.String `tfsdk:"domain_idn"`
-	UpdatedAt    types.String `tfsdk:"updated_at"`
+	Asteroid      types.String `tfsdk:"asteroid"`
+	AsteroidName  types.String `tfsdk:"asteroid_name"`
+	CreatedAt     types.String `tfsdk:"created_at"`
+	Domain        types.String `tfsdk:"domain"`
+	DomainDisplay types.String `tfsdk:"domain_display"`
+	DomainIdn     types.String `tfsdk:"domain_idn"`
+	Format        types.String `tfsdk:"format"`
+	Name          types.String `tfsdk:"name"`
+	NameDisplay   types.String `tfsdk:"name_display"`
+	NameIdn       types.String `tfsdk:"name_idn"`
+	UpdatedAt     types.String `tfsdk:"updated_at"`
 }
