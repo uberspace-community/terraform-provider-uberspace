@@ -13,21 +13,11 @@ description: |-
 ## Example Usage
 
 ```terraform
-// manage crontab on the local host
-provider "crontab" {}
-
-// manage crontab on a remote host via SSH with a password
-provider "crontab" {
-  host     = "example.com"
-  user     = "root"
-  password = "password"
-}
-
-// manage crontab on a remote host via SSH with a private key
-provider "crontab" {
-  host        = "1.2.3.4"
-  user        = "root"
-  private_key = file("~/.ssh/id_ed25519")
+# Configure the Uberspace provider
+# If apikey is omitted the provider will read the
+# value from the UBERSPACE_APIKEY environment variable.
+provider "uberspace" {
+  apikey = "example-api-key"
 }
 ```
 
@@ -36,7 +26,4 @@ provider "crontab" {
 
 ### Optional
 
-- `host` (String) The hostname of the SSH server
-- `password` (String, Sensitive) The password to authenticate with, either this or private_key must be set
-- `private_key` (String, Sensitive) The private key to authenticate with, either this or password must be set
-- `user` (String) The user to authenticate with
+- `apikey` (String, Sensitive) The API key for the Uberspace API. If not set, the environment variable UBERSPACE_APIKEY will be used.
