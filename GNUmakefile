@@ -43,3 +43,7 @@ test:
 .PHONY: testacc
 testacc:
 	TF_ACC=1 go test -v -cover -timeout 120m ./...
+
+.PHONY: reset
+reset:
+	go run ./cmd/reset tf
