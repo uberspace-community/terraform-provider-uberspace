@@ -16,7 +16,7 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccWebdomainBackendResourceConfig("tf", "test.tf.uber8.space", "/tf-backend", false),
+				Config: testAccWebdomainBackendResourceConfig("tf", "test-backend.tf.uber8.space", 1024, "/tf-backend", false),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
@@ -26,12 +26,12 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
 						tfjsonpath.New("domain"),
-						knownvalue.StringExact("test.tf.uber8.space"),
+						knownvalue.StringExact("test-backend.tf.uber8.space"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
-						tfjsonpath.New("destination"),
-						knownvalue.StringExact("STATIC"),
+						tfjsonpath.New("port"),
+						knownvalue.Int64Exact(1024),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
@@ -46,7 +46,7 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 				},
 			},
 			{
-				Config: testAccWebdomainBackendResourceConfig("tf", "test.tf.uber8.space", "/tf-backend-updated", true),
+				Config: testAccWebdomainBackendResourceConfig("tf", "test-backend.tf.uber8.space", 1024, "/tf-backend-updated", true),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
@@ -64,7 +64,7 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 	})
 }
 
-func testAccWebdomainBackendResourceConfig(asteroid, domain, path string, removePrefix bool) string {
+func testAccWebdomainBackendResourceConfig(asteroid, domain string, port int, path string, removePrefix bool) string {
 	return fmt.Sprintf(`
 resource "uberspace_webdomain" "test" {
   asteroid = %[1]q
@@ -73,10 +73,11 @@ resource "uberspace_webdomain" "test" {
 
 resource "uberspace_webdomain_backend" "test" {
   asteroid      = %[1]q
-  destination   = "STATIC"
   domain        = uberspace_webdomain.test.name
-  path          = %[3]q
-  remove_prefix = %[4]t
+  destination   = "PORT"
+  port          = %[3]d
+  path          = %[4]q
+  remove_prefix = %[5]t
 }
-`, asteroid, domain, path, removePrefix)
+`, asteroid, domain, port, path, removePrefix)
 }

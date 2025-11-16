@@ -90,3 +90,7 @@ jobs:
           TF_ACC: "1"
           UBERSPACE_APIKEY: ${{ secrets.UBERSPACE_APIKEY }}
         run: go test -v -cover ./internal/provider/
+
+      - run: go run ./cmd/reset tf
+        env:
+          UBERSPACE_APIKEY: ${{ secrets.UBERSPACE_APIKEY }}

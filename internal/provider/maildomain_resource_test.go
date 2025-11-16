@@ -16,12 +16,12 @@ func TestAccMaildomainResource(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccMaildomainResourceConfig("tf", "mail.tf.uber.space"),
+				Config: testAccMaildomainResourceConfig("tf", "mail.tf.uber8.space"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_maildomain.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("mail.tf.uber.space"),
+						knownvalue.StringExact("mail.tf.uber8.space"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_maildomain.test",
@@ -31,12 +31,12 @@ func TestAccMaildomainResource(t *testing.T) {
 				},
 			},
 			{
-				Config: testAccMaildomainResourceConfig("tf", "mail.tf.uber.space"),
+				Config: testAccMaildomainResourceConfig("tf", "mail.tf.uber8.space"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_maildomain.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("mail.tf.uber.space"),
+						knownvalue.StringExact("mail.tf.uber8.space"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_maildomain.test",

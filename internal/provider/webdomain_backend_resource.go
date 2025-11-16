@@ -86,6 +86,7 @@ func (r *WebdomainBackendResource) Create(ctx context.Context, req resource.Crea
 	plan.Format = types.StringValue("json")
 	plan.Path = types.StringValue(backend.Path)
 	plan.Pk = types.Int64Value(int64(backend.Pk))
+	plan.Port = toInt64Value(backend.Port)
 	plan.RemovePrefix = types.BoolValue(backend.RemovePrefix.Or(false))
 	plan.UpdatedAt = types.StringValue(backend.UpdatedAt.Format(time.RFC3339))
 	plan.WebdomainName = types.StringValue(backend.Domain.Or(""))
@@ -127,6 +128,7 @@ func (r *WebdomainBackendResource) Read(ctx context.Context, req resource.ReadRe
 	state.Format = types.StringValue("json")
 	state.Path = types.StringValue(backend.Path)
 	state.Pk = types.Int64Value(int64(backend.Pk))
+	state.Port = toInt64Value(backend.Port)
 	state.RemovePrefix = types.BoolValue(backend.RemovePrefix.Or(false))
 	state.UpdatedAt = types.StringValue(backend.UpdatedAt.Format(time.RFC3339))
 	state.WebdomainName = types.StringValue(backend.Domain.Or(""))
@@ -193,7 +195,7 @@ func (r *WebdomainBackendResource) Update(ctx context.Context, req resource.Upda
 	plan.Format = types.StringValue("json")
 	plan.Path = types.StringValue(backend.Path)
 	plan.Pk = types.Int64Value(int64(backend.Pk))
-	plan.Port = types.Int64Value(int64(backend.Port.Or(0)))
+	plan.Port = toInt64Value(backend.Port)
 	plan.RemovePrefix = types.BoolValue(backend.RemovePrefix.Or(false))
 	plan.UpdatedAt = types.StringValue(backend.UpdatedAt.Format(time.RFC3339))
 	plan.WebdomainName = types.StringValue(backend.Domain.Or(""))
@@ -238,4 +240,16 @@ func toOptNilInt(port types.Int64) (i client.OptNilInt) {
 	}
 
 	return client.NewOptNilInt(int(port.ValueInt64()))
+}
+
+func toInt64Value(i client.OptNilInt) (port types.Int64) {
+	if !i.IsSet() {
+		return types.Int64Unknown()
+	}
+
+	if i.IsNull() {
+		return types.Int64Null()
+	}
+
+	return types.Int64Value(int64(i.Value))
 }

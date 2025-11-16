@@ -81,7 +81,7 @@ func (p *UberspaceProvider) Configure(ctx context.Context, req provider.Configur
 		return
 	}
 
-	client, err := client.NewClient("https://marvin.uberspace.is", client.WithClient(newAuthClient(apikey)))
+	client, err := client.NewClient("https://marvin.uberspace.is", client.WithClient(NewAuthClient(apikey)))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to create Uberspace client",
