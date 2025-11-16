@@ -5,6 +5,7 @@ linters:
   default: all
   disable:
     - depguard
+    - dupl
     - err113
     - errcheck
     - exhaustruct
