@@ -82,6 +82,10 @@ jobs:
           cache: true
       - run: go mod download
 
+      - run: go run ./cmd/reset terra
+        env:
+          UBERSPACE_APIKEY: ${{ secrets.UBERSPACE_APIKEY }}
+
       # Run acceptance tests for Terraform version 1.10.*
       - uses: hashicorp/setup-terraform@v3
         with:
