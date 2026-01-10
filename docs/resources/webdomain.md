@@ -35,9 +35,14 @@ resource "uberspace_webdomain" "minio" {
 ### Read-Only
 
 - `created_at` (String)
-- `domain` (String)
-- `domain_display` (String)
-- `domain_idn` (String)
+- `dns_error` (String) Error encountered when checking DNS records.
+- `dns_last_check` (String) When the DNS records were checked last.
+- `dns_state` (String) * `VALID` - valid
+* `INVALID` - invalid, could check, but invalid result
+* `ERROR` - error, could not check
+* `UNCHECKED` - unchecked, did not check yet
+* `IGNORED` - ignored, do not check
+- `dns_validation_token` (String) Token used to verify domain ownership via DNS TXT record.
 - `name_display` (String)
 - `name_idn` (String)
 - `updated_at` (String)

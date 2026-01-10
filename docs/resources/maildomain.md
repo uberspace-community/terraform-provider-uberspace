@@ -41,9 +41,8 @@ resource "uberspace_maildomain" "mail" {
 * `INVALID` - invalid, could check, but invalid result
 * `ERROR` - error, could not check
 * `UNCHECKED` - unchecked, did not check yet
-- `domain` (String)
-- `domain_display` (String)
-- `domain_idn` (String)
+* `IGNORED` - ignored, do not check
+- `dns_validation_token` (String) Token used to verify domain ownership via DNS TXT record.
 - `name_display` (String)
 - `name_idn` (String)
 - `updated_at` (String)
