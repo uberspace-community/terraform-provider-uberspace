@@ -65,7 +65,7 @@ func resetWebdomain(ctx context.Context, c *client.Client, asteroid string) erro
 			return err
 		}
 
-		if domain.Domain == fmt.Sprintf("%s.uber8.space", asteroid) {
+		if domain.Domain == fmt.Sprintf("%s.uber.space", asteroid) {
 			fmt.Printf("Skipping deletion of primary webdomain %s\n", domain.Domain)
 
 			continue
@@ -169,7 +169,7 @@ func resetMaildomain(ctx context.Context, c *client.Client, asteroid string) err
 			fmt.Printf("Deleted user %s for maildomain %s\n", user.Name, domain.Domain)
 		}
 
-		if domain.Domain == fmt.Sprintf("%s.uber8.space", asteroid) {
+		if domain.Domain == fmt.Sprintf("%s.uber.space", asteroid) {
 			fmt.Printf("Skipping deletion of primary maildomain %s\n", domain.Domain)
 
 			continue

@@ -17,17 +17,17 @@ func TestAccWebdomainResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// Create and Read testing
 			{
-				Config: testAccWebdomainResourceConfig("tf", "test.tf.uber8.space"),
+				Config: testAccWebdomainResourceConfig("terra", "test.terra.uber.space"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("test.tf.uber8.space"),
+						knownvalue.StringExact("test.terra.uber.space"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain.test",
 						tfjsonpath.New("asteroid"),
-						knownvalue.StringExact("tf"),
+						knownvalue.StringExact("terra"),
 					),
 				},
 			},
@@ -39,17 +39,17 @@ func TestAccWebdomainResource(t *testing.T) {
 			// },
 			// Update and Read testing
 			{
-				Config: testAccWebdomainResourceConfig("tf", "test.tf.uber8.space"),
+				Config: testAccWebdomainResourceConfig("terra", "test.terra.uber.space"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("test.tf.uber8.space"),
+						knownvalue.StringExact("test.terra.uber.space"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain.test",
 						tfjsonpath.New("asteroid"),
-						knownvalue.StringExact("tf"),
+						knownvalue.StringExact("terra"),
 					),
 				},
 			},

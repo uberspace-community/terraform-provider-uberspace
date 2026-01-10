@@ -46,4 +46,4 @@ testacc:
 
 .PHONY: reset
 reset:
-	go run ./cmd/reset tf
+	go run ./cmd/reset terra

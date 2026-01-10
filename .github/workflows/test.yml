@@ -91,6 +91,6 @@ jobs:
           UBERSPACE_APIKEY: ${{ secrets.UBERSPACE_APIKEY }}
         run: go test -v -cover ./internal/provider/
 
-      - run: go run ./cmd/reset tf
+      - run: go run ./cmd/reset terra
         env:
           UBERSPACE_APIKEY: ${{ secrets.UBERSPACE_APIKEY }}
