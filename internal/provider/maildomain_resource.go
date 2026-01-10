@@ -79,9 +79,21 @@ func (r *MaildomainResource) Create(ctx context.Context, req resource.CreateRequ
 	plan.Asteroid = types.StringValue(Maildomain.Asteroid)
 	plan.AsteroidName = types.StringValue(Maildomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Maildomain.CreatedAt.Format(time.RFC3339))
+	plan.DnsValidationToken = types.StringValue(Maildomain.DNSValidationToken)
+
 	plan.DnsState = types.StringValue(string(Maildomain.DNSState))
-	plan.DnsLastCheck = types.StringValue(Maildomain.DNSLastCheck.Or(time.Now()).Format(time.RFC3339))
-	plan.DnsError = types.StringValue(Maildomain.DNSError.Or(""))
+	if lastCheck, ok := Maildomain.DNSLastCheck.Get(); ok {
+		plan.DnsLastCheck = types.StringValue(lastCheck.Format(time.RFC3339))
+	} else {
+		plan.DnsLastCheck = types.StringNull()
+	}
+
+	if Maildomain.DNSError.IsNull() {
+		plan.DnsError = types.StringNull()
+	} else {
+		plan.DnsError = types.StringValue(Maildomain.DNSError.Or(""))
+	}
+
 	plan.Format = types.StringValue("json")
 	plan.NameIdn = types.StringValue(Maildomain.Name)
 	plan.NameDisplay = types.StringValue(Maildomain.NameDisplay)
@@ -112,9 +124,21 @@ func (r *MaildomainResource) Read(ctx context.Context, req resource.ReadRequest,
 	state.Asteroid = types.StringValue(Maildomain.Asteroid)
 	state.AsteroidName = types.StringValue(Maildomain.Asteroid)
 	state.CreatedAt = types.StringValue(Maildomain.CreatedAt.Format(time.RFC3339))
+	state.DnsValidationToken = types.StringValue(Maildomain.DNSValidationToken)
+
 	state.DnsState = types.StringValue(string(Maildomain.DNSState))
-	state.DnsLastCheck = types.StringValue(Maildomain.DNSLastCheck.Or(time.Now()).Format(time.RFC3339))
-	state.DnsError = types.StringValue(Maildomain.DNSError.Or(""))
+	if lastCheck, ok := Maildomain.DNSLastCheck.Get(); ok {
+		state.DnsLastCheck = types.StringValue(lastCheck.Format(time.RFC3339))
+	} else {
+		state.DnsLastCheck = types.StringNull()
+	}
+
+	if Maildomain.DNSError.IsNull() {
+		state.DnsError = types.StringNull()
+	} else {
+		state.DnsError = types.StringValue(Maildomain.DNSError.Or(""))
+	}
+
 	state.Format = types.StringValue("json")
 	state.NameIdn = types.StringValue(Maildomain.Name)
 	state.NameDisplay = types.StringValue(Maildomain.NameDisplay)
@@ -157,9 +181,21 @@ func (r *MaildomainResource) Update(ctx context.Context, req resource.UpdateRequ
 	plan.Asteroid = types.StringValue(Maildomain.Asteroid)
 	plan.AsteroidName = types.StringValue(Maildomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Maildomain.CreatedAt.Format(time.RFC3339))
+	plan.DnsValidationToken = types.StringValue(Maildomain.DNSValidationToken)
+
 	plan.DnsState = types.StringValue(string(Maildomain.DNSState))
-	plan.DnsLastCheck = types.StringValue(Maildomain.DNSLastCheck.Or(time.Now()).Format(time.RFC3339))
-	plan.DnsError = types.StringValue(Maildomain.DNSError.Or(""))
+	if lastCheck, ok := Maildomain.DNSLastCheck.Get(); ok {
+		plan.DnsLastCheck = types.StringValue(lastCheck.Format(time.RFC3339))
+	} else {
+		plan.DnsLastCheck = types.StringNull()
+	}
+
+	if Maildomain.DNSError.IsNull() {
+		plan.DnsError = types.StringNull()
+	} else {
+		plan.DnsError = types.StringValue(Maildomain.DNSError.Or(""))
+	}
+
 	plan.Format = types.StringValue("json")
 	plan.NameIdn = types.StringValue(Maildomain.Name)
 	plan.NameDisplay = types.StringValue(Maildomain.NameDisplay)

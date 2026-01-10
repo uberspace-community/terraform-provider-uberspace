@@ -79,6 +79,21 @@ func (r *WebdomainResource) Create(ctx context.Context, req resource.CreateReque
 	plan.Asteroid = types.StringValue(Webdomain.Asteroid)
 	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
+	plan.DnsValidationToken = types.StringValue(Webdomain.DNSValidationToken)
+
+	plan.DnsState = types.StringValue(string(Webdomain.DNSState))
+	if lastCheck, ok := Webdomain.DNSLastCheck.Get(); ok {
+		plan.DnsLastCheck = types.StringValue(lastCheck.Format(time.RFC3339))
+	} else {
+		plan.DnsLastCheck = types.StringNull()
+	}
+
+	if Webdomain.DNSError.IsNull() {
+		plan.DnsError = types.StringNull()
+	} else {
+		plan.DnsError = types.StringValue(Webdomain.DNSError.Or(""))
+	}
+
 	plan.Format = types.StringValue("json")
 	plan.NameIdn = types.StringValue(Webdomain.Name)
 	plan.NameDisplay = types.StringValue(Webdomain.NameDisplay)
@@ -109,6 +124,21 @@ func (r *WebdomainResource) Read(ctx context.Context, req resource.ReadRequest, 
 	state.Asteroid = types.StringValue(Webdomain.Asteroid)
 	state.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	state.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
+	state.DnsValidationToken = types.StringValue(Webdomain.DNSValidationToken)
+
+	state.DnsState = types.StringValue(string(Webdomain.DNSState))
+	if lastCheck, ok := Webdomain.DNSLastCheck.Get(); ok {
+		state.DnsLastCheck = types.StringValue(lastCheck.Format(time.RFC3339))
+	} else {
+		state.DnsLastCheck = types.StringNull()
+	}
+
+	if Webdomain.DNSError.IsNull() {
+		state.DnsError = types.StringNull()
+	} else {
+		state.DnsError = types.StringValue(Webdomain.DNSError.Or(""))
+	}
+
 	state.Format = types.StringValue("json")
 	state.NameIdn = types.StringValue(Webdomain.Name)
 	state.NameDisplay = types.StringValue(Webdomain.NameDisplay)
@@ -151,6 +181,21 @@ func (r *WebdomainResource) Update(ctx context.Context, req resource.UpdateReque
 	plan.Asteroid = types.StringValue(Webdomain.Asteroid)
 	plan.AsteroidName = types.StringValue(Webdomain.Asteroid)
 	plan.CreatedAt = types.StringValue(Webdomain.CreatedAt.Format(time.RFC3339))
+	plan.DnsValidationToken = types.StringValue(Webdomain.DNSValidationToken)
+
+	plan.DnsState = types.StringValue(string(Webdomain.DNSState))
+	if lastCheck, ok := Webdomain.DNSLastCheck.Get(); ok {
+		plan.DnsLastCheck = types.StringValue(lastCheck.Format(time.RFC3339))
+	} else {
+		plan.DnsLastCheck = types.StringNull()
+	}
+
+	if Webdomain.DNSError.IsNull() {
+		plan.DnsError = types.StringNull()
+	} else {
+		plan.DnsError = types.StringValue(Webdomain.DNSError.Or(""))
+	}
+
 	plan.Format = types.StringValue("json")
 	plan.NameIdn = types.StringValue(Webdomain.Name)
 	plan.NameDisplay = types.StringValue(Webdomain.NameDisplay)
