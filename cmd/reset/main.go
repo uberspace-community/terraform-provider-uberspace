@@ -5,7 +5,9 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
+	"strings"
 
 	"github.com/uberspace-community/terraform-provider-uberspace/gen/client"
 	"github.com/uberspace-community/terraform-provider-uberspace/internal/provider"
@@ -156,6 +158,12 @@ func resetMaildomain(ctx context.Context, c *client.Client, asteroid string) err
 		}
 
 		for _, user := range backends.Results {
+			if slices.Contains([]string{"sysmail", "postmaster", "abuse", "hostmaster"}, user.Name) {
+				fmt.Printf("Skipping deletion of system user %s for maildomain %s\n", user.Name, domain.Name)
+
+				continue
+			}
+
 			fmt.Printf("Deleting user %s for maildomain %s\n", user.Name, domain.Name)
 
 			if err := c.AsteroidsMaildomainsUsersDelete(ctx, client.AsteroidsMaildomainsUsersDeleteParams{
@@ -169,7 +177,12 @@ func resetMaildomain(ctx context.Context, c *client.Client, asteroid string) err
 			fmt.Printf("Deleted user %s for maildomain %s\n", user.Name, domain.Name)
 		}
 
-		if domain.Name == fmt.Sprintf("%s.uber.space", asteroid) {
+		systemDomains := []string{
+			fmt.Sprintf("%s.uber.space", asteroid),
+			fmt.Sprintf("mail.%s.uber.space", asteroid),
+		}
+
+		if slices.Contains(systemDomains, domain.Name) || (strings.HasPrefix(domain.Name, "mail-") && strings.HasSuffix(domain.Name, fmt.Sprintf(".%s.uber.space", asteroid))) {
 			fmt.Printf("Skipping deletion of primary maildomain %s\n", domain.Name)
 
 			continue
