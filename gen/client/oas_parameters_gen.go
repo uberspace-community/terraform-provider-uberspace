@@ -4,51 +4,51 @@ package client
 
 // AsteroidsGetParams is parameters of asteroids_get operation.
 type AsteroidsGetParams struct {
-	Format OptAsteroidsGetFormat
+	Format OptAsteroidsGetFormat `json:",omitempty,omitzero"`
 	Name   string
 }
 
 // AsteroidsMaildomainsCreateParams is parameters of asteroids_maildomains_create operation.
 type AsteroidsMaildomainsCreateParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMaildomainsCreateFormat
+	Format       OptAsteroidsMaildomainsCreateFormat `json:",omitempty,omitzero"`
 }
 
 // AsteroidsMaildomainsDeleteParams is parameters of asteroids_maildomains_delete operation.
 type AsteroidsMaildomainsDeleteParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMaildomainsDeleteFormat
+	Format       OptAsteroidsMaildomainsDeleteFormat `json:",omitempty,omitzero"`
 	Name         string
 }
 
 // AsteroidsMaildomainsGetParams is parameters of asteroids_maildomains_get operation.
 type AsteroidsMaildomainsGetParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMaildomainsGetFormat
+	Format       OptAsteroidsMaildomainsGetFormat `json:",omitempty,omitzero"`
 	Name         string
 }
 
 // AsteroidsMaildomainsListParams is parameters of asteroids_maildomains_list operation.
 type AsteroidsMaildomainsListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMaildomainsListFormat
+	Format       OptAsteroidsMaildomainsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsMaildomainsUsersCreateParams is parameters of asteroids_maildomains_users_create operation.
 type AsteroidsMaildomainsUsersCreateParams struct {
 	AsteroidName   string
-	Format         OptAsteroidsMaildomainsUsersCreateFormat
+	Format         OptAsteroidsMaildomainsUsersCreateFormat `json:",omitempty,omitzero"`
 	MaildomainName string
 }
 
 // AsteroidsMaildomainsUsersDeleteParams is parameters of asteroids_maildomains_users_delete operation.
 type AsteroidsMaildomainsUsersDeleteParams struct {
 	AsteroidName   string
-	Format         OptAsteroidsMaildomainsUsersDeleteFormat
+	Format         OptAsteroidsMaildomainsUsersDeleteFormat `json:",omitempty,omitzero"`
 	Local          string
 	MaildomainName string
 }
@@ -56,7 +56,7 @@ type AsteroidsMaildomainsUsersDeleteParams struct {
 // AsteroidsMaildomainsUsersForwardsCreateParams is parameters of asteroids_maildomains_users_forwards_create operation.
 type AsteroidsMaildomainsUsersForwardsCreateParams struct {
 	AsteroidName   string
-	Format         OptAsteroidsMaildomainsUsersForwardsCreateFormat
+	Format         OptAsteroidsMaildomainsUsersForwardsCreateFormat `json:",omitempty,omitzero"`
 	MaildomainName string
 	MailuserLocal  string
 }
@@ -65,7 +65,7 @@ type AsteroidsMaildomainsUsersForwardsCreateParams struct {
 type AsteroidsMaildomainsUsersForwardsDeleteParams struct {
 	AsteroidName   string
 	Destination    string
-	Format         OptAsteroidsMaildomainsUsersForwardsDeleteFormat
+	Format         OptAsteroidsMaildomainsUsersForwardsDeleteFormat `json:",omitempty,omitzero"`
 	MaildomainName string
 	MailuserLocal  string
 }
@@ -74,7 +74,7 @@ type AsteroidsMaildomainsUsersForwardsDeleteParams struct {
 type AsteroidsMaildomainsUsersForwardsGetParams struct {
 	AsteroidName   string
 	Destination    string
-	Format         OptAsteroidsMaildomainsUsersForwardsGetFormat
+	Format         OptAsteroidsMaildomainsUsersForwardsGetFormat `json:",omitempty,omitzero"`
 	MaildomainName string
 	MailuserLocal  string
 }
@@ -82,19 +82,19 @@ type AsteroidsMaildomainsUsersForwardsGetParams struct {
 // AsteroidsMaildomainsUsersForwardsListParams is parameters of asteroids_maildomains_users_forwards_list operation.
 type AsteroidsMaildomainsUsersForwardsListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMaildomainsUsersForwardsListFormat
+	Format       OptAsteroidsMaildomainsUsersForwardsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit          OptInt
+	Limit          OptInt `json:",omitempty,omitzero"`
 	MaildomainName string
 	MailuserLocal  string
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsMaildomainsUsersGetParams is parameters of asteroids_maildomains_users_get operation.
 type AsteroidsMaildomainsUsersGetParams struct {
 	AsteroidName   string
-	Format         OptAsteroidsMaildomainsUsersGetFormat
+	Format         OptAsteroidsMaildomainsUsersGetFormat `json:",omitempty,omitzero"`
 	Local          string
 	MaildomainName string
 }
@@ -102,18 +102,18 @@ type AsteroidsMaildomainsUsersGetParams struct {
 // AsteroidsMaildomainsUsersListParams is parameters of asteroids_maildomains_users_list operation.
 type AsteroidsMaildomainsUsersListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMaildomainsUsersListFormat
+	Format       OptAsteroidsMaildomainsUsersListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit          OptInt
+	Limit          OptInt `json:",omitempty,omitzero"`
 	MaildomainName string
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsMaildomainsUsersPatchParams is parameters of asteroids_maildomains_users_patch operation.
 type AsteroidsMaildomainsUsersPatchParams struct {
 	AsteroidName   string
-	Format         OptAsteroidsMaildomainsUsersPatchFormat
+	Format         OptAsteroidsMaildomainsUsersPatchFormat `json:",omitempty,omitzero"`
 	Local          string
 	MaildomainName string
 }
@@ -121,29 +121,29 @@ type AsteroidsMaildomainsUsersPatchParams struct {
 // AsteroidsMailusersListParams is parameters of asteroids_mailusers_list operation.
 type AsteroidsMailusersListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsMailusersListFormat
+	Format       OptAsteroidsMailusersListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsPatchParams is parameters of asteroids_patch operation.
 type AsteroidsPatchParams struct {
-	Format OptAsteroidsPatchFormat
+	Format OptAsteroidsPatchFormat `json:",omitempty,omitzero"`
 	Name   string
 }
 
 // AsteroidsSshkeysCreateParams is parameters of asteroids_sshkeys_create operation.
 type AsteroidsSshkeysCreateParams struct {
 	AsteroidName string
-	Format       OptAsteroidsSshkeysCreateFormat
+	Format       OptAsteroidsSshkeysCreateFormat `json:",omitempty,omitzero"`
 }
 
 // AsteroidsSshkeysDeleteParams is parameters of asteroids_sshkeys_delete operation.
 type AsteroidsSshkeysDeleteParams struct {
 	AsteroidName string
-	Format       OptAsteroidsSshkeysDeleteFormat
+	Format       OptAsteroidsSshkeysDeleteFormat `json:",omitempty,omitzero"`
 	// A unique integer value identifying this ssh key.
 	ID int
 }
@@ -151,7 +151,7 @@ type AsteroidsSshkeysDeleteParams struct {
 // AsteroidsSshkeysGetParams is parameters of asteroids_sshkeys_get operation.
 type AsteroidsSshkeysGetParams struct {
 	AsteroidName string
-	Format       OptAsteroidsSshkeysGetFormat
+	Format       OptAsteroidsSshkeysGetFormat `json:",omitempty,omitzero"`
 	// A unique integer value identifying this ssh key.
 	ID int
 }
@@ -159,65 +159,65 @@ type AsteroidsSshkeysGetParams struct {
 // AsteroidsSshkeysListParams is parameters of asteroids_sshkeys_list operation.
 type AsteroidsSshkeysListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsSshkeysListFormat
+	Format       OptAsteroidsSshkeysListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsToolversionsGetParams is parameters of asteroids_toolversions_get operation.
 type AsteroidsToolversionsGetParams struct {
 	AsteroidName string
-	Format       OptAsteroidsToolversionsGetFormat
+	Format       OptAsteroidsToolversionsGetFormat `json:",omitempty,omitzero"`
 	ToolSlug     string
 }
 
 // AsteroidsToolversionsListParams is parameters of asteroids_toolversions_list operation.
 type AsteroidsToolversionsListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsToolversionsListFormat
+	Format       OptAsteroidsToolversionsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsToolversionsPatchParams is parameters of asteroids_toolversions_patch operation.
 type AsteroidsToolversionsPatchParams struct {
 	AsteroidName string
-	Format       OptAsteroidsToolversionsPatchFormat
+	Format       OptAsteroidsToolversionsPatchFormat `json:",omitempty,omitzero"`
 	ToolSlug     string
 }
 
 // AsteroidsWebbackendsGetParams is parameters of asteroids_webbackends_get operation.
 type AsteroidsWebbackendsGetParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebbackendsGetFormat
+	Format       OptAsteroidsWebbackendsGetFormat `json:",omitempty,omitzero"`
 	ID           string
 }
 
 // AsteroidsWebbackendsListParams is parameters of asteroids_webbackends_list operation.
 type AsteroidsWebbackendsListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebbackendsListFormat
+	Format       OptAsteroidsWebbackendsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsWebdomainsBackendsCreateParams is parameters of asteroids_webdomains_backends_create operation.
 type AsteroidsWebdomainsBackendsCreateParams struct {
 	AsteroidName  string
-	Format        OptAsteroidsWebdomainsBackendsCreateFormat
+	Format        OptAsteroidsWebdomainsBackendsCreateFormat `json:",omitempty,omitzero"`
 	WebdomainName string
 }
 
 // AsteroidsWebdomainsBackendsDeleteParams is parameters of asteroids_webdomains_backends_delete operation.
 type AsteroidsWebdomainsBackendsDeleteParams struct {
 	AsteroidName  string
-	Format        OptAsteroidsWebdomainsBackendsDeleteFormat
+	Format        OptAsteroidsWebdomainsBackendsDeleteFormat `json:",omitempty,omitzero"`
 	Path          string
 	WebdomainName string
 }
@@ -225,7 +225,7 @@ type AsteroidsWebdomainsBackendsDeleteParams struct {
 // AsteroidsWebdomainsBackendsGetParams is parameters of asteroids_webdomains_backends_get operation.
 type AsteroidsWebdomainsBackendsGetParams struct {
 	AsteroidName  string
-	Format        OptAsteroidsWebdomainsBackendsGetFormat
+	Format        OptAsteroidsWebdomainsBackendsGetFormat `json:",omitempty,omitzero"`
 	Path          string
 	WebdomainName string
 }
@@ -233,45 +233,45 @@ type AsteroidsWebdomainsBackendsGetParams struct {
 // AsteroidsWebdomainsBackendsListParams is parameters of asteroids_webdomains_backends_list operation.
 type AsteroidsWebdomainsBackendsListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebdomainsBackendsListFormat
+	Format       OptAsteroidsWebdomainsBackendsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset        OptInt
+	Offset        OptInt `json:",omitempty,omitzero"`
 	WebdomainName string
 }
 
 // AsteroidsWebdomainsCreateParams is parameters of asteroids_webdomains_create operation.
 type AsteroidsWebdomainsCreateParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebdomainsCreateFormat
+	Format       OptAsteroidsWebdomainsCreateFormat `json:",omitempty,omitzero"`
 }
 
 // AsteroidsWebdomainsDeleteParams is parameters of asteroids_webdomains_delete operation.
 type AsteroidsWebdomainsDeleteParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebdomainsDeleteFormat
+	Format       OptAsteroidsWebdomainsDeleteFormat `json:",omitempty,omitzero"`
 	Name         string
 }
 
 // AsteroidsWebdomainsGetParams is parameters of asteroids_webdomains_get operation.
 type AsteroidsWebdomainsGetParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebdomainsGetFormat
+	Format       OptAsteroidsWebdomainsGetFormat `json:",omitempty,omitzero"`
 	Name         string
 }
 
 // AsteroidsWebdomainsHeadersCreateParams is parameters of asteroids_webdomains_headers_create operation.
 type AsteroidsWebdomainsHeadersCreateParams struct {
 	AsteroidName  string
-	Format        OptAsteroidsWebdomainsHeadersCreateFormat
+	Format        OptAsteroidsWebdomainsHeadersCreateFormat `json:",omitempty,omitzero"`
 	WebdomainName string
 }
 
 // AsteroidsWebdomainsHeadersDeleteParams is parameters of asteroids_webdomains_headers_delete operation.
 type AsteroidsWebdomainsHeadersDeleteParams struct {
 	AsteroidName  string
-	Format        OptAsteroidsWebdomainsHeadersDeleteFormat
+	Format        OptAsteroidsWebdomainsHeadersDeleteFormat `json:",omitempty,omitzero"`
 	ID            string
 	WebdomainName string
 }
@@ -279,7 +279,7 @@ type AsteroidsWebdomainsHeadersDeleteParams struct {
 // AsteroidsWebdomainsHeadersGetParams is parameters of asteroids_webdomains_headers_get operation.
 type AsteroidsWebdomainsHeadersGetParams struct {
 	AsteroidName  string
-	Format        OptAsteroidsWebdomainsHeadersGetFormat
+	Format        OptAsteroidsWebdomainsHeadersGetFormat `json:",omitempty,omitzero"`
 	ID            string
 	WebdomainName string
 }
@@ -287,28 +287,28 @@ type AsteroidsWebdomainsHeadersGetParams struct {
 // AsteroidsWebdomainsHeadersListParams is parameters of asteroids_webdomains_headers_list operation.
 type AsteroidsWebdomainsHeadersListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebdomainsHeadersListFormat
+	Format       OptAsteroidsWebdomainsHeadersListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset        OptInt
+	Offset        OptInt `json:",omitempty,omitzero"`
 	WebdomainName string
 }
 
 // AsteroidsWebdomainsListParams is parameters of asteroids_webdomains_list operation.
 type AsteroidsWebdomainsListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebdomainsListFormat
+	Format       OptAsteroidsWebdomainsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // AsteroidsWebheadersGetParams is parameters of asteroids_webheaders_get operation.
 type AsteroidsWebheadersGetParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebheadersGetFormat
+	Format       OptAsteroidsWebheadersGetFormat `json:",omitempty,omitzero"`
 	// A unique integer value identifying this web header.
 	ID int
 }
@@ -316,41 +316,41 @@ type AsteroidsWebheadersGetParams struct {
 // AsteroidsWebheadersListParams is parameters of asteroids_webheaders_list operation.
 type AsteroidsWebheadersListParams struct {
 	AsteroidName string
-	Format       OptAsteroidsWebheadersListFormat
+	Format       OptAsteroidsWebheadersListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // ToolsGetParams is parameters of tools_get operation.
 type ToolsGetParams struct {
-	Format OptToolsGetFormat
+	Format OptToolsGetFormat `json:",omitempty,omitzero"`
 	Slug   string
 }
 
 // ToolsListParams is parameters of tools_list operation.
 type ToolsListParams struct {
-	Format OptToolsListFormat
+	Format OptToolsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset OptInt
+	Offset OptInt `json:",omitempty,omitzero"`
 }
 
 // ToolsVersionsGetParams is parameters of tools_versions_get operation.
 type ToolsVersionsGetParams struct {
-	Format   OptToolsVersionsGetFormat
+	Format   OptToolsVersionsGetFormat `json:",omitempty,omitzero"`
 	ToolSlug string
 	Version  string
 }
 
 // ToolsVersionsListParams is parameters of tools_versions_list operation.
 type ToolsVersionsListParams struct {
-	Format OptToolsVersionsListFormat
+	Format OptToolsVersionsListFormat `json:",omitempty,omitzero"`
 	// Number of results to return per page.
-	Limit OptInt
+	Limit OptInt `json:",omitempty,omitzero"`
 	// The initial index from which to return the results.
-	Offset   OptInt
+	Offset   OptInt `json:",omitempty,omitzero"`
 	ToolSlug string
 }

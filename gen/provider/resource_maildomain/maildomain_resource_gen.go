@@ -41,17 +41,13 @@ func MaildomainResourceSchema(ctx context.Context) schema.Schema {
 			},
 			"dns_state": schema.StringAttribute{
 				Computed:            true,
-				Description:         "* `VALID` - valid\n* `INVALID` - invalid, could check, but invalid result\n* `ERROR` - error, could not check\n* `UNCHECKED` - unchecked, did not check yet",
-				MarkdownDescription: "* `VALID` - valid\n* `INVALID` - invalid, could check, but invalid result\n* `ERROR` - error, could not check\n* `UNCHECKED` - unchecked, did not check yet",
+				Description:         "* `VALID` - valid\n* `INVALID` - invalid, could check, but invalid result\n* `ERROR` - error, could not check\n* `UNCHECKED` - unchecked, did not check yet\n* `IGNORED` - ignored, do not check",
+				MarkdownDescription: "* `VALID` - valid\n* `INVALID` - invalid, could check, but invalid result\n* `ERROR` - error, could not check\n* `UNCHECKED` - unchecked, did not check yet\n* `IGNORED` - ignored, do not check",
 			},
-			"domain": schema.StringAttribute{
-				Computed: true,
-			},
-			"domain_display": schema.StringAttribute{
-				Computed: true,
-			},
-			"domain_idn": schema.StringAttribute{
-				Computed: true,
+			"dns_validation_token": schema.StringAttribute{
+				Computed:            true,
+				Description:         "Token used to verify domain ownership via DNS TXT record.",
+				MarkdownDescription: "Token used to verify domain ownership via DNS TXT record.",
 			},
 			"format": schema.StringAttribute{
 				Optional: true,
@@ -83,18 +79,16 @@ func MaildomainResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type MaildomainModel struct {
-	Asteroid      types.String `tfsdk:"asteroid"`
-	AsteroidName  types.String `tfsdk:"asteroid_name"`
-	CreatedAt     types.String `tfsdk:"created_at"`
-	DnsError      types.String `tfsdk:"dns_error"`
-	DnsLastCheck  types.String `tfsdk:"dns_last_check"`
-	DnsState      types.String `tfsdk:"dns_state"`
-	Domain        types.String `tfsdk:"domain"`
-	DomainDisplay types.String `tfsdk:"domain_display"`
-	DomainIdn     types.String `tfsdk:"domain_idn"`
-	Format        types.String `tfsdk:"format"`
-	Name          types.String `tfsdk:"name"`
-	NameDisplay   types.String `tfsdk:"name_display"`
-	NameIdn       types.String `tfsdk:"name_idn"`
-	UpdatedAt     types.String `tfsdk:"updated_at"`
+	Asteroid           types.String `tfsdk:"asteroid"`
+	AsteroidName       types.String `tfsdk:"asteroid_name"`
+	CreatedAt          types.String `tfsdk:"created_at"`
+	DnsError           types.String `tfsdk:"dns_error"`
+	DnsLastCheck       types.String `tfsdk:"dns_last_check"`
+	DnsState           types.String `tfsdk:"dns_state"`
+	DnsValidationToken types.String `tfsdk:"dns_validation_token"`
+	Format             types.String `tfsdk:"format"`
+	Name               types.String `tfsdk:"name"`
+	NameDisplay        types.String `tfsdk:"name_display"`
+	NameIdn            types.String `tfsdk:"name_idn"`
+	UpdatedAt          types.String `tfsdk:"updated_at"`
 }

@@ -9,7 +9,6 @@ import (
 
 	"github.com/go-faster/errors"
 	"github.com/go-faster/jx"
-
 	"github.com/ogen-go/ogen/ogenerrors"
 	"github.com/ogen-go/ogen/validate"
 )
@@ -61,7 +60,7 @@ func decodeAsteroidsGetResponse(resp *http.Response) (res *ExternalAsteroid, _ e
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsCreateResponse(resp *http.Response) (res *MailDomain, _ error) {
@@ -111,7 +110,7 @@ func decodeAsteroidsMaildomainsCreateResponse(resp *http.Response) (res *MailDom
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsDeleteResponse(resp *http.Response) (res *AsteroidsMaildomainsDeleteNoContent, _ error) {
@@ -120,7 +119,7 @@ func decodeAsteroidsMaildomainsDeleteResponse(resp *http.Response) (res *Asteroi
 		// Code 204.
 		return &AsteroidsMaildomainsDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsGetResponse(resp *http.Response) (res *MailDomain, _ error) {
@@ -170,7 +169,7 @@ func decodeAsteroidsMaildomainsGetResponse(resp *http.Response) (res *MailDomain
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsListResponse(resp *http.Response) (res *PaginatedMailDomainList, _ error) {
@@ -220,7 +219,7 @@ func decodeAsteroidsMaildomainsListResponse(resp *http.Response) (res *Paginated
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersCreateResponse(resp *http.Response) (res *MailUser, _ error) {
@@ -270,7 +269,7 @@ func decodeAsteroidsMaildomainsUsersCreateResponse(resp *http.Response) (res *Ma
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersDeleteResponse(resp *http.Response) (res *AsteroidsMaildomainsUsersDeleteNoContent, _ error) {
@@ -279,7 +278,7 @@ func decodeAsteroidsMaildomainsUsersDeleteResponse(resp *http.Response) (res *As
 		// Code 204.
 		return &AsteroidsMaildomainsUsersDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersForwardsCreateResponse(resp *http.Response) (res *MailForward, _ error) {
@@ -329,7 +328,7 @@ func decodeAsteroidsMaildomainsUsersForwardsCreateResponse(resp *http.Response) 
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersForwardsDeleteResponse(resp *http.Response) (res *AsteroidsMaildomainsUsersForwardsDeleteNoContent, _ error) {
@@ -338,7 +337,7 @@ func decodeAsteroidsMaildomainsUsersForwardsDeleteResponse(resp *http.Response) 
 		// Code 204.
 		return &AsteroidsMaildomainsUsersForwardsDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersForwardsGetResponse(resp *http.Response) (res *MailForward, _ error) {
@@ -388,7 +387,7 @@ func decodeAsteroidsMaildomainsUsersForwardsGetResponse(resp *http.Response) (re
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersForwardsListResponse(resp *http.Response) (res *PaginatedMailForwardList, _ error) {
@@ -438,7 +437,7 @@ func decodeAsteroidsMaildomainsUsersForwardsListResponse(resp *http.Response) (r
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersGetResponse(resp *http.Response) (res *MailUser, _ error) {
@@ -488,7 +487,7 @@ func decodeAsteroidsMaildomainsUsersGetResponse(resp *http.Response) (res *MailU
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersListResponse(resp *http.Response) (res *PaginatedMailUserList, _ error) {
@@ -538,7 +537,7 @@ func decodeAsteroidsMaildomainsUsersListResponse(resp *http.Response) (res *Pagi
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMaildomainsUsersPatchResponse(resp *http.Response) (res *MailUser, _ error) {
@@ -588,7 +587,7 @@ func decodeAsteroidsMaildomainsUsersPatchResponse(resp *http.Response) (res *Mai
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsMailusersListResponse(resp *http.Response) (res *PaginatedMailUserList, _ error) {
@@ -638,7 +637,7 @@ func decodeAsteroidsMailusersListResponse(resp *http.Response) (res *PaginatedMa
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsPatchResponse(resp *http.Response) (res *ExternalAsteroid, _ error) {
@@ -688,7 +687,7 @@ func decodeAsteroidsPatchResponse(resp *http.Response) (res *ExternalAsteroid, _
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsSshkeysCreateResponse(resp *http.Response) (res *SshKey, _ error) {
@@ -738,7 +737,7 @@ func decodeAsteroidsSshkeysCreateResponse(resp *http.Response) (res *SshKey, _ e
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsSshkeysDeleteResponse(resp *http.Response) (res *AsteroidsSshkeysDeleteNoContent, _ error) {
@@ -747,7 +746,7 @@ func decodeAsteroidsSshkeysDeleteResponse(resp *http.Response) (res *AsteroidsSs
 		// Code 204.
 		return &AsteroidsSshkeysDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsSshkeysGetResponse(resp *http.Response) (res *SshKey, _ error) {
@@ -797,7 +796,7 @@ func decodeAsteroidsSshkeysGetResponse(resp *http.Response) (res *SshKey, _ erro
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsSshkeysListResponse(resp *http.Response) (res *PaginatedSshKeyList, _ error) {
@@ -847,7 +846,7 @@ func decodeAsteroidsSshkeysListResponse(resp *http.Response) (res *PaginatedSshK
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsToolversionsGetResponse(resp *http.Response) (res *SelectedToolVersion, _ error) {
@@ -888,7 +887,7 @@ func decodeAsteroidsToolversionsGetResponse(resp *http.Response) (res *SelectedT
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsToolversionsListResponse(resp *http.Response) (res *PaginatedSelectedToolVersionList, _ error) {
@@ -938,7 +937,7 @@ func decodeAsteroidsToolversionsListResponse(resp *http.Response) (res *Paginate
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsToolversionsPatchResponse(resp *http.Response) (res *SelectedToolVersion, _ error) {
@@ -979,7 +978,7 @@ func decodeAsteroidsToolversionsPatchResponse(resp *http.Response) (res *Selecte
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebbackendsGetResponse(resp *http.Response) (res *WebBackend, _ error) {
@@ -1029,7 +1028,7 @@ func decodeAsteroidsWebbackendsGetResponse(resp *http.Response) (res *WebBackend
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebbackendsListResponse(resp *http.Response) (res *PaginatedWebBackendList, _ error) {
@@ -1079,7 +1078,7 @@ func decodeAsteroidsWebbackendsListResponse(resp *http.Response) (res *Paginated
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsBackendsCreateResponse(resp *http.Response) (res *WebBackend, _ error) {
@@ -1129,7 +1128,7 @@ func decodeAsteroidsWebdomainsBackendsCreateResponse(resp *http.Response) (res *
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsBackendsDeleteResponse(resp *http.Response) (res *AsteroidsWebdomainsBackendsDeleteNoContent, _ error) {
@@ -1138,7 +1137,7 @@ func decodeAsteroidsWebdomainsBackendsDeleteResponse(resp *http.Response) (res *
 		// Code 204.
 		return &AsteroidsWebdomainsBackendsDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsBackendsGetResponse(resp *http.Response) (res *WebBackend, _ error) {
@@ -1188,7 +1187,7 @@ func decodeAsteroidsWebdomainsBackendsGetResponse(resp *http.Response) (res *Web
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsBackendsListResponse(resp *http.Response) (res *PaginatedWebBackendList, _ error) {
@@ -1238,7 +1237,7 @@ func decodeAsteroidsWebdomainsBackendsListResponse(resp *http.Response) (res *Pa
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsCreateResponse(resp *http.Response) (res *WebDomain, _ error) {
@@ -1274,12 +1273,21 @@ func decodeAsteroidsWebdomainsCreateResponse(resp *http.Response) (res *WebDomai
 				}
 				return res, err
 			}
+			// Validate response.
+			if err := func() error {
+				if err := response.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return res, errors.Wrap(err, "validate")
+			}
 			return &response, nil
 		default:
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsDeleteResponse(resp *http.Response) (res *AsteroidsWebdomainsDeleteNoContent, _ error) {
@@ -1288,7 +1296,7 @@ func decodeAsteroidsWebdomainsDeleteResponse(resp *http.Response) (res *Asteroid
 		// Code 204.
 		return &AsteroidsWebdomainsDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsGetResponse(resp *http.Response) (res *WebDomain, _ error) {
@@ -1324,12 +1332,21 @@ func decodeAsteroidsWebdomainsGetResponse(resp *http.Response) (res *WebDomain, 
 				}
 				return res, err
 			}
+			// Validate response.
+			if err := func() error {
+				if err := response.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return res, errors.Wrap(err, "validate")
+			}
 			return &response, nil
 		default:
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsHeadersCreateResponse(resp *http.Response) (res *WebHeader, _ error) {
@@ -1379,7 +1396,7 @@ func decodeAsteroidsWebdomainsHeadersCreateResponse(resp *http.Response) (res *W
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsHeadersDeleteResponse(resp *http.Response) (res *AsteroidsWebdomainsHeadersDeleteNoContent, _ error) {
@@ -1388,7 +1405,7 @@ func decodeAsteroidsWebdomainsHeadersDeleteResponse(resp *http.Response) (res *A
 		// Code 204.
 		return &AsteroidsWebdomainsHeadersDeleteNoContent{}, nil
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsHeadersGetResponse(resp *http.Response) (res *WebHeader, _ error) {
@@ -1438,7 +1455,7 @@ func decodeAsteroidsWebdomainsHeadersGetResponse(resp *http.Response) (res *WebH
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsHeadersListResponse(resp *http.Response) (res *PaginatedWebHeaderList, _ error) {
@@ -1488,7 +1505,7 @@ func decodeAsteroidsWebdomainsHeadersListResponse(resp *http.Response) (res *Pag
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebdomainsListResponse(resp *http.Response) (res *PaginatedWebDomainList, _ error) {
@@ -1538,7 +1555,7 @@ func decodeAsteroidsWebdomainsListResponse(resp *http.Response) (res *PaginatedW
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebheadersGetResponse(resp *http.Response) (res *WebHeader, _ error) {
@@ -1588,7 +1605,7 @@ func decodeAsteroidsWebheadersGetResponse(resp *http.Response) (res *WebHeader, 
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeAsteroidsWebheadersListResponse(resp *http.Response) (res *PaginatedWebHeaderList, _ error) {
@@ -1638,7 +1655,7 @@ func decodeAsteroidsWebheadersListResponse(resp *http.Response) (res *PaginatedW
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeToolsGetResponse(resp *http.Response) (res *Tool, _ error) {
@@ -1688,7 +1705,7 @@ func decodeToolsGetResponse(resp *http.Response) (res *Tool, _ error) {
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeToolsListResponse(resp *http.Response) (res *PaginatedToolList, _ error) {
@@ -1738,7 +1755,7 @@ func decodeToolsListResponse(resp *http.Response) (res *PaginatedToolList, _ err
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeToolsVersionsGetResponse(resp *http.Response) (res *ToolVersion, _ error) {
@@ -1788,7 +1805,7 @@ func decodeToolsVersionsGetResponse(resp *http.Response) (res *ToolVersion, _ er
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }
 
 func decodeToolsVersionsListResponse(resp *http.Response) (res *PaginatedToolVersionList, _ error) {
@@ -1838,5 +1855,5 @@ func decodeToolsVersionsListResponse(resp *http.Response) (res *PaginatedToolVer
 			return res, validate.InvalidContentType(ct)
 		}
 	}
-	return res, validate.UnexpectedStatusCode(resp.StatusCode)
+	return res, validate.UnexpectedStatusCodeWithResponse(resp)
 }

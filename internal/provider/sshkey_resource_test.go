@@ -21,12 +21,12 @@ func TestAccSshkeyResource(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccSshkeyResourceConfig("tf", "ssh-ed25519", testAccSshkeyValueOne, "terraform@example.com"),
+				Config: testAccSshkeyResourceConfig("terra", "ssh-ed25519", testAccSshkeyValueOne, "terraform@example.com"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_sshkey.test",
 						tfjsonpath.New("asteroid"),
-						knownvalue.StringExact("tf"),
+						knownvalue.StringExact("terra"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_sshkey.test",
@@ -46,7 +46,7 @@ func TestAccSshkeyResource(t *testing.T) {
 				},
 			},
 			{
-				Config: testAccSshkeyResourceConfig("tf", "ssh-ed25519", testAccSshkeyValueTwo, "terraform+updated@example.com"),
+				Config: testAccSshkeyResourceConfig("terra", "ssh-ed25519", testAccSshkeyValueTwo, "terraform+updated@example.com"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_sshkey.test",

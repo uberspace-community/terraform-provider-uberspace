@@ -14,8 +14,8 @@ import (
 func TestAccMailuserResource(t *testing.T) {
 	t.Parallel()
 
-	asteroid := "tf"
-	maildomain := fmt.Sprintf("%s.tf.uber8.space", acctest.RandomWithPrefix("mail"))
+	asteroid := "terra"
+	maildomain := fmt.Sprintf("%s.terra.uber.space", acctest.RandomWithPrefix("mail"))
 	username := acctest.RandomWithPrefix("acctest")
 
 	resource.Test(t, resource.TestCase{

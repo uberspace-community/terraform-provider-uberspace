@@ -17,8 +17,8 @@ func TestAccWebdomainHeaderResource(t *testing.T) {
 		Steps: []resource.TestStep{
 			{
 				Config: testAccWebdomainHeaderResourceConfig(
-					"tf",
-					"test-header.tf.uber8.space",
+					"terra",
+					"test-header.terra.uber.space",
 					"X-Custom-Header",
 					"initial",
 				),
@@ -42,8 +42,8 @@ func TestAccWebdomainHeaderResource(t *testing.T) {
 			},
 			{
 				Config: testAccWebdomainHeaderResourceConfig(
-					"tf",
-					"test-header.tf.uber8.space",
+					"terra",
+					"test-header.terra.uber.space",
 					"X-Custom-Header",
 					"updated",
 				),

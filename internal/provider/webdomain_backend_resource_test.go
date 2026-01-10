@@ -16,17 +16,17 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccWebdomainBackendResourceConfig("tf", "test-backend.tf.uber8.space", 1024, "/tf-backend", false),
+				Config: testAccWebdomainBackendResourceConfig("terra", "test-backend.terra.uber.space", 1024, "/terra-backend", false),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
 						tfjsonpath.New("asteroid"),
-						knownvalue.StringExact("tf"),
+						knownvalue.StringExact("terra"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
 						tfjsonpath.New("domain"),
-						knownvalue.StringExact("test-backend.tf.uber8.space"),
+						knownvalue.StringExact("test-backend.terra.uber.space"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
@@ -36,7 +36,7 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
 						tfjsonpath.New("path"),
-						knownvalue.StringExact("/tf-backend"),
+						knownvalue.StringExact("/terra-backend"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
@@ -46,12 +46,12 @@ func TestAccWebdomainBackendResource(t *testing.T) {
 				},
 			},
 			{
-				Config: testAccWebdomainBackendResourceConfig("tf", "test-backend.tf.uber8.space", 1024, "/tf-backend-updated", true),
+				Config: testAccWebdomainBackendResourceConfig("terra", "test-backend.terra.uber.space", 1024, "/terra-backend-updated", true),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
 						tfjsonpath.New("path"),
-						knownvalue.StringExact("/tf-backend-updated"),
+						knownvalue.StringExact("/terra-backend-updated"),
 					),
 					statecheck.ExpectKnownValue(
 						"uberspace_webdomain_backend.test",
