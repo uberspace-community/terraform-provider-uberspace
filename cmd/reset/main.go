@@ -149,32 +149,8 @@ func resetMaildomain(ctx context.Context, c *client.Client, asteroid string) err
 	}
 
 	for _, domain := range mailDomains.Results {
-		backends, err := c.AsteroidsMaildomainsUsersList(ctx, client.AsteroidsMaildomainsUsersListParams{
-			AsteroidName:   domain.Asteroid,
-			MaildomainName: domain.Name,
-		})
-		if err != nil {
-			return fmt.Errorf("failed to list backends for maildomain %s: %w", domain.Name, err)
-		}
-
-		for _, user := range backends.Results {
-			if slices.Contains([]string{"sysmail", "postmaster", "abuse", "hostmaster"}, user.Name) {
-				fmt.Printf("Skipping deletion of system user %s for maildomain %s\n", user.Name, domain.Name)
-
-				continue
-			}
-
-			fmt.Printf("Deleting user %s for maildomain %s\n", user.Name, domain.Name)
-
-			if err := c.AsteroidsMaildomainsUsersDelete(ctx, client.AsteroidsMaildomainsUsersDeleteParams{
-				Local:          user.Name,
-				AsteroidName:   domain.Asteroid,
-				MaildomainName: domain.Name,
-			}); err != nil {
-				return fmt.Errorf("failed to delete user %s for maildomain %s: %w", user.Name, domain.Name, err)
-			}
-
-			fmt.Printf("Deleted user %s for maildomain %s\n", user.Name, domain.Name)
+		if err := resetMailDomainUsers(ctx, c, domain); err != nil {
+			return err
 		}
 
 		systemDomains := []string{
@@ -198,6 +174,38 @@ func resetMaildomain(ctx context.Context, c *client.Client, asteroid string) err
 		}
 
 		fmt.Printf("Deleted maildomain %s\n", domain.Name)
+	}
+
+	return nil
+}
+
+func resetMailDomainUsers(ctx context.Context, c *client.Client, domain client.MailDomain) error {
+	backends, err := c.AsteroidsMaildomainsUsersList(ctx, client.AsteroidsMaildomainsUsersListParams{
+		AsteroidName:   domain.Asteroid,
+		MaildomainName: domain.Name,
+	})
+	if err != nil {
+		return fmt.Errorf("failed to list backends for maildomain %s: %w", domain.Name, err)
+	}
+
+	for _, user := range backends.Results {
+		if slices.Contains([]string{"sysmail", "postmaster", "abuse", "hostmaster"}, user.Name) {
+			fmt.Printf("Skipping deletion of system user %s for maildomain %s\n", user.Name, domain.Name)
+
+			continue
+		}
+
+		fmt.Printf("Deleting user %s for maildomain %s\n", user.Name, domain.Name)
+
+		if err := c.AsteroidsMaildomainsUsersDelete(ctx, client.AsteroidsMaildomainsUsersDeleteParams{
+			Local:          user.Name,
+			AsteroidName:   domain.Asteroid,
+			MaildomainName: domain.Name,
+		}); err != nil {
+			return fmt.Errorf("failed to delete user %s for maildomain %s: %w", user.Name, domain.Name, err)
+		}
+
+		fmt.Printf("Deleted user %s for maildomain %s\n", user.Name, domain.Name)
 	}
 
 	return nil
