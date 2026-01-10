@@ -10,7 +10,6 @@ import (
 
 	"github.com/go-faster/errors"
 	"github.com/go-faster/jx"
-
 	"github.com/ogen-go/ogen/json"
 	"github.com/ogen-go/ogen/validate"
 )
@@ -841,6 +840,8 @@ func (s *DnsStateEnum) Decode(d *jx.Decoder) error {
 		*s = DnsStateEnumERROR
 	case DnsStateEnumUNCHECKED:
 		*s = DnsStateEnumUNCHECKED
+	case DnsStateEnumIGNORED:
+		*s = DnsStateEnumIGNORED
 	default:
 		*s = DnsStateEnum(v)
 	}
@@ -1189,18 +1190,6 @@ func (s *MailDomain) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *MailDomain) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
-	}
-	{
-		e.FieldStart("domain_display")
-		e.Str(s.DomainDisplay)
-	}
-	{
-		e.FieldStart("domain_idn")
-		e.Str(s.DomainIdn)
-	}
-	{
 		e.FieldStart("name")
 		e.Str(s.Name)
 	}
@@ -1213,12 +1202,8 @@ func (s *MailDomain) encodeFields(e *jx.Encoder) {
 		e.Str(s.NameIdn)
 	}
 	{
-		e.FieldStart("created_at")
-		json.EncodeDateTime(e, s.CreatedAt)
-	}
-	{
-		e.FieldStart("updated_at")
-		json.EncodeDateTime(e, s.UpdatedAt)
+		e.FieldStart("dns_validation_token")
+		e.Str(s.DNSValidationToken)
 	}
 	{
 		e.FieldStart("dns_state")
@@ -1233,24 +1218,30 @@ func (s *MailDomain) encodeFields(e *jx.Encoder) {
 		s.DNSError.Encode(e)
 	}
 	{
+		e.FieldStart("created_at")
+		json.EncodeDateTime(e, s.CreatedAt)
+	}
+	{
+		e.FieldStart("updated_at")
+		json.EncodeDateTime(e, s.UpdatedAt)
+	}
+	{
 		e.FieldStart("asteroid")
 		e.Str(s.Asteroid)
 	}
 }
 
-var jsonFieldsNameOfMailDomain = [12]string{
-	0:  "domain",
-	1:  "domain_display",
-	2:  "domain_idn",
-	3:  "name",
-	4:  "name_display",
-	5:  "name_idn",
-	6:  "created_at",
-	7:  "updated_at",
-	8:  "dns_state",
-	9:  "dns_last_check",
-	10: "dns_error",
-	11: "asteroid",
+var jsonFieldsNameOfMailDomain = [10]string{
+	0: "name",
+	1: "name_display",
+	2: "name_idn",
+	3: "dns_validation_token",
+	4: "dns_state",
+	5: "dns_last_check",
+	6: "dns_error",
+	7: "created_at",
+	8: "updated_at",
+	9: "asteroid",
 }
 
 // Decode decodes MailDomain from json.
@@ -1262,44 +1253,8 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "domain":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
-		case "domain_display":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := d.Str()
-				s.DomainDisplay = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain_display\"")
-			}
-		case "domain_idn":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.DomainIdn = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain_idn\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -1311,7 +1266,7 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"name\"")
 			}
 		case "name_display":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.NameDisplay = string(v)
@@ -1323,7 +1278,7 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"name_display\"")
 			}
 		case "name_idn":
-			requiredBitSet[0] |= 1 << 5
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.NameIdn = string(v)
@@ -1334,8 +1289,50 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"name_idn\"")
 			}
-		case "created_at":
+		case "dns_validation_token":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				v, err := d.Str()
+				s.DNSValidationToken = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_validation_token\"")
+			}
+		case "dns_state":
+			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				if err := s.DNSState.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_state\"")
+			}
+		case "dns_last_check":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_last_check\"")
+			}
+		case "dns_error":
 			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				if err := s.DNSError.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_error\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.CreatedAt = v
@@ -1347,7 +1344,7 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
-			requiredBitSet[0] |= 1 << 7
+			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -1358,38 +1355,8 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
-		case "dns_state":
-			requiredBitSet[1] |= 1 << 0
-			if err := func() error {
-				if err := s.DNSState.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_state\"")
-			}
-		case "dns_last_check":
-			requiredBitSet[1] |= 1 << 1
-			if err := func() error {
-				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_last_check\"")
-			}
-		case "dns_error":
-			requiredBitSet[1] |= 1 << 2
-			if err := func() error {
-				if err := s.DNSError.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dns_error\"")
-			}
 		case "asteroid":
-			requiredBitSet[1] |= 1 << 3
+			requiredBitSet[1] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -1411,7 +1378,7 @@ func (s *MailDomain) Decode(d *jx.Decoder) error {
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
 		0b11111111,
-		0b00001111,
+		0b00000011,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -6554,18 +6521,6 @@ func (s *WebDomain) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *WebDomain) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("domain")
-		e.Str(s.Domain)
-	}
-	{
-		e.FieldStart("domain_display")
-		e.Str(s.DomainDisplay)
-	}
-	{
-		e.FieldStart("domain_idn")
-		e.Str(s.DomainIdn)
-	}
-	{
 		e.FieldStart("name")
 		e.Str(s.Name)
 	}
@@ -6576,6 +6531,22 @@ func (s *WebDomain) encodeFields(e *jx.Encoder) {
 	{
 		e.FieldStart("name_idn")
 		e.Str(s.NameIdn)
+	}
+	{
+		e.FieldStart("dns_validation_token")
+		e.Str(s.DNSValidationToken)
+	}
+	{
+		e.FieldStart("dns_state")
+		s.DNSState.Encode(e)
+	}
+	{
+		e.FieldStart("dns_last_check")
+		s.DNSLastCheck.Encode(e, json.EncodeDateTime)
+	}
+	{
+		e.FieldStart("dns_error")
+		s.DNSError.Encode(e)
 	}
 	{
 		e.FieldStart("created_at")
@@ -6591,16 +6562,17 @@ func (s *WebDomain) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfWebDomain = [9]string{
-	0: "domain",
-	1: "domain_display",
-	2: "domain_idn",
-	3: "name",
-	4: "name_display",
-	5: "name_idn",
-	6: "created_at",
-	7: "updated_at",
-	8: "asteroid",
+var jsonFieldsNameOfWebDomain = [10]string{
+	0: "name",
+	1: "name_display",
+	2: "name_idn",
+	3: "dns_validation_token",
+	4: "dns_state",
+	5: "dns_last_check",
+	6: "dns_error",
+	7: "created_at",
+	8: "updated_at",
+	9: "asteroid",
 }
 
 // Decode decodes WebDomain from json.
@@ -6612,44 +6584,8 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "domain":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Str()
-				s.Domain = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain\"")
-			}
-		case "domain_display":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := d.Str()
-				s.DomainDisplay = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain_display\"")
-			}
-		case "domain_idn":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Str()
-				s.DomainIdn = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"domain_idn\"")
-			}
 		case "name":
-			requiredBitSet[0] |= 1 << 3
+			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
 				v, err := d.Str()
 				s.Name = string(v)
@@ -6661,7 +6597,7 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"name\"")
 			}
 		case "name_display":
-			requiredBitSet[0] |= 1 << 4
+			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.NameDisplay = string(v)
@@ -6673,7 +6609,7 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"name_display\"")
 			}
 		case "name_idn":
-			requiredBitSet[0] |= 1 << 5
+			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.Str()
 				s.NameIdn = string(v)
@@ -6684,8 +6620,50 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"name_idn\"")
 			}
-		case "created_at":
+		case "dns_validation_token":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				v, err := d.Str()
+				s.DNSValidationToken = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_validation_token\"")
+			}
+		case "dns_state":
+			requiredBitSet[0] |= 1 << 4
+			if err := func() error {
+				if err := s.DNSState.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_state\"")
+			}
+		case "dns_last_check":
+			requiredBitSet[0] |= 1 << 5
+			if err := func() error {
+				if err := s.DNSLastCheck.Decode(d, json.DecodeDateTime); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_last_check\"")
+			}
+		case "dns_error":
 			requiredBitSet[0] |= 1 << 6
+			if err := func() error {
+				if err := s.DNSError.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"dns_error\"")
+			}
+		case "created_at":
+			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.CreatedAt = v
@@ -6697,7 +6675,7 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"created_at\"")
 			}
 		case "updated_at":
-			requiredBitSet[0] |= 1 << 7
+			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
 				v, err := json.DecodeDateTime(d)
 				s.UpdatedAt = v
@@ -6709,7 +6687,7 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"updated_at\"")
 			}
 		case "asteroid":
-			requiredBitSet[1] |= 1 << 0
+			requiredBitSet[1] |= 1 << 1
 			if err := func() error {
 				v, err := d.Str()
 				s.Asteroid = string(v)
@@ -6731,7 +6709,7 @@ func (s *WebDomain) Decode(d *jx.Decoder) error {
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
 		0b11111111,
-		0b00000001,
+		0b00000011,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.

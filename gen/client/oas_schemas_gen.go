@@ -1782,7 +1782,8 @@ func (s *DestinationEnum) UnmarshalText(data []byte) error {
 // * `VALID` - valid
 // * `INVALID` - invalid, could check, but invalid result
 // * `ERROR` - error, could not check
-// * `UNCHECKED` - unchecked, did not check yet.
+// * `UNCHECKED` - unchecked, did not check yet
+// * `IGNORED` - ignored, do not check.
 // Ref: #/components/schemas/DnsStateEnum
 type DnsStateEnum string
 
@@ -1791,6 +1792,7 @@ const (
 	DnsStateEnumINVALID   DnsStateEnum = "INVALID"
 	DnsStateEnumERROR     DnsStateEnum = "ERROR"
 	DnsStateEnumUNCHECKED DnsStateEnum = "UNCHECKED"
+	DnsStateEnumIGNORED   DnsStateEnum = "IGNORED"
 )
 
 // AllValues returns all DnsStateEnum values.
@@ -1800,6 +1802,7 @@ func (DnsStateEnum) AllValues() []DnsStateEnum {
 		DnsStateEnumINVALID,
 		DnsStateEnumERROR,
 		DnsStateEnumUNCHECKED,
+		DnsStateEnumIGNORED,
 	}
 }
 
@@ -1813,6 +1816,8 @@ func (s DnsStateEnum) MarshalText() ([]byte, error) {
 	case DnsStateEnumERROR:
 		return []byte(s), nil
 	case DnsStateEnumUNCHECKED:
+		return []byte(s), nil
+	case DnsStateEnumIGNORED:
 		return []byte(s), nil
 	default:
 		return nil, errors.Errorf("invalid value: %q", s)
@@ -1833,6 +1838,9 @@ func (s *DnsStateEnum) UnmarshalText(data []byte) error {
 		return nil
 	case DnsStateEnumUNCHECKED:
 		*s = DnsStateEnumUNCHECKED
+		return nil
+	case DnsStateEnumIGNORED:
+		*s = DnsStateEnumIGNORED
 		return nil
 	default:
 		return errors.Errorf("invalid value: %q", data)
@@ -2053,36 +2061,20 @@ func (s *KeyTypeEnum) UnmarshalText(data []byte) error {
 
 // Ref: #/components/schemas/MailDomain
 type MailDomain struct {
-	Domain        string       `json:"domain"`
-	DomainDisplay string       `json:"domain_display"`
-	DomainIdn     string       `json:"domain_idn"`
-	Name          string       `json:"name"`
-	NameDisplay   string       `json:"name_display"`
-	NameIdn       string       `json:"name_idn"`
-	CreatedAt     time.Time    `json:"created_at"`
-	UpdatedAt     time.Time    `json:"updated_at"`
-	DNSState      DnsStateEnum `json:"dns_state"`
+	Name        string `json:"name"`
+	NameDisplay string `json:"name_display"`
+	NameIdn     string `json:"name_idn"`
+	// Token used to verify domain ownership via DNS TXT record.
+	DNSValidationToken string       `json:"dns_validation_token"`
+	DNSState           DnsStateEnum `json:"dns_state"`
 	// When the DNS records were checked last.
 	DNSLastCheck NilDateTime `json:"dns_last_check"`
 	// Error encountered when checking DNS records.
-	DNSError NilString `json:"dns_error"`
+	DNSError  NilString `json:"dns_error"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-}
-
-// GetDomain returns the value of Domain.
-func (s *MailDomain) GetDomain() string {
-	return s.Domain
-}
-
-// GetDomainDisplay returns the value of DomainDisplay.
-func (s *MailDomain) GetDomainDisplay() string {
-	return s.DomainDisplay
-}
-
-// GetDomainIdn returns the value of DomainIdn.
-func (s *MailDomain) GetDomainIdn() string {
-	return s.DomainIdn
 }
 
 // GetName returns the value of Name.
@@ -2100,14 +2092,9 @@ func (s *MailDomain) GetNameIdn() string {
 	return s.NameIdn
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *MailDomain) GetCreatedAt() time.Time {
-	return s.CreatedAt
-}
-
-// GetUpdatedAt returns the value of UpdatedAt.
-func (s *MailDomain) GetUpdatedAt() time.Time {
-	return s.UpdatedAt
+// GetDNSValidationToken returns the value of DNSValidationToken.
+func (s *MailDomain) GetDNSValidationToken() string {
+	return s.DNSValidationToken
 }
 
 // GetDNSState returns the value of DNSState.
@@ -2125,24 +2112,19 @@ func (s *MailDomain) GetDNSError() NilString {
 	return s.DNSError
 }
 
+// GetCreatedAt returns the value of CreatedAt.
+func (s *MailDomain) GetCreatedAt() time.Time {
+	return s.CreatedAt
+}
+
+// GetUpdatedAt returns the value of UpdatedAt.
+func (s *MailDomain) GetUpdatedAt() time.Time {
+	return s.UpdatedAt
+}
+
 // GetAsteroid returns the value of Asteroid.
 func (s *MailDomain) GetAsteroid() string {
 	return s.Asteroid
-}
-
-// SetDomain sets the value of Domain.
-func (s *MailDomain) SetDomain(val string) {
-	s.Domain = val
-}
-
-// SetDomainDisplay sets the value of DomainDisplay.
-func (s *MailDomain) SetDomainDisplay(val string) {
-	s.DomainDisplay = val
-}
-
-// SetDomainIdn sets the value of DomainIdn.
-func (s *MailDomain) SetDomainIdn(val string) {
-	s.DomainIdn = val
 }
 
 // SetName sets the value of Name.
@@ -2160,14 +2142,9 @@ func (s *MailDomain) SetNameIdn(val string) {
 	s.NameIdn = val
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *MailDomain) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
-}
-
-// SetUpdatedAt sets the value of UpdatedAt.
-func (s *MailDomain) SetUpdatedAt(val time.Time) {
-	s.UpdatedAt = val
+// SetDNSValidationToken sets the value of DNSValidationToken.
+func (s *MailDomain) SetDNSValidationToken(val string) {
+	s.DNSValidationToken = val
 }
 
 // SetDNSState sets the value of DNSState.
@@ -2183,6 +2160,16 @@ func (s *MailDomain) SetDNSLastCheck(val NilDateTime) {
 // SetDNSError sets the value of DNSError.
 func (s *MailDomain) SetDNSError(val NilString) {
 	s.DNSError = val
+}
+
+// SetCreatedAt sets the value of CreatedAt.
+func (s *MailDomain) SetCreatedAt(val time.Time) {
+	s.CreatedAt = val
+}
+
+// SetUpdatedAt sets the value of UpdatedAt.
+func (s *MailDomain) SetUpdatedAt(val time.Time) {
+	s.UpdatedAt = val
 }
 
 // SetAsteroid sets the value of Asteroid.
@@ -6984,31 +6971,20 @@ func (*WebBackendRequestMultipart) asteroidsWebdomainsBackendsCreateReq() {}
 
 // Ref: #/components/schemas/WebDomain
 type WebDomain struct {
-	Domain        string    `json:"domain"`
-	DomainDisplay string    `json:"domain_display"`
-	DomainIdn     string    `json:"domain_idn"`
-	Name          string    `json:"name"`
-	NameDisplay   string    `json:"name_display"`
-	NameIdn       string    `json:"name_idn"`
-	CreatedAt     time.Time `json:"created_at"`
-	UpdatedAt     time.Time `json:"updated_at"`
+	Name        string `json:"name"`
+	NameDisplay string `json:"name_display"`
+	NameIdn     string `json:"name_idn"`
+	// Token used to verify domain ownership via DNS TXT record.
+	DNSValidationToken string       `json:"dns_validation_token"`
+	DNSState           DnsStateEnum `json:"dns_state"`
+	// When the DNS records were checked last.
+	DNSLastCheck NilDateTime `json:"dns_last_check"`
+	// Error encountered when checking DNS records.
+	DNSError  NilString `json:"dns_error"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 	// Name of a hosting account, e.g. 'isabell'.
 	Asteroid string `json:"asteroid"`
-}
-
-// GetDomain returns the value of Domain.
-func (s *WebDomain) GetDomain() string {
-	return s.Domain
-}
-
-// GetDomainDisplay returns the value of DomainDisplay.
-func (s *WebDomain) GetDomainDisplay() string {
-	return s.DomainDisplay
-}
-
-// GetDomainIdn returns the value of DomainIdn.
-func (s *WebDomain) GetDomainIdn() string {
-	return s.DomainIdn
 }
 
 // GetName returns the value of Name.
@@ -7026,6 +7002,26 @@ func (s *WebDomain) GetNameIdn() string {
 	return s.NameIdn
 }
 
+// GetDNSValidationToken returns the value of DNSValidationToken.
+func (s *WebDomain) GetDNSValidationToken() string {
+	return s.DNSValidationToken
+}
+
+// GetDNSState returns the value of DNSState.
+func (s *WebDomain) GetDNSState() DnsStateEnum {
+	return s.DNSState
+}
+
+// GetDNSLastCheck returns the value of DNSLastCheck.
+func (s *WebDomain) GetDNSLastCheck() NilDateTime {
+	return s.DNSLastCheck
+}
+
+// GetDNSError returns the value of DNSError.
+func (s *WebDomain) GetDNSError() NilString {
+	return s.DNSError
+}
+
 // GetCreatedAt returns the value of CreatedAt.
 func (s *WebDomain) GetCreatedAt() time.Time {
 	return s.CreatedAt
@@ -7041,21 +7037,6 @@ func (s *WebDomain) GetAsteroid() string {
 	return s.Asteroid
 }
 
-// SetDomain sets the value of Domain.
-func (s *WebDomain) SetDomain(val string) {
-	s.Domain = val
-}
-
-// SetDomainDisplay sets the value of DomainDisplay.
-func (s *WebDomain) SetDomainDisplay(val string) {
-	s.DomainDisplay = val
-}
-
-// SetDomainIdn sets the value of DomainIdn.
-func (s *WebDomain) SetDomainIdn(val string) {
-	s.DomainIdn = val
-}
-
 // SetName sets the value of Name.
 func (s *WebDomain) SetName(val string) {
 	s.Name = val
@@ -7069,6 +7050,26 @@ func (s *WebDomain) SetNameDisplay(val string) {
 // SetNameIdn sets the value of NameIdn.
 func (s *WebDomain) SetNameIdn(val string) {
 	s.NameIdn = val
+}
+
+// SetDNSValidationToken sets the value of DNSValidationToken.
+func (s *WebDomain) SetDNSValidationToken(val string) {
+	s.DNSValidationToken = val
+}
+
+// SetDNSState sets the value of DNSState.
+func (s *WebDomain) SetDNSState(val DnsStateEnum) {
+	s.DNSState = val
+}
+
+// SetDNSLastCheck sets the value of DNSLastCheck.
+func (s *WebDomain) SetDNSLastCheck(val NilDateTime) {
+	s.DNSLastCheck = val
+}
+
+// SetDNSError sets the value of DNSError.
+func (s *WebDomain) SetDNSError(val NilString) {
+	s.DNSError = val
 }
 
 // SetCreatedAt sets the value of CreatedAt.

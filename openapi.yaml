@@ -3508,12 +3508,14 @@ components:
         - INVALID
         - ERROR
         - UNCHECKED
+        - IGNORED
       type: string
       description: |-
         * `VALID` - valid
         * `INVALID` - invalid, could check, but invalid result
         * `ERROR` - error, could not check
         * `UNCHECKED` - unchecked, did not check yet
+        * `IGNORED` - ignored, do not check
     Event:
       type: object
       properties:
@@ -3542,15 +3544,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/CauseEnum'
           readOnly: true
-        change_kind:
-          type: string
         state:
           allOf:
             - $ref: '#/components/schemas/EventStateEnum'
           readOnly: true
       required:
         - cause
-        - change_kind
         - content_type
         - created_at
         - human_identifier
@@ -3563,11 +3562,7 @@ components:
       properties:
         content_type:
           type: string
-        change_kind:
-          type: string
-          minLength: 1
       required:
-        - change_kind
         - content_type
     EventStateEnum:
       enum:
@@ -3751,15 +3746,6 @@ components:
     MailDomain:
       type: object
       properties:
-        domain:
-          type: string
-          readOnly: true
-        domain_display:
-          type: string
-          readOnly: true
-        domain_idn:
-          type: string
-          readOnly: true
         name:
           type: string
         name_display:
@@ -3768,6 +3754,34 @@ components:
         name_idn:
           type: string
           readOnly: true
+        dns_validation_token:
+          type: string
+          readOnly: true
+          description: Token used to verify domain ownership via DNS TXT record.
+          pattern: ^[-a-zA-Z0-9_]+$
+        dns_state:
+          allOf:
+            - $ref: '#/components/schemas/DnsStateEnum'
+          readOnly: true
+          description: |-
+            Whether this domain has valid DNS records and is ready to use.
+
+            * `VALID` - valid
+            * `INVALID` - invalid, could check, but invalid result
+            * `ERROR` - error, could not check
+            * `UNCHECKED` - unchecked, did not check yet
+            * `IGNORED` - ignored, do not check
+        dns_last_check:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: When the DNS records were checked last.
+        dns_error:
+          type: string
+          readOnly: true
+          nullable: true
+          description: Error encountered when checking DNS records.
         created_at:
           type: string
           format: date-time
@@ -3780,28 +3794,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/RelatedMailDomainField'
           description: The domain this domain is an alias for, e.g. 'example.com'.
-        dns_state:
-          allOf:
-            - $ref: '#/components/schemas/DnsStateEnum'
-          readOnly: true
-          description: |-
-            Whether this domain has valid DNS records and is ready to use.
-
-            * `VALID` - valid
-            * `INVALID` - invalid, could check, but invalid result
-            * `ERROR` - error, could not check
-            * `UNCHECKED` - unchecked, did not check yet
-        dns_last_check:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-          description: When the DNS records were checked last.
-        dns_error:
-          type: string
-          readOnly: true
-          nullable: true
-          description: Error encountered when checking DNS records.
         asteroid:
           type: string
           description: Name of a hosting account, e.g. 'isabell'.
@@ -3811,9 +3803,7 @@ components:
         - dns_error
         - dns_last_check
         - dns_state
-        - domain
-        - domain_display
-        - domain_idn
+        - dns_validation_token
         - name
         - name_display
         - name_idn
@@ -4506,6 +4496,10 @@ components:
           description: Hostname of a server, e.g. 'tuttle'
         client:
           type: string
+        job_priority:
+          type: integer
+          minimum: 0
+          default: 0
       required:
         - client
         - model
@@ -4524,6 +4518,10 @@ components:
         client:
           type: string
           minLength: 1
+        job_priority:
+          type: integer
+          minimum: 0
+          default: 0
       required:
         - client
         - model
@@ -4908,15 +4906,6 @@ components:
     WebDomain:
       type: object
       properties:
-        domain:
-          type: string
-          readOnly: true
-        domain_display:
-          type: string
-          readOnly: true
-        domain_idn:
-          type: string
-          readOnly: true
         name:
           type: string
         name_display:
@@ -4925,6 +4914,34 @@ components:
         name_idn:
           type: string
           readOnly: true
+        dns_validation_token:
+          type: string
+          readOnly: true
+          description: Token used to verify domain ownership via DNS TXT record.
+          pattern: ^[-a-zA-Z0-9_]+$
+        dns_state:
+          allOf:
+            - $ref: '#/components/schemas/DnsStateEnum'
+          readOnly: true
+          description: |-
+            Whether this domain has valid DNS records and is ready to use.
+
+            * `VALID` - valid
+            * `INVALID` - invalid, could check, but invalid result
+            * `ERROR` - error, could not check
+            * `UNCHECKED` - unchecked, did not check yet
+            * `IGNORED` - ignored, do not check
+        dns_last_check:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: When the DNS records were checked last.
+        dns_error:
+          type: string
+          readOnly: true
+          nullable: true
+          description: Error encountered when checking DNS records.
         created_at:
           type: string
           format: date-time
@@ -4939,9 +4956,10 @@ components:
       required:
         - asteroid
         - created_at
-        - domain
-        - domain_display
-        - domain_idn
+        - dns_error
+        - dns_last_check
+        - dns_state
+        - dns_validation_token
         - name
         - name_display
         - name_idn
