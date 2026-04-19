@@ -3,7 +3,7 @@
 ## Requirements
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
-- [Go](https://golang.org/doc/install) >= 1.24
+- [Go](https://golang.org/doc/install) >= 1.25
 - [uberspace](https://uberspace.de/) account in version U8
 
 ## Building The Provider
