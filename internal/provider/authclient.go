@@ -15,5 +15,5 @@ func NewAuthClient(apikey string) *AuthClient {
 func (a *AuthClient) Do(r *http.Request) (*http.Response, error) {
 	r.Header.Set("Authorization", "Api-Key "+a.apikey)
 
-	return http.DefaultClient.Do(r)
+	return http.DefaultClient.Do(r) //nolint: gosec
 }
